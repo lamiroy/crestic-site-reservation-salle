@@ -36,25 +36,25 @@
 
     <nav class="blue-grey darken-4">
         <div class="nav-wrapper">
-            <a class="brand-logo" href="{% url 'home' %}">Avihama Hotel</a>
+            <a class="brand-logo" href="{% url 'home' %}">Site de Réservation de salle (par CReSTIC)</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'bookedrooms_list' %}">Booked Rooms</a></li>
+                    <li><a href="{% url 'bookedrooms_list' %}">Salle(s) Réservée(s)</a></li>
                     {% if request.user.is_superuser %}
                         <!-- Dropdown Trigger -->
                         <li>
                             <a class="dropdown-trigger" href='#' 
-                               data-target='adminDropdown'>Admin Actions
+                               data-target='adminDropdown'>Options d'administrateur
                                <i class="material-icons right">arrow_drop_down</i>
                             </a>
 
                         <!-- Dropdown Structure -->
                         <ul id='adminDropdown' class='dropdown-content'>
                             <li>
-                                <a href="{% url 'roomdashboard_list' %}">Room Management</a>
+                                <a href="{% url 'roomdashboard_list' %}">Gérer les salles</a>
                             </li>
                             <li>
-                                <a href="{% url 'bookedroomdashboard_list' %}">Booked Rooms</a>
+                                <a href="{% url 'bookedroomdashboard_list' %}">Salle(s) Réservée(s)</a>
                             </li>
                         </ul>
                         </li>
@@ -70,11 +70,11 @@
                     <!-- Dropdown Structure -->
                     <ul id='userDropdown' class='dropdown-content'>
                         <li>
-                            <a href="{% url 'password_change'%}">Change password</a>
+                            <a href="{% url 'password_change'%}">Modifier le mot de passe</a>
                         </li>
                         <li class="divider" tabindex="-1"></li>
                         <li>
-                            <a href="{% url 'logout' %}">Log Out</a>
+                            <a href="{% url 'logout' %}">Se déconnecter</a>
                         </li>
                     </ul>
                 {% else %}
