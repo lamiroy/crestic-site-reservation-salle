@@ -7,11 +7,11 @@ class RoomCategory(models.Model):
     nom_de_la_salle = models.CharField(max_length=50)
     description = models.TextField()
     nombre_de_personnes = models.IntegerField()
-    room_image = models.ImageField(
+    motif_de_reservation = models.CharField(max_length=50, default='')
+    image_de_la_salle = models.ImageField(
         upload_to='images/roomCategories',
         default='images/roomCategories/none.png'
     )
-    price = models.IntegerField()
 
 
     def __str__(self):

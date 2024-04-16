@@ -6,7 +6,7 @@
     <div class="col s6 m6">
         <div class="card">
             <div class="card-image">
-                <img src="{{ object.room_image.url }}" >
+                <img src="{{ object.image_de_la_salle.url }}" >
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
                 <span class="card-title">{{ object.nom_de_la_salle }}</span>
                 <p>{{ object.description }}</p>
                 <p>
-                <small>Price: <b>KSh.{{ object.price }}</b></small>
+                <small>Price: <b>KSh.{{ object.motif_de_reservation }}</b></small>
                 <br>
                 <small>Total Rooms: <b>{{ object.nombre_de_personnes }}</b></small>
                 </p>

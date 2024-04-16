@@ -15,7 +15,7 @@
 
 <div class="card sticky-action">
     <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="{{ bookedroom.room_category.room_image.url }}" 
+        <img class="activator" src="{{ bookedroom.room_category.image_de_la_salle.url }}" 
             alt="{{ bookedroom.room_category.nom_de_la_salle }}">
     </div>
     <div class="card-content">
@@ -40,7 +40,7 @@
             <br>
             <div>Check Out: <b>{{ bookedroom.end_date }}</b></div>
             <br>
-            <div>Cost per Room per Day: <b>{{ bookedroom.room_category.price }}</b></div>
+            <div>Cost per Room per Day: <b>{{ bookedroom.room_category.motif_de_reservation }}</b></div>
             <br>
             <div>Total Cost: <b>{{ bookedroom.total_cost }}</b></div>
         </p>

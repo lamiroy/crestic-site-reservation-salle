@@ -11,13 +11,13 @@
     {{ form.description|as_crispy_field }}
     {{ form.nombre_de_personnes|as_crispy_field }}
     <figure class="figure">
-        <img src="{{ form.instance.room_image.url }}" 
+        <img src="{{ form.instance.image_de_la_salle.url }}" 
              height="100"
              class="figure-img rounded" alt="Current Image">
         <figcaption class="figure-caption">Current Image</figcaption>
     </figure>
-    {{ form.room_image|as_crispy_field }}
-    {{ form.price|as_crispy_field }}
+    {{ form.image_de_la_salle|as_crispy_field }}
+    {{ form.motif_de_reservation|as_crispy_field }}
     <button type="submit" class="btn btn-info ml-2">Update</button>
 </form>
 

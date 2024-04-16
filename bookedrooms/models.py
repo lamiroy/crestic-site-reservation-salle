@@ -23,7 +23,7 @@ class BookedRoom(models.Model):
     @property
     def total_cost(self):
         if self.start_date is not None and self.end_date is not None:
-            return (self.end_date - self.start_date).days * self.room_category.price * self.nbr_of_rooms
+            return (self.end_date - self.start_date).days * self.room_category.motif_de_reservation * self.nbr_of_rooms
         else:
             return 0
 

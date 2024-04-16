@@ -16,7 +16,7 @@
 
 <div class="card sticky-action">
     <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="{{ room.room_image.url }}" alt="{{ room.nom_de_la_salle }}">
+        <img class="activator" src="{{ room.image_de_la_salle.url }}" alt="{{ room.nom_de_la_salle }}">
     </div>
     <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">
@@ -31,7 +31,7 @@
           {{ room.nom_de_la_salle }}<i class="material-icons right">close</i></span>
         <p>{{ room.description }}<p>
         <p>
-            <small>Price: <b>KSh.{{ room.price }}</b></small>
+            <small>Price: <b>KSh.{{ room.motif_de_reservation }}</b></small>
             <br>
             <small>Total Rooms: <b>{{ room.nombre_de_personnes }}</b></small>
         </p>
