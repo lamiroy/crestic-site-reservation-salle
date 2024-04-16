@@ -20,12 +20,12 @@
 <div class="card mb-3" style="max-width: 540px;">
     <div class="row no-gutters">
         <div class="col-md-4">
-            <img src="{{ room.room_image.url }}" class="card-img" alt="{{ room.category_name }}">
+            <img src="{{ room.room_image.url }}" class="card-img" alt="{{ room.nom_de_la_salle }}">
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">{{ room.category_name }}</h5>
-                <p class="card-text">{{ room.summary }}<p>
+                <h5 class="card-title">{{ room.nom_de_la_salle }}</h5>
+                <p class="card-text">{{ room.description }}<p>
                 <p class="card-text">
                     <small>Price: <b>KSh.{{ room.price }}</b></small>
                     <br>

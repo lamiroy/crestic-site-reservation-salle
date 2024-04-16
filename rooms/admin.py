@@ -4,6 +4,6 @@ from .models import RoomCategory
 
 class RoomCategoryAdmin(admin.ModelAdmin):
     model = RoomCategory
-    list_display = ['category_name', 'summary', 'price', 'total_rooms']
+    list_display = ['nom_de_la_salle', 'description', 'price', 'total_rooms']
 
 admin.site.register(RoomCategory, RoomCategoryAdmin)

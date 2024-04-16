@@ -4,8 +4,8 @@ from django.urls import reverse
 
 
 class RoomCategory(models.Model):
-    category_name = models.CharField(max_length=50)
-    summary = models.TextField()
+    nom_de_la_salle = models.CharField(max_length=50)
+    description = models.TextField()
     room_image = models.ImageField(
         upload_to='images/roomCategories',
         default='images/roomCategories/none.png'
@@ -14,7 +14,7 @@ class RoomCategory(models.Model):
     total_rooms = models.IntegerField()
 
     def __str__(self):
-        return self.category_name
+        return self.nom_de_la_salle
 
     def get_absolute_url(self):
         return reverse('roomdashboard_detail', args=[str(self.id)])

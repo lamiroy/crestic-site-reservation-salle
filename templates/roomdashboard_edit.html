@@ -7,8 +7,8 @@
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% comment %}{{ form|crispy }}{% endcomment %}
-    {{ form.category_name|as_crispy_field }}
-    {{ form.summary|as_crispy_field }}
+    {{ form.nom_de_la_salle|as_crispy_field }}
+    {{ form.description|as_crispy_field }}
     <figure class="figure">
         <img src="{{ form.instance.room_image.url }}" 
              height="100"

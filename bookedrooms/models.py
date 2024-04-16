@@ -57,7 +57,7 @@ class BookedRoom(models.Model):
             rooms = BookedRoom.objects.filter(
                 start_date__lte=current,
                 end_date__gt=current,
-                room_category__category_name=self.room_category.category_name)
+                room_category__nom_de_la_salle=self.room_category.nom_de_la_salle)
             print("\tNbr of results: {}".format(rooms.count()))
 
             # Sum the totals
@@ -66,7 +66,7 @@ class BookedRoom(models.Model):
                 total_booked_rooms = total_booked_rooms + room.nbr_of_rooms
 
             total_available_rooms = RoomCategory.objects.filter(
-                category_name=self.room_category.category_name)[0].total_rooms
+                nom_de_la_salle=self.room_category.nom_de_la_salle)[0].total_rooms
             # Check if there is an instance of this room so as to
             # not add the current nbr_of_rooms
             current_room = BookedRoom.objects.filter(id=self.id)
@@ -88,4 +88,4 @@ class BookedRoom(models.Model):
         return reverse('bookedrooms_detail', args=[str(self.id)])
 
     def __str__(self):
-        return self.room_category.category_name + " |  " + self.user.username
+        return self.room_category.nom_de_la_salle + " |  " + self.user.username
