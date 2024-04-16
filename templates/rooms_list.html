@@ -27,9 +27,9 @@
                 <h5 class="card-title">{{ room.nom_de_la_salle }}</h5>
                 <p class="card-text">{{ room.description }}<p>
                 <p class="card-text">
-                    <small>Price: <b>KSh.{{ room.motif_de_reservation }}</b></small>
+                    <small>Motif : <b>KSh.{{ room.motif_de_reservation }}</b></small>
                     <br>
-                    <small>Total Rooms: <b>{{ room.nombre_de_personnes }}</b></small>
+                    <small>Nombre de personnes max: <b>{{ room.nombre_de_personnes }}</b></small>
                 </p>
                 <a class="btn btn-primary" href="{% url 'roomdashboard_edit' room.pk %}">Edit</a>
                 <a class="btn btn-primary" href="{% url 'roomdashboard_delete' room.pk %}">Delete</a>
