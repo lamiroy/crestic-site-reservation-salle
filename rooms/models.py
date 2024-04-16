@@ -6,12 +6,13 @@ from django.urls import reverse
 class RoomCategory(models.Model):
     nom_de_la_salle = models.CharField(max_length=50)
     description = models.TextField()
+    nombre_de_personnes = models.IntegerField()
     room_image = models.ImageField(
         upload_to='images/roomCategories',
         default='images/roomCategories/none.png'
     )
     price = models.IntegerField()
-    total_rooms = models.IntegerField()
+
 
     def __str__(self):
         return self.nom_de_la_salle

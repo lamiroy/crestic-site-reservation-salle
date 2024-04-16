@@ -66,7 +66,7 @@ class BookedRoom(models.Model):
                 total_booked_rooms = total_booked_rooms + room.nbr_of_rooms
 
             total_available_rooms = RoomCategory.objects.filter(
-                nom_de_la_salle=self.room_category.nom_de_la_salle)[0].total_rooms
+                nom_de_la_salle=self.room_category.nom_de_la_salle)[0].nombre_de_personnes
             # Check if there is an instance of this room so as to
             # not add the current nbr_of_rooms
             current_room = BookedRoom.objects.filter(id=self.id)

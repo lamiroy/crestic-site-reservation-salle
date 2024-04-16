@@ -27,7 +27,7 @@ class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
 
 class RoomDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = RoomCategory
-    fields = ('nom_de_la_salle', 'description', 'room_image', 'price', 'total_rooms')
+    fields = ('nom_de_la_salle', 'description', 'room_image', 'price', 'nombre_de_personnes')
     template_name = 'roomdashboard_edit.html'
     login_url = 'login'
 
@@ -45,7 +45,7 @@ class RoomDashboardDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteVie
 
 class RoomDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = RoomCategory
-    fields = ('nom_de_la_salle', 'description', 'room_image', 'price', 'total_rooms')
+    fields = ('nom_de_la_salle', 'description', 'room_image', 'price', 'nombre_de_personnes')
     template_name = 'roomdashboard_new.html'
     success_url = reverse_lazy('roomdashboard_list')
     login_url = 'login'
