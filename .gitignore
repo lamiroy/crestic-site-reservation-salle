@@ -3,6 +3,7 @@ venv/
 .vim/
 __pycache__/
 roomCategories/
+.idea/
 
 *.sqlite3
 *.jpg
