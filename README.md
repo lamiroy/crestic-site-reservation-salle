@@ -1,8 +1,15 @@
-# Hotel Reservation System
+# Laboratory Reservation System
+
+## Autors
+- Thomas PAZZÉ
+- Léo BERNARD
+- Nino SAUVAGEOT
+
+## Description
+Introducing the Laboratory Room Reservation System tailored for CreStic. This innovative system streamlines the process of reserving laboratory spaces, offering researchers a seamless platform to schedule and manage their experimental work.
 
 ## Requirements
-You should have installed these:
-- Python
+- Python 3.9.x
 
 ### Project setup
 1. In the project's root directory, create a virtual environment
@@ -12,11 +19,11 @@ You should have installed these:
 2. Activate the environment
     - If in a Linux environment
         ```shell
-        $ source venv/bin/activate
+        source venv/bin/activate
         ```
     - If in a Windows environment
         ```shell
-        > venv\Scripts\activate
+        venv\Scripts\activate
         ```
 3. Install the dependencies
     ```shell
@@ -30,7 +37,7 @@ You should have installed these:
     ```shell
     python manage.py createsuperuser
     ```
-    
+
 ### Running the project
 1. Run the server
     ```shell
@@ -41,4 +48,4 @@ You should now be able to access the project on `localhost:8000`
 
 ---
 ### Disclaimer
-This is a far-from-finished project done as part of a classroom assignment. It can do CRUD but can in no way be used as a full-featured hotel-reservation system.
+Project was originally forked from https://github.com/c3n7/hotel-reservation
