@@ -9,6 +9,7 @@ from bootstrap_datepicker_plus import DatePickerInput
 from rooms.models import RoomCategory
 from .models import BookedRoom
 
+
 class BookedRoomsListView(LoginRequiredMixin, ListView):
     model = BookedRoom
     template_name = 'bookedroom_list.html'
@@ -19,10 +20,12 @@ class BookedRoomsListView(LoginRequiredMixin, ListView):
         return BookedRoom.objects.filter(
             user=self.request.user).order_by('start_date')
 
+
 class BookedRoomsDetailView(LoginRequiredMixin, DetailView):
     model = BookedRoom
     template_name = 'bookedroom_detail.html'
     login_url = 'login'
+
 
 class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     model = BookedRoom
@@ -41,11 +44,13 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.user = user
         return super(BookedRoomsUpdateView, self).form_valid(form)
 
+
 class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
     model = BookedRoom
     template_name = 'bookedroom_delete.html'
     success_url = reverse_lazy('bookedrooms_list')
     login_url = 'login'
+
 
 class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     model = BookedRoom
