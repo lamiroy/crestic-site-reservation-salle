@@ -9,6 +9,11 @@ from datetime import date, timedelta
 
 
 class BookedRoom(models.Model):
+    date = models.DateField()
+    startTime = models.TimeField()
+    endTime = models.TimeField()
+    groups = models.CharField(max_length=100)
+
     start_date = models.DateField()
     end_date = models.DateField()
     nbr_of_rooms = models.IntegerField(default=1)
