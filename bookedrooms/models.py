@@ -7,6 +7,7 @@ from django.db.models import Sum
 
 from datetime import date, timedelta
 
+
 class BookedRoom(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
@@ -23,7 +24,7 @@ class BookedRoom(models.Model):
     @property
     def total_cost(self):
         if self.start_date is not None and self.end_date is not None:
-            return (self.end_date - self.start_date).days * self.room_category.motif_de_reservation * self.nbr_of_rooms
+            return (self.end_date - self.start_date).days * self.nbr_of_rooms
         else:
             return 0
 
@@ -39,12 +40,11 @@ class BookedRoom(models.Model):
             raise ValidationError(
                 """The Check Out date ({}) should not be less than
                  or equal to the Check In date ({}).""".format(
-                     self.end_date, self.start_date))
+                    self.end_date, self.start_date))
 
         # For new bookings, the start date should not be less than today's date
 
         # For old bookings, you can't update the details 4 days before the start date
-
 
         # Loop through the start and end dates
         day = timedelta(days=1)
@@ -57,7 +57,7 @@ class BookedRoom(models.Model):
             rooms = BookedRoom.objects.filter(
                 start_date__lte=current,
                 end_date__gt=current,
-                room_category__nom_de_la_salle=self.room_category.nom_de_la_salle)
+                room_category__libRoom=self.room_category.libRoom)
             print("\tNbr of results: {}".format(rooms.count()))
 
             # Sum the totals
@@ -66,7 +66,7 @@ class BookedRoom(models.Model):
                 total_booked_rooms = total_booked_rooms + room.nbr_of_rooms
 
             total_available_rooms = RoomCategory.objects.filter(
-                nom_de_la_salle=self.room_category.nom_de_la_salle)[0].nombre_de_personnes
+                libRoom=self.room_category.libRoom)[0].maxCapacity
             # Check if there is an instance of this room so as to
             # not add the current nbr_of_rooms
             current_room = BookedRoom.objects.filter(id=self.id)
@@ -88,4 +88,4 @@ class BookedRoom(models.Model):
         return reverse('bookedrooms_detail', args=[str(self.id)])
 
     def __str__(self):
-        return self.room_category.nom_de_la_salle + " |  " + self.user.username
+        return self.room_category.libRoom + " |  " + self.user.username

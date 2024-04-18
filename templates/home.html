@@ -15,12 +15,9 @@
 
 
 <div class="card sticky-action">
-    <div class="card-image waves-effect waves-block waves-light">
-        <img class="activator" src="{{ room.image_de_la_salle.url }}" alt="{{ room.nom_de_la_salle }}">
-    </div>
     <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">
-            {{ room.nom_de_la_salle }}<i class="material-icons right">more_vert</i>
+            {{ room.libRoom }}<i class="material-icons right">more_vert</i>
         </span>
     </div>
     <div class="card-action">
@@ -28,12 +25,9 @@
     </div>
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">
-          {{ room.nom_de_la_salle }}<i class="material-icons right">close</i></span>
-        <p>{{ room.description }}<p>
+          {{ room.libRoom }}<i class="material-icons right">close</i></span>
         <p>
-            <small>Motif de la réservation: <b>{{ room.motif_de_reservation }}</b></small>
-            <br>
-            <small>Nombre de personnes maximum: <b>{{ room.nombre_de_personnes }}</b></small>
+            <small>Nombre de personnes maximum: <b>{{ room.maxCapacity }}</b></small>
         </p>
     </div>
 </div>

@@ -5,20 +5,14 @@
 <div class="row">
     <div class="col s6 m6">
         <div class="card">
-            <div class="card-image">
-                <img src="{{ object.image_de_la_salle.url }}" >
-            </div>
         </div>
     </div>
     <div class="col s6 m6">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">{{ object.nom_de_la_salle }}</span>
-                <p>{{ object.description }}</p>
+                <span class="card-title">{{ object.libRoom }}</span>
                 <p>
-                <small>Motif : <b>{{ object.motif_de_reservation }}</b></small>
-                <br>
-                <small>Nombre de personnes maximum : <b>{{ object.nombre_de_personnes }}</b></small>
+                <small>Nombre de personnes maximum : <b>{{ object.maxCapacity }}</b></small>
                 </p>
             </div>
             <div class="card-action">
