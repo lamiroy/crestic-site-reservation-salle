@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 from rooms.models import RoomCategory
 from bookedrooms.models import BookedRoom
 
+
 class RoomDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = RoomCategory
     template_name = 'roomdashboard_list.html'
@@ -16,6 +17,7 @@ class RoomDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
     def test_func(self):
         return self.request.user.is_superuser
+
 
 class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     model = RoomCategory
@@ -25,14 +27,16 @@ class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
     def test_func(self):
         return self.request.user.is_superuser
 
+
 class RoomDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = RoomCategory
-    fields = ('nom_de_la_salle', 'description', 'image_de_la_salle', 'motif_de_reservation', 'nombre_de_personnes')
+    fields = ('libRoom', 'maxCapacity')
     template_name = 'roomdashboard_edit.html'
     login_url = 'login'
 
     def test_func(self):
         return self.request.user.is_superuser
+
 
 class RoomDashboardDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = RoomCategory
@@ -43,15 +47,17 @@ class RoomDashboardDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteVie
     def test_func(self):
         return self.request.user.is_superuser
 
+
 class RoomDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = RoomCategory
-    fields = ('nom_de_la_salle', 'description', 'image_de_la_salle', 'motif_de_reservation', 'nombre_de_personnes')
+    fields = ('libRoom', 'maxCapacity')
     template_name = 'roomdashboard_new.html'
     success_url = reverse_lazy('roomdashboard_list')
     login_url = 'login'
 
     def test_func(self):
         return self.request.user.is_superuser
+
 
 class BookedRoomDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = BookedRoom
