@@ -83,8 +83,8 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         """
         form = super(BookedRoomsCreateView, self).get_form()
         form.fields['date'].widget = DatePickerInput()
-        form.fields['start_date'].widget = TimePickerInput().start_of('duration')
-        form.fields['end_date'].widget = TimePickerInput().end_of('duration')
+        form.fields['startTime'].widget = TimePickerInput().start_of('duration')
+        form.fields['endTime'].widget = TimePickerInput().end_of('duration')
         return form
 
     def form_valid(self, form):
