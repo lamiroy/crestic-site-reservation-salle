@@ -10,8 +10,9 @@
     {{ form.media }}
     {{ form.room_category|as_crispy_field }}
     {{ form.nbr_of_rooms|as_crispy_field }}
-    {{ form.start_date| as_crispy_field}}
-    {{ form.end_date|as_crispy_field }}
+    {{ form.date| as_crispy_field}}
+    {{ form.startTime| as_crispy_field}}
+    {{ form.endTime|as_crispy_field }}
     <button type="submit" class="btn btn-info ml-2">Save</button>
 </form>
 {% endblock content %}

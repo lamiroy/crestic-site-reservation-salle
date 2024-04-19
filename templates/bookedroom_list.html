@@ -30,13 +30,13 @@
           {{ bookedroom.room_category.libRoom }}
           <i class="material-icons right">close</i></span>
         <p>
-            <div>Number of Rooms: <b>{{ bookedroom.nbr_of_rooms }}</b></div>
+            <small>Number of Rooms: <b>{{ object.nbr_of_rooms }}</b></small>
             <br>
-            <div>Check In: <b>{{ bookedroom.start_date }}</b></div>
+            <small>le jours: <b>{{ object.date }}</b></small>
             <br>
-            <div>Check Out: <b>{{ bookedroom.end_date }}</b></div>
+            <small>début: <b>{{ object.startTime }}</b></small>
             <br>
-            <div>Total Cost: <b>{{ bookedroom.total_cost }}</b></div>
+            <small>fin: <b>{{ object.endTime }}</b></small>
         </p>
     </div>
 </div>
