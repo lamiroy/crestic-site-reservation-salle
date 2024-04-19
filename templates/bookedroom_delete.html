@@ -14,22 +14,21 @@
                 <p>
                     <small>Number of Rooms: <b>{{ object.nbr_of_rooms }}</b></small>
                     <br>
-                    <small>Check In: <b>{{ object.start_date }}</b></small>
+                    <small>le jours: <b>{{ object.date }}</b></small>
                     <br>
-                    <small>Check Out: <b>{{ object.end_date }}</b></small>
+                    <small>début: <b>{{ object.startTime }}</b></small>
                     <br>
-                    <small>Total Cost: <b>{{ object.total_cost }}</b></small>
+                    <small>fin: <b>{{ object.endTime }}</b></small>
                 </p>
             </div>
             <div class="card-action">
                 <form method="post">
                     {% csrf_token %}
                     <button class="waves-effect waves-light btn-small red darken-4" 
-                             type="submit">Cancel Booking</button>
+                             type="submit">Annuler la réservation</button>
                     <a class="waves-effect waves-light btn-small green darken-4" 
-                        href="{% url 'bookedrooms_list' %}">Back</a>
+                        href="{% url 'bookedrooms_list' %}">Retour</a>
                 </form>
-
             </div>
         </div>
     </div>

@@ -9,8 +9,12 @@ from datetime import date, timedelta
 
 
 class BookedRoom(models.Model):
-    start_date = models.DateField()
-    end_date = models.DateField()
+    date = models.DateField()
+    startTime = models.TimeField()
+    endTime = models.TimeField()
+    groups = models.CharField(max_length=100)
+    status = models.CharField(max_length=100)
+
     nbr_of_rooms = models.IntegerField(default=1)
     user = models.ForeignKey(
         get_user_model(),
@@ -21,32 +25,26 @@ class BookedRoom(models.Model):
         on_delete=models.CASCADE,
     )
 
-    @property
-    def total_cost(self):
-        if self.start_date is not None and self.end_date is not None:
-            return (self.end_date - self.start_date).days * self.nbr_of_rooms
-        else:
-            return 0
-
     def clean(self):
-        # The start date and date cannot be equal
-        if self.start_date == self.end_date:
+        # The start time and end time cannot be equal
+        if self.startTime == self.endTime:
             raise ValidationError(
                 "The Check In date ({}) should not be equal to the Check Out date ({}).".format(
-                    self.start_date, self.end_date))
+                    self.startTime, self.endTime))
 
-        # The end date cannot be less than or equal to the start date
-        if self.end_date <= self.start_date:
+        # The end time cannot be less than or equal to the start time
+        if self.endTime <= self.startTime:
             raise ValidationError(
                 """The Check Out date ({}) should not be less than
                  or equal to the Check In date ({}).""".format(
-                    self.end_date, self.start_date))
+                    self.endTime, self.startTime))
 
         # For new bookings, the start date should not be less than today's date
 
         # For old bookings, you can't update the details 4 days before the start date
 
         # Loop through the start and end dates
+        '''
         day = timedelta(days=1)
         start = self.start_date
         end = self.end_date
@@ -83,7 +81,7 @@ class BookedRoom(models.Model):
                     "On {} there are less rooms than you desire. ({} > {})".format(
                         current, self.nbr_of_rooms, remaining))
             current += day
-
+            '''
     def get_absolute_url(self):
         return reverse('bookedrooms_detail', args=[str(self.id)])
 
