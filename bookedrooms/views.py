@@ -82,6 +82,13 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         DatePicker widgets
         """
         form = super(BookedRoomsCreateView, self).get_form()
+        form.fields['room_category'].label = 'nom de la salle'
+        form.fields['nbr_of_rooms'].label = 'nombre de personnes'
+        form.fields['date'].label = 'jour de la réservation'
+        form.fields['startTime'].label = 'début de la réservation'
+        form.fields['endTime'].label = 'fin de la réservation'
+        form.fields['groups'].label = 'laboratoire'
+        form.fields['status'].label = 'status'
         form.fields['date'].widget = DatePickerInput()
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
