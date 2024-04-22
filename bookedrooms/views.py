@@ -56,7 +56,7 @@ class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
 
 class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     model = BookedRoom
-    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'status')
+    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif')
     template_name = 'bookedroom_add.html'
     success_url = reverse_lazy('bookedrooms_list')
     login_url = 'login'
@@ -89,6 +89,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         form.fields['startTime'].label = 'début de la réservation'
         form.fields['endTime'].label = 'fin de la réservation'
         form.fields['groups'].label = 'laboratoire'
+        form.fields['motif'].label = 'motif'
         form.fields['date'].widget = DatePickerInput()
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
