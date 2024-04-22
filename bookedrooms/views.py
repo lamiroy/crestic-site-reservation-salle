@@ -30,7 +30,7 @@ class BookedRoomsDetailView(LoginRequiredMixin, DetailView):
 
 class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     model = BookedRoom
-    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'status')
+    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'motif')
     template_name = 'bookedroom_edit.html'
     login_url = 'login'
 
@@ -44,6 +44,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         user = self.request.user
         form.instance.user = user
+        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
         return super(BookedRoomsUpdateView, self).form_valid(form)
 
 
