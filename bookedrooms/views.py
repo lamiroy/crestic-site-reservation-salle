@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 
+import bookedrooms.models
 from rooms.models import RoomCategory
 from .models import BookedRoom
 
@@ -88,10 +89,10 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         form.fields['startTime'].label = 'début de la réservation'
         form.fields['endTime'].label = 'fin de la réservation'
         form.fields['groups'].label = 'laboratoire'
-        form.fields['status'].label = 'status'
         form.fields['date'].widget = DatePickerInput()
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
+        del form.fields['status']
         return form
 
     def form_valid(self, form):
@@ -100,4 +101,8 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         """
         user = self.request.user
         form.instance.user = user
+        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
+
+        print("Form data:", form.cleaned_data)
+        print("Form errors:", form.errors)
         return super(BookedRoomsCreateView, self).form_valid(form)
