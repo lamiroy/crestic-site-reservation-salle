@@ -9,11 +9,17 @@ from datetime import date, timedelta
 
 
 class BookedRoom(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'en attente'),
+        ('canceled', 'annulé'),
+        ('validated', 'validé'),
+    ]
+
     date = models.DateField()
     startTime = models.TimeField()
     endTime = models.TimeField()
     groups = models.CharField(max_length=100)
-    status = models.CharField(max_length=100)
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES)
 
     nbr_of_rooms = models.IntegerField(default=1)
     user = models.ForeignKey(
