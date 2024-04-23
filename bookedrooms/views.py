@@ -46,9 +46,6 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         form.instance.user = user
         form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
-
-        
-
         return super(BookedRoomsUpdateView, self).form_valid(form)
 
 
