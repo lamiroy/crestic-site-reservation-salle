@@ -70,6 +70,16 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
                     form.add_error("startTime", "L'heure de début doit être supérieure à 1h30 de l'heure actuelle.")
                     return self.form_invalid(form)
 
+        end_time = form.cleaned_data.get("endTime")
+        if end_time:
+            if end_time < time(6, 0) or end_time > time(22, 0):
+                form.add_error("endTime", "L'heure de fin doit être entre 6h00 et 22h00.")
+
+                if selected_date:
+                    if end_time <= start_time:
+                        form.add_error("endTime", "L'heure de fin doit être supérieure à l'heure de début.")
+                        return self.form_invalid(form)
+
         return super(BookedRoomsUpdateView, self).form_valid(form)
 
 
