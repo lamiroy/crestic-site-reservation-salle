@@ -9,6 +9,12 @@
     {% csrf_token %}
     {{ form.media }}
     {{ form|crispy }}
+    
+    {% if form.date.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.date.errors.0 }}
+        </div>
+    {% endif %}
     <button type="submit" class="btn btn-info ml-2">Update</button>
 </form>
 {% endblock content %}
