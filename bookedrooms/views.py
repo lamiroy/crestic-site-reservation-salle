@@ -47,38 +47,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         form.instance.user = user
         form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
 
-        selected_date = form.cleaned_data['date']
-        if selected_date < date.today():
-            form.add_error('date', 'Vous ne pouvez pas changer la date pour une date antérieure à aujourd\'hui.')
-            return self.form_invalid(form)
-
-        start_time = form.cleaned_data.get("startTime")
-        if start_time:
-            if start_time < time(6, 0) or start_time > time(19, 30):
-                form.add_error("startTime", "L'heure de début doit être entre 6h00 et 19h30.")
-                return self.form_invalid(form)
-
-            if selected_date == date.today():
-                current_time = datetime.now().time()
-                new_hour = current_time.hour + 1
-                new_minute = current_time.minute + 30
-                if new_minute >= 60:
-                    new_hour += 1
-                    new_minute -= 60
-                min_start_time = time(new_hour, new_minute)
-                if start_time <= min_start_time:
-                    form.add_error("startTime", "L'heure de début doit être supérieure à 1h30 de l'heure actuelle.")
-                    return self.form_invalid(form)
-
-        end_time = form.cleaned_data.get("endTime")
-        if end_time:
-            if end_time < time(6, 0) or end_time > time(22, 0):
-                form.add_error("endTime", "L'heure de fin doit être entre 6h00 et 22h00.")
-
-                if selected_date:
-                    if end_time <= start_time:
-                        form.add_error("endTime", "L'heure de fin doit être supérieure à l'heure de début.")
-                        return self.form_invalid(form)
+        
 
         return super(BookedRoomsUpdateView, self).form_valid(form)
 
