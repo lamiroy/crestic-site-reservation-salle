@@ -15,6 +15,12 @@
             {{ form.date.errors.0 }}
         </div>
     {% endif %}
+
+    {% if form.startTime.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ form.startTime.errors.0 }}
+        </div>
+    {% endif %}
     <button type="submit" class="btn btn-info ml-2">Update</button>
 </form>
 {% endblock content %}
