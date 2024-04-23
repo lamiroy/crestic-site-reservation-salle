@@ -1,5 +1,6 @@
 
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
 
 {% load crispy_forms_tags %}
 
@@ -10,23 +11,15 @@
     {{ form.media }}
     {{ form|crispy }}
     
-    {% if form.date.errors %}
-        <div class="alert alert-danger" role="alert">
-            {{ form.date.errors.0 }}
-        </div>
-    {% endif %}
-
-    {% if form.startTime.errors %}
-        <div class="alert alert-danger" role="alert">
-            {{ form.startTime.errors.0 }}
-        </div>
-    {% endif %}
-
-    {% if form.endTime.errors %}
-        <div class="alert alert-danger" role="alert">
-            {{ form.startTime.errors.0 }}
-        </div>
-    {% endif %}
+    {% for field in form %}
+        {% if field.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
     <button type="submit" class="btn btn-info ml-2">Update</button>
 </form>
 {% endblock content %}
