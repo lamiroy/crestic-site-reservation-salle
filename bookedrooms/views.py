@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 
+import bookedrooms.models
 from rooms.models import RoomCategory
 from .models import BookedRoom
 
@@ -29,7 +30,7 @@ class BookedRoomsDetailView(LoginRequiredMixin, DetailView):
 
 class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     model = BookedRoom
-    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'status')
+    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'motif')
     template_name = 'bookedroom_edit.html'
     login_url = 'login'
 
@@ -43,6 +44,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         user = self.request.user
         form.instance.user = user
+        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
         return super(BookedRoomsUpdateView, self).form_valid(form)
 
 
@@ -55,7 +57,7 @@ class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
 
 class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     model = BookedRoom
-    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'status')
+    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif')
     template_name = 'bookedroom_add.html'
     success_url = reverse_lazy('bookedrooms_list')
     login_url = 'login'
@@ -82,9 +84,17 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         DatePicker widgets
         """
         form = super(BookedRoomsCreateView, self).get_form()
+        form.fields['room_category'].label = 'nom de la salle'
+        form.fields['nbr_of_rooms'].label = 'nombre de personnes'
+        form.fields['date'].label = 'jour de la réservation'
+        form.fields['startTime'].label = 'début de la réservation'
+        form.fields['endTime'].label = 'fin de la réservation'
+        form.fields['groups'].label = 'laboratoire'
+        form.fields['motif'].label = 'motif'
         form.fields['date'].widget = DatePickerInput()
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
+        del form.fields['status']
         return form
 
     def form_valid(self, form):
@@ -93,4 +103,8 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         """
         user = self.request.user
         form.instance.user = user
+        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
+
+        print("Form data:", form.cleaned_data)
+        print("Form errors:", form.errors)
         return super(BookedRoomsCreateView, self).form_valid(form)
