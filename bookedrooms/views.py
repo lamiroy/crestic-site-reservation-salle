@@ -5,6 +5,7 @@ from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
+from datetime import date
 
 import bookedrooms.models
 from rooms.models import RoomCategory
@@ -45,6 +46,12 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         form.instance.user = user
         form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
+
+        selected_date = form.cleaned_data['date']
+        if selected_date < date.today():
+            form.add_error('date', 'Vous ne pouvez pas changer la date pour une date antérieure à aujourd\'hui.')
+            return self.form_invalid(form)
+
         return super(BookedRoomsUpdateView, self).form_valid(form)
 
 
