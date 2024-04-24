@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         eventClick: function(info) {
             let start = moment(info.event.start).format("HH:mm");
             let end = moment(info.event.end).format("HH:mm");
-            document.getElementById('eventDescription').innerText = info.event.title + ' : ' + start + ' - ' + end + '\n' + info.event.description;
+            let description = info.event.extendedProps.description || "Aucune description";
+            document.getElementById('eventDescription').innerText = info.event.title;
+            document.getElementById('eventDescription').innerText += '\n ' + start + ' - ' + end;
+            document.getElementById('eventDescription').innerText += '\nStatus : ' + description;
             eventModal.style.display = 'block';
         },
         businessHours: [
@@ -50,11 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
         select: function(info) {
-            let start = moment(info.start).format("YYYY-MM-DDTHH:mm:ss");
-            let end = moment(info.end).format("YYYY-MM-DDTHH:mm:ss");
 
+            // Open modal for adding new event
             modal.style.display = 'block';
 
+            // Populate date and time inputs in the form
             document.getElementById('eventDate').value = moment(info.start).format("YYYY-MM-DD");
             document.getElementById('eventStartTime').value = moment(info.start).format("HH:mm");
             document.getElementById('eventEndTime').value = moment(info.end).format("HH:mm");
@@ -68,8 +71,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let btnCloseEventModal = document.getElementById('btnCloseEventModal');
     let eventForm = document.getElementById('eventForm');
 
+    btnAddEvent.addEventListener('click', function() {
+        modal.style.display = 'block';
+    });
+
     btnCloseModal.addEventListener('click', function() {
         modal.style.display = 'none';
+        // Clear form fields when modal is closed
         eventForm.reset();
     });
 
@@ -85,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let startTime = document.getElementById('eventStartTime').value;
         let endTime = document.getElementById('eventEndTime').value;
 
+
         if (title.trim() !== '' && date.trim() !== '' && startTime.trim() !== '' && endTime.trim() !== '') {
             let event = {
                 title: title,
@@ -94,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             calendar.addEvent(event);
             modal.style.display = 'none';
+            // Clear form fields after successful submission
             eventForm.reset();
         } else {
             alert("Veuillez remplir tous les champs.");
