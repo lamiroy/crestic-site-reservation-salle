@@ -2,49 +2,40 @@
 
 {% block title %} Page d'accueil {% endblock title %}
 
+{% block link %}
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css" rel="stylesheet" />
+{% endblock link %}
+
 {% block content %}
-<div class="row">
-{% for room in object_list %}
+    <div id="modal" class="modal">
+        <h2>Ajouter un événement</h2>
+        <form id="eventForm">
+          <label for="eventTitle">Titre :</label>
+          <input type="text" id="eventTitle"><br>
+          <label for="eventDate">Date :</label>
+          <input type="date" id="eventDate"><br>
+          <label for="eventStartTime">Heure de début :</label>
+          <input type="time" id="eventStartTime"><br>
+          <label for="eventEndTime">Heure de fin :</label>
+          <input type="time" id="eventEndTime"><br>
+          <button type="submit">Enregistrer</button>
+          <button type="button" id="btnCloseModal">Fermer</button>
+        </form>
+    </div>
+    <div id="eventModal" class="modal">
+        <h2>Détails de l'événement</h2>
+        <p id="eventDescription"></p>
+        <button type="button" id="btnCloseEventModal">Fermer</button>
+    </div>
 
-{% if forloop.counter|divisibleby:2 %}
-    <div class="col s6">
-{% else %}
-    <div class="row">
-    <div class="col s6">
-{% endif %}
-
-
-<div class="card sticky-action">
-    <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">
-            {{ room.libRoom }}<i class="material-icons right">more_vert</i>
-        </span>
-    </div>
-    <div class="card-action">
-        <a class="waves-effect waves-light btn-small blue-grey darken-4" href="{% url 'bookedrooms_new' room.pk %}">Book Room</a>
-    </div>
-    <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">
-          {{ room.libRoom }}<i class="material-icons right">close</i></span>
-        <p>
-            <small>Nombre de personnes maximum: <b>{{ room.maxCapacity }}</b></small>
-        </p>
-    </div>
-</div>
-
-
-{% if forloop.counter|divisibleby:2 %}
-    </div>
-    </div>
-{% elif forloop.last %}
-{% comment %}Is last but not an even index{% endcomment %}
-    </div>
-    </div>
-{% else %}
-    {% comment %}Not Last</p>{% endcomment %}
-    </div>
-{% endif %}
-
-{% endfor %}
-</div>
+    <div id='calendar'></div>
 {% endblock content %}
+
+{% block script %}
+    <!-- Importations FullCalendar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ical.js/1.4.0/ical.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@5.5.1/main.global.min.js"></script>
+    <script src="/static/js/fullcalendar.js"></script>
+{% endblock script %}

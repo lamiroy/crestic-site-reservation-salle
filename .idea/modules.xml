@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/hotel-reservation.iml" filepath="$PROJECT_DIR$/.idea/hotel-reservation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/crestic-site-reservation-salle.iml" filepath="$PROJECT_DIR$/.idea/crestic-site-reservation-salle.iml" />
     </modules>
   </component>
 </project>

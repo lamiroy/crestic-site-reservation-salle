@@ -1,0 +1,146 @@
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    /* Couleurs principales */
+    --color-light-blue: #0275d8; /* Couleur 1 : Bleu clair */
+    --color-blue: #036cc8;       /* Couleur 2 : Bleu       */
+    --color-dark-blue: #025dad;  /* Couleur 3 : Bleu foncé */
+    --color-dark-grey: #373a3c;  /* Couleur 4 : Gris foncé */
+
+    /* Dégradé */
+    --color-gradient: linear-gradient(0.25turn, #264085, #1D5895, #1079AA, #00A9CD);
+
+    /* Couleurs des différents labos */
+    --color-crestic: #00A9CD;
+    --color-labi: #00E2D5;
+    --color-liciis: #B3B3B3;
+}
+
+/* Barre de navigation */
+nav.navbar {
+    background: var(--color-gradient);
+}
+
+ul.navbar-nav > li.nav-item > a {
+    font-weight: bold;
+    color: white;
+}
+
+/* Logo */
+a.navbar-brand > img {
+    height: 45px;
+    margin-top: 2px;
+}
+
+/* Liens */
+ul.navbar-nav > li.nav-item > a {
+    margin: 0 5px;
+    font-family: "Lexend", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* Calendrier */
+div#calendar {
+    margin: 15px;
+}
+
+/* Écran de réservation */
+#modal {
+    width: 300px;
+    height: 500px;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    z-index: 999;
+}
+
+/* Titre */
+div.fc-toolbar-chunk > h2.fc-toolbar-title {
+    font-family: Raleway, sans-serif;
+    font-weight: bold;
+    color: var(--color-dark-grey);
+}
+
+/* Bouton ajd */
+div.fc-toolbar-chunk > button.fc-today-button.fc-button.fc-button-primary {
+    font-family: "Open Sans", sans-serif;
+    border-color: var(--color-blue);
+    background-color: var(--color-light-blue);
+}
+
+div.fc-toolbar-chunk > button.fc-today-button.fc-button.fc-button-primary:hover {
+    background-color: var(--color-blue);
+}
+
+div.fc-toolbar-chunk > button.fc-today-button.fc-button.fc-button-primary:active {
+    background-color: var(--color-dark-blue);
+}
+
+/* Bouton avant */
+button.fc-prev-button.fc-button.fc-button-primary {
+    border-color: var(--color-blue);
+    background-color: var(--color-light-blue);
+}
+
+button.fc-prev-button.fc-button.fc-button-primary:hover {
+    background-color: var(--color-blue);
+}
+
+button.fc-prev-button.fc-button.fc-button-primary:active {
+    background-color: var(--color-dark-blue);
+}
+
+/* Bouton après */
+button.fc-next-button.fc-button.fc-button-primary {
+    border-color: var(--color-blue);
+    background-color: var(--color-light-blue);
+}
+
+/* Semaine */
+a.fc-timegrid-axis-cushion.fc-scrollgrid-shrink-cushion.fc-scrollgrid-sync-inner {
+    text-decoration: none;
+    font-family: Raleway, sans-serif;
+    font-size: 12px;
+    color: black;
+}
+
+/* Heures */
+div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame > div {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+}
+
+/* Jours */
+a.fc-col-header-cell-cushion {
+    margin: 2px 0;
+    text-decoration: none;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    color: var(--color-light-blue);
+}
