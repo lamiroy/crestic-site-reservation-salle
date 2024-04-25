@@ -71,10 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let btnCloseEventModal = document.getElementById('btnCloseEventModal');
     let eventForm = document.getElementById('eventForm');
 
-    btnAddEvent.addEventListener('click', function() {
-        modal.style.display = 'block';
-    });
-
     btnCloseModal.addEventListener('click', function() {
         modal.style.display = 'none';
         // Clear form fields when modal is closed
