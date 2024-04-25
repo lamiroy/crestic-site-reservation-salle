@@ -5,6 +5,7 @@ from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
+from datetime import date, datetime, time
 
 import bookedrooms.models
 from rooms.models import RoomCategory
@@ -30,15 +31,22 @@ class BookedRoomsDetailView(LoginRequiredMixin, DetailView):
 
 class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     model = BookedRoom
-    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'motif')
+    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
     template_name = 'bookedroom_edit.html'
     login_url = 'login'
 
     def get_form(self):
         form = super(BookedRoomsUpdateView, self).get_form()
+        form.fields['room_category'].label = 'nom de la salle'
+        form.fields['peopleAmount'].label = 'nombre de personnes'
+        form.fields['date'].label = 'jour de la réservation'
+        form.fields['startTime'].label = 'début de la réservation'
+        form.fields['endTime'].label = 'fin de la réservation'
+        form.fields['groups'].label = 'laboratoire'
+        form.fields['motif'].label = 'motif'
         form.fields['date'].widget = DatePickerInput()
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
-        form.fields['endTime'].widget = TimePickerInput().start_of('duration')
+        form.fields['endTime'].widget = TimePickerInput().end_of('duration')
         return form
 
     def form_valid(self, form):
@@ -57,7 +65,7 @@ class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
 
 class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     model = BookedRoom
-    fields = ('room_category', 'nbr_of_rooms', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif')
+    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif')
     template_name = 'bookedroom_add.html'
     success_url = reverse_lazy('bookedrooms_list')
     login_url = 'login'
@@ -85,7 +93,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         """
         form = super(BookedRoomsCreateView, self).get_form()
         form.fields['room_category'].label = 'nom de la salle'
-        form.fields['nbr_of_rooms'].label = 'nombre de personnes'
+        form.fields['peopleAmount'].label = 'nombre de personnes'
         form.fields['date'].label = 'jour de la réservation'
         form.fields['startTime'].label = 'début de la réservation'
         form.fields['endTime'].label = 'fin de la réservation'

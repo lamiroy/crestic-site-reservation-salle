@@ -1,21 +1,30 @@
 {% extends 'base.html' %}
 {% load crispy_forms_filters %}
-
 {% load crispy_forms_tags %}
 
 {% block content %}
 <h1>Réserver une salle</h1>
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% comment %}{{ form|crispy }}{% endcomment %}
     {{ form.media }}
     {{ form.room_category|as_crispy_field }}
-    {{ form.nbr_of_rooms|as_crispy_field }}
+    {{ form.peopleAmount|as_crispy_field }}
     {{ form.date| as_crispy_field}}
     {{ form.startTime| as_crispy_field}}
     {{ form.endTime|as_crispy_field }}
     {{ form.motif|as_crispy_field }}
     {{ form.groups|as_crispy_field }}
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field_errors in form.errors.values %}
+            {% for error in field_errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
     <button type="submit" class="btn btn-info ml-2">Save</button>
 </form>
 {% endblock content %}

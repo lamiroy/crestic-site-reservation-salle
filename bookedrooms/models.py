@@ -5,7 +5,8 @@ from django.db import models
 from django.urls import reverse
 from django.db.models import Sum
 
-from datetime import date, timedelta
+from datetime import date, datetime, time
+
 
 
 class BookedRoom(models.Model):
@@ -21,7 +22,7 @@ class BookedRoom(models.Model):
     groups = models.CharField(max_length=100)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES)
     motif = models.CharField(max_length=100)
-    nbr_of_rooms = models.IntegerField(default=1)
+    peopleAmount = models.IntegerField(default=1)
     user = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
@@ -32,18 +33,36 @@ class BookedRoom(models.Model):
     )
 
     def clean(self):
-        # The start time and end time cannot be equal
-        if self.startTime == self.endTime:
-            raise ValidationError(
-                "The Check In date ({}) should not be equal to the Check Out date ({}).".format(
-                    self.startTime, self.endTime))
+        # Your existing validation logic from form_valid() method
+        selected_date = self.date
+        if selected_date < date.today():
+            raise ValidationError('Vous ne pouvez pas changer la date pour une date antérieure à aujourd\'hui.')
 
-        # The end time cannot be less than or equal to the start time
-        if self.endTime <= self.startTime:
-            raise ValidationError(
-                """The Check Out date ({}) should not be less than
-                 or equal to the Check In date ({}).""".format(
-                    self.endTime, self.startTime))
+        start_time = self.startTime
+        if start_time:
+            if start_time < time(6, 0) or start_time > time(19, 30):
+                raise ValidationError('L\'heure de début doit être entre 6h00 et 19h30.')
+
+            if selected_date == date.today():
+                current_time = datetime.now().time()
+                new_hour = current_time.hour + 1
+                new_minute = current_time.minute + 30
+                if new_minute >= 60:
+                    new_hour += 1
+                    new_minute -= 60
+                min_start_time = time(new_hour, new_minute)
+                if start_time <= min_start_time:
+                    raise ValidationError('L\'heure de début doit être supérieure à 1h30 de l\'heure actuelle.')
+
+        end_time = self.endTime
+        if end_time:
+            if end_time < time(6, 0) or end_time > time(22, 0):
+                raise ValidationError('L\'heure de fin doit être entre 6h00 et 22h00.')
+
+            if end_time <= start_time:
+                raise ValidationError('L\'heure de fin doit être supérieure à l\'heure de début.')
+
+
 
         # For new bookings, the start date should not be less than today's date
 
@@ -67,25 +86,25 @@ class BookedRoom(models.Model):
             # Sum the totals
             total_booked_rooms = 0
             for room in rooms:
-                total_booked_rooms = total_booked_rooms + room.nbr_of_rooms
+                total_booked_rooms = total_booked_rooms + room.peopleAmount
 
             total_available_rooms = RoomCategory.objects.filter(
                 libRoom=self.room_category.libRoom)[0].maxCapacity
             # Check if there is an instance of this room so as to
-            # not add the current nbr_of_rooms
+            # not add the current peopleAmount
             current_room = BookedRoom.objects.filter(id=self.id)
             if current_room.count() == 1:
-                remaining = total_available_rooms - total_booked_rooms + current_room[0].nbr_of_rooms
+                remaining = total_available_rooms - total_booked_rooms + current_room[0].peopleAmount
             else:
                 remaining = total_available_rooms - total_booked_rooms
 
             print("\t\tRemaining Rooms: {}".format(remaining))
-            print("\t\tNbr of rooms:{}".format(self.nbr_of_rooms))
+            print("\t\tNbr of rooms:{}".format(self.peopleAmount))
 
-            if self.nbr_of_rooms > remaining:
+            if self.peopleAmount > remaining:
                 raise ValidationError(
                     "On {} there are less rooms than you desire. ({} > {})".format(
-                        current, self.nbr_of_rooms, remaining))
+                        current, self.peopleAmount, remaining))
             current += day
             '''
     def get_absolute_url(self):
