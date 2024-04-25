@@ -172,3 +172,50 @@ a.fc-col-header-cell-cushion {
     -moz-font-feature-settings: 'liga';
     -moz-osx-font-smoothing: grayscale;
 }
+
+.footer-light {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      background: var(--color-gradient);
+      color: white;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.2rem;
+}
+
+div.text-info-crestic{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+div.text-info-crestic > p{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 5px;
+}
+
+div.text-info-crestic > p > a{
+    text-decoration: none;
+    color: var(--color-liciis);
+}
+
+div.text-info-crestic > p > svg {
+    margin: 0 5px
+}
+
+div.logo-urca{
+    margin-right: 50px;
+}
+
+div.text-info-crestic > svg {
+    display: flex;
+    flex-direction: row;
+    justify-content:left ;
+}

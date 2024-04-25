@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             right: 'next'
         },
         events: {
-            url: '/calendrier.ics',
+            url: 'calendar.ics',
             format: 'ics',
             success: function() {
                 console.log('ICS events loaded!');
@@ -70,10 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let btnCloseModal = document.getElementById('btnCloseModal');
     let btnCloseEventModal = document.getElementById('btnCloseEventModal');
     let eventForm = document.getElementById('eventForm');
-
-    btnAddEvent.addEventListener('click', function() {
-        modal.style.display = 'block';
-    });
 
     btnCloseModal.addEventListener('click', function() {
         modal.style.display = 'none';
