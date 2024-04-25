@@ -6,7 +6,7 @@ from .models import BookedRoom
 class BookRoomsAdmin(admin.ModelAdmin):
     model = BookedRoom
     list_display = ['id', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif',
-                    'user', 'room_category', 'nbr_of_rooms']
+                    'user', 'room_category', 'peopleAmount']
 
 
 admin.site.register(BookedRoom, BookRoomsAdmin)

@@ -22,7 +22,7 @@ class BookedRoom(models.Model):
     groups = models.CharField(max_length=100)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES)
     motif = models.CharField(max_length=100)
-    nbr_of_rooms = models.IntegerField(default=1)
+    peopleAmount = models.IntegerField(default=1)
     user = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
@@ -86,25 +86,25 @@ class BookedRoom(models.Model):
             # Sum the totals
             total_booked_rooms = 0
             for room in rooms:
-                total_booked_rooms = total_booked_rooms + room.nbr_of_rooms
+                total_booked_rooms = total_booked_rooms + room.peopleAmount
 
             total_available_rooms = RoomCategory.objects.filter(
                 libRoom=self.room_category.libRoom)[0].maxCapacity
             # Check if there is an instance of this room so as to
-            # not add the current nbr_of_rooms
+            # not add the current peopleAmount
             current_room = BookedRoom.objects.filter(id=self.id)
             if current_room.count() == 1:
-                remaining = total_available_rooms - total_booked_rooms + current_room[0].nbr_of_rooms
+                remaining = total_available_rooms - total_booked_rooms + current_room[0].peopleAmount
             else:
                 remaining = total_available_rooms - total_booked_rooms
 
             print("\t\tRemaining Rooms: {}".format(remaining))
-            print("\t\tNbr of rooms:{}".format(self.nbr_of_rooms))
+            print("\t\tNbr of rooms:{}".format(self.peopleAmount))
 
-            if self.nbr_of_rooms > remaining:
+            if self.peopleAmount > remaining:
                 raise ValidationError(
                     "On {} there are less rooms than you desire. ({} > {})".format(
-                        current, self.nbr_of_rooms, remaining))
+                        current, self.peopleAmount, remaining))
             current += day
             '''
     def get_absolute_url(self):
