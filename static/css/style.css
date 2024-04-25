@@ -1,25 +1,14 @@
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -moz-font-feature-settings: 'liga';
-  -moz-osx-font-smoothing: grayscale;
-}
+
 
 :root {
     /* Couleurs principales */
-    --color-light-blue: #0275d8; /* Couleur 1 : Bleu clair */
-    --color-blue: #036cc8;       /* Couleur 2 : Bleu       */
-    --color-dark-blue: #025dad;  /* Couleur 3 : Bleu foncé */
-    --color-dark-grey: #373a3c;  /* Couleur 4 : Gris foncé */
+    --color-light-blue: #0275d8;  /* Couleur 1 : Bleu clair  */
+    --color-blue: #036cc8;        /* Couleur 2 : Bleu        */
+    --color-dark-blue: #025dad;   /* Couleur 3 : Bleu foncé  */
+    --color-dark-grey: #373a3c;   /* Couleur 4 : Gris foncé  */
+    --color-light-white: #ffffff; /* Couleur 6 : Blanc clair */
+    --color-white: #e4e4e4;       /* Couleur 5 : Blanc       */
+    --color-dark-white: #dddddd;  /* Couleur 7 : Blanc foncé */
 
     /* Dégradé */
     --color-gradient: linear-gradient(0.25turn, #264085, #1D5895, #1079AA, #00A9CD);
@@ -37,7 +26,7 @@ nav.navbar {
 
 ul.navbar-nav > li.nav-item > a {
     font-weight: bold;
-    color: white;
+    color: var(--color-light-white);
 }
 
 /* Logo */
@@ -47,11 +36,29 @@ a.navbar-brand > img {
 }
 
 /* Liens */
+span.nav-line {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid var(--color-light-white);
+    margin: 10px 5px 0 5px;
+    height: 40%;
+}
+
 ul.navbar-nav > li.nav-item > a {
-    margin: 0 5px;
+    margin: 0 3px;
     font-family: "Lexend", sans-serif;
     font-size: 15px;
     font-weight: 400;
+}
+
+ul.navbar-nav > li.nav-item > a:hover {
+    color: var(--color-white);
+    background: none !important;
+}
+
+ul.navbar-nav > li.nav-item > a:active {
+    color: var(--color-dark-white);
+    background: none !important;
 }
 
 /* Calendrier */
@@ -60,15 +67,15 @@ div#calendar {
 }
 
 /* Écran de réservation */
-#modal {
-    width: auto;
-    height: auto;
+.modal {
     display: none;
+    width: 300px;
+    height: 300px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: white;
+    background: var(--color-light-white);
     padding: 20px;
     border: 1px solid #ccc;
     z-index: 999;
@@ -76,14 +83,15 @@ div#calendar {
 
 /* Titre */
 div.fc-toolbar-chunk > h2.fc-toolbar-title {
-    font-family: Raleway, sans-serif;
+    font-family: "Lexend", sans-serif;
     font-weight: bold;
     color: var(--color-dark-grey);
 }
 
 /* Bouton ajd */
 div.fc-toolbar-chunk > button.fc-today-button.fc-button.fc-button-primary {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
     border-color: var(--color-blue);
     background-color: var(--color-light-blue);
 }
@@ -119,7 +127,8 @@ button.fc-next-button.fc-button.fc-button-primary {
 /* Semaine */
 a.fc-timegrid-axis-cushion.fc-scrollgrid-shrink-cushion.fc-scrollgrid-sync-inner {
     text-decoration: none;
-    font-family: Raleway, sans-serif;
+    font-family: "Lexend", sans-serif;
+    font-weight: bold;
     font-size: 12px;
     color: black;
 }
@@ -132,7 +141,8 @@ div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame {
 }
 
 div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame > div {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Lexend", sans-serif;
+    font-weight: 400;
     font-size: 14px;
 }
 
@@ -140,9 +150,27 @@ div.fc-timegrid-slot-label-frame.fc-scrollgrid-shrink-frame > div {
 a.fc-col-header-cell-cushion {
     margin: 2px 0;
     text-decoration: none;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Outfit", sans-serif;
+    font-weight: 700;
     font-size: 15px;
-    color: var(--color-light-blue);
+    color: var(--color-light-blue) !important;
+}
+
+/* Autres */
+.material-icons {
+    font-family: 'Material Icons', serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .footer-light {
