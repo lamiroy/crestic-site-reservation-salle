@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             right: 'next'
         },
         events: {
-            url: '/calendrier.ics',
+            url: 'calendar.ics',
             format: 'ics',
             success: function() {
                 console.log('ICS events loaded!');
