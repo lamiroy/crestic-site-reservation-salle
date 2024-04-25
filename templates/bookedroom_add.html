@@ -8,7 +8,7 @@
     {% csrf_token %}
     {{ form.media }}
     {{ form.room_category|as_crispy_field }}
-    {{ form.nbr_of_rooms|as_crispy_field }}
+    {{ form.peopleAmount|as_crispy_field }}
     {{ form.date| as_crispy_field}}
     {{ form.startTime| as_crispy_field}}
     {{ form.endTime|as_crispy_field }}
