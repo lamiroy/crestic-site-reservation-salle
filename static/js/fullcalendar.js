@@ -12,11 +12,16 @@ document.addEventListener('DOMContentLoaded', function() {
             let start = moment(info.event.start).format("HH:mm");
             let end = moment(info.event.end).format("HH:mm");
             let description = info.event.extendedProps.description || "Aucune description";
-            document.getElementById('eventDescription').innerText = info.event.title;
-            document.getElementById('eventDescription').innerText += '\n ' + start + ' - ' + end;
-            document.getElementById('eventDescription').innerText += '\nStatus : ' + description;
+            let eventDescription = document.getElementById('eventDescription');
+            eventDescription.innerHTML = "<p>" + info.event.title + "</p>";
+            eventDescription.innerHTML += "<p>" + start + ' - ' + end + "</p>";
+            eventDescription.innerHTML += "<p>Motif : " + info.event.extendedProps.motif + "</p>";
+            eventDescription.innerHTML += "<p>Nombre de personnes : " + info.event.extendedProps.eventNbPers + "</p>";
+            eventDescription.innerHTML += "<p>Laboratoire : " + info.event.extendedProps.labo + "</p>";
+            eventDescription.innerHTML += "<p>Status : " + description + "</p>";
             eventModal.style.display = 'block';
         },
+
         businessHours: [
             {
                 daysOfWeek: [1, 2, 3, 4, 5], // Monday - Friday
@@ -83,10 +88,13 @@ document.addEventListener('DOMContentLoaded', function() {
     eventForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        let title = document.getElementById('eventTitle').value;
+        let title = document.getElementById('room-select').value;
         let date = document.getElementById('eventDate').value;
         let startTime = document.getElementById('eventStartTime').value;
         let endTime = document.getElementById('eventEndTime').value;
+        let motif = document.getElementById('select-motif').value;
+        let eventNbPers = document.getElementById('eventNbPers').value;
+        let labo = document.getElementById('select-labo').value;
 
 
         if (title.trim() !== '' && date.trim() !== '' && startTime.trim() !== '' && endTime.trim() !== '') {
@@ -94,6 +102,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 title: title,
                 start: date + 'T' + startTime,
                 end: date + 'T' + endTime,
+                motif: motif,
+                eventNbPers: eventNbPers,
+                labo: labo,
                 description: "En attente"
             };
             calendar.addEvent(event);
