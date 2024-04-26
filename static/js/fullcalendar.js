@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     btnCloseModal.addEventListener('click', function() {
         modal.style.display = 'none';
-        // Clear form fields when modal is closed
         eventForm.reset();
     });
 
@@ -99,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             calendar.addEvent(event);
             modal.style.display = 'none';
-            // Clear form fields after successful submission
             eventForm.reset();
         } else {
             alert("Veuillez remplir tous les champs.");
