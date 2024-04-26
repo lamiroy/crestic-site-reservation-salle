@@ -97,7 +97,7 @@ div.fc-view-harness.fc-view-harness-passive {
 div.modal-reservation {
     display: none;
     width: 300px;
-    height: 300px;
+    height: 400px;
     position: fixed;
     top: 50%;
     left: 50%;
