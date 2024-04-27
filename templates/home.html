@@ -10,41 +10,47 @@
     <div id="modal" class="modal-reservation">
         <h2>Faire une réservation</h2>
         <form id="eventForm">
-          <label for="eventTitle">Salle :</label>
-          <label for="eventRoom"></label>
-            <label for="room-select"></label>
+            <label for="room-select">Salle :</label>
             <select name="room" id="room-select">
                 <option value="">Choisir une salle</option>
                 <option value="Salle 1">Salle 1</option>
                 <option value="Salle 2">Salle 2</option>
                 <option value="Salle 3">Salle 3</option>
             </select><br>
-          <label for="eventDate">Date :</label>
-          <input type="date" id="eventDate">
-          <label for="eventStartTime">Heure de début :</label>
-          <input type="time" id="eventStartTime">
-          <label for="eventEndTime">Heure de fin :</label>
-          <input type="time" id="eventEndTime"><br>
+
+            <label for="eventDate">Date :</label>
+            <input type="date" id="eventDate"><br>
+
+            <label for="eventStartTime">Heure de début :</label>
+            <input type="time" id="eventStartTime"><br>
+
+            <label for="eventEndTime">Heure de fin :</label>
+            <input type="time" id="eventEndTime"><br>
+
             <label for="select-motif">Motif :</label>
             <select name="motif" id="select-motif">
-              <option value="">Choisir un motif</option>
-              <option value="Réunion">Réunion</option>
-              <option value="Entretien">Entretien</option>
-              <option value="Présentation">Présentation</option>
-            </select>
+                <option value="">Choisir un motif</option>
+                <option value="Réunion">Réunion</option>
+                <option value="Entretien">Entretien</option>
+                <option value="Présentation">Présentation</option>
+            </select><br>
+
             <label for="eventNbPers">Nombre de personnes :</label>
             <input type="text" id="eventNbPers"><br>
+
             <label for="select-labo">Laboratoire :</label>
             <select name="labo" id="select-labo">
-              <option value="">Choisir un labo</option>
-              <option value="CReSTIC">CReSTIC</option>
-              <option value="Labi*">Labi*</option>
-              <option value="Liciis">Liciis</option>
-          </select><br>
+                <option value="">Choisir un labo</option>
+                <option value="CReSTIC">CReSTIC</option>
+                <option value="Labi*">Labi*</option>
+                <option value="Liciis">Liciis</option>
+            </select><br>
+
           <button type="submit">Enregistrer</button>
           <button type="button" id="btnCloseModal">Fermer</button>
         </form>
     </div>
+
     <div id="eventModal" class="modal-reservation">
         <h2>Détails de la réservation</h2>
         <p id="eventDescription"></p>
