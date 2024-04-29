@@ -1,12 +1,11 @@
 from django.contrib import admin
+from .models import BookedEquipment
 
-from .models import BookedRoom
 
-
-class BookRoomsAdmin(admin.ModelAdmin):
-    model = BookedRoom
+class BookEquipmentsAdmin(admin.ModelAdmin):
+    model = BookedEquipment
     list_display = ['id', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif',
-                    'user', 'room_category', 'peopleAmount']
+                    'user', 'equipment_category', 'peopleAmount']
 
 
-admin.site.register(BookedRoom, BookRoomsAdmin)
+admin.site.register(BookedEquipment, BookEquipmentsAdmin)

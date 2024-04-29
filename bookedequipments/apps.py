@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class BookedroomsConfig(AppConfig):
-    name = 'bookedrooms'
+class BookedequipmentsConfig(AppConfig):
+    name = 'bookedequipments'

@@ -4,9 +4,7 @@ from rooms.models import RoomCategory
 from django.db import models
 from django.urls import reverse
 from django.db.models import Sum
-
 from datetime import date, datetime, time
-
 
 
 class BookedRoom(models.Model):

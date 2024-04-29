@@ -3,7 +3,7 @@ from django.db.models import Sum
 from django.urls import reverse
 
 
-class RoomCategory(models.Model):
+class EquipmentCategory(models.Model):
     libRoom = models.CharField(max_length=50)
     maxCapacity = models.IntegerField()
 
@@ -11,8 +11,8 @@ class RoomCategory(models.Model):
         return self.libRoom
 
     def get_absolute_url(self):
-        return reverse('roomdashboard_detail', args=[str(self.id)])
+        return reverse('equipmentdashboard_detail', args=[str(self.id)])
 
     class Meta:
-        verbose_name = 'Room Category'
-        verbose_name_plural = 'Room Categories'
+        verbose_name = 'Equipment Category'
+        verbose_name_plural = 'Equipment Categories'

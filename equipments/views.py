@@ -1,7 +1,7 @@
 from django.views.generic import ListView
+from .models import EquipmentCategory
 
-from .models import RoomCategory
 
 class HomePageView(ListView):
-    model = RoomCategory
+    model = EquipmentCategory
     template_name = 'home.html'

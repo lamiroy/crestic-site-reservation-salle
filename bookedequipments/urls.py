@@ -1,27 +1,27 @@
 from django.urls import path
 
 from .views import (
-    BookedRoomsListView,
-    BookedRoomsDetailView,
-    BookedRoomsUpdateView,
-    BookedRoomsDeleteView,
-    BookedRoomsCreateView,
+    BookedEquipmentsListView,
+    BookedEquipmentsDetailView,
+    BookedEquipmentsUpdateView,
+    BookedEquipmentsDeleteView,
+    BookedEquipmentsCreateView,
 )
 
 urlpatterns = [
     path('<int:pk>/edit/',
-         BookedRoomsUpdateView.as_view(),
-         name='bookedrooms_edit'),
+         BookedEquipmentsListView.as_view(),
+         name='bookedequipments_edit'),
     path('<int:pk>/',
-         BookedRoomsDetailView.as_view(),
-         name='bookedrooms_detail'),
+         BookedEquipmentsDetailView.as_view(),
+         name='bookedequipments_detail'),
     path('<int:pk>/delete/',
-         BookedRoomsDeleteView.as_view(),
-         name='bookedrooms_delete'),
-    path('new/<int:room_pk>/',
-         BookedRoomsCreateView.as_view(),
-         name='bookedrooms_new'),
+         BookedEquipmentsUpdateView.as_view(),
+         name='bookedequipments_delete'),
+    path('new/<int:equimpent_pk>/',
+         BookedEquipmentsDeleteView.as_view(),
+         name='bookedequipments_new'),
     path('',
-         BookedRoomsListView.as_view(),
-         name='bookedrooms_list'),
+         BookedEquipmentsCreateView.as_view(),
+         name='bookedequipments_list'),
 ]

@@ -1,13 +1,10 @@
+import bookedrooms.models
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
-
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
-from datetime import date, datetime, time
-
-import bookedrooms.models
 from rooms.models import RoomCategory
 from .models import BookedRoom
 
@@ -17,7 +14,7 @@ class BookedRoomsListView(LoginRequiredMixin, ListView):
     template_name = 'bookedroom_list.html'
     login_url = 'login'
 
-    # Return only the data for the currently logged in user
+    # Return only the data for the currently logged-in user
     def get_queryset(self):
         return BookedRoom.objects.filter(
             user=self.request.user).order_by('date')
@@ -107,7 +104,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         """
-        Overridden to always set the user to the currently logged in user
+        Overridden to always set the user to the currently logged-in user
         """
         user = self.request.user
         form.instance.user = user
