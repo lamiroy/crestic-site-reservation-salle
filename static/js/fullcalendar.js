@@ -66,6 +66,14 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('eventDate').value = moment(info.start).format("YYYY-MM-DD");
             document.getElementById('eventStartTime').value = moment(info.start).format("HH:mm");
             document.getElementById('eventEndTime').value = moment(info.end).format("HH:mm");
+        },
+        selectAllow: function(selectInfo) {
+            if (selectInfo.start.getDay() === 6) { // Saturday
+                let startTime = new Date(selectInfo.start.getFullYear(), selectInfo.start.getMonth(), selectInfo.start.getDate(), 8, 0);
+                let endTime = new Date(selectInfo.start.getFullYear(), selectInfo.start.getMonth(), selectInfo.start.getDate(), 12, 30);
+                return selectInfo.start >= startTime && selectInfo.end <= endTime;
+            }
+            return true;
         }
     });
     calendar.render();
