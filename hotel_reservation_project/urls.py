@@ -24,6 +24,7 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('roombooking/', include('bookedrooms.urls')),
+    path('equipmentbooking/', include('bookedequipments.urls')),
     path('calendar.ics', include('fullcalendar.urls')),
     path('', include('rooms.urls'))
 ]

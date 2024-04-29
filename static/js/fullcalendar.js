@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
             eventDescription.innerHTML += "<p>Status : " + description + "</p>";
             eventModal.style.display = 'block';
         },
-
         businessHours: [
             {
                 daysOfWeek: [1, 2, 3, 4, 5], // Monday - Friday
@@ -40,12 +39,14 @@ document.addEventListener('DOMContentLoaded', function() {
         height: "auto",
         selectable: true,
         buttonText: {
-            today: 'Aujourd\'hui'
+            today: 'Aujourd\'hui',
+            timeGridWeek: 'Semaine',
+            timeGridDay: 'Jour'
         },
         headerToolbar: {
             left: 'prev today',
             center: 'title',
-            right: 'next'
+            right: 'timeGridWeek,timeGridDay next'
         },
         events: {
             url: 'calendar.ics',
@@ -58,20 +59,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
         select: function(info) {
-
-            // Open modal for adding new event
             modal.style.display = 'block';
-
-            // Populate date and time inputs in the form
             document.getElementById('eventDate').value = moment(info.start).format("YYYY-MM-DD");
             document.getElementById('eventStartTime').value = moment(info.start).format("HH:mm");
             document.getElementById('eventEndTime').value = moment(info.end).format("HH:mm");
         }
     });
+
     calendar.render();
+
     let modal = document.getElementById('modal');
     let eventModal = document.getElementById('eventModal');
-    let btnAddEvent = document.getElementById('btnAddEvent');
     let btnCloseModal = document.getElementById('btnCloseModal');
     let btnCloseEventModal = document.getElementById('btnCloseEventModal');
     let eventForm = document.getElementById('eventForm');
@@ -95,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let motif = document.getElementById('select-motif').value;
         let eventNbPers = document.getElementById('eventNbPers').value;
         let labo = document.getElementById('select-labo').value;
-
 
         if (title.trim() !== '' && date.trim() !== '' && startTime.trim() !== '' && endTime.trim() !== '') {
             let event = {

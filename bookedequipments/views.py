@@ -1,39 +1,42 @@
-import bookedrooms.models
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
+
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
+from datetime import date, datetime, time
+
+import bookedrooms.models
 from rooms.models import RoomCategory
-from .models import BookedRoom
+from .models import BookedEquipment
 
 
-class BookedRoomsListView(LoginRequiredMixin, ListView):
-    model = BookedRoom
-    template_name = 'bookedroom_list.html'
+class BookedEquipmentsListView(LoginRequiredMixin, ListView):
+    model = BookedEquipment
+    template_name = 'bookedequipment_list.html'
     login_url = 'login'
 
     # Return only the data for the currently logged-in user
     def get_queryset(self):
-        return BookedRoom.objects.filter(
+        return BookedEquipment.objects.filter(
             user=self.request.user).order_by('date')
 
 
-class BookedRoomsDetailView(LoginRequiredMixin, DetailView):
-    model = BookedRoom
+class BookedEquipmentsDetailView(LoginRequiredMixin, DetailView):
+    model = BookedEquipment
     template_name = 'bookedroom_detail.html'
     login_url = 'login'
 
 
-class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
-    model = BookedRoom
+class BookedEquipmentsUpdateView(LoginRequiredMixin, UpdateView):
+    model = BookedEquipment
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
     template_name = 'bookedroom_edit.html'
     login_url = 'login'
 
     def get_form(self):
-        form = super(BookedRoomsUpdateView, self).get_form()
+        form = super(BookedEquipmentsUpdateView, self).get_form()
         form.fields['room_category'].label = 'nom de la salle'
         form.fields['peopleAmount'].label = 'nombre de personnes'
         form.fields['date'].label = 'jour de la réservation'
@@ -50,18 +53,18 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         form.instance.user = user
         form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
-        return super(BookedRoomsUpdateView, self).form_valid(form)
+        return super(BookedEquipmentsUpdateView, self).form_valid(form)
 
 
-class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
-    model = BookedRoom
+class BookedEquipmentsDeleteView(LoginRequiredMixin, DeleteView):
+    model = BookedEquipment
     template_name = 'bookedroom_delete.html'
     success_url = reverse_lazy('bookedrooms_list')
     login_url = 'login'
 
 
-class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
-    model = BookedRoom
+class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
+    model = BookedEquipment
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif')
     template_name = 'bookedroom_add.html'
     success_url = reverse_lazy('bookedrooms_list')
@@ -79,7 +82,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         """
         Returns the initial data to use for forms on this view.
         """
-        initial = super(BookedRoomsCreateView, self).get_initial()
+        initial = super(BookedEquipmentsCreateView, self).get_initial()
         initial['room_category'] = self.room_category
         return initial
 
@@ -88,7 +91,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         Overridden to change the DateFields from text boxes to
         DatePicker widgets
         """
-        form = super(BookedRoomsCreateView, self).get_form()
+        form = super(BookedEquipmentsCreateView, self).get_form()
         form.fields['room_category'].label = 'nom de la salle'
         form.fields['peopleAmount'].label = 'nombre de personnes'
         form.fields['date'].label = 'jour de la réservation'
@@ -112,4 +115,4 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
 
         print("Form data:", form.cleaned_data)
         print("Form errors:", form.errors)
-        return super(BookedRoomsCreateView, self).form_valid(form)
+        return super(BookedEquipmentsCreateView, self).form_valid(form)
