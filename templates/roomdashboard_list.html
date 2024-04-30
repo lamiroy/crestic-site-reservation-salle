@@ -3,54 +3,60 @@
 {% block title %}Affichage des salles{% endblock title %}
 
 {% block content %}
-    <div class="row my-2">
-        <div class="col">
-            <a class="waves-effect waves-light btn-small blue-grey darken-4"
-                 href="{% url 'roomdashboard_new' %}">Ajouter une nouvelle salle</a>
+    <div class="container">
+        <div class="col-sm-12">
+            <a class="btn btn-primary" type="button" href="{% url 'roomdashboard_new' %}">
+                <i class="bi bi-plus-lg"></i>
+                Ajouter une nouvelle salle
+            </a>
         </div>
     </div>
-    <div class="row">
-        {% for room in object_list %}
-            {% if forloop.counter|divisibleby:2 %}
-                <div class="col s6">
-            {% else %}
-                <div class="row">
-                    <div class="col s6">
-            {% endif %}
 
-                    <div class="card sticky-action">
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">
-                                {{ room.libRoom }}<i class="material-icons right">more_vert</i>
-                            </span>
-                        </div>
-                        <div class="card-action">
-                            <a class="waves-effect waves-light btn-small blue-grey darken-4"
-                                 href="{% url 'roomdashboard_edit' room.pk %}">Edit</a>
-                            <a class="waves-effect waves-light btn-small blue-grey darken-4"
-                                 href="{% url 'roomdashboard_delete' room.pk %}">Delete</a>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">
-                              {{ room.libRoom }}<i class="material-icons right">close</i></span>
-                            <p>
-                                <br>
-                                <small>Nombre de personnes maximum: <b>{{ room.maxCapacity }}</b></small>
-                            </p>
+    <div class="container">
+        <div class="row content roomdashboard">
+            {% for room in object_list %}
+                {% if forloop.last and not forloop.counter|divisibleby:2 %}
+                    <!-- Si c'est le dernier élément et que le nombre total d'éléments est impair -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <img src="" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ room.libRoom }}</h5>
+                                <p class="card-text">Nombre de pers. max. : {{ room.maxCapacity }}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="{% url 'roomdashboard_edit' room.pk %}" class="card-link">Modifier</a>
+                                <a href="{% url 'roomdashboard_delete' room.pk %}" class="card-link">Supprimer</a>
+                            </div>
                         </div>
                     </div>
-
-        {% if forloop.counter|divisibleby:2 %}
-                </div>
-            </div>
-        {% elif forloop.last %}
-            {% comment %}Is last but not an even index{% endcomment %}
-                </div>
-            </div>
-        {% else %}
-            {% comment %}Not Last</p>{% endcomment %}
-            </div>
-        {% endif %}
-    {% endfor %}
+                {% else %}
+                    <!-- Pour tous les autres éléments, y compris les impairs sauf le dernier s'il est impaire -->
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card">
+                            <img src="" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ room.libRoom }}</h5>
+                                <p class="card-text">Nombre de pers. max. : {{ room.maxCapacity }}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="{% url 'roomdashboard_edit' room.pk %}" class="card-link">Modifier</a>
+                                <a href="{% url 'roomdashboard_delete' room.pk %}" class="card-link">Supprimer</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock content %}

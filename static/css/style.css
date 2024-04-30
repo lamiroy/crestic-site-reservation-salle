@@ -15,6 +15,8 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     min-height: 100%;
@@ -42,6 +44,7 @@ body {
     --color-liciis: #B3B3B3;
 }
 
+/*----------------- Page de base -----------------*/
 /* Barre de navigation */
 nav.navbar {
     background: var(--color-gradient);
@@ -52,13 +55,6 @@ ul.navbar-nav > li.nav-item > a {
     color: var(--color-light-white);
 }
 
-/* Logo */
-a.navbar-brand > img {
-    height: 45px;
-    margin-top: 2px;
-}
-
-/* Liens */
 span.nav-line {
     display: inline-block;
     vertical-align: middle;
@@ -84,6 +80,67 @@ ul.navbar-nav > li.nav-item > a:active {
     background: none !important;
 }
 
+/* Logo */
+a.navbar-brand > img {
+    height: 45px;
+    margin-top: 2px;
+}
+
+/* Bloc flex grow */
+div.flex-space-bloc {
+    flex: 1;
+}
+
+/* Footer */
+footer {
+    padding: 5px 0;
+    background: var(--color-gradient);
+}
+
+footer img {
+    height: 50px;
+    margin-top: 10px;
+}
+
+footer p {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0;
+    font-family: "Outfit", sans-serif;
+    font-weight: 300;
+    color: var(--color-light-white);
+}
+
+footer > div > p:nth-child(2) {
+    margin-top: 20px;
+}
+
+footer > div > p:last-child {
+    font-weight: 600;
+}
+
+footer p > i {
+    margin-right: 8px;
+}
+
+/* Icones */
+.material-icons {
+    font-family: 'Material Icons', serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -moz-font-feature-settings: 'liga';
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*---------------- Page d'accueil ----------------*/
 /* Calendrier */
 div#calendar {
     margin: 15px;
@@ -116,7 +173,7 @@ div.fc-toolbar-chunk > h2.fc-toolbar-title {
     color: var(--color-dark-grey);
 }
 
-/* Bouton ajd */
+/* Bouton aujourd'hui */
 div.fc-toolbar-chunk > button.fc-today-button.fc-button.fc-button-primary {
     font-family: "Outfit", sans-serif;
     font-weight: 400;
@@ -216,51 +273,36 @@ a.fc-col-header-cell-cushion {
     color: var(--color-light-blue) !important;
 }
 
-/* Footer */
-footer {
-    padding: 5px 0;
-    background: var(--color-gradient);
+/*---------- Page des salles à réserver ----------*/
+/* Bloc qui contient les salles */
+div.row.content.roomdashboard {
+    margin: 20px 0 0 0;
 }
 
-footer img {
-    height: 50px;
-    margin-top: 10px;
+div.row.content.roomdashboard div.card {
+    margin-bottom: 20px;
 }
 
-footer p {
+/* Bouton d'ajout */
+div.col-sm-12 > a.btn.btn-primary {
     display: flex;
     justify-content: center;
-    margin: 5px 0;
-    font-family: "Outfit", sans-serif;
-    font-weight: 300;
-    color: var(--color-light-white);
-}
-
-footer > div > p:nth-child(2) {
+    width: 100%;
     margin-top: 20px;
+    border-color: var(--color-blue) !important;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    background-color: var(--color-light-blue) !important;
 }
 
-footer > div > p:last-child {
-    font-weight: 600;
+div.col-sm-12 > a.btn.btn-primary:hover {
+    background-color: var(--color-blue) !important;
 }
 
-footer p > i {
-    margin-right: 8px;
+div.col-sm-12 > a.btn.btn-primary:active {
+    background-color: var(--color-dark-blue) !important;
 }
 
-/* Icones de base */
-.material-icons {
-    font-family: 'Material Icons', serif;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -moz-font-feature-settings: 'liga';
-  -moz-osx-font-smoothing: grayscale;
+div.col-sm-12 > a.btn.btn-primary > i {
+    margin-right: 5px;
 }
