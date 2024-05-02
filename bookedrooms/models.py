@@ -3,21 +3,26 @@ from django.contrib.auth import get_user_model
 from rooms.models import RoomCategory
 from django.db import models
 from django.urls import reverse
-from django.db.models import Sum
 from datetime import date, datetime, time
 
 
 class BookedRoom(models.Model):
     STATUS_CHOICES = [
-        ('pending', 'en attente'),
-        ('canceled', 'annulé'),
-        ('validated', 'validé'),
+        ('pending', 'En attente'),
+        ('canceled', 'Annulé'),
+        ('validated', 'Validé'),
+    ]
+
+    LABORATORY_CHOICES = [
+        ('CReSTIC', 'CReSTIC'),
+        ('Labi*', 'Labi*'),
+        ('Liciis', 'Liciis'),
     ]
 
     date = models.DateField()
     startTime = models.TimeField()
     endTime = models.TimeField()
-    groups = models.CharField(max_length=100)
+    groups = models.CharField(max_length=100, choices=LABORATORY_CHOICES)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES)
     motif = models.CharField(max_length=100)
     peopleAmount = models.IntegerField(default=1)
@@ -59,8 +64,6 @@ class BookedRoom(models.Model):
 
             if end_time <= start_time:
                 raise ValidationError('L\'heure de fin doit être supérieure à l\'heure de début.')
-
-
 
         # For new bookings, the start date should not be less than today's date
 
@@ -105,6 +108,7 @@ class BookedRoom(models.Model):
                         current, self.peopleAmount, remaining))
             current += day
             '''
+
     def get_absolute_url(self):
         return reverse('bookedrooms_detail', args=[str(self.id)])
 
