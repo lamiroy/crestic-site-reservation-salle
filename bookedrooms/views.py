@@ -34,16 +34,25 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_form(self):
         form = super(BookedRoomsUpdateView, self).get_form()
-        form.fields['room_category'].label = 'nom de la salle'
-        form.fields['peopleAmount'].label = 'nombre de personnes'
-        form.fields['date'].label = 'jour de la réservation'
-        form.fields['startTime'].label = 'début de la réservation'
-        form.fields['endTime'].label = 'fin de la réservation'
-        form.fields['groups'].label = 'laboratoire'
-        form.fields['motif'].label = 'motif'
+        form.fields['room_category'].label = 'Nom de la salle'
+
+        form.fields['peopleAmount'].label = 'Nombre de pers. max.'
+        form.fields['peopleAmount'].widget.attrs['min'] = 1
+        form.fields['peopleAmount'].widget.attrs['max'] = 30
+
+        form.fields['date'].label = 'Jour de la réservation'
         form.fields['date'].widget = DatePickerInput()
+
+        form.fields['startTime'].label = 'Début de la réservation'
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
+
+        form.fields['endTime'].label = 'Fin de la réservation'
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
+
+        form.fields['groups'].label = 'Laboratoire'
+
+        form.fields['motif'].label = 'Motif'
+
         return form
 
     def form_valid(self, form):
@@ -89,16 +98,25 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         DatePicker widgets
         """
         form = super(BookedRoomsCreateView, self).get_form()
-        form.fields['room_category'].label = 'nom de la salle'
-        form.fields['peopleAmount'].label = 'nombre de personnes'
-        form.fields['date'].label = 'jour de la réservation'
-        form.fields['startTime'].label = 'début de la réservation'
-        form.fields['endTime'].label = 'fin de la réservation'
-        form.fields['groups'].label = 'laboratoire'
-        form.fields['motif'].label = 'motif'
+        form.fields['room_category'].label = 'Nom de la salle'
+
+        form.fields['peopleAmount'].label = 'Nombre de pers. max.'
+        form.fields['peopleAmount'].widget.attrs['min'] = 1
+        form.fields['peopleAmount'].widget.attrs['max'] = 30
+
+        form.fields['date'].label = 'Jour de la réservation'
         form.fields['date'].widget = DatePickerInput()
+
+        form.fields['startTime'].label = 'Début de la réservation'
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
+
+        form.fields['endTime'].label = 'Fin de la réservation'
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
+
+        form.fields['groups'].label = 'Laboratoire'
+
+        form.fields['motif'].label = 'Motif'
+
         del form.fields['status']
         return form
 

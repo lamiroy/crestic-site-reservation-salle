@@ -34,6 +34,7 @@ body {
     --color-light-white: #ffffff; /* Couleur 6 : Blanc clair */
     --color-white: #ececec;       /* Couleur 5 : Blanc       */
     --color-dark-white: #dddddd;  /* Couleur 7 : Blanc foncé */
+    --color-red: #ff1616;         /* Couleur 8 : Rouge       */
 
     /* Dégradé */
     --color-gradient: linear-gradient(0.25turn, #264085, #1D5895, #1079AA, #00A9CD);
@@ -312,4 +313,37 @@ div.col-sm-12 > a.btn.btn-primary:active {
 
 div.col-sm-12 > a.btn.btn-primary > i {
     margin-right: 5px;
+}
+
+/*-------- Page de réservation d'une salle --------*/
+/* Formulaire */
+form.roomreservation {
+    margin: 15px 0;
+}
+
+form.roomreservation label {
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+form.roomreservation span.asteriskField {
+    color: var(--color-red);
+}
+
+form.roomreservation > button {
+    width: 100%;
+    margin-top: 5px;
+    border-color: var(--color-blue) !important;
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    background-color: var(--color-light-blue) !important;
+}
+
+form.roomreservation > button:hover {
+    background-color: var(--color-blue) !important;
+}
+
+form.roomreservation > button:active {
+    background-color: var(--color-dark-blue) !important;
 }
