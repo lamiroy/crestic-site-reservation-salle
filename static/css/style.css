@@ -81,6 +81,11 @@ ul.navbar-nav > li.nav-item > a:active {
     background: none !important;
 }
 
+/* Menu dropdown */
+li.nav-item.dropdown a:active {
+    background: var(--color-white) none;
+}
+
 /* Logo */
 a.navbar-brand > img {
     height: 45px;
