@@ -5,28 +5,34 @@
 {% block content %}
     <div id="welcome" class="welcome">
         <h2>Bienvenue Nom Prénom</h2>
-        <table>
+        <table class="striped">
+            <thead>
             <tr>
-                <td>Nom de salle</td>
-                <td>Heure début</td>
-                <td>Heure fin</td>
-                <td>Motif</td>
-                <td>Nombre de personnes</td>
+                <th>Nom de la salle</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Motif</th>
+                <th>Nombre de personnes</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
             </tr>
-            <tr>
-                <td>Nom de salle</td>
-                <td>Heure début</td>
-                <td>Heure fin</td>
-                <td>Motif</td>
-                <td>Nombre de personnes</td>
-            </tr>
-            <tr>
-                <td>Nom de salle</td>
-                <td>Heure début</td>
-                <td>Heure fin</td>
-                <td>Motif</td>
-                <td>Nombre de personnes</td>
-            </tr>
-        </table>
+            </thead>
+            <tbody>
+            {% for bookedroom in object_list %}
+                <tr>
+                    <td>{{ bookedroom.room_category.libRoom }}</td>
+                    <td>{{ bookedroom.user.first_name }}</td>
+                    <td>{{ bookedroom.user.last_name }}</td>
+                    <td>{{ bookedroom.peopleAmount }}</td>
+                    <td>{{ bookedroom.date }}</td>
+                    <td>{{ bookedroom.startTime }}</td>
+                    <td>{{ bookedroom.endTime }}</td>
+                </tr>
+
+                {% if forloop.last %}
+                    </tbody>
+                    </table>
+                {% endif %}
+            {% endfor %}
     </div>
 {% endblock content %}
