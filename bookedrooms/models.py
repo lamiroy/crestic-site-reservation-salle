@@ -43,8 +43,8 @@ class BookedRoom(models.Model):
 
         start_time = self.startTime
         if start_time:
-            if start_time < time(6, 0) or start_time > time(19, 30):
-                raise ValidationError('L\'heure de début doit être entre 6h00 et 19h30.')
+            if start_time < time(8, 0) or start_time > time(18, 0):
+                raise ValidationError('L\'heure de début doit être entre 8h00 et 18h.')
 
             if selected_date == date.today():
                 current_time = datetime.now().time()
@@ -59,8 +59,8 @@ class BookedRoom(models.Model):
 
         end_time = self.endTime
         if end_time:
-            if end_time < time(6, 0) or end_time > time(22, 0):
-                raise ValidationError('L\'heure de fin doit être entre 6h00 et 22h00.')
+            if end_time < time(8, 0) or end_time > time(18, 0):
+                raise ValidationError('L\'heure de fin doit être entre 8h00 et 18h00.')
 
             if end_time <= start_time:
                 raise ValidationError('L\'heure de fin doit être supérieure à l\'heure de début.')
