@@ -274,6 +274,13 @@ a.fc-col-header-cell-cushion {
 }
 
 /*---------- Page des salles à réserver ----------*/
+/* Titre de la page */
+h2.container-title {
+    margin: 20px 0 0 0;
+    font-family: "Lexend", sans-serif;
+    font-weight: 600;
+}
+
 /* Bloc qui contient les salles */
 div.row.content.roomdashboard {
     margin: 20px 0 0 0;
