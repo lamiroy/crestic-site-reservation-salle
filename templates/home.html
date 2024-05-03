@@ -10,32 +10,34 @@
 
 {% block content %}
     <div id="modal" class="modal-reservation">
-        <h2>Faire une réservation</h2>
-        <form id="eventForm" method="post" enctype="multipart/form-data">
+        <div class="modal-reserv-title">
+            <h2>Réserver une salle</h2>
+            <button type="button" class="btn-close" id="btnCloseModal" aria-label="Fermer"></button>
+        </div>
+        <form class="roomreservation" id="eventForm" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-                {{ form.media }}
-                {{ form.room_category | as_crispy_field }}
-                {{ form.peopleAmount | as_crispy_field }}
-                {{ form.date | as_crispy_field }}
-                {{ form.startTime | as_crispy_field }}
-                {{ form.endTime | as_crispy_field }}
-                {{ form.motif | as_crispy_field }}
-                {{ form.groups | as_crispy_field }}
+            {{ form.media }}
+            {{ form.room_category | as_crispy_field }}
+            {{ form.peopleAmount | as_crispy_field }}
+            {{ form.date | as_crispy_field }}
+            {{ form.startTime | as_crispy_field }}
+            {{ form.endTime | as_crispy_field }}
+            {{ form.motif | as_crispy_field }}
+            {{ form.groups | as_crispy_field }}
 
-                {% if form.errors %}
-                    <div class="alert alert-danger">
-                        <ul>
-                            {% for field_errors in form.errors.values %}
-                                {% for error in field_errors %}
-                                    <li>{{ error }}</li>
-                                {% endfor %}
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field_errors in form.errors.values %}
+                            {% for error in field_errors %}
+                                <li>{{ error }}</li>
                             {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
 
-          <button type="submit">Enregistrer</button>
-          <button type="button" id="btnCloseModal">Fermer</button>
+            <button type="submit" class="btn btn-primary">Valider</button>
         </form>
     </div>
 
