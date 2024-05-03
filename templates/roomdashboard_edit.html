@@ -7,14 +7,11 @@
     <h1>Modifier</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {% comment %}{{ form|crispy }}{% endcomment %}
-        {{ form.libRoom|as_crispy_field }}
-        {{ form.maxCapacity|as_crispy_field }}
-        <figure class="figure">
-                 height="100"
-                 class="figure-img rounded" alt="Current Image">
-            <figcaption class="figure-caption">Current Image</figcaption>
-        </figure>
+        {{ form.libRoom | as_crispy_field }}
+        {{ form.description | as_crispy_field }}
+        {{ form.image | as_crispy_field }}
+        {{ form.maxCapacity | as_crispy_field }}
+
         <button type="submit" class="btn btn-info ml-2">Update</button>
     </form>
 
