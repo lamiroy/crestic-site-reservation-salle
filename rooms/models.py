@@ -6,7 +6,7 @@ from django.urls import reverse
 class RoomCategory(models.Model):
     libRoom = models.CharField(max_length=50)
     description = models.TextField(default="Entrez la description")
-    image = models.ImageField(upload_to='upload/img/', default='upload/img/default.jpg')
+    image = models.ImageField(upload_to='/upload/', default='/upload/default.jpg')
     maxCapacity = models.IntegerField(default='1')
 
 
