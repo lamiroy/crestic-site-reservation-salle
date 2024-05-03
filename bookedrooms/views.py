@@ -36,7 +36,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         form = super(BookedRoomsUpdateView, self).get_form()
         form.fields['room_category'].label = 'Nom de la salle'
 
-        form.fields['peopleAmount'].label = 'Nombre de pers. max.'
+        form.fields['peopleAmount'].label = 'Nombre de personne'
         form.fields['peopleAmount'].widget.attrs['min'] = 1
         form.fields['peopleAmount'].widget.attrs['max'] = 30
 

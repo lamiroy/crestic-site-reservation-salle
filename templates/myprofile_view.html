@@ -1,38 +1,60 @@
 {% extends 'base.html' %}
 
-{% block title %}Page de profil{% endblock title %}
+{% block title %}Mon profil{% endblock title %}
 
 {% block content %}
-    <div id="welcome" class="welcome">
-        <h2>Bienvenue Nom Prénom</h2>
-        <table class="striped">
-            <thead>
-            <tr>
-                <th>Nom de la salle</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Motif</th>
-                <th>Nombre de personnes</th>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for bookedroom in object_list %}
-                <tr>
-                    <td>{{ bookedroom.room_category.libRoom }}</td>
-                    <td>{{ bookedroom.user.first_name }}</td>
-                    <td>{{ bookedroom.user.last_name }}</td>
-                    <td>{{ bookedroom.peopleAmount }}</td>
-                    <td>{{ bookedroom.date }}</td>
-                    <td>{{ bookedroom.startTime }}</td>
-                    <td>{{ bookedroom.endTime }}</td>
-                </tr>
+    <div class="container">
+        <div class="col-sm-12">
+            <h2 class="container-title">Bienvenue <span class="profiletitle">{{ user.last_name }} {{ user.first_name }}</span></h2>
+        </div>
+    </div>
 
-                {% if forloop.last %}
-                    </tbody>
-                    </table>
+    <div class="container">
+        <div class="row content roomdashboard">
+            <h3>Vos réservations :</h3>
+            {% for bookedroom in object_list %}
+                {% if forloop.last and not forloop.counter|divisibleby:2 %}
+                    <!-- Si c'est le dernier élément et que le nombre total d'éléments est impair -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <img src="{{ bookedroom.room_category.image_de_la_salle.url }}" class="card-img-top" alt="{{ bookedroom.room_category.libRoom }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
+                                <p class="card-text">{{ bookedroom.room_category.motif }}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Nombre de pers. max. : {{ bookedroom.room_category.maxCapacity }}</li>
+                                <li class="list-group-item">Jour de réservation : {{ bookedroom.room_category.date }}</li>
+                                <li class="list-group-item">Heure de début : {{ bookedroom.room_category.startTime }}</li>
+                                <li class="list-group-item">Heure de fin : {{ bookedroom.room_category.endTime }}</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="card-link">Annuler</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <!-- Pour tous les autres éléments, y compris les impairs sauf le dernier s'il est impaire -->
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card">
+                            <img src="{{ bookedroom.room_category.image_de_la_salle.url }}" class="card-img-top" alt="{{ bookedroom.room_category.libRoom }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
+                                <p class="card-text">{{ bookedroom.room_category.motif }}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Nombre de pers. max. : {{ bookedroom.room_category.maxCapacity }}</li>
+                                <li class="list-group-item">Jour de réservation : {{ bookedroom.room_category.date }}</li>
+                                <li class="list-group-item">Heure de début : {{ bookedroom.room_category.startTime }}</li>
+                                <li class="list-group-item">Heure de fin : {{ bookedroom.room_category.endTime }}</li>
+                            </ul>
+                            <div class="card-body">
+                                <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="card-link">Annuler</a>
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
             {% endfor %}
+        </div>
     </div>
 {% endblock content %}
