@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import export_ics
+from .views import *
 
 urlpatterns = [
-    path('', export_ics, name='calendar.ics')
-    # Autres URLs de votre application...
+    path('holiday.ics', export_holiday_ics, name='holiday.ics'),
+    path('bookedrooms.ics', export_bookedrooms_ics, name='bookedrooms.ics')
 ]
