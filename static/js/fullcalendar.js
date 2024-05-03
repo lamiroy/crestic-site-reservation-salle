@@ -60,9 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         select: function(info) {
             modal.style.display = 'block';
-            document.getElementById('eventDate').value = moment(info.start).format("YYYY-MM-DD");
-            document.getElementById('eventStartTime').value = moment(info.start).format("HH:mm");
-            document.getElementById('eventEndTime').value = moment(info.end).format("HH:mm");
+            document.getElementById('id_date').value = moment(info.start).format("MM/DD/YYYY");
+            document.getElementById('id_startTime').value = moment(info.start).format("HH:mm");
+            document.getElementById('id_endTime').value = moment(info.end).format("HH:mm");
         },
         selectAllow: function(selectInfo) {
             if (selectInfo.start.getDay() === 6) { // Saturday
@@ -90,33 +90,33 @@ document.addEventListener('DOMContentLoaded', function() {
     btnCloseEventModal.addEventListener('click', function() {
         eventModal.style.display = 'none';
     });
-
-    eventForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        let title = document.getElementById('room-select').value;
-        let date = document.getElementById('eventDate').value;
-        let startTime = document.getElementById('eventStartTime').value;
-        let endTime = document.getElementById('eventEndTime').value;
-        let motif = document.getElementById('select-motif').value;
-        let eventNbPers = document.getElementById('eventNbPers').value;
-        let labo = document.getElementById('select-labo').value;
-
-        if (title.trim() !== '' && date.trim() !== '' && startTime.trim() !== '' && endTime.trim() !== '') {
-            let event = {
-                title: title,
-                start: date + 'T' + startTime,
-                end: date + 'T' + endTime,
-                motif: motif,
-                eventNbPers: eventNbPers,
-                labo: labo,
-                description: "En attente"
-            };
-            calendar.addEvent(event);
-            modal.style.display = 'none';
-            eventForm.reset();
-        } else {
-            alert("Veuillez remplir tous les champs.");
-        }
-    });
+    // à revoir, permet d'ajouter dans la ressource calendar l'event (en cache)
+    // eventForm.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //
+    //     let title = document.getElementById('id_room_category').value;
+    //     let date = document.getElementById('id_date').value;
+    //     let startTime = document.getElementById('id_startTime').value;
+    //     let endTime = document.getElementById('id_endTime').value;
+    //     let motif = document.getElementById('id_motif').value;
+    //     let eventNbPers = document.getElementById('id_peopleAmount').value;
+    //     let labo = document.getElementById('id_groups').value;
+    //
+    //     if (title.trim() !== '' && date.trim() !== '' && startTime.trim() !== '' && endTime.trim() !== '') {
+    //         let event = {
+    //             title: title,
+    //             start: date + 'T' + startTime,
+    //             end: date + 'T' + endTime,
+    //             motif: motif,
+    //             eventNbPers: eventNbPers,
+    //             labo: labo,
+    //             description: "En attente"
+    //         };
+    //         calendar.addEvent(event);
+    //         modal.style.display = 'none';
+    //         eventForm.reset();
+    //     } else {
+    //         alert("Veuillez remplir tous les champs.");
+    //     }
+    // });
 });
