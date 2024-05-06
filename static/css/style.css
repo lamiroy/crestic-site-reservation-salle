@@ -381,3 +381,8 @@ div.roomdashboard > h3 {
     font-weight: 400;
     color: var(--color-light-blue);
 }
+
+/*------- Page de modification d'une salle -------*/
+form.roomreservation > div {
+    /* A FAIRE */
+}
