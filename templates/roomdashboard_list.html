@@ -22,12 +22,10 @@
                             <img src="" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ room.libRoom }}</h5>
-                                <p class="card-text">Nombre de pers. max. : {{ room.maxCapacity }}</p>
+                                <p class="card-text">{{ room.description }}</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
+                                <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
                             </ul>
                             <div class="card-body">
                                 <a href="{% url 'roomdashboard_edit' room.pk %}" class="card-link">Modifier</a>
@@ -42,12 +40,10 @@
                             <img src="" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ room.libRoom }}</h5>
-                                <p class="card-text">Nombre de pers. max. : {{ room.maxCapacity }}</p>
+                                <p class="card-text">{{ room.description }}</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
+                                <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
                             </ul>
                             <div class="card-body">
                                 <a href="{% url 'roomdashboard_edit' room.pk %}" class="card-link">Modifier</a>
