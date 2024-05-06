@@ -1,5 +1,8 @@
+from django.http import HttpResponse
 from django.views.generic import ListView
 from django.urls import reverse_lazy
+
+from hotel_reservation_project import settings
 from .models import RoomCategory
 from bookedrooms.models import BookedRoom
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
@@ -94,6 +97,22 @@ class HomePageView(LoginRequiredMixin, CreateView):
                    )
         print("Form errors:", form.errors)
         return super(HomePageView, self).form_valid(form)
+
+def default_image(request):
+    # Chemin absolu vers l'image par défaut
+    default_image_path = os.path.join(settings.MEDIA_IMAGE)
+
+    # Vérifie si l'image par défaut existe
+    if os.path.exists(default_image_path):
+        # Ouvre et lit le contenu de l'image par défaut
+        with open(default_image_path, 'rb') as f:
+            image_content = f.read()
+
+        # Renvoie le contenu de l'image en réponse à la requête
+        return HttpResponse(image_content, content_type='image/jpeg')
+    else:
+        # Renvoie une réponse 404 si l'image par défaut n'existe pas
+        return HttpResponse(status=404)
 
 
 class RoomListView(ListView):
