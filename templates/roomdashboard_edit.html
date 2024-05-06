@@ -4,16 +4,25 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>Modifier</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.libRoom | as_crispy_field }}
-        {{ form.description | as_crispy_field }}
-        {{ form.image | as_crispy_field }}
-        {{ form.maxCapacity | as_crispy_field }}
+    <div class="container">
+        <div class="col-sm-12">
+            <h2 class="container-title">Modifier</h2>
+        </div>
+    </div>
 
-        <button type="submit" class="btn btn-info ml-2">Update</button>
-    </form>
+    <div class="container">
+        <div class="row content col-sm-12">
+            <form class="roomreservation" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.libRoom | as_crispy_field }}
+                {{ form.description | as_crispy_field }}
+                {{ form.image | as_crispy_field }}
+                {{ form.maxCapacity | as_crispy_field }}
+
+                <button type="submit" class="btn btn-primary">Valider</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         // Workaround to remove the "Currently set" text

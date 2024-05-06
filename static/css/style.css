@@ -381,3 +381,15 @@ div.roomdashboard > h3 {
     font-weight: 400;
     color: var(--color-light-blue);
 }
+
+/*------- Page de modification d'une salle -------*/
+form.roomreservation > div#div_id_image > div {
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}

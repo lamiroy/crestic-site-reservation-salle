@@ -16,15 +16,13 @@
                     <!-- Si c'est le dernier élément et que le nombre total d'éléments est impair -->
                     <div class="col-sm-12">
                         <div class="card">
-                            <img src="{{ room.image_de_la_salle.url }}" class="card-img-top" alt="{{ room.libRoom }}">
+                            <img src="{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ room.libRoom }}</h5>
-                                <p class="card-text">Nombre de pers. max. : {{ room.maxCapacity }}</p>
+                                <p class="card-text">{{ room.description }}</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Motif : {{ room.motif }}</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
+                                <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
                             </ul>
                             <div class="card-body">
                                 <a href="{% url 'bookedrooms_new' room.pk %}" class="card-link">Réserver</a>
@@ -35,15 +33,13 @@
                     <!-- Pour tous les autres éléments, y compris les impairs sauf le dernier s'il est impaire -->
                     <div class="col-sm-12 col-md-6">
                         <div class="card">
-                            <img src="{{ room.image_de_la_salle.url }}" class="card-img-top" alt="{{ room.libRoom }}">
+                            <img src="{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ room.libRoom }}</h5>
-                                <p class="card-text">Nombre de pers. max. : {{ room.maxCapacity }}</p>
+                                <p class="card-text">{{ room.description }}</p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Motif : {{ room.motif }}</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
+                                <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
                             </ul>
                             <div class="card-body">
                                 <a href="{% url 'bookedrooms_new' room.pk %}" class="card-link">Réserver</a>
