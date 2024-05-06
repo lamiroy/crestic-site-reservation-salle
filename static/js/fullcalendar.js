@@ -48,16 +48,30 @@ document.addEventListener('DOMContentLoaded', function() {
             center: 'title',
             right: 'timeGridWeek,timeGridDay next'
         },
-        events: {
-            url: 'calendar.ics',
-            format: 'ics',
-            success: function() {
-                console.log('ICS events loaded!');
+        eventSources: [
+  {
+    url: 'calendar/holiday.ics',
+    format: 'ics',
+    success: function() {
+            console.log('ICS holiday loaded!');
+        },
+        failure: function() {
+            console.error('Failed to load ICS holiday.');
+        },
+  },
+  {
+    url: 'calendar/bookedrooms.ics',
+    format: 'ics',
+    success: function() {
+                console.log('ICS booked loaded!');
             },
             failure: function() {
-                console.error('Failed to load ICS events.');
+                console.error('Failed to load ICS booked.');
             }
-        },
+  },
+  // Ajoutez d'autres sources d'événements ici
+],
+
         select: function(info) {
             modal.style.display = 'block';
             document.getElementById('id_date').value = moment(info.start).format("MM/DD/YYYY");

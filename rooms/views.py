@@ -5,6 +5,40 @@ from bookedrooms.models import BookedRoom
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from icalendar import Calendar, Event
+from datetime import datetime, time
+import os
+
+
+def add_to_ics(room_category, people_amount, date, start_time, end_time, groups, motif):
+    cal = Calendar()
+
+    # Définir la catégorie de la salle comme le nom de l'événement
+    event = Event()
+    event.add('summary', room_category)
+
+    # Convertir la date et l'heure en objets datetime
+    start_datetime = datetime.combine(date, start_time)
+    end_datetime = datetime.combine(date, end_time)
+
+    event.add('dtstart', start_datetime)
+    event.add('dtend', end_datetime)
+
+    # Ajouter les autres informations comme la description de l'événement
+    description = f"Nombre de personnes : {people_amount}\nGroupes : {groups}\nMotif : {motif}"
+    event.add('description', description)
+
+    cal.add_component(event)
+
+    # Obtenez le chemin absolu du fichier .ics
+    script_dir = os.path.dirname(__file__)  # Répertoire du script
+    fullcalendar_dir = os.path.join(script_dir, '..', 'fullcalendar')
+    ics_file_path = os.path.join(fullcalendar_dir, 'calendarFiles', 'calendarBookedroom.ics')
+
+    # Écrire dans le fichier .ics
+    with open(ics_file_path, 'ab') as f:
+        f.write(cal.to_ical())
+        print("Event added to calendar successfully.")
 
 
 class HomePageView(LoginRequiredMixin, CreateView):
@@ -49,6 +83,15 @@ class HomePageView(LoginRequiredMixin, CreateView):
         user = self.request.user
         form.instance.user = user
         print("Form data:", form.cleaned_data)
+        print("Test:", form.cleaned_data['room_category'])
+        add_to_ics(form.cleaned_data['room_category'],
+                   form.cleaned_data['peopleAmount'],
+                   form.cleaned_data['date'],
+                   form.cleaned_data['startTime'],
+                   form.cleaned_data['endTime'],
+                   form.cleaned_data['groups'],
+                   form.cleaned_data['motif']
+                   )
         print("Form errors:", form.errors)
         return super(HomePageView, self).form_valid(form)
 
