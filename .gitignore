@@ -6,6 +6,5 @@ roomCategories/
 .idea/
 
 *.sqlite3
-*.jpg
 /.idea
 /node_modules
