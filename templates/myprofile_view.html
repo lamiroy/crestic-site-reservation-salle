@@ -16,7 +16,7 @@
                 {% if forloop.last and not forloop.counter|divisibleby:2 %}
                     <!-- Si c'est le dernier élément et que le nombre total d'éléments est impair -->
                     <div class="col-sm-12">
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <img src="{{ bookedroom.room_category.image_de_la_salle.url }}" class="card-img-top" alt="{{ bookedroom.room_category.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
@@ -29,14 +29,14 @@
                                 <li class="list-group-item">Heure de fin : {{ bookedroom.room_category.endTime }}</li>
                             </ul>
                             <div class="card-body">
-                                <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="card-link">Annuler</a>
+                                <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger card-link cancel-button">Annuler</a>
                             </div>
                         </div>
                     </div>
                 {% else %}
                     <!-- Pour tous les autres éléments, y compris les impairs sauf le dernier s'il est impaire -->
                     <div class="col-sm-12 col-md-6">
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <img src="{{ bookedroom.room_category.image_de_la_salle.url }}" class="card-img-top" alt="{{ bookedroom.room_category.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
@@ -49,7 +49,7 @@
                                 <li class="list-group-item">Heure de fin : {{ bookedroom.room_category.endTime }}</li>
                             </ul>
                             <div class="card-body">
-                                <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="card-link">Annuler</a>
+                                <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger card-link cancel-button">Annuler</a>
                             </div>
                         </div>
                     </div>
