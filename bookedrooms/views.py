@@ -30,6 +30,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     model = BookedRoom
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
     template_name = 'bookedroom_edit.html'
+    success_url = reverse_lazy('myprofile')
     login_url = 'login'
 
     def get_form(self):
