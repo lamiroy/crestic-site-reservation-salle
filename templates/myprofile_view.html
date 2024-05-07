@@ -29,7 +29,10 @@
                             <li class="list-group-item">Heure de fin : {{ bookedroom.endTime }}</li>
                         </ul>
                         <div class="card-body">
-                            <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger card-link cancel-button">Annuler</a>
+                            <div class="btn-group card-link" role="group" aria-label="Boutons">
+                                <a href="{% url 'bookedrooms_edit' bookedroom.pk %}" class="btn btn-primary booked-button" >Modifier</a>
+                                <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger card-link cancel-button">Annuler</a>
+                            </div>
                         </div>
                     </div>
                 </div>
