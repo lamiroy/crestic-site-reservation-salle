@@ -7,6 +7,8 @@ from django.urls import reverse_lazy  # Import de la fonction reverse_lazy pour 
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput  # Import des widgets DatePickerInput et TimePickerInput de Bootstrap
 from rooms.models import RoomCategory  # Import du modèle RoomCategory pour les catégories de salles
 from .models import BookedRoom  # Import du modèle BookedRoom pour les réservations de salles
+from rooms.views import add_to_ics
+
 
 class BookedRoomsListView(LoginRequiredMixin, ListView):
     model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
@@ -59,8 +61,11 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         # Validation du formulaire
         user = self.request.user
         form.instance.user = user
-        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]  # Attribution du premier choix de statut par défaut
-        return super(BookedRoomsUpdateView, self).form_valid(form)
+        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0] # Attribution du premier choix de statut par défaut
+        data = super(BookedRoomsUpdateView, self).form_valid(form)
+        add_to_ics()
+        return data
+
 
 
 class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
@@ -131,4 +136,6 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
 
         print("Form data:", form.cleaned_data)
         print("Form errors:", form.errors)
-        return super(BookedRoomsCreateView, self).form_valid(form)
+        data = super(BookedRoomsCreateView, self).form_valid(form)
+        add_to_ics()
+        return data
