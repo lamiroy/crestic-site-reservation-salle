@@ -65,6 +65,8 @@ class BookedRoom(models.Model):
             # Vérification de l'heure de fin dans les plages horaires autorisées
             if end_time < time(8, 0) or end_time > time(18, 0):
                 raise ValidationError('L\'heure de fin doit être entre 8h00 et 18h00.')
+            if end_time <= start_time:
+                raise ValidationError('L\'heure de fin doit être supérieure à l\'heure de début.')
 
     def get_absolute_url(self):
         # Renvoie l'URL absolue de l'objet BookedRoom, utilisée pour les redirections après une création ou une
