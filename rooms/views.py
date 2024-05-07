@@ -1,17 +1,17 @@
-from django.http import HttpResponse
-from django.views.generic import ListView
-from django.urls import reverse_lazy
-
-from hotel_reservation_project import settings
-from .models import RoomCategory
-from bookedrooms.models import BookedRoom
-from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from icalendar import Calendar, Event
-from datetime import datetime, time
-import os
-
+from django.http import HttpResponse  # Importe la classe HttpResponse pour gérer les réponses HTTP
+from django.views.generic import ListView  # Importe la classe ListView pour afficher une liste d'objets
+from django.urls import reverse_lazy  # Importe la fonction reverse_lazy pour les URL asynchrones
+from hotel_reservation_project import settings  # Importe les paramètres du projet
+from .models import RoomCategory  # Importe le modèle RoomCategory
+from bookedrooms.models import BookedRoom  # Importe le modèle BookedRoom
+from bootstrap_datepicker_plus import DatePickerInput, \
+    TimePickerInput  # Importe les widgets DatePickerInput et TimePickerInput
+from django.contrib.auth.mixins import \
+    LoginRequiredMixin  # Importe le mixin LoginRequiredMixin pour les vues basées sur les classes
+from django.views.generic.edit import UpdateView, DeleteView, CreateView  # Importe les vues génériques d'édition
+from icalendar import Calendar, Event  # Importe les classes pour créer des fichiers .ics
+from datetime import datetime, time  # Importe les classes pour manipuler les dates et heures
+import os  # Importe le module os pour les opérations sur le système d'exploitation
 
 def add_to_ics():
     objets = BookedRoom.objects.all()
@@ -60,9 +60,10 @@ def add_to_ics():
 
 
 
-
-
 class HomePageView(LoginRequiredMixin, CreateView):
+    """
+    Affiche la page d'accueil et gère la création de réservations de chambres.
+    """
     model = BookedRoom
     template_name = 'home.html'
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif')
@@ -71,35 +72,27 @@ class HomePageView(LoginRequiredMixin, CreateView):
 
     def get_form(self):
         """
-        Overridden to change the DateFields from text boxes to
-        DatePicker widgets
+        Surcharge pour changer les DateFields en widgets DatePicker.
         """
         form = super(HomePageView, self).get_form()
         form.fields['room_category'].label = 'Nom de la salle'
-
         form.fields['peopleAmount'].label = 'Nombre de pers. max.'
         form.fields['peopleAmount'].widget.attrs['min'] = 1
         form.fields['peopleAmount'].widget.attrs['max'] = 30
-
         form.fields['date'].label = 'Jour de la réservation'
         form.fields['date'].widget = DatePickerInput()
-
         form.fields['startTime'].label = 'Début de la réservation'
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
-
         form.fields['endTime'].label = 'Fin de la réservation'
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
-
         form.fields['groups'].label = 'Laboratoire'
-
         form.fields['motif'].label = 'Motif'
-
         del form.fields['status']
         return form
 
     def form_valid(self, form):
         """
-        Overridden to always set the user to the currently logged-in user
+        Surcharge pour toujours définir l'utilisateur sur l'utilisateur actuellement connecté.
         """
         user = self.request.user
         form.instance.user = user
@@ -112,23 +105,24 @@ class HomePageView(LoginRequiredMixin, CreateView):
 
 
 def default_image(request):
-    # Chemin absolu vers l'image par défaut
-    default_image_path = os.path.join(settings.MEDIA_IMAGE)
+    """
+    Renvoie l'image par défaut.
+    """
+    default_image_path = os.path.join(settings.MEDIA_IMAGE)  # Chemin absolu vers l'image par défaut
 
     # Vérifie si l'image par défaut existe
     if os.path.exists(default_image_path):
-        # Ouvre et lit le contenu de l'image par défaut
         with open(default_image_path, 'rb') as f:
-            image_content = f.read()
-
-        # Renvoie le contenu de l'image en réponse à la requête
-        return HttpResponse(image_content, content_type='image/jpeg')
+            image_content = f.read()  # Lit le contenu de l'image par défaut
+        return HttpResponse(image_content, content_type='image/jpeg')  # Renvoie le contenu de l'image en réponse
     else:
-        # Renvoie une réponse 404 si l'image par défaut n'existe pas
-        return HttpResponse(status=404)
+        return HttpResponse(status=404)  # Renvoie une réponse 404 si l'image par défaut n'existe pas
 
 
 class RoomListView(ListView):
+    """
+    Affiche une liste des catégories de chambres disponibles.
+    """
     model = RoomCategory
     template_name = 'roomreservation_list.html'
     login_url = 'login'

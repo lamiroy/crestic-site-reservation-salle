@@ -21,7 +21,7 @@
                 {% if forloop.last and not forloop.counter|divisibleby:2 %}
                     <!-- Si c'est le dernier élément et que le nombre total d'éléments est impair -->
                     <div class="col-sm-12">
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <img src="{{ MEDIA_PREFIX }}/{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ room.libRoom }}</h5>
@@ -31,15 +31,17 @@
                                 <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
                             </ul>
                             <div class="card-body">
-                                <a href="{% url 'roomdashboard_edit' room.pk %}" class="card-link">Modifier</a>
-                                <a href="{% url 'roomdashboard_delete' room.pk %}" class="card-link">Supprimer</a>
+                                <div class="btn-group card-link" role="group" aria-label="Boutons">
+                                    <a href="{% url 'roomdashboard_edit' room.pk %}" class="btn btn-warning edit-button">Modifier</a>
+                                    <a href="{% url 'roomdashboard_delete' room.pk %}" class="btn btn-danger cancel-button">Supprimer</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 {% else %}
                     <!-- Pour tous les autres éléments, y compris les impairs sauf le dernier s'il est impaire -->
                     <div class="col-sm-12 col-md-6">
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <img src="{{ MEDIA_PREFIX }}/{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ room.libRoom }}</h5>
@@ -49,8 +51,10 @@
                                 <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
                             </ul>
                             <div class="card-body">
-                                <a href="{% url 'roomdashboard_edit' room.pk %}" class="card-link">Modifier</a>
-                                <a href="{% url 'roomdashboard_delete' room.pk %}" class="card-link">Supprimer</a>
+                                <div class="btn-group card-link" role="group" aria-label="Boutons">
+                                    <a href="{% url 'roomdashboard_edit' room.pk %}" class="btn btn-primary booked-button">Modifier</a>
+                                    <a href="{% url 'roomdashboard_delete' room.pk %}" class="btn btn-danger cancel-button">Supprimer</a>
+                                </div>
                             </div>
                         </div>
                     </div>

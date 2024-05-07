@@ -308,6 +308,23 @@ div.row.content.roomdashboard div.card {
     margin-bottom: 20px;
 }
 
+/* Bouton de réservation */
+a.booked-button {
+    border-color: var(--color-blue) !important;
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    background-color: var(--color-light-blue) !important;
+}
+
+a.booked-button:hover {
+    background-color: var(--color-blue) !important;
+}
+
+a.booked-button:active {
+    background-color: var(--color-dark-blue) !important;
+}
+
 /* Bouton d'ajout */
 div.col-sm-12 > a.btn.btn-primary {
     display: flex;
@@ -353,7 +370,7 @@ form.roomreservation > button {
     border-color: var(--color-blue) !important;
     font-family: "Outfit", sans-serif;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 15px;
     background-color: var(--color-light-blue) !important;
 }
 
@@ -375,11 +392,20 @@ span.profiletitle {
     color: var(--color-light-blue);
 }
 
+/* Titre réservations */
 div.roomdashboard > h3 {
     margin-bottom: 10px;
     font-family: "Outfit", sans-serif;
     font-weight: 400;
     color: var(--color-light-blue);
+}
+
+/* Bouton annuler */
+a.cancel-button {
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--color-light-white);
 }
 
 /*------- Page de modification d'une salle -------*/
