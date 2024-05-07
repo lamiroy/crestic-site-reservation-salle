@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import BookedRoom
-
+from .models import BookedRoom  # Import du modèle de réservation de salle
 
 class BookRoomsAdmin(admin.ModelAdmin):
-    model = BookedRoom
+    model = BookedRoom  # Spécification du modèle associé à cette classe d'administration
+    # Définition des champs à afficher dans la liste des réservations de salle
     list_display = ['id', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif',
                     'user', 'room_category', 'peopleAmount']
 
-
+# Enregistrement du modèle BookedRoom avec sa classe d'administration
 admin.site.register(BookedRoom, BookRoomsAdmin)
