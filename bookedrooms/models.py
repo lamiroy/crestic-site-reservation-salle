@@ -23,7 +23,7 @@ class BookedRoom(models.Model):
     startTime = models.TimeField()
     endTime = models.TimeField()
     groups = models.CharField(max_length=100, choices=LABORATORY_CHOICES)
-    status = models.CharField(max_length=100, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0])
     motif = models.CharField(max_length=100)
     peopleAmount = models.IntegerField(default=1)
     user = models.ForeignKey(
