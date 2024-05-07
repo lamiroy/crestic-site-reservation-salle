@@ -59,10 +59,7 @@ def add_to_ics():
         f.write(ical_data)
 
 
-    # Écrire dans le fichier .ics
-    with open(ics_file_path, 'ab') as f:
-        f.write(cal.to_ical())
-        print("Event added to calendar successfully.")
+
 
 
 class HomePageView(LoginRequiredMixin, CreateView):
@@ -108,16 +105,11 @@ class HomePageView(LoginRequiredMixin, CreateView):
         form.instance.user = user
         print("Form data:", form.cleaned_data)
         print("Test:", form.cleaned_data['room_category'])
-        add_to_ics(form.cleaned_data['room_category'],
-                   form.cleaned_data['peopleAmount'],
-                   form.cleaned_data['date'],
-                   form.cleaned_data['startTime'],
-                   form.cleaned_data['endTime'],
-                   form.cleaned_data['groups'],
-                   form.cleaned_data['motif']
-                   )
         print("Form errors:", form.errors)
-        return super(HomePageView, self).form_valid(form)
+        data = super(HomePageView, self).form_valid(form)
+        add_to_ics()
+        return data
+
 
 def default_image(request):
     # Chemin absolu vers l'image par défaut
