@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Mon profil{% endblock title %}
 
 {% block content %}
+    {% get_media_prefix as MEDIA_PREFIX %}
     <div class="container">
         <div class="col-sm-12">
             <h2 class="container-title">Bienvenue <span class="profiletitle">{{ user.last_name }} {{ user.first_name }}</span></h2>
@@ -17,7 +19,7 @@
                     <!-- Si c'est le dernier élément et que le nombre total d'éléments est impair -->
                     <div class="col-sm-12">
                         <div class="card shadow-sm">
-                            <img src="{{ bookedroom.room_category.image_de_la_salle.url }}" class="card-img-top" alt="{{ bookedroom.room_category.libRoom }}">
+                            <img src="{{ MEDIA_PREFIX }}/{{ bookedroom.image }}" class="card-img-top" alt="{{ room.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
                                 <p class="card-text">{{ bookedroom.room_category.motif }}</p>
@@ -37,7 +39,7 @@
                     <!-- Pour tous les autres éléments, y compris les impairs sauf le dernier s'il est impaire -->
                     <div class="col-sm-12 col-md-6">
                         <div class="card shadow-sm">
-                            <img src="{{ bookedroom.room_category.image_de_la_salle.url }}" class="card-img-top" alt="{{ bookedroom.room_category.libRoom }}">
+                            <img src="{{ MEDIA_PREFIX }}/{{ bookedroom.image }}" class="card-img-top" alt="{{ room.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
                                 <p class="card-text">{{ bookedroom.room_category.motif }}</p>

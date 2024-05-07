@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Page de réservation des salles{% endblock title %}
 
 {% block content %}
+    {% get_media_prefix as MEDIA_PREFIX %}
+
     <div class="container">
         <div class="col-sm-12">
             <h2 class="container-title">Salles disponibles</h2>
@@ -16,7 +19,7 @@
                     <!-- Si c'est le dernier élément et que le nombre total d'éléments est impair -->
                     <div class="col-sm-12">
                         <div class="card shadow-sm">
-                            <img src="{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
+                            <img src="{{ MEDIA_PREFIX }}/{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ room.libRoom }}</h5>
                                 <p class="card-text">{{ room.description }}</p>
@@ -33,7 +36,7 @@
                     <!-- Pour tous les autres éléments, y compris les impairs sauf le dernier s'il est impaire -->
                     <div class="col-sm-12 col-md-6">
                         <div class="card shadow-sm">
-                            <img src="{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
+                            <img src="{{ MEDIA_PREFIX }}/{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ room.libRoom }}</h5>
                                 <p class="card-text">{{ room.description }}</p>
