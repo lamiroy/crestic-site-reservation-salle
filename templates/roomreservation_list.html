@@ -15,41 +15,21 @@
     <div class="container">
         <div class="row content roomdashboard">
             {% for room in object_list %}
-                {% if forloop.last and not forloop.counter|divisibleby:2 %}
-                    <!-- Si c'est le dernier élément et que le nombre total d'éléments est impair -->
-                    <div class="col-sm-12">
-                        <div class="card shadow-sm">
-                            <img src="{{ MEDIA_PREFIX }}/{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ room.libRoom }}</h5>
-                                <p class="card-text">{{ room.description }}</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="{% url 'bookedrooms_new' room.pk %}" class="btn btn-success card-link booked-button">Réserver</a>
-                            </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="card shadow-sm">
+                        <img src="{{ MEDIA_PREFIX }}{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ room.libRoom }}</h5>
+                            <p class="card-text">{{ room.description }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="{% url 'bookedrooms_new' room.pk %}" class="btn btn-success card-link booked-button">Réserver</a>
                         </div>
                     </div>
-                {% else %}
-                    <!-- Pour tous les autres éléments, y compris les impairs sauf le dernier s'il est impaire -->
-                    <div class="col-sm-12 col-md-6">
-                        <div class="card shadow-sm">
-                            <img src="{{ MEDIA_PREFIX }}/{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ room.libRoom }}</h5>
-                                <p class="card-text">{{ room.description }}</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="{% url 'bookedrooms_new' room.pk %}" class="btn btn-success card-link booked-button">Réserver</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
+                </div>
             {% endfor %}
         </div>
     </div>
