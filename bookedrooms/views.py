@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 from rooms.models import RoomCategory
 from .models import BookedRoom
+from rooms.views import add_to_ics
 
 
 class BookedRoomsListView(LoginRequiredMixin, ListView):
@@ -59,7 +60,9 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         form.instance.user = user
         form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
-        return super(BookedRoomsUpdateView, self).form_valid(form)
+        data = super(BookedRoomsUpdateView, self).form_valid(form)
+        add_to_ics()
+        return data
 
 
 class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
@@ -130,4 +133,6 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
 
         print("Form data:", form.cleaned_data)
         print("Form errors:", form.errors)
-        return super(BookedRoomsCreateView, self).form_valid(form)
+        data = super(BookedRoomsCreateView, self).form_valid(form)
+        add_to_ics()
+        return data
