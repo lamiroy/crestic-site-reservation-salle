@@ -65,7 +65,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
 class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
     model = BookedRoom
     template_name = 'bookedroom_delete.html'
-    success_url = reverse_lazy('bookedrooms_list')
+    success_url = reverse_lazy('myprofile')
     login_url = 'login'
 
 
@@ -73,7 +73,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     model = BookedRoom
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif')
     template_name = 'bookedroom_add.html'
-    success_url = reverse_lazy('bookedrooms_list')
+    success_url = reverse_lazy('myprofile')
     login_url = 'login'
 
     def dispatch(self, request, *args, **kwargs):
