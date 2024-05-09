@@ -29,9 +29,14 @@
                             <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
                         </ul>
                         <div class="card-body">
-                            <div class="btn-group card-link" role="group" aria-label="Boutons">
-                                <a href="{% url 'roomdashboard_edit' room.pk %}" class="btn btn-primary booked-button">Modifier</a>
-                                <a href="{% url 'roomdashboard_delete' room.pk %}" class="btn btn-danger cancel-button">Supprimer</a>
+                            <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Boutons">
+                                <div class="btn-group" role="group" aria-label="Modifier et supprimer">
+                                    <a href="{% url 'roomdashboard_edit' room.pk %}" class="btn btn-warning cancel-button">Modifier</a>
+                                    <a href="{% url 'roomdashboard_delete' room.pk %}" class="btn btn-danger cancel-button">Supprimer</a>
+                                </div>
+                                <div class="input-group">
+                                    <a href="{% url 'roomdashboard_detail' room.pk %}" class="btn btn-danger booked-button">Voir</a>
+                                </div>
                             </div>
                         </div>
                     </div>

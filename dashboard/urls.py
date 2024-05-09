@@ -18,7 +18,8 @@ urlpatterns = [
          RoomDashboardDeleteView.as_view(), name='roomdashboard_delete'),
     path('rooms/new/',
          RoomDashboardCreateView.as_view(), name='roomdashboard_new'),
-    path('rooms/', RoomDashboardListView.as_view(), name='roomdashboard_list'),
+    path('rooms/',
+         RoomDashboardListView.as_view(), name='roomdashboard_list'),
     path('bookedrooms/',
          BookedRoomDashboardListView.as_view(), name='bookedroomdashboard_list'),
 ]
