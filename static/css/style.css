@@ -408,6 +408,14 @@ a.cancel-button {
     color: var(--color-light-white);
 }
 
+a.cancel-button:hover {
+    color: var(--color-light-white);
+}
+
+a.cancel-button:active {
+    color: var(--color-light-white) !important;
+}
+
 /*------- Page de modification d'une salle -------*/
 form.roomreservation > div#div_id_image > div {
     padding: .375rem .75rem;
@@ -418,4 +426,21 @@ form.roomreservation > div#div_id_image > div {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
+}
+
+/*--------- Page des détails d'une salle ---------*/
+div.detail-card {
+    padding: 0;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+div.detail-card img {
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    div.detail-card {
+        margin-left: 15px;
+    }
 }
