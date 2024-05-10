@@ -18,47 +18,29 @@
     <div class="container">
         <div class="row content roomdashboard">
             {% for room in object_list %}
-                {% if forloop.last and not forloop.counter|divisibleby:2 %}
-                    <!-- Si c'est le dernier élément et que le nombre total d'éléments est impair -->
-                    <div class="col-sm-12">
-                        <div class="card shadow-sm">
-                            <img src="{{ MEDIA_PREFIX }}/{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ room.libRoom }}</h5>
-                                <p class="card-text">{{ room.description }}</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
-                            </ul>
-                            <div class="card-body">
-                                <div class="btn-group card-link" role="group" aria-label="Boutons">
-                                    <a href="{% url 'roomdashboard_edit' room.pk %}" class="btn btn-warning edit-button">Modifier</a>
+                <div class="col-sm-12 col-md-6">
+                    <div class="card shadow-sm">
+                        <img src="{{ MEDIA_PREFIX }}{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ room.libRoom }}</h5>
+                            <p class="card-text">{{ room.description }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
+                        </ul>
+                        <div class="card-body">
+                            <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Boutons">
+                                <div class="btn-group" role="group" aria-label="Modifier et supprimer">
+                                    <a href="{% url 'roomdashboard_edit' room.pk %}" class="btn btn-warning cancel-button">Modifier</a>
                                     <a href="{% url 'roomdashboard_delete' room.pk %}" class="btn btn-danger cancel-button">Supprimer</a>
+                                </div>
+                                <div class="input-group">
+                                    <a href="{% url 'roomdashboard_detail' room.pk %}" class="btn btn-danger booked-button">Voir</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                {% else %}
-                    <!-- Pour tous les autres éléments, y compris les impairs sauf le dernier s'il est impaire -->
-                    <div class="col-sm-12 col-md-6">
-                        <div class="card shadow-sm">
-                            <img src="{{ MEDIA_PREFIX }}/{{ room.image }}" class="card-img-top" alt="{{ room.libRoom }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ room.libRoom }}</h5>
-                                <p class="card-text">{{ room.description }}</p>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
-                            </ul>
-                            <div class="card-body">
-                                <div class="btn-group card-link" role="group" aria-label="Boutons">
-                                    <a href="{% url 'roomdashboard_edit' room.pk %}" class="btn btn-primary booked-button">Modifier</a>
-                                    <a href="{% url 'roomdashboard_delete' room.pk %}" class="btn btn-danger cancel-button">Supprimer</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
+                </div>
             {% endfor %}
         </div>
     </div>

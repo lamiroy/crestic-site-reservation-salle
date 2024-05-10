@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -34,7 +35,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+            <div class="container-fluid navbar-container">
                 <a class="navbar-brand" href="/">
                     <img src="/static/img/roomquestic.png" alt="Room Questic">
                 </a>
@@ -70,12 +71,31 @@
                                 </ul>
                             </li>
                         {% endif %}
-                        <li class="nav-item">
-                            <span class="nav-line"></span>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'myprofile' %}">Mon profil</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <span class="nav-line"></span>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Mon compte
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'myprofile' %}">Mon profil</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'logout' %}">Déconnexion</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <span class="nav-line"></span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">Connexion</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -87,10 +107,14 @@
 
         <footer>
             <div class="container text-center">
-                <img src="/static/img/logo-urca-blanc.png" alt="Logo URCA">
+                <a class="img-link" href="https://www.univ-reims.fr/" target="_blank">
+                    <img src="/static/img/logo-urca-blanc.png" alt="Logo URCA">
+                </a>
                 <p class="text-md">
-                    <i class="bi bi-house-door-fill"></i>
-                    CReSTIC - UFR Sciences Exactes et Naturelles
+                    <a class="crestic-link" href="https://crestic.univ-reims.fr/fr/accueil" target="_blank">
+                        <i class="bi bi-house-door-fill"></i>
+                        CReSTIC - UFR Sciences Exactes et Naturelles
+                    </a>
                 </p>
                 <p class="text-md">&copy; 2024&ensp;Léo BERNARD, Nino SAUVAGEOT, Tom SIKORA & Thomas PAZZE | Tous droits réservés.</p>
             </div>

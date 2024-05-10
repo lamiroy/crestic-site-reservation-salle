@@ -25,6 +25,11 @@ body {
     background-color: var(--color-white) !important;
 }
 
+img {
+    pointer-events: none;
+    user-select: none;
+}
+
 :root {
     /* Couleurs principales */
     --color-light-blue: #0275d8;  /* Couleur 1 : Bleu clair  */
@@ -69,21 +74,50 @@ ul.navbar-nav > li.nav-item > a {
     font-family: "Lexend", sans-serif;
     font-size: 15px;
     font-weight: 400;
+    background: none !important;
 }
 
 ul.navbar-nav > li.nav-item > a:hover {
     color: var(--color-white);
-    background: none !important;
 }
 
 ul.navbar-nav > li.nav-item > a:active {
     color: var(--color-dark-white);
-    background: none !important;
+}
+
+/* Container */
+div.navbar-container {
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+li.nav-item > span.nav-line {
+    display: none;
+}
+
+ul.dropdown-menu.show {
+    position: absolute;
+    margin-top: -5px;
+}
+
+@media (min-width: 992px) {
+    div.navbar-container {
+        flex-direction: row;
+        align-content: normal;
+    }
+
+    li.nav-item > span.nav-line {
+        display: block;
+    }
 }
 
 /* Menu dropdown */
 li.nav-item.dropdown a:active {
     background: var(--color-white) none;
+}
+
+.navbar-nav .nav-link.show {
+    color: var(--color-dark-white) !important;
 }
 
 /* Logo */
@@ -103,9 +137,27 @@ footer {
     background: var(--color-gradient);
 }
 
-footer img {
+a.img-link {
+    display: block;
     height: 50px;
     margin-top: 10px;
+}
+
+a.img-link > img {
+    height: 100%;
+}
+
+a.crestic-link {
+    text-decoration: none;
+    color: var(--color-light-white);
+}
+
+a.crestic-link:hover {
+    color: var(--color-white);
+}
+
+a.crestic-link:active {
+    color: var(--color-dark-white);
 }
 
 footer p {
@@ -408,6 +460,14 @@ a.cancel-button {
     color: var(--color-light-white);
 }
 
+a.cancel-button:hover {
+    color: var(--color-light-white);
+}
+
+a.cancel-button:active {
+    color: var(--color-light-white) !important;
+}
+
 /*------- Page de modification d'une salle -------*/
 form.roomreservation > div#div_id_image > div {
     padding: .375rem .75rem;
@@ -418,4 +478,21 @@ form.roomreservation > div#div_id_image > div {
     background-clip: padding-box;
     border: 1px solid #ced4da;
     border-radius: .25rem;
+}
+
+/*--------- Page des détails d'une salle ---------*/
+div.detail-card {
+    padding: 0;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+div.detail-card img {
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    div.detail-card {
+        margin-left: 15px;
+    }
 }
