@@ -6,46 +6,50 @@ from django.urls import reverse
 from datetime import date, datetime, time
 
 
+
 class BookedRoom(models.Model):
-    STATUS_CHOICES = [
+    STATUS_CHOICES = [  # Choix pour le statut de la réservation
         ('pending', 'En attente'),
         ('canceled', 'Annulé'),
         ('validated', 'Validé'),
     ]
 
-    LABORATORY_CHOICES = [
+    LABORATORY_CHOICES = [  # Choix pour les groupes de laboratoire
         ('CReSTIC', 'CReSTIC'),
         ('Labi*', 'Labi*'),
         ('Liciis', 'Liciis'),
     ]
 
-    date = models.DateField()
-    startTime = models.TimeField()
-    endTime = models.TimeField()
-    groups = models.CharField(max_length=100, choices=LABORATORY_CHOICES)
-    status = models.CharField(max_length=100, choices=STATUS_CHOICES)
-    motif = models.CharField(max_length=100)
-    peopleAmount = models.IntegerField(default=1)
-    user = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.CASCADE,
+    date = models.DateField() # Date de la réservation
+    startTime = models.TimeField() # Heure de début de la réservation
+    endTime = models.TimeField() # Heure de fin de la réservation
+    groups = models.CharField(max_length=100, choices=LABORATORY_CHOICES) # Groupe de laboratoire
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0]) # Statut de la réservation
+    motif = models.CharField(max_length=100) # Motif de la réservation
+    peopleAmount = models.IntegerField(default=1) # Nombre de personnes
+    user = models.ForeignKey( # Utilisateur associé à la réservation
+        get_user_model(), # Utilisation de la fonction get_user_model pour obtenir le modèle utilisateur personnalisé
+        on_delete=models.CASCADE, # Suppression en cascade de l'utilisateur si celui-ci est supprimé
+
     )
-    room_category = models.ForeignKey(
-        RoomCategory,
-        on_delete=models.CASCADE,
+    room_category = models.ForeignKey(  # Catégorie de salle réservée
+        RoomCategory,  # Utilisation du modèle RoomCategory pour les catégories de salles
+        on_delete=models.CASCADE,  # Suppression en cascade de la catégorie de salle si celle-ci est supprimée
     )
 
     def clean(self):
-        # Your existing validation logic from form_valid() method
+        # Vérification de la validité de la date et de l'heure de début
         selected_date = self.date
-        if selected_date < date.today():
+        if selected_date < date.today():  # Si la date est antérieure à aujourd'hui
             raise ValidationError('Vous ne pouvez pas changer la date pour une date antérieure à aujourd\'hui.')
 
         start_time = self.startTime
         if start_time:
+            # Vérification de l'heure de début dans les plages horaires autorisées
             if start_time < time(8, 0) or start_time > time(18, 0):
-                raise ValidationError('L\'heure de début doit être entre 8h00 et 18h.')
+                raise ValidationError('L\'heure de début doit être entre 8h00 et 18h00.')
 
+            # Vérification de l'heure de début pour la même journée
             if selected_date == date.today():
                 current_time = datetime.now().time()
                 new_hour = current_time.hour + 1
@@ -59,58 +63,19 @@ class BookedRoom(models.Model):
 
         end_time = self.endTime
         if end_time:
+            # Vérification de l'heure de fin dans les plages horaires autorisées
             if end_time < time(8, 0) or end_time > time(18, 0):
                 raise ValidationError('L\'heure de fin doit être entre 8h00 et 18h00.')
-
             if end_time <= start_time:
                 raise ValidationError('L\'heure de fin doit être supérieure à l\'heure de début.')
 
-        # For new bookings, the start date should not be less than today's date
-
-        # For old bookings, you can't update the details 4 days before the start date
-
-        # Loop through the start and end dates
-        '''
-        day = timedelta(days=1)
-        start = self.start_date
-        end = self.end_date
-        current = start
-        while current < end:
-            print(current)
-            # Retrieve booked rooms that fall into this date
-            rooms = BookedRoom.objects.filter(
-                start_date__lte=current,
-                end_date__gt=current,
-                room_category__libRoom=self.room_category.libRoom)
-            print("\tNbr of results: {}".format(rooms.count()))
-
-            # Sum the totals
-            total_booked_rooms = 0
-            for room in rooms:
-                total_booked_rooms = total_booked_rooms + room.peopleAmount
-
-            total_available_rooms = RoomCategory.objects.filter(
-                libRoom=self.room_category.libRoom)[0].maxCapacity
-            # Check if there is an instance of this room so as to
-            # not add the current peopleAmount
-            current_room = BookedRoom.objects.filter(id=self.id)
-            if current_room.count() == 1:
-                remaining = total_available_rooms - total_booked_rooms + current_room[0].peopleAmount
-            else:
-                remaining = total_available_rooms - total_booked_rooms
-
-            print("\t\tRemaining Rooms: {}".format(remaining))
-            print("\t\tNbr of rooms:{}".format(self.peopleAmount))
-
-            if self.peopleAmount > remaining:
-                raise ValidationError(
-                    "On {} there are less rooms than you desire. ({} > {})".format(
-                        current, self.peopleAmount, remaining))
-            current += day
-            '''
-
     def get_absolute_url(self):
+        # Renvoie l'URL absolue de l'objet BookedRoom, utilisée pour les redirections après une création ou une
+        # modification
         return reverse('bookedrooms_detail', args=[str(self.id)])
 
     def __str__(self):
+        # Renvoie une représentation en chaîne de caractères de l'objet BookedRoom, utilisée notamment dans
+        # l'interface d'administration Django
         return self.room_category.libRoom + " |  " + self.user.username
+

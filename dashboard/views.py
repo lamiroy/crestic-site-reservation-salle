@@ -1,61 +1,74 @@
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-    UserPassesTestMixin
+    LoginRequiredMixin,  # Mélange pour exiger une connexion utilisateur
+    UserPassesTestMixin  # Mélange pour vérifier une condition personnalisée
 )
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
 
-from rooms.models import RoomCategory
-from bookedrooms.models import BookedRoom
+from rooms.models import RoomCategory  # Import du modèle de catégorie de salle
+from bookedrooms.models import BookedRoom  # Import du modèle de réservation de salle
 
 
 class RoomDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model = RoomCategory
-    template_name = 'roomdashboard_list.html'
-    login_url = 'login'
+    """
+    Vue pour afficher la liste des salles dans le tableau de bord.
+    Seuls les superutilisateurs peuvent accéder à cette vue.
+    """
+    model = RoomCategory  # Modèle utilisé pour cette vue
+    template_name = 'roomdashboard_list.html'  # Nom du modèle de template utilisé
+    login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def test_func(self):
+        """
+        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
+        """
         return self.request.user.is_superuser
 
 
 class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
-    model = RoomCategory
-    template_name = 'roomdashboard_detail.html'
-    login_url = 'login'
+    """
+    Vue pour afficher les détails d'une salle dans le tableau de bord.
+    Seuls les superutilisateurs peuvent accéder à cette vue.
+    """
+    model = RoomCategory  # Modèle utilisé pour cette vue
+    template_name = 'roomdashboard_detail.html'  # Nom du modèle de template utilisé
+    login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def test_func(self):
+        """
+        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
+        """
         return self.request.user.is_superuser
 
 
 class RoomDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = RoomCategory
-    fields = ('libRoom', 'description', 'image', 'maxCapacity')
-    template_name = 'roomdashboard_edit.html'
-    login_url = 'login'
+    """
+    Vue pour mettre à jour les détails d'une salle dans le tableau de bord.
+    Seuls les superutilisateurs peuvent accéder à cette vue.
+    """
+    model = RoomCategory  # Modèle utilisé pour cette vue
+    fields = ('libRoom', 'description', 'image', 'maxCapacity')  # Champs à afficher dans le formulaire
+    template_name = 'roomdashboard_edit.html'  # Nom du modèle de template utilisé
+    login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def get_form(self):
         """
-        Overridden to change the DateFields from text boxes to
-        DatePicker widgets
+        Surcharge de la méthode pour personnaliser le formulaire.
         """
         form = super(RoomDashboardUpdateView, self).get_form()
         form.fields['libRoom'].label = 'Nom de la salle'
-
         form.fields['description'].label = 'Description'
-
         form.fields['image'].label = 'Image'
-
         form.fields['maxCapacity'].label = 'Nombre de pers. max.'
         form.fields['maxCapacity'].widget.attrs['min'] = 1
         form.fields['maxCapacity'].widget.attrs['max'] = 30
-
         return form
 
     def form_valid(self, form):
         """
-        Overridden to always set the user to the currently logged-in user
+        Surcharge de la méthode pour traiter le formulaire valide.
         """
         user = self.request.user
         form.instance.user = user
@@ -64,47 +77,56 @@ class RoomDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVie
         return super(RoomDashboardUpdateView, self).form_valid(form)
 
     def test_func(self):
+        """
+        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
+        """
         return self.request.user.is_superuser
 
 
 class RoomDashboardDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = RoomCategory
-    template_name = 'roomdashboard_delete.html'
-    success_url = reverse_lazy('roomdashboard_list')
-    login_url = 'login'
+    """
+    Vue pour supprimer une salle dans le tableau de bord.
+    Seuls les superutilisateurs peuvent accéder à cette vue.
+    """
+    model = RoomCategory  # Modèle utilisé pour cette vue
+    template_name = 'roomdashboard_delete.html'  # Nom du modèle de template utilisé
+    success_url = reverse_lazy('roomdashboard_list')  # URL de redirection après la suppression
+    login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def test_func(self):
+        """
+        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
+        """
         return self.request.user.is_superuser
 
 
 class RoomDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
-    model = RoomCategory
-    fields = ('libRoom', 'description', 'image', 'maxCapacity')
-    template_name = 'roomdashboard_new.html'
-    success_url = reverse_lazy('roomdashboard_list')
-    login_url = 'login'
+    """
+    Vue pour créer une nouvelle salle dans le tableau de bord.
+    Seuls les superutilisateurs peuvent accéder à cette vue.
+    """
+    model = RoomCategory  # Modèle utilisé pour cette vue
+    fields = ('libRoom', 'description', 'image', 'maxCapacity')  # Champs à afficher dans le formulaire
+    template_name = 'roomdashboard_new.html'  # Nom du modèle de template utilisé
+    success_url = reverse_lazy('roomdashboard_list')  # URL de redirection après la création
+    login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def get_form(self):
         """
-        Overridden to change the DateFields from text boxes to
-        DatePicker widgets
+        Surcharge de la méthode pour personnaliser le formulaire.
         """
         form = super(RoomDashboardCreateView, self).get_form()
         form.fields['libRoom'].label = 'Nom de la salle'
-
         form.fields['description'].label = 'Description'
-
         form.fields['image'].label = 'Image'
-
         form.fields['maxCapacity'].label = 'Nombre de pers. max.'
         form.fields['maxCapacity'].widget.attrs['min'] = 1
         form.fields['maxCapacity'].widget.attrs['max'] = 30
-
         return form
 
     def form_valid(self, form):
         """
-        Overridden to always set the user to the currently logged-in user
+        Surcharge de la méthode pour traiter le formulaire valide.
         """
         user = self.request.user
         form.instance.user = user
@@ -113,13 +135,23 @@ class RoomDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateVie
         return super(RoomDashboardCreateView, self).form_valid(form)
 
     def test_func(self):
+        """
+        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
+        """
         return self.request.user.is_superuser
 
 
 class BookedRoomDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    model = BookedRoom
-    template_name = 'bookedroomdashboard_list.html'
-    login_url = 'login'
+    """
+    Vue pour afficher la liste des réservations de salles dans le tableau de bord.
+    Seuls les superutilisateurs peuvent accéder à cette vue.
+    """
+    model = BookedRoom  # Modèle utilisé pour cette vue
+    template_name = 'bookedroomdashboard_list.html'  # Nom du modèle de template utilisé
+    login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def test_func(self):
+        """
+        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
+        """
         return self.request.user.is_superuser
