@@ -129,9 +129,27 @@ footer {
     background: var(--color-gradient);
 }
 
-footer img {
+a.img-link {
+    display: block;
     height: 50px;
     margin-top: 10px;
+}
+
+a.img-link > img {
+    height: 100%;
+}
+
+a.crestic-link {
+    text-decoration: none;
+    color: var(--color-light-white);
+}
+
+a.crestic-link:hover {
+    color: var(--color-white);
+}
+
+a.crestic-link:active {
+    color: var(--color-dark-white);
 }
 
 footer p {
