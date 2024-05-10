@@ -25,6 +25,11 @@ body {
     background-color: var(--color-white) !important;
 }
 
+img {
+    pointer-events: none;
+    user-select: none;
+}
+
 :root {
     /* Couleurs principales */
     --color-light-blue: #0275d8;  /* Couleur 1 : Bleu clair  */
