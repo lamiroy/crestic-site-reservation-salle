@@ -69,16 +69,15 @@ ul.navbar-nav > li.nav-item > a {
     font-family: "Lexend", sans-serif;
     font-size: 15px;
     font-weight: 400;
+    background: none !important;
 }
 
 ul.navbar-nav > li.nav-item > a:hover {
     color: var(--color-white);
-    background: none !important;
 }
 
 ul.navbar-nav > li.nav-item > a:active {
     color: var(--color-dark-white);
-    background: none !important;
 }
 
 /* Container */
@@ -110,6 +109,10 @@ ul.dropdown-menu.show {
 /* Menu dropdown */
 li.nav-item.dropdown a:active {
     background: var(--color-white) none;
+}
+
+.navbar-nav .nav-link.show {
+    color: var(--color-dark-white) !important;
 }
 
 /* Logo */
