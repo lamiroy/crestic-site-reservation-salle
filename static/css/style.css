@@ -81,6 +81,32 @@ ul.navbar-nav > li.nav-item > a:active {
     background: none !important;
 }
 
+/* Container */
+div.navbar-container {
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+li.nav-item > span.nav-line {
+    display: none;
+}
+
+ul.dropdown-menu.show {
+    position: absolute;
+    margin-top: -5px;
+}
+
+@media (min-width: 992px) {
+    div.navbar-container {
+        flex-direction: row;
+        align-content: normal;
+    }
+
+    li.nav-item > span.nav-line {
+        display: block;
+    }
+}
+
 /* Menu dropdown */
 li.nav-item.dropdown a:active {
     background: var(--color-white) none;
