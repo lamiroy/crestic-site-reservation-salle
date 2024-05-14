@@ -8,3 +8,5 @@ roomCategories/
 *.sqlite3
 /.idea
 /node_modules
+
+fullcalendar/calendarFiles/calendarBookedroom.ics
