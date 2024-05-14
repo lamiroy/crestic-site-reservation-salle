@@ -166,4 +166,28 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
 class BookedRoomsValidationView(LoginRequiredMixin, ListView):
     model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
     template_name = 'bookedroom_validation.html'  # Utilisation du template 'bookedroom_validation.html'
+    success_url = reverse_lazy('bookedrooms_validation')
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
+
+
+class BookedRoomsValidationRefusedView(LoginRequiredMixin, DeleteView):
+    model = BookedRoom
+    template_name = 'bookedroom_validation_refused.html'
+    success_url = reverse_lazy('bookedrooms_validation')
+    login_url = 'login'
+
+    def delete(self, request, *args, **kwargs):
+        # Appel de la méthode delete de la super classe
+        response = super().delete(request, *args, **kwargs)
+
+        # Appel de la fonction add_to_ics pour ajouter l'événement à l'ICS
+        add_to_ics()
+
+        return response
+
+
+class BookedRoomsValidationValidatedView(LoginRequiredMixin, CreateView):
+    model = BookedRoom
+    template_name = 'bookedroom_validation_validated.html'
+    success_url = reverse_lazy('bookedrooms_validation')
+    login_url = 'login'
