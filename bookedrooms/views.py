@@ -186,8 +186,23 @@ class BookedRoomsValidationRefusedView(LoginRequiredMixin, DeleteView):
         return response
 
 
-class BookedRoomsValidationValidatedView(LoginRequiredMixin, CreateView):
+class BookedRoomsValidationValidatedView(LoginRequiredMixin, UpdateView):
     model = BookedRoom
+    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups',
+              'motif')
     template_name = 'bookedroom_validation_validated.html'
     success_url = reverse_lazy('bookedrooms_validation')
     login_url = 'login'
+
+    def validate_reservation(self, booked_room):
+        # Mettre à jour l'attribut 'status' de la réservation
+        booked_room.status = 'validated'
+        booked_room.save()
+
+        # Appeler la fonction add_to_ics pour ajouter la réservation à l'ICS
+        add_to_ics()
+
+    def form_valid(self, form):
+        self.validate_reservation(self.object)
+
+        return super().form_valid(form)
