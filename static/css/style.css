@@ -120,6 +120,10 @@ li.nav-item.dropdown a:active {
     color: var(--color-dark-white) !important;
 }
 
+ul.dropdown-menu.show {
+    margin-left: -5px;
+}
+
 /* Logo */
 a.navbar-brand > img {
     height: 45px;
@@ -207,6 +211,10 @@ div#calendar {
 div.fc-view-harness.fc-view-harness-passive {
     margin-top: -8px;
     background-color: var(--color-light-white);
+}
+
+div.fc-event-main {
+    cursor: pointer;
 }
 
 /* Écran de réservation */
