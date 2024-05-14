@@ -12,6 +12,8 @@ from django.views.generic.edit import UpdateView, DeleteView, CreateView  # Impo
 from icalendar import Calendar, Event  # Importe les classes pour créer des fichiers .ics
 from datetime import datetime, time  # Importe les classes pour manipuler les dates et heures
 import os  # Importe le module os pour les opérations sur le système d'exploitation
+import json
+
 
 def add_to_ics():
     objets = BookedRoom.objects.all()
@@ -39,10 +41,19 @@ def add_to_ics():
 
     for objet in objets:
         event = Event()
-        # 20240504T080000
         dateDeb = datetime.combine(objet.date, objet.startTime)
         dateFin = datetime.combine(objet.date, objet.endTime)
-        event.add('summary', str(objet.room_category))
+        jsonData = {
+            "id": str(objet.id),
+            "labo": str(objet.groups),
+            "nom": str(objet.room_category),
+            "status": str(objet.status),
+            "motif": objet.motif,
+            "nombre_personnes": str(objet.peopleAmount),
+            "user": str(objet.user),
+            "holiday": "false"
+        }
+        event.add('summary', json.dumps(jsonData))
         event.add('dtstart', dateDeb)
         event.add('dtend', dateFin)
 
@@ -57,7 +68,6 @@ def add_to_ics():
     # Écrire les données dans le fichier
     with open(ics_file_path, 'wb') as f:
         f.write(ical_data)
-
 
 
 class HomePageView(LoginRequiredMixin, CreateView):
