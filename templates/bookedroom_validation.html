@@ -28,7 +28,7 @@
                             </ul>
                             <div class="card-body">
                                 <div class="btn-group card-link" role="group" aria-label="Boutons">
-                                    <a href="{% url 'bookedrooms_validation' %}" class="btn btn-primary booked-button" >Valider</a>
+                                    <a href="{% url 'bookedrooms_validation_validated' bookedroom.pk %}" class="btn btn-primary booked-button" >Valider</a>
                                     <a href="{% url 'bookedrooms_validation_refused' bookedroom.pk %}" class="btn btn-danger card-link cancel-button">Refuser</a>
                                 </div>
                             </div>
