@@ -218,30 +218,9 @@ div.fc-event-main {
 }
 
 /* Écran de réservation */
-div.modal-reservation {
-    display: none;
-    width: 350px;
-    padding: 20px;
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translate(-50%);
-    z-index: 999;
-    border: 1px solid #ccc;
-    background: var(--color-light-white);
-}
-
-div.modal-reservation h2 {
-    margin: 0;
+div.modal-reservation h1 {
     font-family: "Lexend", sans-serif;
     font-weight: 600;
-    font-size: 22px;
-}
-
-div.modal-reserv-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 /* Titre */
@@ -460,19 +439,19 @@ div.roomdashboard > h3 {
     color: var(--color-light-blue);
 }
 
-/* Bouton annuler */
-a.cancel-button {
+/* Style des boutons */
+.cancel-button {
     font-family: "Outfit", sans-serif;
     font-weight: 500;
     font-size: 15px;
     color: var(--color-light-white);
 }
 
-a.cancel-button:hover {
+.cancel-button:hover {
     color: var(--color-light-white);
 }
 
-a.cancel-button:active {
+.cancel-button:active {
     color: var(--color-light-white) !important;
 }
 
