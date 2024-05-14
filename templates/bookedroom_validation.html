@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% get_media_prefix as MEDIA_PREFIX %}
+    <div class="container">
+        <div class="col-sm-12">
+            <h2 class="container-title">Réservations en attente</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row content roomdashboard">
+            {% for bookedroom in object_list %}
+                {% if bookedroom.status == 'pending' %}
+                    <h3>Réservation de <span class="profiletitle">{{ user.last_name }} {{ user.first_name }}</span></h3>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card shadow-sm">
+                            <img src="{{ MEDIA_PREFIX }}{{ bookedroom.room_category.image }}" class="card-img-top" alt="{{ room.room_category.libRoom }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Motif : {{ bookedroom.motif }}</li>
+                                <li class="list-group-item">Nombre de pers. max. : {{ bookedroom.peopleAmount }}</li>
+                                <li class="list-group-item">Jour de réservation : {{ bookedroom.date }}</li>
+                                <li class="list-group-item">Heure de début : {{ bookedroom.startTime }}</li>
+                                <li class="list-group-item">Heure de fin : {{ bookedroom.endTime }}</li>
+                            </ul>
+                            <div class="card-body">
+                                <div class="btn-group card-link" role="group" aria-label="Boutons">
+                                    <a href="{% url 'bookedrooms_validation_validated' bookedroom.pk %}" class="btn btn-primary booked-button" >Valider</a>
+                                    <a href="{% url 'bookedrooms_validation_refused' bookedroom.pk %}" class="btn btn-danger card-link cancel-button">Refuser</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

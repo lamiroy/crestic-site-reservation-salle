@@ -9,42 +9,57 @@
 {% endblock link %}
 
 {% block content %}
-    <div id="modal" class="modal-reservation">
-        <div class="modal-reserv-title">
-            <h2>Réserver une salle</h2>
-            <button type="button" class="btn-close" id="btnCloseModal" aria-label="Fermer"></button>
-        </div>
-        <form class="roomreservation" id="eventForm" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.room_category | as_crispy_field }}
-            {{ form.peopleAmount | as_crispy_field }}
-            {{ form.date | as_crispy_field }}
-            {{ form.startTime | as_crispy_field }}
-            {{ form.endTime | as_crispy_field }}
-            {{ form.motif | as_crispy_field }}
-            {{ form.groups | as_crispy_field }}
-
-            {% if form.errors %}
-                <div class="alert alert-danger">
-                    <ul>
-                        {% for field_errors in form.errors.values %}
-                            {% for error in field_errors %}
-                                <li>{{ error }}</li>
-                            {% endfor %}
-                        {% endfor %}
-                    </ul>
+    <button type="button" class="d-none modalAdd" data-bs-toggle="modal" data-bs-target="#modalAdd"></button>
+    <div class="modal fade modal-reservation" id="modalAdd" tabindex="-1" aria-labelledby="modalAdd" aria-hidden="true">
+        <div class="modal-dialog">
+            <form class="modal-content roomreservation" id="eventForm" method="post" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Réserver une salle</h1>
                 </div>
-            {% endif %}
+                <div class="modal-body">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.room_category | as_crispy_field }}
+                    {{ form.peopleAmount | as_crispy_field }}
+                    {{ form.date | as_crispy_field }}
+                    {{ form.startTime | as_crispy_field }}
+                    {{ form.endTime | as_crispy_field }}
+                    {{ form.motif | as_crispy_field }}
+                    {{ form.groups | as_crispy_field }}
 
-            <button type="submit" class="btn btn-primary">Valider</button>
-        </form>
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <ul>
+                                {% for field_errors in form.errors.values %}
+                                    {% for error in field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCloseAdd" class="btn btn-danger cancel-button" data-bs-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-success cancel-button">Valider</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <div id="eventModal" class="modal-reservation">
-        <h2>Détails de la réservation</h2>
-        <p id="eventDescription"></p>
-        <button type="button" id="btnCloseEventModal">Fermer</button>
+    <button type="button" class="d-none modalDetails" data-bs-toggle="modal" data-bs-target="#modalDetails"></button>
+    <div class="modal fade" id="modalDetails" tabindex="-1" aria-labelledby="modalDetails" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Détails de la réservation</h1>
+                </div>
+                <div id="eventDescription" class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger cancel-button" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id='calendar'></div>

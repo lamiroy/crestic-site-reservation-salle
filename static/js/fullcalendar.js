@@ -14,9 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
         allDaySlot: false, // Masquer la section de toute la journée
         // Fonction exécutée lors du clic sur un événement du calendrier
         eventClick: function(info) {
-            let start = moment(info.event.start).format("HH:mm");
-            let end = moment(info.event.end).format("HH:mm");
-            let eventDescription = document.getElementById('eventDescription');
+            let start = moment(info.event.start).format("HH:mm"); // Heure de début formatée
+            let end = moment(info.event.end).format("HH:mm"); // Heure de fin formatée
+            let description = info.event.extendedProps.description || "Aucune description"; // Description de l'événement
+            let eventDescription = document.getElementById('eventDescription'); // Élément HTML où afficher les détails de l'événement
+            const detailsButton = document.querySelector('button.d-none.modalDetails');
+            detailsButton.click();
             // Convertir la chaîne JSON corrigée en objet JavaScript
             let eventData = JSON.parse(info.event.title);
             if (eventData.holiday == "false") {
@@ -28,8 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 eventDescription.innerHTML += "<p>Laboratoire : " + eventData.labo + "</p>"; // Laboratoire
                 eventDescription.innerHTML += "<p>Nom de la salle : " + eventData.nom + "</p>"; // Nom de la salle
                 eventDescription.innerHTML += "<p>Status : " + eventData.status + "</p>"; // Status de la réservation
-                eventModal.style.display = 'block'; // Afficher la fenêtre modale avec les détails de l'événement
             }
+
         },
         businessHours: [
             {
@@ -84,7 +87,8 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         // Fonction exécutée lors de la sélection d'un créneau horaire
         select: function(info) {
-            modal.style.display = 'block'; // Afficher la fenêtre modale pour la création d'une réservation
+            const addButton = document.querySelector('button.d-none');
+            addButton.click();
             // Remplir les champs de la fenêtre modale avec les informations de la sélection
             document.getElementById('id_date').value = moment(info.start).format("MM/DD/YYYY"); // Date
             document.getElementById('id_startTime').value = moment(info.start).format("HH:mm"); // Heure de début
@@ -133,21 +137,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     calendar.render(); // Afficher le calendrier
 
-    // Gestion des événements pour la fenêtre modale et la fenêtre modale des événements
-    let modal = document.getElementById('modal');
-    let eventModal = document.getElementById('eventModal');
-    let btnCloseModal = document.getElementById('btnCloseModal');
-    let btnCloseEventModal = document.getElementById('btnCloseEventModal');
-    let eventForm = document.getElementById('eventForm');
-
     // Gestion de la fermeture de la fenêtre modale de création de réservation
-    btnCloseModal.addEventListener('click', function() {
-        modal.style.display = 'none'; // Cacher la fenêtre modale
+    let btnCloseAdd = document.getElementById('btnCloseAdd');
+    let eventForm = document.getElementById('eventForm');
+    btnCloseAdd.addEventListener('click', function() {
         eventForm.reset(); // Réinitialiser le formulaire de réservation
-    });
-
-    // Gestion de la fermeture de la fenêtre modale des détails d'événement
-    btnCloseEventModal.addEventListener('click', function() {
-        eventModal.style.display = 'none'; // Cacher la fenêtre modale des détails d'événement
     });
 });
