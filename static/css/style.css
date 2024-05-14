@@ -208,6 +208,18 @@ div.fc-view-harness.fc-view-harness-passive {
     margin-top: -8px;
     background-color: var(--color-light-white);
 }
+a.event-crestic {
+    background-color: #ffcc00 !important;
+}
+a.event-labi {
+    background-color: #00E2D5 !important;
+}
+a.event-liciis {
+    background-color: #B3B3B3 !important;
+}
+a.event-pending {
+    background-color: darkgrey !important;
+}
 
 /* Écran de réservation */
 div.modal-reservation {
