@@ -68,6 +68,12 @@ class BookedRoom(models.Model):
                 raise ValidationError('L\'heure de fin doit être entre 8h00 et 18h00.')
             if end_time <= start_time:
                 raise ValidationError('L\'heure de fin doit être supérieure à l\'heure de début.')
+        # Ajout de la condition pour le samedi après 12h30 et le dimanche
+        if selected_date.weekday() == 5:  # Samedi (0 = lundi, 6 = dimanche)
+            if start_time >= time(12, 30):
+                raise ValidationError(_('Aucune réservation possible le samedi après 12h30.'))
+        elif selected_date.weekday() == 6:  # Dimanche
+            raise ValidationError(_('Aucune réservation possible le dimanche.'))
 
     def get_absolute_url(self):
         # Renvoie l'URL absolue de l'objet BookedRoom, utilisée pour les redirections après une création ou une
