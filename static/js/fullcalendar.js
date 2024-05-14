@@ -20,13 +20,19 @@ document.addEventListener('DOMContentLoaded', function() {
             let eventDescription = document.getElementById('eventDescription'); // Élément HTML où afficher les détails de l'événement
             const detailsButton = document.querySelector('button.d-none.modalDetails');
             detailsButton.click();
-            // Construction du contenu HTML avec les détails de l'événement
-            eventDescription.innerHTML = "<p>" + info.event.title + "</p>"; // Titre de l'événement
-            eventDescription.innerHTML += "<p>" + start + ' - ' + end + "</p>"; // Plage horaire de l'événement
-            eventDescription.innerHTML += "<p>Motif : " + info.event.extendedProps.motif + "</p>"; // Motif de réservation
-            eventDescription.innerHTML += "<p>Nombre de personnes : " + info.event.extendedProps.eventNbPers + "</p>"; // Nombre de personnes
-            eventDescription.innerHTML += "<p>Laboratoire : " + info.event.extendedProps.labo + "</p>"; // Laboratoire
-            eventDescription.innerHTML += "<p>Status : " + description + "</p>"; // Status de la réservation
+            // Convertir la chaîne JSON corrigée en objet JavaScript
+            let eventData = JSON.parse(info.event.title);
+            if (eventData.holiday == "false") {
+                // Construction du contenu HTML avec les détails de l'événement
+                eventDescription.innerHTML = "<p>" + eventData.nom + "</p>"; // Titre de l'événement
+                eventDescription.innerHTML += "<p>" + start + ' - ' + end + "</p>"; // Plage horaire de l'événement
+                eventDescription.innerHTML += "<p>Motif : " + eventData.motif + "</p>"; // Motif de réservation
+                eventDescription.innerHTML += "<p>Nombre de personnes : " + eventData.nombre_personnes + "</p>"; // Nombre de personnes
+                eventDescription.innerHTML += "<p>Laboratoire : " + eventData.labo + "</p>"; // Laboratoire
+                eventDescription.innerHTML += "<p>Nom de la salle : " + eventData.nom + "</p>"; // Nom de la salle
+                eventDescription.innerHTML += "<p>Status : " + eventData.status + "</p>"; // Status de la réservation
+            }
+
         },
         businessHours: [
             {
@@ -98,7 +104,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 return selectInfo.start >= startTime && selectInfo.end <= endTime;
             }
             return true; // Autoriser la sélection pour les autres jours
-        }
+        },
+        eventDidMount: function(info) {
+            let classNames = [];
+            let eventData = JSON.parse(info.event.title);
+            console.log(eventData)
+            if (eventData.holiday == "false") {
+                if (eventData.status !== 'pending') {
+                    // Ajouter des classes en fonction du laboratoire
+                    switch (eventData.labo) {
+                        case 'CReSTIC':
+                            classNames.push('event-crestic');
+                            break;
+                        case 'Labi*':
+                            classNames.push('event-labi');
+                            break;
+                        case 'Liciis':
+                            classNames.push('event-liciis');
+                            break;
+                        default:
+                            classNames.push('event-default');
+                    }
+                } else {
+                    classNames.push('event-pending');
+                }
+                // Ajouter les classes au DOM de l'événement
+                info.el.classList.add(...classNames);
+            }
+        },
+
     });
 
     calendar.render(); // Afficher le calendrier
