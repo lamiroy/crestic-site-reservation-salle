@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% get_media_prefix as MEDIA_PREFIX %}
+    <div class="container">
+        <div class="col-sm-12">
+            <h2 class="container-title">Réservations en attente</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row content roomdashboard">
+            {% for bookedroom in object_list %}
+                <h3>Réservations de <span class="profiletitle">{{ user.last_name }} {{ user.first_name }}</span></h3>
+                <div class="col-sm-12 col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
+                            <p class="card-text">{{ bookedroom.motif }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Nombre de pers. max. : {{ bookedroom.peopleAmount }}</li>
+                            <li class="list-group-item">Jour de réservation : {{ bookedroom.date }}</li>
+                            <li class="list-group-item">Heure de début : {{ bookedroom.startTime }}</li>
+                            <li class="list-group-item">Heure de fin : {{ bookedroom.endTime }}</li>
+                        </ul>
+                        <div class="card-body">
+                            <div class="btn-group card-link" role="group" aria-label="Boutons">
+                                <a href="{% url 'bookedrooms_validation' bookedroom.pk %}" class="btn btn-primary card-link validate-button" >Valider</a>
+                                <a href="{% url 'bookedrooms_edit' bookedroom.pk %}" class="btn btn-primary booked-button" >Modifier</a>
+                                <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger card-link cancel-button">Refuser</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
