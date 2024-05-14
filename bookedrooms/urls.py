@@ -5,7 +5,8 @@ from .views import (  # Import des vues associées aux URL
     BookedRoomsUpdateView,  # Vue pour mettre à jour une réservation de salle
     BookedRoomsDeleteView,  # Vue pour supprimer une réservation de salle
     BookedRoomsCreateView, BookedRoomsValidationView,
-    BookedRoomsValidationRefusedView,  # Vue pour créer une nouvelle réservation de salle
+    BookedRoomsValidationRefusedView,
+    BookedRoomsValidationValidatedView,  # Vue pour créer une nouvelle réservation de salle
 )
 
 urlpatterns = [
@@ -33,5 +34,8 @@ urlpatterns = [
     path('<int:pk>/delete_request/',  # URL pour supprimer une réservation de salle avec un identifiant spécifique
          BookedRoomsValidationRefusedView.as_view(),  # Utilisation de la vue BookedRoomsDeleteView pour cette URL
          name='bookedrooms_validation_refused'),  # Nom de l'URL pour référence dans le code Django
+    path('<int:pk>/validate_request/',  # URL pour supprimer une réservation de salle avec un identifiant spécifique
+         BookedRoomsValidationValidatedView.as_view(),  # Utilisation de la vue BookedRoomsDeleteView pour cette URL
+         name='bookedrooms_validation_validated'),  # Nom de l'URL pour référence dans le code Django
 
 ]
