@@ -161,3 +161,9 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         data = super(BookedRoomsCreateView, self).form_valid(form)
         add_to_ics()
         return data
+
+
+class BookedRoomsValidationView(LoginRequiredMixin, ListView):
+    model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
+    template_name = 'bookedroom_validation.html'  # Utilisation du template 'bookedroom_validation.html'
+    login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
