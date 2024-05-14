@@ -14,18 +14,22 @@ document.addEventListener('DOMContentLoaded', function() {
         allDaySlot: false, // Masquer la section de toute la journée
         // Fonction exécutée lors du clic sur un événement du calendrier
         eventClick: function(info) {
-            let start = moment(info.event.start).format("HH:mm"); // Heure de début formatée
-            let end = moment(info.event.end).format("HH:mm"); // Heure de fin formatée
-            let description = info.event.extendedProps.description || "Aucune description"; // Description de l'événement
-            let eventDescription = document.getElementById('eventDescription'); // Élément HTML où afficher les détails de l'événement
-            // Construction du contenu HTML avec les détails de l'événement
-            eventDescription.innerHTML = "<p>" + info.event.title + "</p>"; // Titre de l'événement
-            eventDescription.innerHTML += "<p>" + start + ' - ' + end + "</p>"; // Plage horaire de l'événement
-            eventDescription.innerHTML += "<p>Motif : " + info.event.extendedProps.motif + "</p>"; // Motif de réservation
-            eventDescription.innerHTML += "<p>Nombre de personnes : " + info.event.extendedProps.eventNbPers + "</p>"; // Nombre de personnes
-            eventDescription.innerHTML += "<p>Laboratoire : " + info.event.extendedProps.labo + "</p>"; // Laboratoire
-            eventDescription.innerHTML += "<p>Status : " + description + "</p>"; // Status de la réservation
-            eventModal.style.display = 'block'; // Afficher la fenêtre modale avec les détails de l'événement
+            let start = moment(info.event.start).format("HH:mm");
+            let end = moment(info.event.end).format("HH:mm");
+            let eventDescription = document.getElementById('eventDescription');
+            // Convertir la chaîne JSON corrigée en objet JavaScript
+            let eventData = JSON.parse(info.event.title);
+            if (eventData.holiday == "false") {
+                // Construction du contenu HTML avec les détails de l'événement
+                eventDescription.innerHTML = "<p>" + eventData.nom + "</p>"; // Titre de l'événement
+                eventDescription.innerHTML += "<p>" + start + ' - ' + end + "</p>"; // Plage horaire de l'événement
+                eventDescription.innerHTML += "<p>Motif : " + eventData.motif + "</p>"; // Motif de réservation
+                eventDescription.innerHTML += "<p>Nombre de personnes : " + eventData.nombre_personnes + "</p>"; // Nombre de personnes
+                eventDescription.innerHTML += "<p>Laboratoire : " + eventData.labo + "</p>"; // Laboratoire
+                eventDescription.innerHTML += "<p>Nom de la salle : " + eventData.nom + "</p>"; // Nom de la salle
+                eventDescription.innerHTML += "<p>Status : " + eventData.status + "</p>"; // Status de la réservation
+                eventModal.style.display = 'block'; // Afficher la fenêtre modale avec les détails de l'événement
+            }
         },
         businessHours: [
             {
@@ -96,7 +100,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 return selectInfo.start >= startTime && selectInfo.end <= endTime;
             }
             return true; // Autoriser la sélection pour les autres jours
-        }
+        },
+        eventDidMount: function(info) {
+            let classNames = [];
+            let eventData = JSON.parse(info.event.title);
+            console.log(eventData)
+            if (eventData.holiday == "false") {
+                if (eventData.status !== 'pending') {
+                    // Ajouter des classes en fonction du laboratoire
+                    switch (eventData.labo) {
+                        case 'CReSTIC':
+                            classNames.push('event-crestic');
+                            break;
+                        case 'Labi*':
+                            classNames.push('event-labi');
+                            break;
+                        case 'Liciis':
+                            classNames.push('event-liciis');
+                            break;
+                        default:
+                            classNames.push('event-default');
+                    }
+                } else {
+                    classNames.push('event-pending');
+                }
+                // Ajouter les classes au DOM de l'événement
+                info.el.classList.add(...classNames);
+            }
+        },
+
     });
 
     calendar.render(); // Afficher le calendrier
