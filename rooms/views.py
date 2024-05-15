@@ -50,6 +50,7 @@ def add_to_ics():
             "status": str(objet.status),
             "motif": objet.motif,
             "nombre_personnes": str(objet.peopleAmount),
+            "max_capacity": str(objet.room_category.maxCapacity),
             "user": str(objet.user),
             "holiday": "false"
         }

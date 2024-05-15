@@ -212,27 +212,68 @@ div.fc-view-harness.fc-view-harness-passive {
     margin-top: -8px;
     background-color: var(--color-light-white);
 }
-a.event-crestic {
-    background-color: #ffcc00 !important;
-}
-a.event-labi {
-    background-color: #00E2D5 !important;
-}
-a.event-liciis {
-    background-color: #B3B3B3 !important;
-}
-a.event-pending {
-    background-color: darkgrey !important;
-}
 
 div.fc-event-main {
     cursor: pointer;
 }
 
-/* Écran de réservation */
+/* Event */
+a.event-crestic {
+    background-color: #ffcc00 !important;
+}
+
+a.event-labi {
+    background-color: #00E2D5 !important;
+}
+
+a.event-liciis {
+    background-color: #B3B3B3 !important;
+}
+
+a.event-pending {
+    background-color: darkgrey !important;
+}
+
+/* Modal de réservation */
 div.modal-reservation h1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
     font-family: "Lexend", sans-serif;
     font-weight: 600;
+}
+
+div.modal-reservation span:first-child {
+    color: var(--color-light-blue);
+}
+
+div.modal-reservation div {
+    flex: 1;
+}
+
+div.modal-reservation span:last-child {
+    border-color: var(--color-blue) !important;
+    background-color: var(--color-light-blue) !important;
+}
+
+p.modal-description {
+    font-family: "Outfit", sans-serif;
+    font-weight: 300;
+}
+
+div.eventDetailsButtons {
+    width: 100%;
+}
+
+/* Laboratoire et statut */
+ul.listModalDetails div.fw-bold {
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+}
+
+ul.listModalDetails div.ms-2.me-auto {
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
 }
 
 /* Titre */
@@ -413,6 +454,8 @@ form.roomreservation label {
 
 form.roomreservation span.asteriskField {
     color: var(--color-red);
+    border: none !important;
+    background: none !important;
 }
 
 form.roomreservation > button {
@@ -453,14 +496,14 @@ div.roomdashboard > h3 {
 
 /* Style des boutons */
 .cancel-button {
-    font-family: "Outfit", sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    color: var(--color-light-white);
+    font-family: "Outfit", sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    color: var(--color-light-white) !important;
 }
 
 .cancel-button:hover {
-    color: var(--color-light-white);
+    color: var(--color-light-white) !important;
 }
 
 .cancel-button:active {
