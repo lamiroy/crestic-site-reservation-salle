@@ -16,23 +16,51 @@ document.addEventListener('DOMContentLoaded', function() {
         eventClick: function(info) {
             let start = moment(info.event.start).format("HH:mm"); // Heure de début formatée
             let end = moment(info.event.end).format("HH:mm"); // Heure de fin formatée
-            let description = info.event.extendedProps.description || "Aucune description"; // Description de l'événement
+            let eventTitle = document.getElementById('eventTitle');
             let eventDescription = document.getElementById('eventDescription'); // Élément HTML où afficher les détails de l'événement
+            let ancreEdit = document.getElementById('ancreEdit');
+            let ancreDelete = document.getElementById('ancreDelete');
             const detailsButton = document.querySelector('button.d-none.modalDetails');
             detailsButton.click();
             // Convertir la chaîne JSON corrigée en objet JavaScript
             let eventData = JSON.parse(info.event.title);
-            if (eventData.holiday == "false") {
+            if (eventData.holiday === "false") {
+                let statut;
+                if (eventData.status === "pending") {
+                    statut = "En attente";
+                } else if (eventData.status === "canceled") {
+                    statut = "Annulé";
+                } else if (eventData.status === "validated") {
+                    statut = "Validé";
+                }
                 // Construction du contenu HTML avec les détails de l'événement
-                eventDescription.innerHTML = "<p>" + eventData.nom + "</p>"; // Titre de l'événement
-                eventDescription.innerHTML += "<p>" + start + ' - ' + end + "</p>"; // Plage horaire de l'événement
-                eventDescription.innerHTML += "<p>Motif : " + eventData.motif + "</p>"; // Motif de réservation
-                eventDescription.innerHTML += "<p>Nombre de personnes : " + eventData.nombre_personnes + "</p>"; // Nombre de personnes
-                eventDescription.innerHTML += "<p>Laboratoire : " + eventData.labo + "</p>"; // Laboratoire
-                eventDescription.innerHTML += "<p>Nom de la salle : " + eventData.nom + "</p>"; // Nom de la salle
-                eventDescription.innerHTML += "<p>Status : " + eventData.status + "</p>"; // Status de la réservation
+                eventTitle.innerHTML = `
+                    ${start} - ${end}&ensp;❘&ensp;
+                    <span>${eventData.nom}</span>
+                    <div></div>
+                    <span class="badge text-bg-danger">${eventData.nombre_personnes}/${eventData.max_capacity} personnes</span>
+                `; // Titre de l'événement
+                eventDescription.innerHTML = `<p class="modal-description">${eventData.motif}</p>`; // Motif de réservation
+                eventDescription.innerHTML += `
+                    <ul class="list-group listModalDetails">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">Laboratoire</div>
+                                ${eventData.labo}
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">Statut</div>
+                                ${statut}
+                            </div>
+                        </li>
+                    </ul>
+                `; // Laboratoire et statut
+                // Ajout du contenu des ancres
+                ancreEdit.href = `/roombooking/${eventData.id}/edit/`;
+                ancreDelete.href = `/roombooking/${eventData.id}/delete/`;
             }
-
         },
         businessHours: [
             {
@@ -108,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
         eventDidMount: function(info) {
             let classNames = [];
             let eventData = JSON.parse(info.event.title);
-            console.log(eventData)
             if (eventData.holiday == "false") {
                 if (eventData.status !== 'pending') {
                     // Ajouter des classes en fonction du laboratoire
