@@ -98,11 +98,6 @@ li.nav-item > span.nav-line {
     display: none;
 }
 
-ul.dropdown-menu.show {
-    position: absolute;
-    margin-top: -5px;
-}
-
 @media (min-width: 992px) {
     div.navbar-container {
         flex-direction: row;
@@ -124,6 +119,18 @@ li.nav-item.dropdown a:active {
 }
 
 ul.dropdown-menu.show {
+    position: absolute;
+    margin-top: -5px;
+    margin-left: -5px;
+}
+
+li.dropdown-ligne a {
+    display: flex;
+    justify-content: flex-start;
+}
+
+li.dropdown-ligne i {
+    margin-right: 10px;
     margin-left: -5px;
 }
 
