@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 eventDescription.innerHTML += "<p>Laboratoire : " + eventData.labo + "</p>"; // Laboratoire
                 eventDescription.innerHTML += "<p>Nom de la salle : " + eventData.nom + "</p>"; // Nom de la salle
                 eventDescription.innerHTML += "<p>Status : " + eventData.status + "</p>"; // Status de la réservation
+            } else {
+                eventDescription.innerHTML = "<p>" + eventData.nom + "</p>";
             }
 
         },
@@ -108,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function() {
         eventDidMount: function(info) {
             let classNames = [];
             let eventData = JSON.parse(info.event.title);
-            console.log(eventData)
             if (eventData.holiday == "false") {
                 if (eventData.status !== 'pending') {
                     // Ajouter des classes en fonction du laboratoire
@@ -132,6 +133,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 info.el.classList.add(...classNames);
             }
         },
+        eventContent: function(arg) {
+            let start = moment(arg.event.start).format("HH:mm"); // Heure de début formatée
+            let end = moment(arg.event.end).format("HH:mm"); // Heure de fin formatée
+            let italicEl = document.createElement('span');
+            let eventData = JSON.parse(arg.event.title);
+            if (eventData.holiday == "false") {
+                italicEl.innerHTML = '<b>' + start + ' - ' + end + '</b> &ensp;';
+                italicEl.innerHTML += '<i>' + eventData.nom + '</i> &ensp;'
+                italicEl.innerHTML += '<i>' + eventData.labo + '</i>'
+            } else {
+                italicEl.innerHTML += '<i>' + eventData.nom + '</i>'
+            }
+            let arrayOfDomNodes = [ italicEl ];
+            return { domNodes: arrayOfDomNodes };
+    }
 
     });
 
