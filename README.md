@@ -49,3 +49,4 @@ You should now be able to access the project on `localhost:8000`
 ---
 ### Disclaimer
 Project was originally forked from https://github.com/c3n7/hotel-reservation
+
