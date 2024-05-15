@@ -68,6 +68,9 @@
                                     <li>
                                         <a class="dropdown-item" href="#">Gestion des équipements</a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'bookedrooms_validation' %}">Gestion des réservations</a>
+                                    </li>
                                 </ul>
                             </li>
                         {% endif %}
@@ -82,9 +85,6 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{% url 'myprofile' %}">Mon profil</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{% url 'bookedrooms_validation' %}">Gestion des réservations</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{% url 'logout' %}">Déconnexion</a>

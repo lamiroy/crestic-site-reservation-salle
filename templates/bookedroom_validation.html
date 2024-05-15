@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block title %}Gestion des réservations{% endblock title %}
+
 {% block content %}
     {% get_media_prefix as MEDIA_PREFIX %}
     <div class="container">
@@ -12,7 +15,6 @@
         <div class="row content roomdashboard">
             {% for bookedroom in object_list %}
                 {% if bookedroom.status == 'pending' %}
-                    <h3>Réservation de <span class="profiletitle">{{ user.last_name }} {{ user.first_name }}</span></h3>
                     <div class="col-sm-12 col-md-6">
                         <div class="card shadow-sm">
                             <img src="{{ MEDIA_PREFIX }}{{ bookedroom.room_category.image }}" class="card-img-top" alt="{{ room.room_category.libRoom }}">
@@ -20,6 +22,7 @@
                                 <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
                             </div>
                             <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{ bookedroom.user.last_name }} {{ bookedroom.user.first_name }}</li>
                                 <li class="list-group-item">Motif : {{ bookedroom.motif }}</li>
                                 <li class="list-group-item">Nombre de pers. max. : {{ bookedroom.peopleAmount }}</li>
                                 <li class="list-group-item">Jour de réservation : {{ bookedroom.date }}</li>
