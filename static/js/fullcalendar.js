@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Ajout du contenu des ancres
                 ancreEdit.href = `/roombooking/${eventData.id}/edit/`;
                 ancreDelete.href = `/roombooking/${eventData.id}/delete/`;
+            } else {
+                eventDescription.innerHTML = `<p class="modal-description">${eventData.nom}</p>`;
             }
         },
         businessHours: [
@@ -159,6 +161,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 info.el.classList.add(...classNames);
             }
         },
+        eventContent: function(arg) {
+            let start = moment(arg.event.start).format("HH:mm"); // Heure de début formatée
+            let end = moment(arg.event.end).format("HH:mm"); // Heure de fin formatée
+            let italicEl = document.createElement('span');
+            let eventData = JSON.parse(arg.event.title);
+            if (eventData.holiday == "false") {
+                italicEl.innerHTML = '<b>' + start + ' - ' + end + '</b> &ensp;';
+                italicEl.innerHTML += '<i>' + eventData.nom + '</i> &ensp;'
+                italicEl.innerHTML += '<i>' + eventData.labo + '</i>'
+            } else {
+                italicEl.innerHTML += '<i>' + eventData.nom + '</i>'
+            }
+            let arrayOfDomNodes = [ italicEl ];
+            return { domNodes: arrayOfDomNodes };
+    }
 
     });
 

@@ -1,56 +1,72 @@
 BEGIN:VCALENDAR
 BEGIN:VEVENT
-SUMMARY:Jour de l'an
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Jour de l'an"\, "status": ""\, "m
+ otif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
 DTSTART:20240101T000000
 DTEND:20240101T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Fête du Travail
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate du Travail"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
 DTSTART:20240501T000000
 DTEND:20240501T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Fête de la Victoire
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate de la Victoire"\, "sta
+ tus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": 
+ "true"}
 DTSTART:20240508T000000
 DTEND:20240508T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Fête nationale
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate nationale"\, "status":
+  ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true
+ "}
 DTSTART:20240714T000000
 DTEND:20240714T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Armistice
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Armistice"\, "status": ""\, "moti
+ f": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
 DTSTART:20241111T000000
 DTEND:20241111T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Lundi de Pâques
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Lundi de P\\u00e2ques"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
 DTSTART:20240401T000000
 DTEND:20240401T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Lundi de Pentecôte
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Lundi de Pentec\\u00f4te"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
 DTSTART:20240520T000000
 DTEND:20240520T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Ascension
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Ascension"\, "status": ""\, "moti
+ f": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
 DTSTART:20240509T000000
 DTEND:20240509T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Assomption
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Assomption"\, "status": ""\, "mot
+ if": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
 DTSTART:20240815T000000
 DTEND:20240815T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Toussaint
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Toussaint"\, "status": ""\, "moti
+ f": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
 DTSTART:20241101T000000
 DTEND:20241101T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Noël
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "No\\u00ebl"\, "status": ""\, "mot
+ if": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
 DTSTART:20241225T000000
 DTEND:20241225T235900
 END:VEVENT
