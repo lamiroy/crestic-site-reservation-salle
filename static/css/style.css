@@ -436,6 +436,10 @@ div.row.content.roomdashboard div.card {
     margin-bottom: 20px;
 }
 
+div.card.shadow-sm > img {
+    max-height: 275px;
+}
+
 /* Bouton de réservation */
 a.booked-button {
     border-color: var(--color-blue) !important;
