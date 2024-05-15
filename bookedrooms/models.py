@@ -6,7 +6,6 @@ from django.urls import reverse
 from datetime import date, datetime, time
 
 
-
 class BookedRoom(models.Model):
     STATUS_CHOICES = [  # Choix pour le statut de la réservation
         ('pending', 'En attente'),

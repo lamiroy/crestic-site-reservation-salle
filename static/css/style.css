@@ -46,8 +46,11 @@ img {
 
     /* Couleurs des différents labos */
     --color-crestic: #00A9CD;
-    --color-labi: #00E2D5;
-    --color-liciis: #B3B3B3;
+    --color-dark-crestic: #019cbf;
+    --color-labi: #4c73ff;
+    --color-dark-labi: #4b6ff4;
+    --color-liciis: #2cae00;
+    --color-dark-liciis: #27a300;
 }
 
 /*----------------- Page de base -----------------*/
@@ -217,21 +220,54 @@ div.fc-event-main {
     cursor: pointer;
 }
 
-/* Event */
-a.event-crestic {
-    background-color: #ffcc00 !important;
+/* Event en attente */
+a.event-pending-crestic {
+    border: 1px solid var(--color-crestic) !important;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        var(--color-crestic),
+        var(--color-crestic) 5px,
+        var(--color-dark-crestic) 5px,
+        var(--color-dark-crestic) 10px
+    );
 }
 
-a.event-labi {
-    background-color: #00E2D5 !important;
+a.event-pending-labi {
+    border: 1px solid var(--color-labi) !important;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        var(--color-labi),
+        var(--color-labi) 5px,
+        var(--color-dark-labi) 5px,
+        var(--color-dark-labi) 10px
+    );
 }
 
-a.event-liciis {
-    background-color: #B3B3B3 !important;
+a.event-pending-liciis {
+    border: 1px solid var(--color-liciis) !important;
+    background-image: repeating-linear-gradient(
+        -45deg,
+        var(--color-liciis),
+        var(--color-liciis) 5px,
+        var(--color-dark-liciis) 5px,
+        var(--color-dark-liciis) 10px
+    );
 }
 
-a.event-pending {
-    background-color: darkgrey !important;
+/* Event validé */
+a.event-validated-crestic {
+    border: 1px solid var(--color-crestic) !important;
+    background-color: var(--color-crestic) !important;
+}
+
+a.event-validated-labi {
+    border: 1px solid var(--color-labi) !important;
+    background-color: var(--color-labi) !important;
+}
+
+a.event-validated-liciis {
+    border: 1px solid var(--color-liciis) !important;
+    background-color: var(--color-liciis) !important;
 }
 
 /* Modal de réservation */

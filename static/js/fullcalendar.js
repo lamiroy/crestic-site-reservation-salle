@@ -138,21 +138,30 @@ document.addEventListener('DOMContentLoaded', function() {
         eventDidMount: function(info) {
             let classNames = [];
             let eventData = JSON.parse(info.event.title);
-            if (eventData.holiday == "false") {
-                if (eventData.status !== 'pending') {
-                    // Ajouter des classes en fonction du laboratoire
+            if (eventData.holiday === "false") {
+                if (eventData.status === 'pending') {
                     switch (eventData.labo) {
                         case 'CReSTIC':
-                            classNames.push('event-crestic');
+                            classNames.push('event-pending-crestic');
                             break;
                         case 'Labi*':
-                            classNames.push('event-labi');
+                            classNames.push('event-pending-labi');
                             break;
                         case 'Liciis':
-                            classNames.push('event-liciis');
+                            classNames.push('event-pending-liciis');
                             break;
-                        default:
-                            classNames.push('event-default');
+                    }
+                } else if (eventData.status === 'validated') {
+                    switch (eventData.labo) {
+                        case 'CReSTIC':
+                            classNames.push('event-validated-crestic');
+                            break;
+                        case 'Labi*':
+                            classNames.push('event-validated-labi');
+                            break;
+                        case 'Liciis':
+                            classNames.push('event-validated-liciis');
+                            break;
                     }
                 } else {
                     classNames.push('event-pending');
