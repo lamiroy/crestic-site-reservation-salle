@@ -6,7 +6,6 @@ from django.urls import reverse
 from datetime import date, datetime, time
 
 
-
 class BookedRoom(models.Model):
     STATUS_CHOICES = [  # Choix pour le statut de la réservation
         ('pending', 'En attente'),
@@ -20,16 +19,17 @@ class BookedRoom(models.Model):
         ('Liciis', 'Liciis'),
     ]
 
-    date = models.DateField() # Date de la réservation
-    startTime = models.TimeField() # Heure de début de la réservation
-    endTime = models.TimeField() # Heure de fin de la réservation
-    groups = models.CharField(max_length=100, choices=LABORATORY_CHOICES) # Groupe de laboratoire
-    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0]) # Statut de la réservation
-    motif = models.CharField(max_length=100) # Motif de la réservation
-    peopleAmount = models.IntegerField(default=1) # Nombre de personnes
-    user = models.ForeignKey( # Utilisateur associé à la réservation
-        get_user_model(), # Utilisation de la fonction get_user_model pour obtenir le modèle utilisateur personnalisé
-        on_delete=models.CASCADE, # Suppression en cascade de l'utilisateur si celui-ci est supprimé
+    date = models.DateField()  # Date de la réservation
+    startTime = models.TimeField()  # Heure de début de la réservation
+    endTime = models.TimeField()  # Heure de fin de la réservation
+    groups = models.CharField(max_length=100, choices=LABORATORY_CHOICES)  # Groupe de laboratoire
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES,
+                              default=STATUS_CHOICES[0][0])  # Statut de la réservation
+    motif = models.CharField(max_length=100)  # Motif de la réservation
+    peopleAmount = models.IntegerField(default=1)  # Nombre de personnes
+    user = models.ForeignKey(  # Utilisateur associé à la réservation
+        get_user_model(),  # Utilisation de la fonction get_user_model pour obtenir le modèle utilisateur personnalisé
+        on_delete=models.CASCADE,  # Suppression en cascade de l'utilisateur si celui-ci est supprimé
 
     )
     room_category = models.ForeignKey(  # Catégorie de salle réservée
@@ -84,4 +84,3 @@ class BookedRoom(models.Model):
         # Renvoie une représentation en chaîne de caractères de l'objet BookedRoom, utilisée notamment dans
         # l'interface d'administration Django
         return self.room_category.libRoom + " |  " + self.user.username
-
