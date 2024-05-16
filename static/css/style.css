@@ -227,6 +227,19 @@ div.fc-event-main {
     cursor: pointer;
 }
 
+/* Event */
+p.event-details {
+    margin: 0;
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+}
+
+p.event-labo {
+    margin: 0;
+    font-family: "Outfit", sans-serif;
+    font-weight: 300;
+}
+
 /* Event en attente */
 a.event-pending-crestic {
     border: 1px solid var(--color-crestic) !important;

@@ -173,16 +173,15 @@ document.addEventListener('DOMContentLoaded', function() {
         eventContent: function(arg) {
             let start = moment(arg.event.start).format("HH:mm"); // Heure de début formatée
             let end = moment(arg.event.end).format("HH:mm"); // Heure de fin formatée
-            let italicEl = document.createElement('span');
+            let eventDetails = document.createElement('span');
             let eventData = JSON.parse(arg.event.title);
-            if (eventData.holiday == "false") {
-                italicEl.innerHTML = '<b>' + start + ' - ' + end + '</b> &ensp;';
-                italicEl.innerHTML += '<i>' + eventData.nom + '</i> &ensp;'
-                italicEl.innerHTML += '<i>' + eventData.labo + '</i>'
+            if (eventData.holiday === "false") {
+                eventDetails.innerHTML = `<p class="event-details">${start} - ${end}&ensp;❘&ensp;${eventData.nom}</p>`;
+                eventDetails.innerHTML += `<p class="event-labo">${eventData.labo}</p>`;
             } else {
-                italicEl.innerHTML += '<i>' + eventData.nom + '</i>'
+                eventDetails.innerHTML = `<p class="event-details">${eventData.nom}</p>`;
             }
-            let arrayOfDomNodes = [ italicEl ];
+            let arrayOfDomNodes = [ eventDetails ];
             return { domNodes: arrayOfDomNodes };
     }
 
