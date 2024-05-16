@@ -1,8 +1,8 @@
 import bookedrooms.models  # Import du modèle bookedrooms pour accéder aux choix de statut
 from django.contrib.auth.mixins import \
     LoginRequiredMixin  # Import du mixin LoginRequiredMixin pour obliger l'authentification de l'utilisateur
-from django.shortcuts import \
-    get_object_or_404  # Import de la fonction get_object_or_404 pour récupérer un objet ou renvoyer une erreur 404
+from django.shortcuts import render, get_object_or_404, redirect  # Import de la fonction get_object_or_404 pour
+# récupérer un objet ou renvoyer une erreur 404
 from django.views.generic import ListView, DetailView  # Import des vues génériques ListView et DetailView
 from django.views.generic.edit import UpdateView, DeleteView, \
     CreateView  # Import des vues génériques UpdateView, DeleteView et CreateView
@@ -70,8 +70,8 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         # Validation du formulaire
         user = self.request.user
         form.instance.user = user
-        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][
-            0]  # Attribution du premier choix de statut par défaut
+        # Attribution du premier choix de statut par défaut
+        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
         data = super(BookedRoomsUpdateView, self).form_valid(form)
         add_to_ics()
         return data
@@ -170,39 +170,21 @@ class BookedRoomsValidationView(LoginRequiredMixin, ListView):
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
 
-class BookedRoomsValidationRefusedView(LoginRequiredMixin, DeleteView):
-    model = BookedRoom
-    template_name = 'bookedroom_validation_refused.html'
-    success_url = reverse_lazy('bookedrooms_validation')
-    login_url = 'login'
-
-    def delete(self, request, *args, **kwargs):
-        # Appel de la méthode delete de la super classe
-        response = super().delete(request, *args, **kwargs)
-
-        # Appel de la fonction add_to_ics pour ajouter l'événement à l'ICS
+def BookedRoomsValidationRefusedView(request, pk):
+    reservation = get_object_or_404(BookedRoom, id=pk)
+    if request.method == 'POST':
+        reservation.status = 'canceled'
+        reservation.save()
         add_to_ics()
+        return redirect('bookedrooms_validation')  # redirigez vers une page de succès ou de confirmation
+    return render(request, 'bookedroom_validation_refused.html', {'reservation': reservation})
 
-        return response
 
-
-class BookedRoomsValidationValidatedView(LoginRequiredMixin, UpdateView):
-    model = BookedRoom
-    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups',
-              'motif')
-    template_name = 'bookedroom_validation_validated.html'
-    success_url = reverse_lazy('bookedrooms_validation')
-    login_url = 'login'
-
-    def validate_reservation(self, booked_room):
-        # Mettre à jour l'attribut 'status' de la réservation
-        booked_room.status = 'validated'
-        booked_room.save()
-
-        # Appeler la fonction add_to_ics pour ajouter la réservation à l'ICS
+def BookedRoomsValidationValidatedView(request, pk):
+    reservation = get_object_or_404(BookedRoom, id=pk)
+    if request.method == 'POST':
+        reservation.status = 'validated'
+        reservation.save()
         add_to_ics()
-
-    def form_valid(self, form):
-        self.validate_reservation(self.object)
-
-        return super().form_valid(form)
+        return redirect('bookedrooms_validation')  # redirigez vers une page de succès ou de confirmation
+    return render(request, 'bookedroom_validation_validated.html', {'reservation': reservation})
