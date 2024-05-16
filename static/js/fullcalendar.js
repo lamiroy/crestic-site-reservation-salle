@@ -163,9 +163,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             classNames.push('event-validated-liciis');
                             break;
                     }
-                } else {
-                    classNames.push('event-pending');
                 }
+                // Ajouter les classes au DOM de l'événement
+                info.el.classList.add(...classNames);
+            } else {
+                classNames.push('event-other');
                 // Ajouter les classes au DOM de l'événement
                 info.el.classList.add(...classNames);
             }
