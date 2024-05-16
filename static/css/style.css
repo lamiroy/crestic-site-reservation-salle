@@ -308,7 +308,7 @@ div.modal-reservation span:first-child {
     color: var(--color-light-blue);
 }
 
-div.modal-reservation div {
+div.modal-reservation div.flex-space-modal {
     flex: 1;
 }
 
@@ -320,6 +320,10 @@ div.modal-reservation span:last-child {
 p.modal-description {
     font-family: "Outfit", sans-serif;
     font-weight: 300;
+}
+
+div.modal-footer {
+    flex-wrap: nowrap;
 }
 
 div.eventDetailsButtons {
@@ -471,6 +475,7 @@ a.booked-button {
     font-family: "Outfit", sans-serif;
     font-weight: 500;
     font-size: 15px;
+    color: var(--color-light-white) !important;
     background-color: var(--color-light-blue) !important;
 }
 
