@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             detailsButton.click();
             // Convertir la chaîne JSON corrigée en objet JavaScript
             let eventData = JSON.parse(info.event.title);
+            let eventDetailsButtons = document.querySelector("div.eventDetailsButtons");
             if (eventData.holiday === "false") {
                 let statut;
                 if (eventData.status === "pending") {
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 eventTitle.innerHTML = `
                     ${start} - ${end}&ensp;❘&ensp;
                     <span>${eventData.nom}</span>
-                    <div></div>
+                    <div class="flex-space-modal"></div>
                     <span class="badge text-bg-danger">${eventData.nombre_personnes}/${eventData.max_capacity} personnes</span>
                 `; // Titre de l'événement
                 eventDescription.innerHTML = `<p class="modal-description">${eventData.motif}</p>`; // Motif de réservation
@@ -58,9 +59,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     </ul>
                 `; // Laboratoire et statut
                 // Ajout du contenu des ancres
-                ancreEdit.href = `/roombooking/${eventData.id}/edit/`;
-                ancreDelete.href = `/roombooking/${eventData.id}/delete/`;
+                if (eventData.holiday === "false") {
+                    eventDetailsButtons.innerHTML = `
+                        <a id="ancreEdit" class="btn btn-primary booked-button" href="/roombooking/${eventData.id}/edit/">Modifier</a>
+                        <a id="ancreDelete" class="btn btn-danger card-link cancel-button" href="/roombooking/${eventData.id}/delete/">Annuler</a>
+                    `;
+                }
             } else {
+                eventTitle.innerText = "Jour férié";
+                eventDetailsButtons.innerHTML = null;
                 eventDescription.innerHTML = `<p class="modal-description">${eventData.nom}</p>`;
             }
         },
@@ -138,45 +145,52 @@ document.addEventListener('DOMContentLoaded', function() {
         eventDidMount: function(info) {
             let classNames = [];
             let eventData = JSON.parse(info.event.title);
-            if (eventData.holiday == "false") {
-                if (eventData.status !== 'pending') {
-                    // Ajouter des classes en fonction du laboratoire
+            if (eventData.holiday === "false") {
+                if (eventData.status === 'pending') {
                     switch (eventData.labo) {
                         case 'CReSTIC':
-                            classNames.push('event-crestic');
+                            classNames.push('event-pending-crestic');
                             break;
                         case 'Labi*':
-                            classNames.push('event-labi');
+                            classNames.push('event-pending-labi');
                             break;
                         case 'Liciis':
-                            classNames.push('event-liciis');
+                            classNames.push('event-pending-liciis');
                             break;
-                        default:
-                            classNames.push('event-default');
                     }
-                } else {
-                    classNames.push('event-pending');
+                } else if (eventData.status === 'validated') {
+                    switch (eventData.labo) {
+                        case 'CReSTIC':
+                            classNames.push('event-validated-crestic');
+                            break;
+                        case 'Labi*':
+                            classNames.push('event-validated-labi');
+                            break;
+                        case 'Liciis':
+                            classNames.push('event-validated-liciis');
+                            break;
+                    }
                 }
-                // Ajouter les classes au DOM de l'événement
-                info.el.classList.add(...classNames);
+            } else {
+                classNames.push('event-other');
             }
+            // Ajouter les classes au DOM de l'événement
+            info.el.classList.add(...classNames);
         },
         eventContent: function(arg) {
             let start = moment(arg.event.start).format("HH:mm"); // Heure de début formatée
             let end = moment(arg.event.end).format("HH:mm"); // Heure de fin formatée
-            let italicEl = document.createElement('span');
+            let eventDetails = document.createElement('span');
             let eventData = JSON.parse(arg.event.title);
-            if (eventData.holiday == "false") {
-                italicEl.innerHTML = '<b>' + start + ' - ' + end + '</b> &ensp;';
-                italicEl.innerHTML += '<i>' + eventData.nom + '</i> &ensp;'
-                italicEl.innerHTML += '<i>' + eventData.labo + '</i>'
+            if (eventData.holiday === "false") {
+                eventDetails.innerHTML = `<p class="event-details">${start} - ${end}&ensp;❘&ensp;${eventData.nom}</p>`;
+                eventDetails.innerHTML += `<p class="event-labo">${eventData.labo}</p>`;
             } else {
-                italicEl.innerHTML += '<i>' + eventData.nom + '</i>'
+                eventDetails.innerHTML = `<p class="event-details">${eventData.nom}</p>`;
             }
-            let arrayOfDomNodes = [ italicEl ];
+            let arrayOfDomNodes = [ eventDetails ];
             return { domNodes: arrayOfDomNodes };
-    }
-
+        }
     });
 
     calendar.render(); // Afficher le calendrier
