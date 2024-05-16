@@ -48,14 +48,20 @@
     </div>
 
     <button type="button" class="d-none modalDetails" data-bs-toggle="modal" data-bs-target="#modalDetails"></button>
-    <div class="modal fade" id="modalDetails" tabindex="-1" aria-labelledby="modalDetails" aria-hidden="true">
+    <div class="modal fade modal-reservation" id="modalDetails" tabindex="-1" aria-labelledby="modalDetails" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Détails de la réservation</h1>
+                    <h1 class="modal-title fs-5" id="eventTitle"></h1>
                 </div>
                 <div id="eventDescription" class="modal-body"></div>
                 <div class="modal-footer">
+                    {% if user.is_authenticated %}
+                        <div class="eventDetailsButtons">
+                            <a id="ancreEdit" class="btn btn-primary booked-button" >Modifier</a>
+                            <a id="ancreDelete" class="btn btn-danger card-link cancel-button">Annuler</a>
+                        </div>
+                    {% endif %}
                     <button type="button" class="btn btn-danger cancel-button" data-bs-dismiss="modal">Fermer</button>
                 </div>
             </div>

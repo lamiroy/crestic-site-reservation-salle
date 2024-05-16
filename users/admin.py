@@ -10,7 +10,7 @@ class CustomUserAdmin(UserAdmin):
     form = CustomUserChangeForm
     model = CustomUser
     # Définition des champs à afficher dans la liste des utilisateurs dans l'interface d'administration
-    list_display = ['first_name', 'last_name', 'username', 'email', 'age', 'is_staff']
+    list_display = ['first_name', 'last_name', 'username', 'email', 'is_staff', 'isSecretary']
 
 # Enregistrement du modèle CustomUser avec l'interface d'administration en utilisant le CustomUserAdmin
 admin.site.register(CustomUser, CustomUserAdmin)

@@ -11,7 +11,7 @@ class CustomUserCreationForm(UserCreationForm):
         # Utilisation du modèle CustomUser
         model = CustomUser
         # Définition des champs à afficher dans le formulaire de création
-        fields = ('first_name', 'last_name', 'username', 'email', 'age',)
+        fields = ('first_name', 'last_name', 'username', 'email',)
 
 class CustomUserChangeForm(UserChangeForm):
     """
@@ -21,4 +21,4 @@ class CustomUserChangeForm(UserChangeForm):
         # Utilisation du modèle CustomUser
         model = CustomUser
         # Définition des champs à afficher dans le formulaire de modification
-        fields = ('first_name', 'last_name', 'username', 'email', 'age',)
+        fields = ('first_name', 'last_name', 'username', 'email',)
