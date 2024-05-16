@@ -11,8 +11,8 @@
                 <p class="card-text">Cette action est irréversible. Toutes les données associées à cette réservation seront définitivement effacées.</p>
                 <form method="post">
                     {% csrf_token %}
-                    <a class="btn btn-success" type="button" href="{% url 'bookedrooms_validation' %}">Valider</a>
-                    <button class="btn btn-danger cancel-button" type="submit">Annuler</button>
+                    <button class="btn btn-success" type="submit">Valider</button>
+                    <a class="btn btn-danger" type="button" href="{% url 'bookedrooms_validation' %}">Annuler</a>
                 </form>
             </div>
             <div class="card-footer text-body-secondary">
