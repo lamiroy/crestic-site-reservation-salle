@@ -40,24 +40,24 @@ def add_to_ics():
     cal = Calendar()
 
     for objet in objets:
-        event = Event()
-        dateDeb = datetime.combine(objet.date, objet.startTime)
-        dateFin = datetime.combine(objet.date, objet.endTime)
-        jsonData = {
-            "id": str(objet.id),
-            "labo": str(objet.groups),
-            "nom": str(objet.room_category),
-            "status": str(objet.status),
-            "motif": objet.motif,
-            "nombre_personnes": str(objet.peopleAmount),
-            "user": str(objet.user),
-            "holiday": "false"
-        }
-        event.add('summary', json.dumps(jsonData))
-        event.add('dtstart', dateDeb)
-        event.add('dtend', dateFin)
-
-        cal.add_component(event)
+        if objet.status != "canceled":
+            event = Event()
+            dateDeb = datetime.combine(objet.date, objet.startTime)
+            dateFin = datetime.combine(objet.date, objet.endTime)
+            jsonData = {
+                "id": str(objet.id),
+                "labo": str(objet.groups),
+                "nom": str(objet.room_category),
+                "status": str(objet.status),
+                "motif": objet.motif,
+                "nombre_personnes": str(objet.peopleAmount),
+                "user": str(objet.user),
+                "holiday": "false"
+            }
+            event.add('summary', json.dumps(jsonData))
+            event.add('dtstart', dateDeb)
+            event.add('dtend', dateFin)
+            cal.add_component(event)
 
     ical_data = cal.to_ical()
     current_directory = os.path.dirname(__file__)
