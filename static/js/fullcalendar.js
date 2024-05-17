@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Construction du contenu HTML avec les détails de l'événement
                 eventTitle.innerHTML = `
                     ${start} - ${end}&ensp;❘&ensp;
-                    <span>${eventData.nom}</span>
+                    <span class="modal-detail-title">${eventData.nom}</span>
                     <div class="flex-space-modal"></div>
-                    <span class="badge text-bg-danger">${eventData.nombre_personnes}/${eventData.max_capacity} personnes</span>
+                    <span class="badge text-bg-danger modal-detail-badge">${eventData.nombre_personnes}/${eventData.max_capacity} pers.</span>
                 `; // Titre de l'événement
                 eventDescription.innerHTML = `<p class="modal-description">${eventData.motif}</p>`; // Motif de réservation
                 eventDescription.innerHTML += `

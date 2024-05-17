@@ -329,7 +329,7 @@ div.modal-reservation h1 {
     font-weight: 600;
 }
 
-div.modal-reservation span:first-child {
+div.modal-reservation span.modal-detail-title {
     color: var(--color-light-blue);
 }
 
@@ -337,7 +337,7 @@ div.modal-reservation div.flex-space-modal {
     flex: 1;
 }
 
-div.modal-reservation span:last-child {
+div.modal-reservation span.modal-detail-badge {
     border-color: var(--color-blue) !important;
     background-color: var(--color-light-blue) !important;
 }
