@@ -40,25 +40,25 @@ def add_to_ics():
     cal = Calendar()
 
     for objet in objets:
-      if objet.status != "canceled":
-        event = Event()
-        dateDeb = datetime.combine(objet.date, objet.startTime)
-        dateFin = datetime.combine(objet.date, objet.endTime)
-        jsonData = {
-            "id": str(objet.id),
-            "labo": str(objet.groups),
-            "nom": str(objet.room_category),
-            "status": str(objet.status),
-            "motif": objet.motif,
-            "nombre_personnes": str(objet.peopleAmount),
-            "max_capacity": str(objet.room_category.maxCapacity),
-            "user": str(objet.user),
-            "holiday": "false"
-        }
-        event.add('summary', json.dumps(jsonData))
-        event.add('dtstart', dateDeb)
-        event.add('dtend', dateFin)
-        cal.add_component(event)
+        if objet.status != "canceled":
+            event = Event()
+            dateDeb = datetime.combine(objet.date, objet.startTime)
+            dateFin = datetime.combine(objet.date, objet.endTime)
+            jsonData = {
+                "id": str(objet.id),
+                "labo": str(objet.groups),
+                "nom": str(objet.room_category),
+                "status": str(objet.status),
+                "motif": objet.motif,
+                "nombre_personnes": str(objet.peopleAmount),
+                "max_capacity": str(objet.room_category.maxCapacity),
+                "user": str(objet.user),
+                "holiday": "false"
+            }
+            event.add('summary', json.dumps(jsonData))
+            event.add('dtstart', dateDeb)
+            event.add('dtend', dateFin)
+            cal.add_component(event)
 
     ical_data = cal.to_ical()
     current_directory = os.path.dirname(__file__)
@@ -87,18 +87,26 @@ class HomePageView(LoginRequiredMixin, CreateView):
         """
         form = super(HomePageView, self).get_form()
         form.fields['room_category'].label = 'Nom de la salle'
+
         form.fields['peopleAmount'].label = 'Nombre de pers. max.'
         form.fields['peopleAmount'].widget.attrs['min'] = 1
         form.fields['peopleAmount'].widget.attrs['max'] = 30
+
         form.fields['date'].label = 'Jour de la réservation'
         form.fields['date'].widget = DatePickerInput()
+
         form.fields['startTime'].label = 'Début de la réservation'
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
+
         form.fields['endTime'].label = 'Fin de la réservation'
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
+
         form.fields['groups'].label = 'Laboratoire'
+
         form.fields['motif'].label = 'Motif'
+
         del form.fields['status']
+
         return form
 
     def form_valid(self, form):
