@@ -24,7 +24,7 @@ class RoomDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         """
         Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
         """
-        return self.request.user.is_superuser
+        return self.request.user.is_superuser or self.request.user.isSecretary
 
 
 class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
