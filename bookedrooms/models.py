@@ -71,9 +71,30 @@ class BookedRoom(models.Model):
         # Ajout de la condition pour le samedi après 12h30 et le dimanche
         if selected_date.weekday() == 5:  # Samedi (0 = lundi, 6 = dimanche)
             if start_time >= time(12, 30):
-                raise ValidationError(_('Aucune réservation possible le samedi après 12h30.'))
+                raise ValidationError('Aucune réservation possible le samedi après 12h30.')
         elif selected_date.weekday() == 6:  # Dimanche
-            raise ValidationError(_('Aucune réservation possible le dimanche.'))
+            raise ValidationError('Aucune réservation possible le dimanche.')
+
+        if self.peopleAmount > self.room_category.maxCapacity:
+            raise ValidationError('Le nombre de personnes dépasse la capacité maximale de la salle.')
+
+        # Vérification qu'aucune réservation n'occupe la même salle pendant la même période
+        existing_bookings = BookedRoom.objects.filter(
+            room_category=self.room_category,
+            date=self.date,
+            startTime__lt=self.endTime,
+            endTime__gt=self.startTime,
+        ).exclude(pk=self.pk)
+
+        # Filtrer les réservations existantes avec un statut autre que "pending"
+        existing_non_pending_bookings = existing_bookings.exclude(status='pending')
+
+        # Vérifier que les réservations existantes avec un statut autre que "pending" ne chevauchent pas la
+        # réservation actuelle
+        if existing_non_pending_bookings.exists():
+            raise ValidationError(
+                'Une réservation existante avec un statut autre que "pending" occupe déjà cette salle pendant cette '
+                'période.')
 
     def get_absolute_url(self):
         # Renvoie l'URL absolue de l'objet BookedRoom, utilisée pour les redirections après une création ou une

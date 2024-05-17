@@ -1,6 +1,8 @@
 import bookedrooms.models  # Import du modèle bookedrooms pour accéder aux choix de statut
-from django.contrib.auth.mixins import \
-    LoginRequiredMixin  # Import du mixin LoginRequiredMixin pour obliger l'authentification de l'utilisateur
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,  # Import du mixin LoginRequiredMixin pour obliger l'authentification de l'utilisateur
+    UserPassesTestMixin
+)
 from django.shortcuts import render, get_object_or_404, redirect  # Import de la fonction get_object_or_404 pour
 # récupérer un objet ou renvoyer une erreur 404
 from django.views.generic import ListView, DetailView  # Import des vues génériques ListView et DetailView
@@ -13,6 +15,8 @@ from bootstrap_datepicker_plus import DatePickerInput, \
 from rooms.models import RoomCategory  # Import du modèle RoomCategory pour les catégories de salles
 from .models import BookedRoom  # Import du modèle BookedRoom pour les réservations de salles
 from rooms.views import add_to_ics
+from django.core.exceptions import PermissionDenied
+from django.db import transaction
 
 
 class BookedRoomsListView(LoginRequiredMixin, ListView):
@@ -163,14 +167,22 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         return data
 
 
-class BookedRoomsValidationView(LoginRequiredMixin, ListView):
+class BookedRoomsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
     template_name = 'bookedroom_validation.html'  # Utilisation du template 'bookedroom_validation.html'
     success_url = reverse_lazy('bookedrooms_validation')
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
+    def test_func(self):
+        """
+        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
+        """
+        return self.request.user.isSecretary or self.request.user.is_superuser
+
 
 def BookedRoomsValidationRefusedView(request, pk):
+    if not request.user.is_authenticated or (not request.user.isSecretary and not request.user.is_superuser):
+        raise PermissionDenied
     reservation = get_object_or_404(BookedRoom, id=pk)
     if request.method == 'POST':
         reservation.status = 'canceled'
@@ -181,10 +193,24 @@ def BookedRoomsValidationRefusedView(request, pk):
 
 
 def BookedRoomsValidationValidatedView(request, pk):
+    if not request.user.is_authenticated or (not request.user.isSecretary and not request.user.is_superuser):
+        raise PermissionDenied
     reservation = get_object_or_404(BookedRoom, id=pk)
     if request.method == 'POST':
         reservation.status = 'validated'
         reservation.save()
+        # Recherche des réservations en attente qui occupent la même salle
+        pending_bookings_to_delete = BookedRoom.objects.filter(
+            room_category=reservation.room_category,
+            date=reservation.date,
+            startTime__lt=reservation.endTime,
+            endTime__gt=reservation.startTime,
+            status='pending'
+        )
+        # Suppression des réservations en attente trouvées
+        with transaction.atomic():
+            pending_bookings_to_delete.delete()
         add_to_ics()
         return redirect('bookedrooms_validation')  # redirigez vers une page de succès ou de confirmation
     return render(request, 'bookedroom_validation_validated.html', {'reservation': reservation})
+
