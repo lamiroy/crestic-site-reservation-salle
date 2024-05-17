@@ -1,20 +1,19 @@
+from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 import bookedrooms.models  # Import du modèle bookedrooms pour accéder aux choix de statut
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,  # Import du mixin LoginRequiredMixin pour obliger l'authentification de l'utilisateur
     UserPassesTestMixin
 )
 from django.shortcuts import render, get_object_or_404, redirect  # Import de la fonction get_object_or_404 pour
+from django.urls import \
+    reverse_lazy  # Import de la fonction reverse_lazy pour obtenir les URL inversées de manière retardée
 # récupérer un objet ou renvoyer une erreur 404
 from django.views.generic import ListView, DetailView  # Import des vues génériques ListView et DetailView
 from django.views.generic.edit import UpdateView, DeleteView, \
     CreateView  # Import des vues génériques UpdateView, DeleteView et CreateView
-from django.urls import \
-    reverse_lazy  # Import de la fonction reverse_lazy pour obtenir les URL inversées de manière retardée
-from bootstrap_datepicker_plus import DatePickerInput, \
-    TimePickerInput  # Import des widgets DatePickerInput et TimePickerInput de Bootstrap
 from rooms.models import RoomCategory  # Import du modèle RoomCategory pour les catégories de salles
-from .models import BookedRoom  # Import du modèle BookedRoom pour les réservations de salles
 from rooms.views import add_to_ics
+from .models import BookedRoom  # Import du modèle BookedRoom pour les réservations de salles
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 
@@ -74,8 +73,6 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         # Validation du formulaire
         user = self.request.user
         form.instance.user = user
-        # Attribution du premier choix de statut par défaut
-        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
         data = super(BookedRoomsUpdateView, self).form_valid(form)
         add_to_ics()
         return data
@@ -157,8 +154,6 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         """
         user = self.request.user
         form.instance.user = user
-        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][
-            0]  # Attribution du premier choix de statut par défaut
 
         print("Form data:", form.cleaned_data)
         print("Form errors:", form.errors)

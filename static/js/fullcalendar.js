@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Construction du contenu HTML avec les détails de l'événement
                 eventTitle.innerHTML = `
                     ${start} - ${end}&ensp;❘&ensp;
-                    <span>${eventData.nom}</span>
+                    <span class="modal-detail-title">${eventData.nom}</span>
                     <div class="flex-space-modal"></div>
-                    <span class="badge text-bg-danger">${eventData.nombre_personnes}/${eventData.max_capacity} personnes</span>
+                    <span class="badge text-bg-danger modal-detail-badge">${eventData.nombre_personnes}/${eventData.max_capacity} pers.</span>
                 `; // Titre de l'événement
                 eventDescription.innerHTML = `<p class="modal-description">${eventData.motif}</p>`; // Motif de réservation
                 eventDescription.innerHTML += `
@@ -151,11 +151,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         case 'CReSTIC':
                             classNames.push('event-pending-crestic');
                             break;
-                        case 'Labi*':
+                        case 'Lab-i*':
                             classNames.push('event-pending-labi');
                             break;
-                        case 'Liciis':
+                        case 'LICIIS':
                             classNames.push('event-pending-liciis');
+                            break;
+                        case 'Autre':
+                            classNames.push('event-pending-autre');
                             break;
                     }
                 } else if (eventData.status === 'validated') {
@@ -163,11 +166,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         case 'CReSTIC':
                             classNames.push('event-validated-crestic');
                             break;
-                        case 'Labi*':
+                        case 'Lab-i*':
                             classNames.push('event-validated-labi');
                             break;
-                        case 'Liciis':
+                        case 'LICIIS':
                             classNames.push('event-validated-liciis');
+                            break;
+                        case 'Autre':
+                            classNames.push('event-validated-autre');
                             break;
                     }
                 }
@@ -185,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (eventData.holiday === "false") {
                 eventDetails.innerHTML = `<p class="event-details">${start} - ${end}&ensp;❘&ensp;${eventData.nom}</p>`;
                 eventDetails.innerHTML += `<p class="event-labo">${eventData.labo}</p>`;
+                eventDetails.innerHTML += `<p class="event-motif">${eventData.motif}</p>`;
             } else {
                 eventDetails.innerHTML = `<p class="event-details">${eventData.nom}</p>`;
             }

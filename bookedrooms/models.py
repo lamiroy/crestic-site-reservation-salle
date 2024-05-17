@@ -15,8 +15,9 @@ class BookedRoom(models.Model):
 
     LABORATORY_CHOICES = [  # Choix pour les groupes de laboratoire
         ('CReSTIC', 'CReSTIC'),
-        ('Labi*', 'Labi*'),
-        ('Liciis', 'Liciis'),
+        ('Lab-i*', 'Lab-i*'),
+        ('LICIIS', 'LICIIS'),
+        ('Autre', "Autre"),
     ]
 
     date = models.DateField()  # Date de la réservation
