@@ -151,11 +151,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         case 'CReSTIC':
                             classNames.push('event-pending-crestic');
                             break;
-                        case 'Labi*':
+                        case 'Lab-i*':
                             classNames.push('event-pending-labi');
                             break;
-                        case 'Liciis':
+                        case 'LICIIS':
                             classNames.push('event-pending-liciis');
+                            break;
+                        case 'Autre':
+                            classNames.push('event-pending-autre');
                             break;
                     }
                 } else if (eventData.status === 'validated') {
@@ -163,11 +166,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         case 'CReSTIC':
                             classNames.push('event-validated-crestic');
                             break;
-                        case 'Labi*':
+                        case 'Lab-i*':
                             classNames.push('event-validated-labi');
                             break;
-                        case 'Liciis':
+                        case 'LICIIS':
                             classNames.push('event-validated-liciis');
+                            break;
+                        case 'Autre':
+                            classNames.push('event-validated-autre');
                             break;
                     }
                 }
@@ -185,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (eventData.holiday === "false") {
                 eventDetails.innerHTML = `<p class="event-details">${start} - ${end}&ensp;❘&ensp;${eventData.nom}</p>`;
                 eventDetails.innerHTML += `<p class="event-labo">${eventData.labo}</p>`;
+                eventDetails.innerHTML += `<p class="event-motif">${eventData.motif}</p>`;
             } else {
                 eventDetails.innerHTML = `<p class="event-details">${eventData.nom}</p>`;
             }
