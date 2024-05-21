@@ -18,8 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
             let end = moment(info.event.end).format("HH:mm"); // Heure de fin formatée
             let eventTitle = document.getElementById('eventTitle');
             let eventDescription = document.getElementById('eventDescription'); // Élément HTML où afficher les détails de l'événement
-            let ancreEdit = document.getElementById('ancreEdit');
-            let ancreDelete = document.getElementById('ancreDelete');
             const detailsButton = document.querySelector('button.d-none.modalDetails');
             detailsButton.click();
             // Convertir la chaîne JSON corrigée en objet JavaScript
