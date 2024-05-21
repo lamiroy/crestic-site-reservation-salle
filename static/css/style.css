@@ -488,6 +488,10 @@ h2.container-title {
     font-weight: 600;
 }
 
+h2.container-title.other {
+    margin-bottom: 10px;
+}
+
 /* Bloc qui contient les salles */
 div.row.content.roomdashboard {
     margin: 20px 0 0 0;

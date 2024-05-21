@@ -39,23 +39,37 @@
 
     <div class="container">
         <div class="col-sm-12">
-            <h2 class="container-title">Réservation en cours</h2>
+            <h2 class="container-title other">Réservation en cours</h2>
         </div>
     </div>
 
     <div class="container">
-        <div class="row content col-sm-12">
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="col-sm-12">
-            <h2 class="container-title">Historique</h2>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row content col-sm-12">
+        <div class="row content col-sm-12 mb-5">
+            {% for bookedroom in BookedRoom %}
+                {% if object.id == bookedroom.room_category.id and bookedroom.status != "canceled" %}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card shadow-sm">
+                            <img src="{{ MEDIA_PREFIX }}{{ bookedroom.room_category.image }}" class="card-img-top" alt="{{ room.room_category.libRoom }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
+                                <p class="card-text">{{ bookedroom.motif }}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Nombre de pers. max. : {{ bookedroom.peopleAmount }}</li>
+                                <li class="list-group-item">Jour de réservation : {{ bookedroom.date }}</li>
+                                <li class="list-group-item">Heure de début : {{ bookedroom.startTime }}</li>
+                                <li class="list-group-item">Heure de fin : {{ bookedroom.endTime }}</li>
+                            </ul>
+                            <div class="card-body">
+                                <div class="btn-group card-link" role="group" aria-label="Boutons">
+                                    <a href="{% url 'bookedrooms_edit' bookedroom.pk %}" class="btn btn-primary booked-button" >Modifier</a>
+                                    <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger card-link cancel-button">Annuler</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 {% endblock content %}
