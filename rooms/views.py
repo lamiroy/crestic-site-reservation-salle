@@ -93,7 +93,12 @@ class HomePageView(LoginRequiredMixin, CreateView):
         form.fields['peopleAmount'].widget.attrs['max'] = 30
 
         form.fields['date'].label = 'Jour de la réservation'
-        form.fields['date'].widget = DatePickerInput()
+        form.fields['date'].widget = DatePickerInput(
+            options={
+                "locale": "fr",
+                "format": "DD/MM/YYYY",
+            }
+        )
 
         form.fields['startTime'].label = 'Début de la réservation'
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')

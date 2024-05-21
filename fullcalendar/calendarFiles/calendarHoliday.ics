@@ -1,9 +1,673 @@
 BEGIN:VCALENDAR
 BEGIN:VEVENT
-SUMMARY:{"id": ""\, "labo": ""\, "nom": "Jour de l'an"\, "status": ""\, "m
- otif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
 DTSTART:20240101T000000
 DTEND:20240101T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20240102T000000
+DTEND:20240102T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20240103T000000
+DTEND:20240103T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20240104T000000
+DTEND:20240104T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20240105T000000
+DTEND:20240105T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20240106T000000
+DTEND:20240106T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20240107T000000
+DTEND:20240107T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20240224T000000
+DTEND:20240224T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20240225T000000
+DTEND:20240225T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20240420T000000
+DTEND:20240420T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20240421T000000
+DTEND:20240421T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240706T000000
+DTEND:20240706T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240707T000000
+DTEND:20240707T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240708T000000
+DTEND:20240708T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240709T000000
+DTEND:20240709T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240710T000000
+DTEND:20240710T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240711T000000
+DTEND:20240711T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240712T000000
+DTEND:20240712T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240713T000000
+DTEND:20240713T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240714T000000
+DTEND:20240714T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240715T000000
+DTEND:20240715T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240716T000000
+DTEND:20240716T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240717T000000
+DTEND:20240717T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240718T000000
+DTEND:20240718T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240719T000000
+DTEND:20240719T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240720T000000
+DTEND:20240720T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240721T000000
+DTEND:20240721T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240722T000000
+DTEND:20240722T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240723T000000
+DTEND:20240723T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240724T000000
+DTEND:20240724T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240725T000000
+DTEND:20240725T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240726T000000
+DTEND:20240726T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240727T000000
+DTEND:20240727T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240728T000000
+DTEND:20240728T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240729T000000
+DTEND:20240729T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240730T000000
+DTEND:20240730T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240731T000000
+DTEND:20240731T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240801T000000
+DTEND:20240801T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240802T000000
+DTEND:20240802T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240803T000000
+DTEND:20240803T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240804T000000
+DTEND:20240804T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240805T000000
+DTEND:20240805T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240806T000000
+DTEND:20240806T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240807T000000
+DTEND:20240807T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240808T000000
+DTEND:20240808T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240809T000000
+DTEND:20240809T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240810T000000
+DTEND:20240810T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240811T000000
+DTEND:20240811T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240812T000000
+DTEND:20240812T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240813T000000
+DTEND:20240813T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240814T000000
+DTEND:20240814T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240815T000000
+DTEND:20240815T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240816T000000
+DTEND:20240816T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240817T000000
+DTEND:20240817T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240818T000000
+DTEND:20240818T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240819T000000
+DTEND:20240819T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240820T000000
+DTEND:20240820T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240821T000000
+DTEND:20240821T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240822T000000
+DTEND:20240822T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240823T000000
+DTEND:20240823T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240824T000000
+DTEND:20240824T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240825T000000
+DTEND:20240825T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240826T000000
+DTEND:20240826T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240827T000000
+DTEND:20240827T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240828T000000
+DTEND:20240828T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240829T000000
+DTEND:20240829T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240830T000000
+DTEND:20240830T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240831T000000
+DTEND:20240831T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20240901T000000
+DTEND:20240901T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241019T000000
+DTEND:20241019T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241020T000000
+DTEND:20241020T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241021T000000
+DTEND:20241021T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241022T000000
+DTEND:20241022T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241023T000000
+DTEND:20241023T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241024T000000
+DTEND:20241024T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241025T000000
+DTEND:20241025T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241026T000000
+DTEND:20241026T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241027T000000
+DTEND:20241027T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241028T000000
+DTEND:20241028T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241029T000000
+DTEND:20241029T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241030T000000
+DTEND:20241030T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241031T000000
+DTEND:20241031T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241101T000000
+DTEND:20241101T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241102T000000
+DTEND:20241102T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20241103T000000
+DTEND:20241103T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241221T000000
+DTEND:20241221T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241222T000000
+DTEND:20241222T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241223T000000
+DTEND:20241223T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241224T000000
+DTEND:20241224T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241225T000000
+DTEND:20241225T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241226T000000
+DTEND:20241226T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241227T000000
+DTEND:20241227T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241228T000000
+DTEND:20241228T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241229T000000
+DTEND:20241229T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241230T000000
+DTEND:20241230T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20241231T000000
+DTEND:20241231T235900
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate du Travail"\, "status"
@@ -18,13 +682,6 @@ SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate de la Victoire"\, "sta
  "true"}
 DTSTART:20240508T000000
 DTEND:20240508T235900
-END:VEVENT
-BEGIN:VEVENT
-SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate nationale"\, "status":
-  ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true
- "}
-DTSTART:20240714T000000
-DTEND:20240714T235900
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:{"id": ""\, "labo": ""\, "nom": "Armistice"\, "status": ""\, "moti
@@ -53,21 +710,1400 @@ DTSTART:20240509T000000
 DTEND:20240509T235900
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:{"id": ""\, "labo": ""\, "nom": "Assomption"\, "status": ""\, "mot
- if": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
-DTSTART:20240815T000000
-DTEND:20240815T235900
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20250101T000000
+DTEND:20250101T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20250102T000000
+DTEND:20250102T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20250103T000000
+DTEND:20250103T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20250104T000000
+DTEND:20250104T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20250105T000000
+DTEND:20250105T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250215T000000
+DTEND:20250215T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250216T000000
+DTEND:20250216T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250217T000000
+DTEND:20250217T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250218T000000
+DTEND:20250218T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250219T000000
+DTEND:20250219T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250220T000000
+DTEND:20250220T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250221T000000
+DTEND:20250221T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250222T000000
+DTEND:20250222T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250223T000000
+DTEND:20250223T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250412T000000
+DTEND:20250412T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250413T000000
+DTEND:20250413T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250414T000000
+DTEND:20250414T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250415T000000
+DTEND:20250415T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250416T000000
+DTEND:20250416T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250417T000000
+DTEND:20250417T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250418T000000
+DTEND:20250418T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250419T000000
+DTEND:20250419T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250420T000000
+DTEND:20250420T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250421T000000
+DTEND:20250421T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250705T000000
+DTEND:20250705T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250706T000000
+DTEND:20250706T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250707T000000
+DTEND:20250707T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250708T000000
+DTEND:20250708T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250709T000000
+DTEND:20250709T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250710T000000
+DTEND:20250710T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250711T000000
+DTEND:20250711T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250712T000000
+DTEND:20250712T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250713T000000
+DTEND:20250713T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250714T000000
+DTEND:20250714T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250715T000000
+DTEND:20250715T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250716T000000
+DTEND:20250716T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250717T000000
+DTEND:20250717T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250718T000000
+DTEND:20250718T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250719T000000
+DTEND:20250719T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250720T000000
+DTEND:20250720T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250721T000000
+DTEND:20250721T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250722T000000
+DTEND:20250722T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250723T000000
+DTEND:20250723T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250724T000000
+DTEND:20250724T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250725T000000
+DTEND:20250725T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250726T000000
+DTEND:20250726T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250727T000000
+DTEND:20250727T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250728T000000
+DTEND:20250728T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250729T000000
+DTEND:20250729T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250730T000000
+DTEND:20250730T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250731T000000
+DTEND:20250731T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250801T000000
+DTEND:20250801T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250802T000000
+DTEND:20250802T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250803T000000
+DTEND:20250803T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250804T000000
+DTEND:20250804T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250805T000000
+DTEND:20250805T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250806T000000
+DTEND:20250806T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250807T000000
+DTEND:20250807T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250808T000000
+DTEND:20250808T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250809T000000
+DTEND:20250809T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250810T000000
+DTEND:20250810T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250811T000000
+DTEND:20250811T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250812T000000
+DTEND:20250812T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250813T000000
+DTEND:20250813T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250814T000000
+DTEND:20250814T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250815T000000
+DTEND:20250815T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250816T000000
+DTEND:20250816T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250817T000000
+DTEND:20250817T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250818T000000
+DTEND:20250818T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250819T000000
+DTEND:20250819T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250820T000000
+DTEND:20250820T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250821T000000
+DTEND:20250821T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250822T000000
+DTEND:20250822T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250823T000000
+DTEND:20250823T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250824T000000
+DTEND:20250824T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250825T000000
+DTEND:20250825T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250826T000000
+DTEND:20250826T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250827T000000
+DTEND:20250827T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250828T000000
+DTEND:20250828T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250829T000000
+DTEND:20250829T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250830T000000
+DTEND:20250830T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20250831T000000
+DTEND:20250831T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251018T000000
+DTEND:20251018T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251019T000000
+DTEND:20251019T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251020T000000
+DTEND:20251020T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251021T000000
+DTEND:20251021T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251022T000000
+DTEND:20251022T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251023T000000
+DTEND:20251023T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251024T000000
+DTEND:20251024T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251025T000000
+DTEND:20251025T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251026T000000
+DTEND:20251026T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251027T000000
+DTEND:20251027T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251028T000000
+DTEND:20251028T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251029T000000
+DTEND:20251029T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251030T000000
+DTEND:20251030T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251031T000000
+DTEND:20251031T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251101T000000
+DTEND:20251101T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de la Toussaint"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20251102T000000
+DTEND:20251102T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251220T000000
+DTEND:20251220T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251221T000000
+DTEND:20251221T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251222T000000
+DTEND:20251222T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251223T000000
+DTEND:20251223T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251224T000000
+DTEND:20251224T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251225T000000
+DTEND:20251225T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251226T000000
+DTEND:20251226T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251227T000000
+DTEND:20251227T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251228T000000
+DTEND:20251228T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251229T000000
+DTEND:20251229T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251230T000000
+DTEND:20251230T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20251231T000000
+DTEND:20251231T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate du Travail"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20250501T000000
+DTEND:20250501T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate de la Victoire"\, "sta
+ tus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": 
+ "true"}
+DTSTART:20250508T000000
+DTEND:20250508T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Armistice"\, "status": ""\, "moti
+ f": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20251111T000000
+DTEND:20251111T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Lundi de Pentec\\u00f4te"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20250609T000000
+DTEND:20250609T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Ascension"\, "status": ""\, "moti
+ f": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20250529T000000
+DTEND:20250529T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20260101T000000
+DTEND:20260101T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20260102T000000
+DTEND:20260102T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20260103T000000
+DTEND:20260103T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de No\\u00ebl"\, "status
+ ": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tr
+ ue"}
+DTSTART:20260104T000000
+DTEND:20260104T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260221T000000
+DTEND:20260221T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260222T000000
+DTEND:20260222T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260223T000000
+DTEND:20260223T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260224T000000
+DTEND:20260224T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260225T000000
+DTEND:20260225T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260226T000000
+DTEND:20260226T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260227T000000
+DTEND:20260227T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260228T000000
+DTEND:20260228T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'hiver"\, "status": ""\
+ , "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260301T000000
+DTEND:20260301T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260418T000000
+DTEND:20260418T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260419T000000
+DTEND:20260419T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260420T000000
+DTEND:20260420T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260421T000000
+DTEND:20260421T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260422T000000
+DTEND:20260422T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260423T000000
+DTEND:20260423T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260424T000000
+DTEND:20260424T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260425T000000
+DTEND:20260425T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances de printemps"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260426T000000
+DTEND:20260426T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260704T000000
+DTEND:20260704T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260705T000000
+DTEND:20260705T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260706T000000
+DTEND:20260706T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260707T000000
+DTEND:20260707T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260708T000000
+DTEND:20260708T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260709T000000
+DTEND:20260709T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260710T000000
+DTEND:20260710T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260711T000000
+DTEND:20260711T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260712T000000
+DTEND:20260712T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260713T000000
+DTEND:20260713T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260714T000000
+DTEND:20260714T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260715T000000
+DTEND:20260715T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260716T000000
+DTEND:20260716T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260717T000000
+DTEND:20260717T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260718T000000
+DTEND:20260718T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260719T000000
+DTEND:20260719T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260720T000000
+DTEND:20260720T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260721T000000
+DTEND:20260721T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260722T000000
+DTEND:20260722T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260723T000000
+DTEND:20260723T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260724T000000
+DTEND:20260724T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260725T000000
+DTEND:20260725T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260726T000000
+DTEND:20260726T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260727T000000
+DTEND:20260727T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260728T000000
+DTEND:20260728T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260729T000000
+DTEND:20260729T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260730T000000
+DTEND:20260730T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260731T000000
+DTEND:20260731T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260801T000000
+DTEND:20260801T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260802T000000
+DTEND:20260802T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260803T000000
+DTEND:20260803T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260804T000000
+DTEND:20260804T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260805T000000
+DTEND:20260805T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260806T000000
+DTEND:20260806T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260807T000000
+DTEND:20260807T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260808T000000
+DTEND:20260808T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260809T000000
+DTEND:20260809T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260810T000000
+DTEND:20260810T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260811T000000
+DTEND:20260811T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260812T000000
+DTEND:20260812T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260813T000000
+DTEND:20260813T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260814T000000
+DTEND:20260814T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260815T000000
+DTEND:20260815T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260816T000000
+DTEND:20260816T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260817T000000
+DTEND:20260817T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260818T000000
+DTEND:20260818T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260819T000000
+DTEND:20260819T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260820T000000
+DTEND:20260820T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260821T000000
+DTEND:20260821T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260822T000000
+DTEND:20260822T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260823T000000
+DTEND:20260823T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260824T000000
+DTEND:20260824T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260825T000000
+DTEND:20260825T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260826T000000
+DTEND:20260826T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260827T000000
+DTEND:20260827T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260828T000000
+DTEND:20260828T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260829T000000
+DTEND:20260829T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Vacances d'\\u00e9t\\u00e9"\, "st
+ atus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday":
+  "true"}
+DTSTART:20260830T000000
+DTEND:20260830T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate du Travail"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260501T000000
+DTEND:20260501T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "F\\u00eate de la Victoire"\, "sta
+ tus": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": 
+ "true"}
+DTSTART:20260508T000000
+DTEND:20260508T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Armistice"\, "status": ""\, "moti
+ f": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20261111T000000
+DTEND:20261111T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Lundi de P\\u00e2ques"\, "status"
+ : ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "tru
+ e"}
+DTSTART:20260406T000000
+DTEND:20260406T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Lundi de Pentec\\u00f4te"\, "stat
+ us": ""\, "motif": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "
+ true"}
+DTSTART:20260525T000000
+DTEND:20260525T235900
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": ""\, "labo": ""\, "nom": "Ascension"\, "status": ""\, "moti
+ f": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
+DTSTART:20260514T000000
+DTEND:20260514T235900
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:{"id": ""\, "labo": ""\, "nom": "Toussaint"\, "status": ""\, "moti
  f": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
-DTSTART:20241101T000000
-DTEND:20241101T235900
+DTSTART:20261101T000000
+DTEND:20261101T235900
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:{"id": ""\, "labo": ""\, "nom": "No\\u00ebl"\, "status": ""\, "mot
  if": ""\, "nombre_personnes": ""\, "user": ""\, "holiday": "true"}
-DTSTART:20241225T000000
-DTEND:20241225T235900
+DTSTART:20261225T000000
+DTEND:20261225T235900
 END:VEVENT
 END:VCALENDAR
