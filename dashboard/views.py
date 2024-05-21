@@ -42,6 +42,14 @@ class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
         """
         return self.request.user.is_superuser
 
+    def get_context_data(self, **kwargs):
+        """
+        Ajoute des données supplémentaires au contexte de la vue.
+        """
+        context = super().get_context_data(**kwargs)
+        context['BookedRoom'] = BookedRoom.objects.all()  # Ajouter les objets d'un autre modèle
+        return context
+
 
 class RoomDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """

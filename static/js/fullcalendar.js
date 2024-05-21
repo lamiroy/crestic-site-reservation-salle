@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const addButton = document.querySelector('button.d-none');
             addButton.click();
             // Remplir les champs de la fenêtre modale avec les informations de la sélection
-            document.getElementById('id_date').value = moment(info.start).format("MM/DD/YYYY"); // Date
+            document.getElementById('id_date').value = moment(info.start).format("DD/MM/YYYY"); // Date
             document.getElementById('id_startTime').value = moment(info.start).format("HH:mm"); // Heure de début
             document.getElementById('id_endTime').value = moment(info.end).format("HH:mm"); // Heure de fin
         },
