@@ -53,8 +53,12 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         form.fields['peopleAmount'].widget.attrs['max'] = 30  # Définition de la valeur maximale autorisée
 
         form.fields['date'].label = 'Jour de la réservation'  # Changement de l'étiquette du champ date
-        form.fields['date'].widget = DatePickerInput()  # Utilisation du widget DatePickerInput pour le champ date
-
+        form.fields['date'].widget = DatePickerInput(
+            options={
+                "locale": "fr",
+                "format": "DD/MM/YYYY",
+            }
+        )
         form.fields['startTime'].label = 'Début de la réservation'  # Changement de l'étiquette du champ startTime
         form.fields['startTime'].widget = TimePickerInput().start_of(
             'duration')  # Utilisation du widget TimePickerInput pour le champ startTime
@@ -131,7 +135,12 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         form.fields['peopleAmount'].widget.attrs['max'] = 30  # Définition de la valeur maximale autorisée
 
         form.fields['date'].label = 'Jour de la réservation'  # Changement de l'étiquette du champ date
-        form.fields['date'].widget = DatePickerInput()  # Utilisation du widget DatePickerInput pour le champ date
+        form.fields['date'].widget = DatePickerInput(
+            options={
+                "locale": "fr",
+                "format": "DD/MM/YYYY",
+            }
+        )
 
         form.fields['startTime'].label = 'Début de la réservation'  # Changement de l'étiquette du champ startTime
         form.fields['startTime'].widget = TimePickerInput().start_of(
