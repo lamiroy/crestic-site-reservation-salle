@@ -7,9 +7,9 @@
     <h1>Modifier</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {% comment %}{{ form|crispy }}{% endcomment %}
-        {{ form.libRoom|as_crispy_field }}
-        {{ form.maxCapacity|as_crispy_field }}
+        {{ form | crispy }}
+        {{ form.libRoom | as_crispy_field }}
+        {{ form.maxCapacity | as_crispy_field }}
         <figure class="figure">
                  height="100"
                  class="figure-img rounded" alt="Current Image">
