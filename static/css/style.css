@@ -47,12 +47,13 @@ img {
     /* Couleurs des différents labos */
     --color-crestic: #00A9CD;
     --color-dark-crestic: #019cbf;
-    --color-labi: #4c73ff;
-    --color-dark-labi: #4b6ff4;
-    --color-liciis: #2cae00;
-    --color-dark-liciis: #27a300;
-    --color-autre: #9aa69a;
-    --color-dark-autre: #8a918a;
+    --color-labi: #6d90fd;
+    --color-dark-labi: #5e84ff;
+    --color-liciis: #aa00fd;
+    --color-dark-liciis: #a200f3;
+    --color-autre: #f4a352;
+    --color-dark-autre: #e19545;
+    --color-jour-ferie: #9e8c7a;
 }
 
 /*----------------- Page de base -----------------*/
@@ -250,8 +251,8 @@ p.event-motif {
 
 /* Autre event */
 a.event-other {
-    border: 1px solid var(--color-light-blue) !important;
-    background-color: var(--color-light-blue) !important;
+    border: 1px solid var(--color-jour-ferie) !important;
+    background-color: var(--color-jour-ferie) !important;
 }
 
 /* Event en attente */
