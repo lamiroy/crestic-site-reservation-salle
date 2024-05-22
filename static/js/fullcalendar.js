@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         // Fonction exécutée lors de la sélection d'un créneau horaire
         select: function(info) {
-            const addButton = document.querySelector('button.d-none');
+            const addButton = document.querySelector('button.d-none.modalAdd');
             addButton.click();
             // Remplir les champs de la fenêtre modale avec les informations de la sélection
             document.getElementById('id_date').value = moment(info.start).format("DD/MM/YYYY"); // Date
@@ -206,4 +206,11 @@ document.addEventListener('DOMContentLoaded', function() {
     btnCloseAdd.addEventListener('click', function() {
         eventForm.reset(); // Réinitialiser le formulaire de réservation
     });
+
+    // Vérifie s'il y a une erreur dans le formulaire
+    const formError = document.getElementById('error-form');
+    if (formError) {
+        const addButton = document.querySelector('button.d-none.modalAdd');
+        addButton.click();
+    }
 });
