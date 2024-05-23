@@ -26,8 +26,8 @@
                         </div>
                         <div class="card-body">
                             <div class="btn-group card-link" role="group" aria-label="Boutons">
-                                <a href="{% url 'roomdashboard_edit' object.pk %}" class="btn btn-warning cancel-button">Modifier</a>
-                                    <a href="{% url 'roomdashboard_delete' object.pk %}" class="btn btn-danger cancel-button">Supprimer</a>
+                                <a href="{% url 'roomdashboard_edit' object.pk %}" class="btn btn-warning button-style">Modifier</a>
+                                <a href="{% url 'roomdashboard_delete' object.pk %}" class="btn btn-danger button-style button-red">Supprimer</a>
                             </div>
                         </div>
                     </div>
@@ -61,8 +61,8 @@
                             </ul>
                             <div class="card-body">
                                 <div class="btn-group card-link" role="group" aria-label="Boutons">
-                                    <a href="{% url 'bookedrooms_edit' bookedroom.pk %}" class="btn btn-primary booked-button" >Modifier</a>
-                                    <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger card-link cancel-button">Annuler</a>
+                                    <a href="{% url 'bookedrooms_edit' bookedroom.pk %}" class="btn btn-primary button-style" >Modifier</a>
+                                    <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger card-link button-style button-red">Annuler</a>
                                 </div>
                             </div>
                         </div>

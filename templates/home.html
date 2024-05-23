@@ -9,7 +9,7 @@
 
 {% block content %}
     <button type="button" class="d-none modalAdd" data-bs-toggle="modal" data-bs-target="#modalAdd"></button>
-    <div class="modal fade modal-reservation" id="modalAdd" tabindex="-1" aria-labelledby="modalAdd" aria-hidden="true">
+    <div class="modal fade modal-window" id="modalAdd" tabindex="-1" aria-labelledby="modalAdd" aria-hidden="true">
         <div class="modal-dialog">
             <form class="modal-content roomreservation" id="eventForm" method="post" enctype="multipart/form-data">
                 <div class="modal-header">
@@ -45,15 +45,15 @@
                     {% endif %}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btnCloseAdd" class="btn btn-danger cancel-button" data-bs-dismiss="modal">Fermer</button>
-                    <button type="submit" class="btn btn-success cancel-button">Valider</button>
+                    <button type="button" id="btnCloseAdd" class="btn btn-danger button-style button-red" data-bs-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-success button-style">Valider</button>
                 </div>
             </form>
         </div>
     </div>
 
     <button type="button" class="d-none modalDetails" data-bs-toggle="modal" data-bs-target="#modalDetails"></button>
-    <div class="modal fade modal-reservation" id="modalDetails" tabindex="-1" aria-labelledby="modalDetails" aria-hidden="true">
+    <div class="modal fade modal-window" id="modalDetails" tabindex="-1" aria-labelledby="modalDetails" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -64,7 +64,7 @@
                     {% if user.isSecretary or user.is_superuser %}
                         <div class="eventDetailsButtons"></div>
                     {% endif %}
-                    <button type="button" class="btn btn-danger cancel-button" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-danger button-style button-red" data-bs-dismiss="modal">Fermer</button>
                 </div>
             </div>
         </div>

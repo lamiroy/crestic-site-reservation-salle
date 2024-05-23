@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `; // Titre de l'événement
                 eventDescription.innerHTML = `<p class="modal-description">${eventData.motif}</p>`; // Motif de réservation
                 eventDescription.innerHTML += `
-                    <ul class="list-group listModalDetails">
+                    <ul class="list-group modal-list">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">Laboratoire</div>
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             } else {
-                classNames.push('event-other');
+                classNames.push('event-holiday');
             }
             // Ajouter les classes au DOM de l'événement
             info.el.classList.add(...classNames);
