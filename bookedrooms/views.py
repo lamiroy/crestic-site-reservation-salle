@@ -16,6 +16,7 @@ from rooms.views import add_to_ics
 from .models import BookedRoom  # Import du modèle BookedRoom pour les réservations de salles
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
+from django.core.exceptions import ValidationError
 
 
 class BookedRoomsListView(LoginRequiredMixin, ListView):
@@ -77,7 +78,15 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         # Validation du formulaire
         user = self.request.user
         form.instance.user = user
-        data = super(BookedRoomsUpdateView, self).form_valid(form)
+        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
+        try:
+            data = super().form_valid(form)
+        except ValidationError as e:
+            # Convertir l'erreur de validation en chaîne de caractères
+            error_message = ', '.join(e.messages)
+            # Ajouter l'erreur de validation au formulaire
+            form.add_error(None, error_message)
+            return self.form_invalid(form)
         add_to_ics()
         return data
 
@@ -163,10 +172,14 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         """
         user = self.request.user
         form.instance.user = user
-
-        print("Form data:", form.cleaned_data)
-        print("Form errors:", form.errors)
-        data = super(BookedRoomsCreateView, self).form_valid(form)
+        try:
+            data = super().form_valid(form)
+        except ValidationError as e:
+            # Convertir l'erreur de validation en chaîne de caractères
+            error_message = ', '.join(e.messages)
+            # Ajouter l'erreur de validation au formulaire
+            form.add_error(None, error_message)
+            return self.form_invalid(form)
         add_to_ics()
         return data
 
@@ -217,4 +230,3 @@ def BookedRoomsValidationValidatedView(request, pk):
         add_to_ics()
         return redirect('bookedrooms_validation')  # redirigez vers une page de succès ou de confirmation
     return render(request, 'bookedroom_validation_validated.html', {'reservation': reservation})
-
