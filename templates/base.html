@@ -49,15 +49,15 @@
                             <span class="nav-line"></span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Réserver du matériel</a>
+                            <a class="nav-link" href="{% url 'roomreservation_list' %}">Réserver une salle</a>
                         </li>
                         <li class="nav-item">
                             <span class="nav-line"></span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'roomreservation_list' %}">Réserver une salle</a>
+                            <a class="nav-link" href="/">Réserver du matériel</a>
                         </li>
-                        {% if request.user.is_superuser or request.user.isSecretary %}
+                        {% if request.user.is_superuser %}
                             <li class="nav-item">
                                 <span class="nav-line"></span>
                             </li>
@@ -67,11 +67,28 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
+                                        <a class="dropdown-item" href="/admin">Administration</a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item" href="{% url 'roomdashboard_list' %}">Gestion des salles</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#">Gestion des équipements</a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'bookedrooms_validation' %}">Gestion des réservations</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% elif request.user.isSecretary %}
+                            <li class="nav-item">
+                                <span class="nav-line"></span>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Tableau de bord
+                                </a>
+                                <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{% url 'bookedrooms_validation' %}">Gestion des réservations</a>
                                     </li>
@@ -86,15 +103,15 @@
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Mon compte
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
+                                <ul class="dropdown-menu">
                                     <li class="dropdown-ligne">
                                         <a class="dropdown-item" href="{% url 'myprofile' %}">
-                                            <i class="bi bi-person"></i> Mon profil
+                                            Mon profil
                                         </a>
                                     </li>
                                     <li class="dropdown-ligne">
                                         <a class="dropdown-item" href="{% url 'logout' %}">
-                                            <i class="bi bi-box-arrow-right"></i> Déconnexion
+                                            Déconnexion
                                         </a>
                                     </li>
                                 </ul>
@@ -123,7 +140,6 @@
                 </a>
                 <p class="text-md">
                     <a class="crestic-link" href="https://crestic.univ-reims.fr/fr/accueil" target="_blank">
-                        <i class="bi bi-house-door-fill"></i>
                         CReSTIC - UFR Sciences Exactes et Naturelles
                     </a>
                 </p>
