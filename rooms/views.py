@@ -1,7 +1,7 @@
 from django.http import HttpResponse  # Importe la classe HttpResponse pour gérer les réponses HTTP
 from django.views.generic import ListView  # Importe la classe ListView pour afficher une liste d'objets
 from django.urls import reverse_lazy  # Importe la fonction reverse_lazy pour les URL asynchrones
-from hotel_reservation_project import settings  # Importe les paramètres du projet
+from RoomQueSTIC import settings  # Importe les paramètres du projet
 from .models import RoomCategory  # Importe le modèle RoomCategory
 from bookedrooms.models import BookedRoom  # Importe le modèle BookedRoom
 from bootstrap_datepicker_plus import DatePickerInput, \
