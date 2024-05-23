@@ -13,6 +13,7 @@ from icalendar import Calendar, Event  # Importe les classes pour créer des fic
 from datetime import datetime, time  # Importe les classes pour manipuler les dates et heures
 import os  # Importe le module os pour les opérations sur le système d'exploitation
 import json
+from django.core.exceptions import ValidationError
 
 
 def add_to_ics():
@@ -120,10 +121,14 @@ class HomePageView(LoginRequiredMixin, CreateView):
         """
         user = self.request.user
         form.instance.user = user
-        print("Form data:", form.cleaned_data)
-        print("Test:", form.cleaned_data['room_category'])
-        print("Form errors:", form.errors)
-        data = super(HomePageView, self).form_valid(form)
+        try:
+            data = super().form_valid(form)
+        except ValidationError as e:
+            # Convertir l'erreur de validation en chaîne de caractères
+            error_message = ', '.join(e.messages)
+            # Ajouter l'erreur de validation au formulaire
+            form.add_error(None, error_message)
+            return self.form_invalid(form)
         add_to_ics()
         return data
 
