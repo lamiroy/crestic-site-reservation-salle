@@ -31,18 +31,21 @@ class BookedRoom(models.Model):
     user = models.ForeignKey(  # Utilisateur associé à la réservation
         get_user_model(),  # Utilisation de la fonction get_user_model pour obtenir le modèle utilisateur personnalisé
         on_delete=models.CASCADE,  # Suppression en cascade de l'utilisateur si celui-ci est supprimé
-
     )
     room_category = models.ForeignKey(  # Catégorie de salle réservée
         RoomCategory,  # Utilisation du modèle RoomCategory pour les catégories de salles
         on_delete=models.CASCADE,  # Suppression en cascade de la catégorie de salle si celle-ci est supprimée
     )
 
-    def clean(self):
+    def perform_validations(self):
+        # Vérifiez que l'utilisateur existe avant de vérifier is_superuser
+        if self.user and (self.user.is_superuser or self.user.isSecretary):
+            return  # Ignorer toutes les validations si l'utilisateur est un superutilisateur
+
         # Vérification de la validité de la date et de l'heure de début
         selected_date = self.date
         if selected_date < date.today():  # Si la date est antérieure à aujourd'hui
-            raise ValidationError('Vous ne pouvez pas changer la date pour une date antérieure à aujourd\'hui.')
+            raise ValidationError('Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
 
         start_time = self.startTime
         if start_time:
@@ -69,6 +72,7 @@ class BookedRoom(models.Model):
                 raise ValidationError('L\'heure de fin doit être entre 8h00 et 18h00.')
             if end_time <= start_time:
                 raise ValidationError('L\'heure de fin doit être supérieure à l\'heure de début.')
+
         # Ajout de la condition pour le samedi après 12h30 et le dimanche
         if selected_date.weekday() == 5:  # Samedi (0 = lundi, 6 = dimanche)
             if start_time >= time(12, 30):
@@ -96,6 +100,11 @@ class BookedRoom(models.Model):
             raise ValidationError(
                 'Une réservation existante avec un statut autre que "pending" occupe déjà cette salle pendant cette '
                 'période.')
+
+    def save(self, *args, **kwargs):
+        # Effectuer les validations avant d'enregistrer l'objet
+        self.perform_validations()
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         # Renvoie l'URL absolue de l'objet BookedRoom, utilisée pour les redirections après une création ou une
