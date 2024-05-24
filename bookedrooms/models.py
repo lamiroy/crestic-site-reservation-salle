@@ -1,9 +1,13 @@
-from django.core.exceptions import ValidationError
-from django.contrib.auth import get_user_model
-from rooms.models import RoomCategory
-from django.db import models
-from django.urls import reverse
-from datetime import date, datetime, time
+from django.core.exceptions import ValidationError  # Import de l'exception pour gérer les erreurs de validation
+from django.contrib.auth import get_user_model  # Import de la fonction pour obtenir le modèle utilisateur personnalisé
+from rooms.models import RoomCategory  # Import du modèle RoomCategory pour les catégories de salles
+from django.db import models  # Import du module models pour définir les modèles de la base de données
+from django.urls import reverse  # Import de la fonction reverse pour obtenir les URL inversées
+from datetime import (
+    date,  # Import de la classe date pour manipuler les dates
+    datetime,  # Import de la classe datetime pour manipuler les dates et heures
+    time  # Import de la classe time pour manipuler les heures
+)
 
 
 class BookedRoom(models.Model):
@@ -80,6 +84,8 @@ class BookedRoom(models.Model):
         elif selected_date.weekday() == 6:  # Dimanche
             raise ValidationError('Aucune réservation possible le dimanche.')
 
+        # Vérifier que le nombre de personnes dans la réservation est supérieur au nombre de personnes au maximum
+        # dans la salle
         if self.peopleAmount > self.room_category.maxCapacity:
             raise ValidationError('Le nombre de personnes dépasse la capacité maximale de la salle.')
 
