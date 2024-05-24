@@ -1,9 +1,11 @@
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, ListView
+from django.urls import reverse_lazy  # Importe la fonction reverse_lazy pour les redirections différées
+from django.views.generic import (
+    CreateView,  # Importe la vue générique CreateView
+    ListView,  # Importe la vue générique ListView
+)
+from bookedrooms.models import BookedRoom  # Importe le modèle BookedRoom du package bookedrooms
+from .forms import CustomUserCreationForm  # Importe le formulaire CustomUserCreationForm du package actuel
 
-from bookedrooms.models import BookedRoom
-from .forms import CustomUserCreationForm
-from .models import CustomUser
 
 class SignUpView(CreateView):
     """
@@ -11,9 +13,10 @@ class SignUpView(CreateView):
     Utilise CustomUserCreationForm pour le formulaire.
     Redirige vers la page de connexion une fois l'inscription réussie.
     """
-    form_class = CustomUserCreationForm
+    form_class = CustomUserCreationForm  # Utilise CustomUserCreationForm pour le formulaire d'inscription
     success_url = reverse_lazy('login')  # Redirection vers la page de connexion
     template_name = 'signup.html'  # Template utilisé pour l'inscription
+
 
 class MyProfileView(ListView):
     """

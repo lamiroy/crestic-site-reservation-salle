@@ -1,8 +1,10 @@
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-
-from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser
+from django.contrib import admin  # Importe le module d'administration de Django
+from django.contrib.auth.admin import UserAdmin  # Importe la classe UserAdmin pour personnaliser l'administration
+from .forms import (
+    CustomUserCreationForm,  # Importe le formulaire personnalisé de création d'un utilisateur
+    CustomUserChangeForm,  # Importe le formulaire personnalisé de modification d'un utilisateur
+)
+from .models import CustomUser  # Importe le modèle CustomUser pour l'administration des utilisateurs
 
 
 class CustomUserAdmin(UserAdmin):
@@ -10,6 +12,7 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
+
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'isSecretary')}),
@@ -18,6 +21,7 @@ class CustomUserAdmin(UserAdmin):
         }),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
     )
+
     # Définition des champs à afficher dans la liste des utilisateurs dans l'interface d'administration
     list_display = ['username', 'last_name', 'first_name', 'email', 'is_staff', 'isSecretary']
 
