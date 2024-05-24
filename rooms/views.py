@@ -38,7 +38,10 @@ def add_to_ics():
     #     print('     affichage du nombre de personnes:\n' + '     ' + str(objet.peopleAmount))
     #     print('     affichage du user:\n' + '     ' + str(objet.user))
 
-    cal = Calendar()
+    '''
+        Ajout des events dans le .ics avec le Json dans le titre
+    '''
+    calWithJson = Calendar()
 
     for objet in objets:
         if objet.status != "canceled":
@@ -59,9 +62,9 @@ def add_to_ics():
             event.add('summary', json.dumps(jsonData))
             event.add('dtstart', dateDeb)
             event.add('dtend', dateFin)
-            cal.add_component(event)
+            calWithJson.add_component(event)
 
-    ical_data = cal.to_ical()
+    ical_data = calWithJson.to_ical()
     current_directory = os.path.dirname(__file__)
 
     # Chemin relatif vers le fichier
@@ -70,6 +73,33 @@ def add_to_ics():
     # Écrire les données dans le fichier
     with open(ics_file_path, 'wb') as f:
         f.write(ical_data)
+
+    '''
+        Ajout des events dans le .ics avec le Json dans le titre
+    '''
+    cal = Calendar()
+
+    for objet in objets:
+        event = Event()
+        dateDeb = datetime.combine(objet.date, objet.startTime)
+        dateFin = datetime.combine(objet.date, objet.endTime)
+        title = 'Salle : ' + str(objet.room_category) + ' Nombre de personnes : ' + str(objet.peopleAmount) + '/' + str(objet.room_category.maxCapacity) + ' Motif : ' + str(objet.motif) + ' Laboratoire : ' + str(objet.groups) + ' Statut : ' + str(objet.status)
+        event.add('summary', title)
+        event.add('dtstart', dateDeb)
+        event.add('dtend', dateFin)
+        cal.add_component(event)
+
+    ical_data = cal.to_ical()
+    current_directory = os.path.dirname(__file__)
+
+    # Chemin relatif vers le fichier
+    ics_file_path = os.path.join(current_directory, '..', 'fullcalendar', 'calendarFiles', 'calendrier_reservation.ics')
+
+    # Écrire les données dans le fichier
+    with open(ics_file_path, 'wb') as f:
+        f.write(ical_data)
+
+
 
 
 class HomePageView(LoginRequiredMixin, CreateView):
