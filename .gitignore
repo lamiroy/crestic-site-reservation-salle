@@ -2,11 +2,10 @@ env/
 venv/
 .vim/
 __pycache__/
-roomCategories/
 .idea/
 
 *.sqlite3
 /.idea
 /node_modules
-
+fullcalendar/excel/reservations.xlsx
 fullcalendar/calendarFiles/calendarBookedroom.ics
