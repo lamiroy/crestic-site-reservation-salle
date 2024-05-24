@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `; // Titre de l'événement
                 eventDescription.innerHTML = `<p class="modal-description">${eventData.motif}</p>`; // Motif de réservation
                 eventDescription.innerHTML += `
-                    <ul class="list-group listModalDetails">
+                    <ul class="list-group modal-list">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">Laboratoire</div>
@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Ajout du contenu des ancres
                 if (eventData.holiday === "false") {
                     eventDetailsButtons.innerHTML = `
-                        <a id="ancreEdit" class="btn btn-primary booked-button" href="/roombooking/${eventData.id}/edit/">Modifier</a>
-                        <a id="ancreDelete" class="btn btn-danger card-link cancel-button" href="/roombooking/${eventData.id}/delete/">Annuler</a>
+                        <a id="ancreEdit" class="btn btn-primary button-style" href="/roombooking/${eventData.id}/edit/">Modifier</a>
+                        <a id="ancreDelete" class="btn btn-danger card-link button-style button-red" href="/roombooking/${eventData.id}/delete/">Annuler</a>
                     `;
                 }
             } else {
@@ -97,6 +97,22 @@ document.addEventListener('DOMContentLoaded', function() {
             center: 'title', // Titre du calendrier au centre
             right: 'timeGridWeek,timeGridDay next' // Boutons de navigation à droite
         },
+        views: {
+            timeGridWeek: {
+                buttonText: 'Semaine',
+                didMount: function(view) {
+                    document.querySelector('.fc-timeGridWeek-button').classList.add('disable');
+                    document.querySelector('.fc-timeGridDay-button').classList.remove('disable');
+                }
+            },
+            timeGridDay: {
+                buttonText: 'Jour',
+                didMount: function(view) {
+                    document.querySelector('.fc-timeGridDay-button').classList.add('disable');
+                    document.querySelector('.fc-timeGridWeek-button').classList.remove('disable');
+                }
+            }
+        },
         // Sources des événements pour le calendrier
         eventSources: [
             {
@@ -122,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         // Fonction exécutée lors de la sélection d'un créneau horaire
         select: function(info) {
-            const addButton = document.querySelector('button.d-none');
+            const addButton = document.querySelector('button.d-none.modalAdd');
             addButton.click();
             // Remplir les champs de la fenêtre modale avec les informations de la sélection
             document.getElementById('id_date').value = moment(info.start).format("DD/MM/YYYY"); // Date
@@ -176,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             } else {
-                classNames.push('event-other');
+                classNames.push('event-holiday');
             }
             // Ajouter les classes au DOM de l'événement
             info.el.classList.add(...classNames);
@@ -205,5 +221,29 @@ document.addEventListener('DOMContentLoaded', function() {
     let eventForm = document.getElementById('eventForm');
     btnCloseAdd.addEventListener('click', function() {
         eventForm.reset(); // Réinitialiser le formulaire de réservation
+    });
+
+    // Vérifie s'il y a une erreur dans le formulaire
+    const formError = document.getElementById('error-form');
+    if (formError) {
+        const addButton = document.querySelector('button.d-none.modalAdd');
+        addButton.click();
+    }
+
+    // Ajout des écouteurs d'événements pour désactiver les boutons de navigation
+    let btnWeek = document.querySelector('.fc-timeGridWeek-button');
+    let btnDay = document.querySelector('.fc-timeGridDay-button');
+
+    // Désactiver le bouton "Semaine" de base
+    btnWeek.disabled = true;
+
+    btnWeek.addEventListener('click', function() {
+        btnWeek.disabled = true;  // Désactiver le bouton "Semaine"
+        btnDay.disabled = false;  // Activer le bouton "Jour"
+    });
+
+    btnDay.addEventListener('click', function() {
+        btnDay.disabled = true;   // Désactiver le bouton "Jour"
+        btnWeek.disabled = false; // Activer le bouton "Semaine"
     });
 });

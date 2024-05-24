@@ -7,7 +7,7 @@
 
     <div class="container">
         <div class="col-sm-12">
-            <a class="btn btn-primary" type="button" href="{% url 'roomdashboard_new' %}">
+            <a class="btn btn-primary button-style" type="button" href="{% url 'roomdashboard_new' %}">
                 <i class="bi bi-plus-lg"></i>
                 Ajouter une nouvelle salle
             </a>
@@ -30,11 +30,11 @@
                         <div class="card-body">
                             <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Boutons">
                                 <div class="btn-group" role="group" aria-label="Modifier et supprimer">
-                                    <a href="{% url 'roomdashboard_edit' room.pk %}" class="btn btn-warning cancel-button">Modifier</a>
-                                    <a href="{% url 'roomdashboard_delete' room.pk %}" class="btn btn-danger cancel-button">Supprimer</a>
+                                    <a href="{% url 'roomdashboard_edit' room.pk %}" class="btn btn-warning button-style">Modifier</a>
+                                    <a href="{% url 'roomdashboard_delete' room.pk %}" class="btn btn-danger button-style button-red">Supprimer</a>
                                 </div>
                                 <div class="input-group">
-                                    <a href="{% url 'roomdashboard_detail' room.pk %}" class="btn btn-danger booked-button">Voir</a>
+                                    <a href="{% url 'roomdashboard_detail' room.pk %}" class="btn btn-danger button-style">Voir</a>
                                 </div>
                             </div>
                         </div>
