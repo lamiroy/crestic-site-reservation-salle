@@ -225,8 +225,9 @@ footer > div > p:last-child {
 /* Titre de la page */
 h2.container-title {
     margin: 20px 0 0 0;
-    font-family: "Lexend", sans-serif;
-    font-weight: 600;
+    font-family: "Raleway", sans-serif;
+    font-weight: 800;
+    color: var(--color-light-blue);
 }
 
 h2.container-title.other {
@@ -242,14 +243,6 @@ div.row.content.roomdashboard {
     margin: 20px 0 0 0;
 }
 
-div.row.content.roomdashboard div.card {
-    margin-bottom: 20px;
-}
-
-div.row.content.roomdashboard div.card.shadow-sm > img {
-    max-height: 275px;
-}
-
 /* Boutons */
 .button-style {
     border-color: var(--color-blue) !important;
@@ -257,6 +250,7 @@ div.row.content.roomdashboard div.card.shadow-sm > img {
     font-weight: 500 !important;
     color: var(--color-light-white) !important;
     background-color: var(--color-light-blue) !important;
+    cursor: pointer;
 }
 
 .button-style:hover {
@@ -529,6 +523,48 @@ a.fc-col-header-cell-cushion {
     font-weight: 700;
     font-size: 15px;
     color: var(--color-light-blue) !important;
+}
+
+/*-------- Page de réservation des salles --------*/
+/* Card de chaque salle */
+div.card.card-available-rooms {
+    margin-bottom: 20px !important;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--color-light-white) !important;
+}
+
+div.card.card-available-rooms > img {
+    max-height: 275px;
+    border-radius: 15px 15px 0 0;
+    filter: brightness(0.65);
+}
+
+div.card.card-available-rooms h5 {
+    margin-bottom: 5px;
+    text-shadow: 0 0 5px var(--color-dark-grey);
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+}
+
+div.card.card-available-rooms p {
+    margin-bottom: 5px !important;
+    text-align: justify;
+    text-shadow: 0 0 5px var(--color-dark-grey);
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+}
+
+div.card.card-available-rooms span {
+    padding: 5px;
+    border-color: var(--color-blue) !important;
+    font-family: "Outfit", sans-serif;
+    font-weight: bold;
+    background-color: var(--color-light-blue) !important;
+}
+
+div.card.card-available-rooms a {
+    z-index: 999;
 }
 
 /*---------- Page de gestion des salles ----------*/
