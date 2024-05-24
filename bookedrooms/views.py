@@ -15,6 +15,7 @@ from rooms.models import RoomCategory  # Import du modèle RoomCategory pour les
 from rooms.views import add_to_ics
 from .models import BookedRoom  # Import du modèle BookedRoom pour les réservations de salles
 from django.core.exceptions import PermissionDenied
+from utils import send_reservation_confirmation_email_admin
 from django.db import transaction
 from django.core.exceptions import ValidationError
 
@@ -78,15 +79,8 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         # Validation du formulaire
         user = self.request.user
         form.instance.user = user
-        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
-        try:
-            data = super().form_valid(form)
-        except ValidationError as e:
-            # Convertir l'erreur de validation en chaîne de caractères
-            error_message = ', '.join(e.messages)
-            # Ajouter l'erreur de validation au formulaire
-            form.add_error(None, error_message)
-            return self.form_invalid(form)
+        data = super(BookedRoomsUpdateView, self).form_valid(form)
+        # send_reservation_confirmation_email_admin(form.instance)
         add_to_ics()
         return data
 
@@ -98,7 +92,8 @@ class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
     def delete(self, request, *args, **kwargs):
-        # Appel de la méthode delete de la super classe
+        self.object = self.get_object()
+        #send_reservation_confirmation_email_admin(self.object)
         response = super().delete(request, *args, **kwargs)
 
         # Appel de la fonction add_to_ics pour ajouter l'événement à l'ICS
@@ -167,21 +162,14 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         return form
 
     def form_valid(self, form):
-        """
-        Remplacement pour toujours définir l'utilisateur sur l'utilisateur actuellement connecté
-        """
         user = self.request.user
         form.instance.user = user
-        try:
-            data = super().form_valid(form)
-        except ValidationError as e:
-            # Convertir l'erreur de validation en chaîne de caractères
-            error_message = ', '.join(e.messages)
-            # Ajouter l'erreur de validation au formulaire
-            form.add_error(None, error_message)
-            return self.form_invalid(form)
+        form.instance.status = BookedRoom.STATUS_CHOICES[0][0]
+
+        response = super(BookedRoomsCreateView, self).form_valid(form)
+        # send_reservation_confirmation_email_admin(form.instance)
         add_to_ics()
-        return data
+        return response
 
 
 class BookedRoomsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):

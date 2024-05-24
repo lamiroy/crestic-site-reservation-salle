@@ -4,6 +4,7 @@ from django.urls import reverse_lazy  # Importe la fonction reverse_lazy pour le
 from RoomQueSTIC import settings  # Importe les paramètres du projet
 from .models import RoomCategory  # Importe le modèle RoomCategory
 from bookedrooms.models import BookedRoom  # Importe le modèle BookedRoom
+from utils import send_reservation_confirmation_email_admin
 from bootstrap_datepicker_plus import DatePickerInput, \
     TimePickerInput  # Importe les widgets DatePickerInput et TimePickerInput
 from django.contrib.auth.mixins import \
@@ -151,16 +152,14 @@ class HomePageView(LoginRequiredMixin, CreateView):
         """
         user = self.request.user
         form.instance.user = user
-        try:
-            data = super().form_valid(form)
-        except ValidationError as e:
-            # Convertir l'erreur de validation en chaîne de caractères
-            error_message = ', '.join(e.messages)
-            # Ajouter l'erreur de validation au formulaire
-            form.add_error(None, error_message)
-            return self.form_invalid(form)
+        print("Form data:", form.cleaned_data)
+        print("Test:", form.cleaned_data['room_category'])
+        print("Form errors:", form.errors)
+        data = super(HomePageView, self).form_valid(form)
+        #send_reservation_confirmation_email_admin(form.instance)
         add_to_ics()
         return data
+
 
 
 def default_image(request):
