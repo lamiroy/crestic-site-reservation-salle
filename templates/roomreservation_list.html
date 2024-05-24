@@ -15,17 +15,15 @@
         <div class="row content roomdashboard">
             {% for room in object_list %}
                 <div class="col-sm-12 col-md-6">
-                    <div class="card shadow-sm">
-                        <img src="{{ MEDIA_PREFIX }}{{ room.image }}" class="card-img-top object-fit-none" alt="{{ room.libRoom }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ room.libRoom }}</h5>
-                            <p class="card-text">{{ room.description }}</p>
+                    <div class="card shadow-sm text-bg-dark position-relative card-available-rooms">
+                        <img src="{{ MEDIA_PREFIX }}{{ room.image }}" class="object-fit-none" alt="{{ room.libRoom }}">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title fs-3">{{ room.libRoom }}</h5>
+                            <p class="card-text fs-6">{{ room.description }}</p>
+                            <span class="badge text-bg-secondary fs-7">{{ room.maxCapacity }} personne(s) au maximum</span>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Nombre de pers. max. : {{ room.maxCapacity }}</li>
-                        </ul>
-                        <div class="card-body">
-                            <a href="{% url 'bookedrooms_new' room.pk %}" class="btn btn-success card-link button-style">Réserver</a>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <a href="{% url 'bookedrooms_new' room.pk %}" class="btn btn-success card-link button-style w-75">Réserver</a>
                         </div>
                     </div>
                 </div>
