@@ -79,7 +79,15 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
         # Validation du formulaire
         user = self.request.user
         form.instance.user = user
-        data = super(BookedRoomsUpdateView, self).form_valid(form)
+        form.instance.status = BookedRoom.STATUS_CHOICES[0][0]
+        try:
+            data = super().form_valid(form)
+        except ValidationError as e:
+            # Convertir l'erreur de validation en chaîne de caractères
+            error_message = ', '.join(e.messages)
+            # Ajouter l'erreur de validation au formulaire
+            form.add_error(None, error_message)
+            return self.form_invalid(form)
         # send_reservation_confirmation_email_admin(form.instance)
         add_to_ics()
         return data
@@ -164,12 +172,18 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         user = self.request.user
         form.instance.user = user
-        form.instance.status = BookedRoom.STATUS_CHOICES[0][0]
-
-        response = super(BookedRoomsCreateView, self).form_valid(form)
+        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
+        try:
+            data = super().form_valid(form)
+        except ValidationError as e:
+            # Convertir l'erreur de validation en chaîne de caractères
+            error_message = ', '.join(e.messages)
+            # Ajouter l'erreur de validation au formulaire
+            form.add_error(None, error_message)
+            return self.form_invalid(form)
         # send_reservation_confirmation_email_admin(form.instance)
         add_to_ics()
-        return response
+        return data
 
 
 class BookedRoomsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):

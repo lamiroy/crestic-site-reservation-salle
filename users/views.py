@@ -5,6 +5,7 @@ from bookedrooms.models import BookedRoom
 from .forms import CustomUserCreationForm
 from .models import CustomUser
 
+
 class SignUpView(CreateView):
     """
     View pour l'inscription des utilisateurs.
@@ -14,6 +15,7 @@ class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')  # Redirection vers la page de connexion
     template_name = 'signup.html'  # Template utilisé pour l'inscription
+
 
 class MyProfileView(ListView):
     """
