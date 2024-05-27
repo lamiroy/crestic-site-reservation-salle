@@ -42,7 +42,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups',
               'motif')  # Champs modifiables dans le formulaire
     template_name = 'bookedroom_edit.html'  # Utilisation du template 'bookedroom_edit.html'
-    success_url = reverse_lazy('myprofile')  # URL à laquelle rediriger après la modification
+    success_url = reverse_lazy('home')  # URL à laquelle rediriger après la modification
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
     def get_form(self):
@@ -96,7 +96,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
 class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
     model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
     template_name = 'bookedroom_delete.html'  # Utilisation du template 'bookedroom_delete.html'
-    success_url = reverse_lazy('myprofile')  # URL à laquelle rediriger après la suppression
+    success_url = reverse_lazy('home')  # URL à laquelle rediriger après la suppression
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
     def delete(self, request, *args, **kwargs):
@@ -115,7 +115,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status',
               'motif')  # Champs modifiables dans le formulaire
     template_name = 'bookedroom_add.html'  # Utilisation du template 'bookedroom_add.html'
-    success_url = reverse_lazy('myprofile')  # URL à laquelle rediriger après la création
+    success_url = reverse_lazy('home')  # URL à laquelle rediriger après la création
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
     def dispatch(self, request, *args, **kwargs):
