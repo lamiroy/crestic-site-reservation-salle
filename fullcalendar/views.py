@@ -66,7 +66,7 @@ def export_to_excel(request):
     # Récupérer les données de votre modèle
     data = BookedRoom.objects.select_related('user', 'room_category').all().values(
         'id', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif', 'peopleAmount', 'user__username',
-        'room_category__libRoom', 'room_category__id'
+        'room_category__libRoom'
     )
 
     # Convertir les données en DataFrame pandas
@@ -82,8 +82,7 @@ def export_to_excel(request):
         'motif': 'Motif',
         'peopleAmount': 'Nombre de personnes',
         'user__username': 'Demandeur',
-        'room_category__id': 'Numéro de la salle',
-        'room_category__libRoom': 'Nom de la salle'
+        'room_category__libRoom': 'Numéro de la salle'
     }
     df.rename(columns=column_mapping, inplace=True)
 

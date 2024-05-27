@@ -148,11 +148,11 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         form = super(BookedRoomsCreateView, self).get_form()
         form.fields['room_category'].label = 'Nom de la salle'  # Changement de l'étiquette du champ room_category
 
-        form.fields['peopleAmount'].label = 'Nombre de pers. max.'  # Changement de l'étiquette du champ peopleAmount
+        form.fields['peopleAmount'].label = 'Nombre de pers. au max.'  # Changement de l'étiquette du champ peopleAmount
         form.fields['peopleAmount'].widget.attrs['min'] = 1  # Définition de la valeur minimale autorisée
         form.fields['peopleAmount'].widget.attrs['max'] = 30  # Définition de la valeur maximale autorisée
 
-        form.fields['date'].label = 'Jour de la réservation'  # Changement de l'étiquette du champ date
+        form.fields['date'].label = 'Date de la réservation'  # Changement de l'étiquette du champ date
         form.fields['date'].widget = DatePickerInput(
             options={
                 "locale": "fr",
@@ -160,11 +160,11 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
             }
         )
 
-        form.fields['startTime'].label = 'Début de la réservation'  # Changement de l'étiquette du champ startTime
+        form.fields['startTime'].label = 'Heure de début'  # Changement de l'étiquette du champ startTime
         form.fields['startTime'].widget = TimePickerInput().start_of(
             'duration')  # Utilisation du widget TimePickerInput pour le champ startTime
 
-        form.fields['endTime'].label = 'Fin de la réservation'  # Changement de l'étiquette du champ endTime
+        form.fields['endTime'].label = 'Heure de fin'  # Changement de l'étiquette du champ endTime
         form.fields['endTime'].widget = TimePickerInput().end_of(
             'duration')  # Utilisation du widget TimePickerInput pour le champ endTime
 
