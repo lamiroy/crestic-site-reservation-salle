@@ -152,10 +152,14 @@ class HomePageView(LoginRequiredMixin, CreateView):
         """
         user = self.request.user
         form.instance.user = user
-        print("Form data:", form.cleaned_data)
-        print("Test:", form.cleaned_data['room_category'])
-        print("Form errors:", form.errors)
-        data = super(HomePageView, self).form_valid(form)
+        try:
+            data = super().form_valid(form)
+        except ValidationError as e:
+            # Convertir l'erreur de validation en chaîne de caractères
+            error_message = ', '.join(e.messages)
+            # Ajouter l'erreur de validation au formulaire
+            form.add_error(None, error_message)
+            return self.form_invalid(form)
         #send_reservation_confirmation_email_admin(form.instance)
         add_to_ics()
         return data
