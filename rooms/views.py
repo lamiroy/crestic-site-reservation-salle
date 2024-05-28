@@ -167,11 +167,11 @@ class HomePageView(LoginRequiredMixin, CreateView):
         return data
 
 
-def default_image(request):
+def default_room_image(request):
     """
     Renvoie l'image par défaut.
     """
-    default_image_path = os.path.join(settings.MEDIA_IMAGE)  # Chemin absolu vers l'image par défaut
+    default_image_path = os.path.join(settings.MEDIA_ROOM_IMAGE)  # Chemin absolu vers l'image par défaut
 
     # Vérifie si l'image par défaut existe
     if os.path.exists(default_image_path):

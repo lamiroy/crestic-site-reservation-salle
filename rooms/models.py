@@ -1,5 +1,6 @@
 from django.db import models  # Importe les classes de modèle de Django
 from django.urls import reverse  # Importe la fonction reverse pour la résolution d'URLs
+from RoomQueSTIC.settings import MEDIA_ROOM_IMAGE
 
 
 class RoomCategory(models.Model):  # Définit une classe de modèle RoomCategory qui hérite de models.Model
@@ -8,8 +9,8 @@ class RoomCategory(models.Model):  # Définit une classe de modèle RoomCategory
     description = models.TextField(
         default="Entrez la description")  # Champ pour stocker la description de la salle avec une valeur par défaut
 
-    image = models.ImageField(upload_to='default_image',
-                              default='default_image/default.jpg')  # Champ pour télécharger une image de la salle
+    image = models.ImageField(upload_to='default_room_image',
+                              default=MEDIA_ROOM_IMAGE)  # Champ pour télécharger une image de la salle
 
     maxCapacity = models.IntegerField(default='1')  # Champ pour spécifier la capacité maximale de la salle
 
