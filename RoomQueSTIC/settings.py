@@ -139,7 +139,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_IMAGE = '/default_image/default.jpg'
+MEDIA_ROOM_IMAGE = '/default_room_image/default.jpg'
+MEDIA_EQUIPMENT_IMAGE = '/default_equipment_image/default.jpg'
 
 # Charger les variables d'environnement à partir du fichier .env
 env_path = Path('.') / '.env'
