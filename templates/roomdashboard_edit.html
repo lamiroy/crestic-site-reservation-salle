@@ -4,20 +4,24 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="container">
-        <div class="col-sm-12">
-            <h2 class="container-title">Modifier</h2>
+    <div class="container mt-5">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <h2 class="container-title reservationpage">Modifier une salle</h2>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row content col-sm-12">
-            <form class="roomreservation" method="post" enctype="multipart/form-data">
+    <div class="container mb-5">
+        <div class="row content col-sm-12 d-flex justify-content-center">
+            <form class="roomreservation reservationpage" action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.libRoom | as_crispy_field }}
                 {{ form.description | as_crispy_field }}
                 {{ form.image | as_crispy_field }}
                 {{ form.maxCapacity | as_crispy_field }}
+                <label class="asterisk-def">
+                    <span class="asteriskField">*</span>
+                    signifie que ce champ est obligatoire.
+                </label>
 
                 <button type="submit" class="btn btn-primary button-style">Valider</button>
             </form>

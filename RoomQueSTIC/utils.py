@@ -1,9 +1,8 @@
-from django.core.mail import send_mail
+from django.core.mail import send_mail  # Importe la fonctionnalité d'envoi de courrier électronique Django
+from RoomQueSTIC import settings  # Importe les paramètres de configuration de l'application
 
-from RoomQueSTIC import settings
 
 # CREATION DE RESERVATION
-
 def send_reservation_validated_email_admin(booked_room):
     """
     Envoie un mail qui confirme directement la réservation faite par l'admin
@@ -26,7 +25,8 @@ def send_reservation_confirmation_email_admin(booked_room):
     Envoie un mail qui demande la confirmation de la réservation d'un utilisateur
     """
     subject = 'Nouvelle réservation en attente de validation'
-    message = f'Une nouvelle réservation a été faite par {booked_room.user.first_name} {booked_room.user.last_name}.\n' \
+    message = f'Une nouvelle réservation a été faite par {booked_room.user.first_name}' \
+              f' {booked_room.user.last_name}.\n' \
               f'Salle: {booked_room.room_category}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'Veuillez valider ou refuser cette demande de réservation.'
@@ -54,8 +54,6 @@ def send_reservation_confirmation_email_user(booked_room):
 
 
 # MODIFICATION DE RESERVATION
-
-
 def send_reservation_update_email_admin(booked_room):
     """
     Envoie un mail qui montre le changement d'une réservation faite par l'admin
@@ -118,7 +116,8 @@ def send_reservation_update_email_admin_alert(booked_room):
     Envoie un mail qui indique à l'admin qu'un utilisateur a modifié sa réservation
     """
     subject = 'Mise à jour d''une réservation'
-    message = f'La réservation suivante a été modifiée par {booked_room.user.first_name} {booked_room.user.last_name}:\n' \
+    message = f'La réservation suivante a été modifiée par {booked_room.user.first_name}' \
+              f' {booked_room.user.last_name}.\n' \
               f'Salle: {booked_room.room_category}\n' \
               f'Nombre de personnes: {booked_room.peopleAmount}\n' \
               f'Date: {booked_room.date}\n' \
@@ -133,8 +132,6 @@ def send_reservation_update_email_admin_alert(booked_room):
 
 
 # ANNULATION DE RESERVATION
-
-
 def send_reservation_cancellation_email_user_alert_validated_pending_reservation(booked_room):
     """
     Envoie un mail qui indique à l'utilisateur que sa réservation a été annulée
@@ -197,7 +194,8 @@ def send_reservation_cancellation_email_admin_alert_validated_reservation(booked
     Envoie un mail qui confirme l'annulation effectuée par l'admin d'une réservation (confirmée)
     """
     subject = 'Réservation annulée'
-    message = f'La réservation (confirmée) suivante a été annulée par {booked_room.user.first_name} {booked_room.user.last_name}.\n' \
+    message = f'La réservation (confirmée) suivante a été annulée par {booked_room.user.first_name}' \
+              f' {booked_room.user.last_name}.\n' \
               f'Salle: {booked_room.room_category}\n' \
               f'Nombre de personnes: {booked_room.peopleAmount}\n' \
               f'Date: {booked_room.date}\n' \

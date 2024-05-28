@@ -13,21 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.conf import settings
-from django.urls import path, include
-from django.conf.urls.static import static
+
+from django.contrib import admin  # Import du module admin de Django pour l'interface d'administration
+from django.conf import settings  # Import des paramètres de configuration de Django
+from django.urls import (
+    path,  # Fonction pour définir des chemins d'URL
+    include  # Fonction pour inclure d'autres fichiers d'URL
+)
+from django.conf.urls.static import static  # Import de la fonction static pour servir les fichiers statiques
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
-    path('users/', include('django.contrib.auth.urls')),
-    path('dashboard/', include('dashboard.urls')),
-    path('roombooking/', include('bookedrooms.urls')),
-    path('equipmentbooking/', include('bookedequipments.urls')),
-    path('calendar/', include('fullcalendar.urls')),
-    path('', include('rooms.urls'))
+    path('admin/', admin.site.urls),  # URL pour accéder à l'interface d'administration
+    path('users/', include('users.urls')),  # URL pour les fonctionnalités liées aux utilisateurs
+    path('users/', include('django.contrib.auth.urls')),  # URL pour les fonctionnalités d'authentification des users
+    path('dashboard/', include('dashboard.urls')),  # URL pour le tableau de bord
+    path('roombooking/', include('bookedrooms.urls')),  # URL pour la réservation de salles
+    path('equipmentbooking/', include('bookedequipments.urls')),  # URL pour la réservation d'équipements
+    path('calendar/', include('fullcalendar.urls')),  # URL pour le calendrier
+    path('', include('rooms.urls'))  # URL pour les fonctionnalités liées aux salles
 ]
 
-if settings.DEBUG:
+if settings.DEBUG:  # Vérifie si le mode DEBUG est activé dans les paramètres de configuration
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,14 +1,19 @@
-from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 from django.contrib.auth.mixins import (
-    LoginRequiredMixin,  # Mélange pour exiger une connexion utilisateur
-    UserPassesTestMixin  # Mélange pour vérifier une condition personnalisée
+    LoginRequiredMixin,  # Mixin pour exiger une connexion utilisateur
+    UserPassesTestMixin  # Mixin pour vérifier une condition personnalisée sur l'utilisateur
 )
-from django.views.generic import ListView, DetailView
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
-from django.urls import reverse_lazy
-
-from rooms.models import RoomCategory  # Import du modèle de catégorie de salle
-from bookedrooms.models import BookedRoom  # Import du modèle de réservation de salle
+from django.views.generic import (
+    ListView,  # Vue générique pour afficher une liste d'objets
+    DetailView  # Vue générique pour afficher les détails d'un objet
+)
+from django.views.generic.edit import (
+    UpdateView,  # Vue générique pour mettre à jour un objet existant
+    DeleteView,  # Vue générique pour supprimer un objet existant
+    CreateView  # Vue générique pour créer un nouvel objet
+)
+from django.urls import reverse_lazy  # Import de la fonction reverse_lazy pour obtenir les URL inversées
+from rooms.models import RoomCategory  # Import du modèle RoomCategory pour les catégories de salles
+from bookedrooms.models import BookedRoom  # Import du modèle BookedRoom pour les réservations de salles
 
 
 class RoomDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
@@ -48,6 +53,7 @@ class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
         """
         context = super().get_context_data(**kwargs)
         context['BookedRoom'] = BookedRoom.objects.all()  # Ajouter les objets d'un autre modèle
+
         return context
 
 
@@ -66,22 +72,28 @@ class RoomDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVie
         Surcharge de la méthode pour personnaliser le formulaire.
         """
         form = super(RoomDashboardUpdateView, self).get_form()
-        form.fields['libRoom'].label = 'Nom de la salle'
-        form.fields['description'].label = 'Description'
-        form.fields['image'].label = 'Image'
-        form.fields['maxCapacity'].label = 'Nombre de pers. max.'
-        form.fields['maxCapacity'].widget.attrs['min'] = 1
-        form.fields['maxCapacity'].widget.attrs['max'] = 30
+        form.fields['libRoom'].label = 'Nom de la salle'  # Personnalise l'étiquette du champ 'libRoom'
+
+        form.fields['description'].label = 'Description'  # Personnalise l'étiquette du champ 'description'
+
+        form.fields['image'].label = 'Image'  # Personnalise l'étiquette du champ 'image'
+
+        form.fields['maxCapacity'].label = 'Nombre de pers. max.'  # Personnalise l'étiquette du champ 'maxCapacity'
+        form.fields['maxCapacity'].widget.attrs['min'] = 1  # Définit une valeur minimale pour le champ 'maxCapacity'
+        form.fields['maxCapacity'].widget.attrs['max'] = 30  # Définit une valeur maximale pour le champ 'maxCapacity'
+
         return form
 
     def form_valid(self, form):
         """
         Surcharge de la méthode pour traiter le formulaire valide.
         """
-        user = self.request.user
+        user = self.request.user  # Récupère l'utilisateur actuel
+
         form.instance.user = user
-        print("Form data:", form.cleaned_data)
-        print("Form errors:", form.errors)
+        print("Form data:", form.cleaned_data)  # Affiche les données nettoyées du formulaire dans la console
+        print("Form errors:", form.errors)  # Affiche les erreurs du formulaire dans la console
+
         return super(RoomDashboardUpdateView, self).form_valid(form)
 
     def test_func(self):
@@ -124,22 +136,28 @@ class RoomDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateVie
         Surcharge de la méthode pour personnaliser le formulaire.
         """
         form = super(RoomDashboardCreateView, self).get_form()
-        form.fields['libRoom'].label = 'Nom de la salle'
-        form.fields['description'].label = 'Description'
-        form.fields['image'].label = 'Image'
-        form.fields['maxCapacity'].label = 'Nombre de pers. max.'
-        form.fields['maxCapacity'].widget.attrs['min'] = 1
-        form.fields['maxCapacity'].widget.attrs['max'] = 30
+        form.fields['libRoom'].label = 'Nom de la salle'  # Personnalise l'étiquette du champ 'libRoom'
+
+        form.fields['description'].label = 'Description'  # Personnalise l'étiquette du champ 'description'
+
+        form.fields['image'].label = 'Image'  # Personnalise l'étiquette du champ 'image'
+
+        form.fields['maxCapacity'].label = 'Nombre de pers. max.'  # Personnalise l'étiquette du champ 'maxCapacity'
+        form.fields['maxCapacity'].widget.attrs['min'] = 1  # Définit une valeur minimale pour le champ 'maxCapacity'
+        form.fields['maxCapacity'].widget.attrs['max'] = 30  # Définit une valeur maximale pour le champ 'maxCapacity'
+
         return form
 
     def form_valid(self, form):
         """
         Surcharge de la méthode pour traiter le formulaire valide.
         """
-        user = self.request.user
+        user = self.request.user  # Récupère l'utilisateur actuel
+
         form.instance.user = user
-        print("Form data:", form.cleaned_data)
-        print("Form errors:", form.errors)
+        print("Form data:", form.cleaned_data)  # Affiche les données nettoyées du formulaire dans la console
+        print("Form errors:", form.errors)  # Affiche les erreurs du formulaire dans la console
+
         return super(RoomDashboardCreateView, self).form_valid(form)
 
     def test_func(self):

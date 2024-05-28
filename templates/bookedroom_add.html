@@ -4,15 +4,15 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="container">
-        <div class="col-sm-12">
-            <h2 class="container-title">Réserver une salle</h2>
+    <div class="container mt-5">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <h2 class="container-title reservationpage">Réserver une salle</h2>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row content col-sm-12">
-            <form class="roomreservation" action="" method="post" enctype="multipart/form-data">
+    <div class="container mb-5">
+        <div class="row content col-sm-12 d-flex justify-content-center">
+            <form class="roomreservation reservationpage" action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.media }}
                 {{ form.room_category | as_crispy_field }}
@@ -22,6 +22,10 @@
                 {{ form.endTime | as_crispy_field }}
                 {{ form.motif | as_crispy_field }}
                 {{ form.groups | as_crispy_field }}
+                <label class="asterisk-def">
+                    <span class="asteriskField">*</span>
+                    signifie que ce champ est obligatoire.
+                </label>
 
                 {% if form.errors %}
                     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">

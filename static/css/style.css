@@ -207,14 +207,13 @@ a.crestic-link:active {
 footer p {
     display: flex;
     justify-content: center;
-    margin: 5px 0;
+    margin: 5px 0 !important;
     font-family: "Outfit", sans-serif;
-    font-weight: 300;
     color: var(--color-light-white);
 }
 
 footer > div > p:nth-child(2) {
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 
 footer > div > p:last-child {
@@ -228,6 +227,17 @@ h2.container-title {
     font-family: "Raleway", sans-serif;
     font-weight: 800;
     color: var(--color-light-blue);
+}
+
+h2.container-title.reservationpage {
+    width: 100%;
+    margin: 20px 0 0 -10px;
+}
+
+@media screen and (min-width: 992px) {
+    h2.container-title.reservationpage {
+        width: 80%;
+    }
 }
 
 h2.container-title.other {
@@ -281,7 +291,14 @@ form.roomreservation {
     margin: 15px 0;
 }
 
+@media screen and (min-width: 992px) {
+    form.roomreservation.reservationpage {
+        width: 80%;
+    }
+}
+
 form.roomreservation label {
+    font-size: 16px;
     font-family: "Outfit", sans-serif;
     font-weight: 400;
 }
@@ -290,6 +307,18 @@ form.roomreservation span.asteriskField {
     color: var(--color-red);
     border: none !important;
     background: none !important;
+}
+
+div#div_id_groups {
+    margin-bottom: 0;
+}
+
+div#div_id_maxCapacity {
+    margin-bottom: 0;
+}
+
+label.asterisk-def {
+    font-size: 14px !important;
 }
 
 form.roomreservation > button {

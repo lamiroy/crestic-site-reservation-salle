@@ -4,51 +4,36 @@ from django.urls import reverse_lazy  # Importe la fonction reverse_lazy pour le
 from RoomQueSTIC import settings  # Importe les paramètres du projet
 from .models import RoomCategory  # Importe le modèle RoomCategory
 from bookedrooms.models import BookedRoom  # Importe le modèle BookedRoom
-from utils import send_reservation_confirmation_email_admin
-from bootstrap_datepicker_plus import DatePickerInput, \
-    TimePickerInput  # Importe les widgets DatePickerInput et TimePickerInput
+from bootstrap_datepicker_plus import (
+    DatePickerInput,  # Import du widget DatePickerInput de Bootstrap
+    TimePickerInput,  # Import du widget TimePickerInput de Bootstrap
+)
 from django.contrib.auth.mixins import \
     LoginRequiredMixin  # Importe le mixin LoginRequiredMixin pour les vues basées sur les classes
-from django.views.generic.edit import UpdateView, DeleteView, CreateView  # Importe les vues génériques d'édition
-from icalendar import Calendar, Event  # Importe les classes pour créer des fichiers .ics
-from datetime import datetime, time  # Importe les classes pour manipuler les dates et heures
+from django.views.generic.edit import CreateView  # Import de la classe CreateView pour créer des objets dans une vue
+from icalendar import (
+    Calendar,  # Import du module Calendar de la bibliothèque iCalendar
+    Event,  # Import du module Event de la bibliothèque iCalendar
+)
+from datetime import datetime  # Import de la classe datetime pour manipuler les dates et heures
 import os  # Importe le module os pour les opérations sur le système d'exploitation
-import json
-from django.core.exceptions import ValidationError
+import json  # Import du module json pour la manipulation de données JSON
+from django.core.exceptions import ValidationError  # Import de la classe d'erreur ValidationError
 
 
 def add_to_ics():
-    objets = BookedRoom.objects.all()
-    # print('affichage des reservations (brut) :')
-    # # Affichez les données
-    # for objet in objets:
-    #     print(objet.__dict__)
-
-    # for objet in objets:
-    #     print('===============================')
-    #     print('     Affichage des salles :')
-    #     print('===============================')
-    #     print('     affichage de l\'id :\n' + '     ' + str(objet.id))
-    #     print('     affichage du labo :\n' + '     ' + str(objet.groups))
-    #     print('     affichage de la salle :\n' + '     ' + str(objet.room_category))
-    #     print('     affichage de la date :\n' + '     ' + str(objet.date))
-    #     print('     affichage de l\'heure de début:\n' + '     ' + str(objet.startTime))
-    #     print('     affichage de l\'heure de fin:\n' + '     ' + str(objet.endTime))
-    #     print('     affichage de status:\n' + '     ' + str(objet.status))
-    #     print('     affichage du motif:\n' + '     ' + str(objet.motif))
-    #     print('     affichage du nombre de personnes:\n' + '     ' + str(objet.peopleAmount))
-    #     print('     affichage du user:\n' + '     ' + str(objet.user))
-
-    '''
+    """
         Ajout des events dans le .ics avec le Json dans le titre
-    '''
-    calWithJson = Calendar()
+    """
+    calWithJson = Calendar()  # Crée un objet iCalendar pour stocker les événements avec les données JSON
 
+    objets = BookedRoom.objects.all()  # Crée un objet iCalendar pour stocker les événements avec les données JSON
     for objet in objets:
         if objet.status != "canceled":
-            event = Event()
-            dateDeb = datetime.combine(objet.date, objet.startTime)
-            dateFin = datetime.combine(objet.date, objet.endTime)
+            dateDeb = datetime.combine(objet.date, objet.startTime)  # Combine la date et l'heure de début
+            dateFin = datetime.combine(objet.date, objet.endTime)  # Combine la date et l'heure de fin
+
+            # Crée un dictionnaire avec les données à stocker dans le titre
             jsonData = {
                 "id": str(objet.id),
                 "labo": str(objet.groups),
@@ -60,11 +45,15 @@ def add_to_ics():
                 "user": str(objet.user),
                 "holiday": "false"
             }
-            event.add('summary', json.dumps(jsonData))
-            event.add('dtstart', dateDeb)
-            event.add('dtend', dateFin)
-            calWithJson.add_component(event)
 
+            event = Event()  # Crée un nouvel événement iCalendar
+            event.add('summary', json.dumps(jsonData))  # Ajoute les données JSON dans le titre de l'événement
+            event.add('dtstart', dateDeb)  # Ajoute la date et l'heure de début
+            event.add('dtend', dateFin)  # Ajoute la date et l'heure de fin
+
+            calWithJson.add_component(event)  # Ajoute l'événement au calendrier iCalendar
+
+    # Chemin absolu vers le fichier .ics
     ical_data = calWithJson.to_ical()
     current_directory = os.path.dirname(__file__)
 
@@ -75,21 +64,29 @@ def add_to_ics():
     with open(ics_file_path, 'wb') as f:
         f.write(ical_data)
 
-    '''
-        Ajout des events dans le .ics avec le Json dans le titre
-    '''
+    # Ajout des events dans le .ics avec le Json dans le titre
     cal = Calendar()
 
     for objet in objets:
-        event = Event()
-        dateDeb = datetime.combine(objet.date, objet.startTime)
-        dateFin = datetime.combine(objet.date, objet.endTime)
-        title = 'Salle : ' + str(objet.room_category) + ' Nombre de personnes : ' + str(objet.peopleAmount) + '/' + str(objet.room_category.maxCapacity) + ' Motif : ' + str(objet.motif) + ' Laboratoire : ' + str(objet.groups) + ' Statut : ' + str(objet.status)
-        event.add('summary', title)
-        event.add('dtstart', dateDeb)
-        event.add('dtend', dateFin)
-        cal.add_component(event)
+        dateDeb = datetime.combine(objet.date, objet.startTime)  # Combine la date et l'heure de début
+        dateFin = datetime.combine(objet.date, objet.endTime)  # Combine la date et l'heure de fin
 
+        # Crée le titre de l'événement en combinant des informations statiques avec les données de la réservation
+        title = 'Salle : ' + str(objet.room_category)
+        title += ' Nombre de personnes : ' + str(objet.peopleAmount)
+        title += '/' + str(objet.room_category.maxCapacity)
+        title += ' Motif : ' + str(objet.motif)
+        title += ' Laboratoire : ' + str(objet.groups)
+        title += ' Statut : ' + str(objet.status)
+
+        event = Event()  # Crée un nouvel événement iCalendar
+        event.add('summary', title)  # Ajoute le titre de l'événement
+        event.add('dtstart', dateDeb)  # Ajoute la date et l'heure de début
+        event.add('dtend', dateFin)  # Ajoute la date et l'heure de fin
+
+        cal.add_component(event)  # Ajoute l'événement au calendrier iCalendar
+
+    # Chemin absolu vers le fichier .ics
     ical_data = cal.to_ical()
     current_directory = os.path.dirname(__file__)
 
@@ -101,30 +98,29 @@ def add_to_ics():
         f.write(ical_data)
 
 
-
-
 class HomePageView(LoginRequiredMixin, CreateView):
     """
     Affiche la page d'accueil et gère la création de réservations de chambres.
     """
-    model = BookedRoom
-    template_name = 'home.html'
-    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif')
-    success_url = reverse_lazy('home')
-    login_url = 'login'
+    model = BookedRoom  # Spécifie le modèle utilisé pour la création d'objets dans la vue
+    template_name = 'home.html'  # Spécifie le modèle de template utilisé pour rendre la vue
+    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status',
+              'motif')  # Spécifie les champs du formulaire
+    success_url = reverse_lazy('home')  # Spécifie l'URL de redirection après une soumission réussie du formulaire
+    login_url = 'login'  # Spécifie l'URL de connexion pour les utilisateurs non authentifiés
 
     def get_form(self):
         """
         Surcharge pour changer les DateFields en widgets DatePicker.
         """
         form = super(HomePageView, self).get_form()
-        form.fields['room_category'].label = 'Nom de la salle'
+        form.fields['room_category'].label = 'Nom de la salle'  # Changement de l'étiquette du champ room_category
 
-        form.fields['peopleAmount'].label = 'Nombre de pers. max.'
-        form.fields['peopleAmount'].widget.attrs['min'] = 1
-        form.fields['peopleAmount'].widget.attrs['max'] = 30
+        form.fields['peopleAmount'].label = 'Nombre de pers. max.'  # Changement de l'étiquette du champ peopleAmount
+        form.fields['peopleAmount'].widget.attrs['min'] = 1  # Définition de la valeur minimale autorisée
+        form.fields['peopleAmount'].widget.attrs['max'] = 30  # Définition de la valeur maximale autorisée
 
-        form.fields['date'].label = 'Jour de la réservation'
+        form.fields['date'].label = 'Jour de la réservation'  # Changement de l'étiquette du champ date
         form.fields['date'].widget = DatePickerInput(
             options={
                 "locale": "fr",
@@ -132,17 +128,19 @@ class HomePageView(LoginRequiredMixin, CreateView):
             }
         )
 
-        form.fields['startTime'].label = 'Début de la réservation'
-        form.fields['startTime'].widget = TimePickerInput().start_of('duration')
+        form.fields['startTime'].label = 'Début de la réservation'  # Changement de l'étiquette du champ startTime
+        form.fields['startTime'].widget = TimePickerInput().start_of(
+            'duration')  # Utilisation du widget TimePickerInput pour le champ startTime
 
-        form.fields['endTime'].label = 'Fin de la réservation'
-        form.fields['endTime'].widget = TimePickerInput().end_of('duration')
+        form.fields['endTime'].label = 'Fin de la réservation'  # Changement de l'étiquette du champ endTime
+        form.fields['endTime'].widget = TimePickerInput().end_of(
+            'duration')  # Utilisation du widget TimePickerInput pour le champ endTime
 
-        form.fields['groups'].label = 'Laboratoire'
+        form.fields['groups'].label = 'Laboratoire'  # Changement de l'étiquette du champ groups
 
-        form.fields['motif'].label = 'Motif'
+        form.fields['motif'].label = 'Motif'  # Changement de l'étiquette du champ motif
 
-        del form.fields['status']
+        del form.fields['status']  # Suppression du champ status du formulaire
 
         return form
 
@@ -151,6 +149,7 @@ class HomePageView(LoginRequiredMixin, CreateView):
         Surcharge pour toujours définir l'utilisateur sur l'utilisateur actuellement connecté.
         """
         user = self.request.user
+
         form.instance.user = user
         try:
             data = super().form_valid(form)
@@ -159,11 +158,13 @@ class HomePageView(LoginRequiredMixin, CreateView):
             error_message = ', '.join(e.messages)
             # Ajouter l'erreur de validation au formulaire
             form.add_error(None, error_message)
-            return self.form_invalid(form)
-        #send_reservation_confirmation_email_admin(form.instance)
-        add_to_ics()
-        return data
 
+            return self.form_invalid(form)
+
+        # send_reservation_confirmation_email_admin(form.instance)
+        add_to_ics()
+
+        return data
 
 
 def default_image(request):
