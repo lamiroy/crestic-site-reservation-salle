@@ -51,7 +51,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups',
               'motif')  # Champs modifiables dans le formulaire
     template_name = 'bookedroom_edit.html'  # Utilisation du template 'bookedroom_edit.html'
-    success_url = reverse_lazy('myprofile')  # URL à laquelle rediriger après la modification
+    success_url = reverse_lazy('home')  # URL à laquelle rediriger après la modification
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
     def get_form(self):
@@ -88,8 +88,19 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         # Validation du formulaire
         user = self.request.user
+        
         form.instance.user = user
-        data = super(BookedRoomsUpdateView, self).form_valid(form)
+        form.instance.status = BookedRoom.STATUS_CHOICES[0][0]
+        
+        try:
+            data = super().form_valid(form)
+        except ValidationError as e:
+            # Convertir l'erreur de validation en chaîne de caractères
+            error_message = ', '.join(e.messages)
+            # Ajouter l'erreur de validation au formulaire
+            form.add_error(None, error_message)
+            
+            return self.form_invalid(form)
 
         # send_reservation_confirmation_email_admin(form.instance)
         add_to_ics()
@@ -100,7 +111,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
 class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
     model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
     template_name = 'bookedroom_delete.html'  # Utilisation du template 'bookedroom_delete.html'
-    success_url = reverse_lazy('myprofile')  # URL à laquelle rediriger après la suppression
+    success_url = reverse_lazy('home')  # URL à laquelle rediriger après la suppression
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
     def delete(self, request, *args, **kwargs):
@@ -119,7 +130,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status',
               'motif')  # Champs modifiables dans le formulaire
     template_name = 'bookedroom_add.html'  # Utilisation du template 'bookedroom_add.html'
-    success_url = reverse_lazy('myprofile')  # URL à laquelle rediriger après la création
+    success_url = reverse_lazy('home')  # URL à laquelle rediriger après la création
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
     def dispatch(self, request, *args, **kwargs):
@@ -178,14 +189,24 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         user = self.request.user
+        
         form.instance.user = user
-        form.instance.status = BookedRoom.STATUS_CHOICES[0][0]
-
-        response = super(BookedRoomsCreateView, self).form_valid(form)
-
-        add_to_ics()  # Ajoute la réservation au calendrier ICS
-
-        return response
+        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
+        
+        try:
+            data = super().form_valid(form)
+        except ValidationError as e:
+            # Convertir l'erreur de validation en chaîne de caractères
+            error_message = ', '.join(e.messages)
+            # Ajouter l'erreur de validation au formulaire
+            form.add_error(None, error_message)
+            
+            return self.form_invalid(form)
+        
+        # send_reservation_confirmation_email_admin(form.instance)
+        add_to_ics()
+        
+        return data
 
 
 class BookedRoomsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):

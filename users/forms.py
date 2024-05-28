@@ -5,10 +5,12 @@ from django.contrib.auth.forms import (
 from .models import CustomUser  # Importe le modèle CustomUser défini dans le même package
 
 
+
 class CustomUserCreationForm(UserCreationForm):
     """
     Formulaire de création d'utilisateur personnalisé.
     """
+
     class Meta(UserCreationForm.Meta):
         # Utilisation du modèle CustomUser
         model = CustomUser
@@ -20,6 +22,7 @@ class CustomUserChangeForm(UserChangeForm):
     """
     Formulaire de modification d'utilisateur personnalisé.
     """
+
     class Meta:
         # Utilisation du modèle CustomUser
         model = CustomUser

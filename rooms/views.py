@@ -147,42 +147,4 @@ class HomePageView(LoginRequiredMixin, CreateView):
         """
         Surcharge pour toujours définir l'utilisateur sur l'utilisateur actuellement connecté.
         """
-        user = self.request.user  # Récupère l'utilisateur actuellement connecté
 
-        form.instance.user = user  # Associe l'utilisateur à l'instance de la réservation
-
-        # Imprime les données du formulaire et les erreurs éventuelles dans la console
-        print("Form data:", form.cleaned_data)
-        print("Test:", form.cleaned_data['room_category'])
-        print("Form errors:", form.errors)
-
-        data = super(HomePageView, self).form_valid(form)  # Appelle la méthode parente pour traiter le formulaire
-
-        add_to_ics()  # Ajoute les réservations dans les fichiers
-
-        return data
-
-
-def default_image(request):
-    """
-    Renvoie l'image par défaut.
-    """
-    default_image_path = os.path.join(settings.MEDIA_IMAGE)  # Chemin absolu vers l'image par défaut
-
-    # Vérifie si l'image par défaut existe
-    if os.path.exists(default_image_path):
-        with open(default_image_path, 'rb') as f:
-            image_content = f.read()  # Lit le contenu de l'image par défaut
-
-        return HttpResponse(image_content, content_type='image/jpeg')  # Renvoie le contenu de l'image en réponse
-    else:
-        return HttpResponse(status=404)  # Renvoie une réponse 404 si l'image par défaut n'existe pas
-
-
-class RoomListView(ListView):
-    """
-    Affiche une liste des catégories de chambres disponibles.
-    """
-    model = RoomCategory  # Spécifie le modèle utilisé pour récupérer les données à afficher
-    template_name = 'roomreservation_list.html'  # Spécifie le modèle de template utilisé pour rendre la vue
-    login_url = 'login'  # Spécifie l'URL de connexion pour les utilisateurs non authentifiés

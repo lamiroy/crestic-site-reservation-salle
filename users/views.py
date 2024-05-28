@@ -7,6 +7,7 @@ from bookedrooms.models import BookedRoom  # Importe le modèle BookedRoom du pa
 from .forms import CustomUserCreationForm  # Importe le formulaire CustomUserCreationForm du package actuel
 
 
+
 class SignUpView(CreateView):
     """
     View pour l'inscription des utilisateurs.
