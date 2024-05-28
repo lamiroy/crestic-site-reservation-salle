@@ -18,6 +18,7 @@ from icalendar import (
 from datetime import datetime  # Import de la classe datetime pour manipuler les dates et heures
 import os  # Importe le module os pour les opérations sur le système d'exploitation
 import json  # Import du module json pour la manipulation de données JSON
+from django.core.exceptions import ValidationError  # Import de la classe d'erreur ValidationError
 
 
 def add_to_ics():
@@ -147,4 +148,44 @@ class HomePageView(LoginRequiredMixin, CreateView):
         """
         Surcharge pour toujours définir l'utilisateur sur l'utilisateur actuellement connecté.
         """
+        user = self.request.user
 
+        form.instance.user = user
+        try:
+            data = super().form_valid(form)
+        except ValidationError as e:
+            # Convertir l'erreur de validation en chaîne de caractères
+            error_message = ', '.join(e.messages)
+            # Ajouter l'erreur de validation au formulaire
+            form.add_error(None, error_message)
+
+            return self.form_invalid(form)
+
+        # send_reservation_confirmation_email_admin(form.instance)
+        add_to_ics()
+
+        return data
+
+
+def default_image(request):
+    """
+    Renvoie l'image par défaut.
+    """
+    default_image_path = os.path.join(settings.MEDIA_IMAGE)  # Chemin absolu vers l'image par défaut
+
+    # Vérifie si l'image par défaut existe
+    if os.path.exists(default_image_path):
+        with open(default_image_path, 'rb') as f:
+            image_content = f.read()  # Lit le contenu de l'image par défaut
+        return HttpResponse(image_content, content_type='image/jpeg')  # Renvoie le contenu de l'image en réponse
+    else:
+        return HttpResponse(status=404)  # Renvoie une réponse 404 si l'image par défaut n'existe pas
+
+
+class RoomListView(ListView):
+    """
+    Affiche une liste des catégories de chambres disponibles.
+    """
+    model = RoomCategory
+    template_name = 'roomreservation_list.html'
+    login_url = 'login'
