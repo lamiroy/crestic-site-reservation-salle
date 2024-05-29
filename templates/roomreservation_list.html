@@ -13,6 +13,20 @@
 
     <div class="container">
         <div class="row content roomdashboard">
+            {% if object_list|length == 0 %}
+                <div class="col-sm-12">
+                    <div class="card shadow-sm text-bg-dark empty-card mb-5">
+                        <div class="empty-card-space"></div>
+                        <div class="card-img-overlay empty-card-text">
+                            <h5 class="card-title fs-4">Aucune salle disponible</h5>
+                            <p class="card-text fs-6">Il n'y a actuellement aucune salle disponible. Veuillez vérifier à nouveau plus tard.</p>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div class="empty-card-button"></div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             {% for room in object_list %}
                 <div class="col-sm-12 col-md-6">
                     <div class="card shadow-sm text-bg-dark position-relative card-available-rooms">
@@ -28,6 +42,33 @@
                     </div>
                 </div>
             {% endfor %}
+            {% if object_list|length|divisibleby:2 %}
+                <div class="col-sm-12">
+                    <div class="card shadow-sm text-bg-dark empty-card mb-5">
+                        <div class="empty-card-space"></div>
+                        <div class="card-img-overlay empty-card-text">
+                            <h5 class="card-title fs-4">Aucune autre salle disponible</h5>
+                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Réserver&raquo; pour emprunter une salle.</p>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div class="empty-card-button"></div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-sm-12 col-md-6">
+                    <div class="card shadow-sm text-bg-dark empty-card">
+                        <div class="empty-card-space"></div>
+                        <div class="card-img-overlay empty-card-text">
+                            <h5 class="card-title fs-4">Aucune autre salle disponible</h5>
+                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Réserver&raquo; pour emprunter une salle.</p>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div class="empty-card-button"></div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock content %}
