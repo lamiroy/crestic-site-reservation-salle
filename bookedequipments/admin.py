@@ -4,8 +4,8 @@ from .models import BookedEquipment
 
 class BookEquipmentsAdmin(admin.ModelAdmin):
     model = BookedEquipment
-    list_display = ['id', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif',
-                    'user', 'equipment_category', 'peopleAmount']
+    list_display = ['id', 'date', 'startTime', 'endTime', 'status', 'motif',
+                    'user', 'equipment_category']
 
 
 admin.site.register(BookedEquipment, BookEquipmentsAdmin)
