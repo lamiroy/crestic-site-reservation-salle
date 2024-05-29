@@ -14,14 +14,15 @@
     --color-light-blue: #0275d8;  /* Couleur 1  : Bleu clair  */
     --color-blue: #036cc8;        /* Couleur 2  : Bleu        */
     --color-dark-blue: #025dad;   /* Couleur 3  : Bleu foncé  */
-    --color-grey: #515659;        /* Couleur 4  : Gris        */
-    --color-dark-grey: #373a3c;   /* Couleur 5  : Gris foncé  */
-    --color-light-white: #ffffff; /* Couleur 6  : Blanc clair */
-    --color-white: #ececec;       /* Couleur 7  : Blanc       */
-    --color-dark-white: #dddddd;  /* Couleur 8  : Blanc foncé */
-    --color-light-red: #ff4141;   /* Couleur 9  : Rouge clair */
-    --color-red: #ff1616;         /* Couleur 10 : Rouge       */
-    --color-dark-red: #bf1a1a;    /* Couleur 11 : Rouge foncé */
+    --color-light-grey: #9e9e9e;  /* Couleur 4  : Gris clair  */
+    --color-grey: #515659;        /* Couleur 5  : Gris        */
+    --color-dark-grey: #373a3c;   /* Couleur 6  : Gris foncé  */
+    --color-light-white: #ffffff; /* Couleur 7  : Blanc clair */
+    --color-white: #ececec;       /* Couleur 8  : Blanc       */
+    --color-dark-white: #dddddd;  /* Couleur 9  : Blanc foncé */
+    --color-light-red: #ff4141;   /* Couleur 10  : Rouge clair */
+    --color-red: #ff1616;         /* Couleur 11 : Rouge       */
+    --color-dark-red: #bf1a1a;    /* Couleur 12 : Rouge foncé */
 
     /* Dégradé */
     --color-gradient: linear-gradient(0.25turn, #264085, #1D5895, #1079AA, #00A9CD);
@@ -564,6 +565,7 @@ div.card.card-available-rooms {
 }
 
 div.card.card-available-rooms > img {
+    min-height: 275px;
     max-height: 275px;
     border-radius: 15px 15px 0 0;
     filter: brightness(0.65);
@@ -596,17 +598,109 @@ div.card.card-available-rooms a {
     z-index: 999;
 }
 
+/* Card vide */
+div.empty-card {
+    border: 3px dashed var(--color-light-grey);
+    backdrop-filter: opacity(25%);
+    border-radius: 15px;
+    background-color: var(--color-light-white) !important;
+}
+
+div.empty-card-space {
+    min-height: 269px;
+}
+
+div.empty-card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.empty-card-text > h5 {
+    font-family: "Lexend", sans-serif;
+    color: var(--color-grey);
+}
+
+div.empty-card-text > p {
+    width: 80%;
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+    color: var(--color-light-grey);
+}
+
+div.empty-card-button {
+    height: 38px;
+}
+
 /*---------- Page de gestion des salles ----------*/
 /* Bouton d'ajout d'une salle */
-div.col-sm-12 > a.btn.btn-primary {
+a.container-button {
     display: flex;
     justify-content: center;
-    width: 100%;
     margin-top: 20px;
 }
 
-div.col-sm-12 > a.btn.btn-primary > i {
+a.container-button > i {
     margin-right: 5px;
+}
+
+/* Tooltips de modification */
+div.edit-tooltip {
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    --bs-tooltip-bg: var(--color-light-blue) !important;
+    --bs-tooltip-color: var(--color-light-white) !important;
+}
+
+div.edit-tooltip .tooltip-inner {
+    color: var(--color-light-white);
+    background-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: var(--color-light-blue);
+}
+
+/* Tooltips de suppression */
+div.delete-tooltip {
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    --bs-tooltip-bg: var(--color-light-red) !important;
+    --bs-tooltip-color: var(--color-light-white) !important;
+}
+
+div.delete-tooltip .tooltip-inner {
+    color: var(--color-light-white);
+    background-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: var(--color-light-red);
 }
 
 /*------- Page de suppression d'une salle -------*/
