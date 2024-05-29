@@ -635,15 +635,72 @@ div.empty-card-button {
 
 /*---------- Page de gestion des salles ----------*/
 /* Bouton d'ajout d'une salle */
-div.col-sm-12 > a.btn.btn-primary {
+a.container-button {
     display: flex;
     justify-content: center;
-    width: 100%;
     margin-top: 20px;
 }
 
-div.col-sm-12 > a.btn.btn-primary > i {
+a.container-button > i {
     margin-right: 5px;
+}
+
+/* Tooltips de modification */
+div.edit-tooltip {
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    --bs-tooltip-bg: var(--color-light-blue) !important;
+    --bs-tooltip-color: var(--color-light-white) !important;
+}
+
+div.edit-tooltip .tooltip-inner {
+    color: var(--color-light-white);
+    background-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: var(--color-light-blue);
+}
+
+div.edit-tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: var(--color-light-blue);
+}
+
+/* Tooltips de suppression */
+div.delete-tooltip {
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    --bs-tooltip-bg: var(--color-light-red) !important;
+    --bs-tooltip-color: var(--color-light-white) !important;
+}
+
+div.delete-tooltip .tooltip-inner {
+    color: var(--color-light-white);
+    background-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: var(--color-light-red);
+}
+
+div.delete-tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: var(--color-light-red);
 }
 
 /*------- Page de suppression d'une salle -------*/
