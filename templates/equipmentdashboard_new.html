@@ -4,10 +4,24 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>Ajouter un nouvel équipement</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-info ml-2">Valider</button>
-    </form>
+    <div class="container mt-5">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <h2 class="container-title reservationpage">Ajouter un nouvel équipement</h2>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row content col-sm-12 d-flex justify-content-center">
+            <form class="roomreservation reservationpage" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <label class="asterisk-def">
+                    <span class="asteriskField">*</span>
+                    signifie que ce champ est obligatoire.
+                </label>
+
+                <button type="submit" class="btn btn-primary button-style">Valider</button>
+            </form>
+        </div>
+    </div>
 {% endblock content %}
