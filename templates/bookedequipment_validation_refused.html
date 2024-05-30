@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="card text-center roomdashboard_validation_refused">
+            <div class="card-header">
+                Confirmation d'annulation
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Êtes-vous sûr de vouloir annuler cette réservation ?</h5>
+                <p class="card-text">Cette action est irréversible. Toutes les données associées à cette réservation seront définitivement effacées.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-success button-style" type="submit">Valider</button>
+                    <a class="btn btn-danger button-style button-red" type="button" href="{% url 'bookedequipment_validation' %}">Annuler</a>
+                </form>
+            </div>
+            <div class="card-footer text-body-secondary">
+                {{ bookedequipment.equipment_category.libEquipment }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
