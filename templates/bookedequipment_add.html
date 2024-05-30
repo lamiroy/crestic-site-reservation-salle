@@ -3,31 +3,49 @@
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
 
-{% block title %}Réserver un équipement{% endblock title %}
-
 {% block content %}
-    <h1>Réserver un équipement</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form.room_category|as_crispy_field }}
-        {{ form.peopleAmount|as_crispy_field }}
-        {{ form.date| as_crispy_field}}
-        {{ form.startTime| as_crispy_field}}
-        {{ form.endTime|as_crispy_field }}
-        {{ form.motif|as_crispy_field }}
-        {{ form.groups|as_crispy_field }}
-        {% if form.errors %}
-            <div class="alert alert-danger">
-                <ul>
-                    {% for field_errors in form.errors.values %}
-                        {% for error in field_errors %}
-                            <li>{{ error }}</li>
-                        {% endfor %}
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-        <button type="submit" class="btn btn-info ml-2">Save</button>
-    </form>
+    <div class="container mt-5">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <h2 class="container-title reservationpage">Réserver un équipement</h2>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row content col-sm-12 d-flex justify-content-center">
+            <form class="roomreservation reservationpage" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.equipment_category | as_crispy_field }}
+                {{ form.date | as_crispy_field }}
+                {{ form.startTime | as_crispy_field }}
+                {{ form.endTime | as_crispy_field }}
+                {{ form.motif | as_crispy_field }}
+                {{ form.groups | as_crispy_field }}
+                <label class="asterisk-def">
+                    <span class="asteriskField">*</span>
+                    signifie que ce champ est obligatoire.
+                </label>
+
+                {% if form.errors %}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+                        <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+                        </symbol>
+                    </svg>
+                    <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"></use></svg>
+                        <div>
+                            {% for field_errors in form.errors.values %}
+                                {% for error in field_errors %}
+                                    <p class="error-text">{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <button type="submit" class="btn btn-primary button-style">Valider</button>
+            </form>
+        </div>
+    </div>
 {% endblock content %}
