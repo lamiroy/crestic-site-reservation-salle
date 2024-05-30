@@ -92,4 +92,4 @@ class BookedEquipment(models.Model):
         return reverse('bookedequipments_detail', args=[str(self.id)])
 
     def __str__(self):
-        return self.equipment_category.libRoom + " |  " + self.user.username
+        return self.equipment_category.libEquipment + " |  " + self.user.username
