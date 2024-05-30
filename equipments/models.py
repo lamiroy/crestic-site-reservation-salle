@@ -14,7 +14,7 @@ class EquipmentCategory(models.Model):
     nbrEquipments = models.IntegerField(default='1')  # Champ pour spécifier le nombre d'équipements
 
     def __str__(self):
-        return self.libRoom
+        return self.libEquipment
 
     def get_absolute_url(self):
         return reverse('equipmentdashboard_detail', args=[str(self.id)])
