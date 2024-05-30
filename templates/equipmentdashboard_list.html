@@ -1,54 +1,95 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
-    <div class="row my-2">
-        <div class="col">
-            <a class="waves-effect waves-light btn-small blue-grey darken-4"
-                 href="{% url 'roomdashboard_new' %}">Ajouter un nouvel équipement</a>
+    {% get_media_prefix as MEDIA_PREFIX %}
+
+    <div class="container mb-2">
+        <div class="col-sm-12 d-flex">
+            <h2 class="container-title">Gestion des équipements</h2>
+            <div class="flex-grow-1"></div>
+            <a class="btn btn-primary button-style container-button" type="button" href="{% url 'equipmentdashboard_new' %}">
+                <i class="bi bi-plus-lg"></i>
+                Ajouter un nouvel équipement
+            </a>
         </div>
     </div>
-    <div class="row">
-        {% for room in object_list %}
-            {% if forloop.counter|divisibleby:2 %}
-                <div class="col s6">
-            {% else %}
-                <div class="row">
-                    <div class="col s6">
-            {% endif %}
 
-                    <div class="card sticky-action">
-                        <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4">
-                                {{ room.libRoom }}<i class="material-icons right">more_vert</i>
-                            </span>
+    <div class="container">
+        <div class="row content roomdashboard">
+            {% if object_list|length == 0 %}
+                <div class="col-sm-12">
+                    <div class="card shadow-sm text-bg-dark empty-card mb-5">
+                        <div class="empty-card-space"></div>
+                        <div class="card-img-overlay empty-card-text">
+                            <h5 class="card-title fs-4">Aucun équipement créé</h5>
+                            <p class="card-text fs-6">Aucun équipement n'a encore été créé. Utilisez le bouton ci-dessus pour ajouter un nouvel équipement.</p>
                         </div>
-                        <div class="card-action">
-                            <a class="waves-effect waves-light btn-small blue-grey darken-4"
-                                 href="{% url 'roomdashboard_edit' room.pk %}">Edit</a>
-                            <a class="waves-effect waves-light btn-small blue-grey darken-4"
-                                 href="{% url 'roomdashboard_delete' room.pk %}">Delete</a>
-                        </div>
-                        <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">
-                              {{ room.libRoom }}<i class="material-icons right">close</i></span>
-                            <p>
-                                <br>
-                                <small>Nombre de personnes maximum: <b>{{ room.maxCapacity }}</b></small>
-                            </p>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div class="empty-card-button"></div>
                         </div>
                     </div>
-
-        {% if forloop.counter|divisibleby:2 %}
                 </div>
-            </div>
-        {% elif forloop.last %}
-            {% comment %}Is last but not an even index{% endcomment %}
+            {% endif %}
+            {% for equipment in object_list %}
+                <div class="col-sm-12 col-md-6">
+                    <div class="card shadow-sm text-bg-dark position-relative card-available-rooms">
+                        <img src="{{ MEDIA_PREFIX }}{{ equipment.image }}" class="object-fit-none" alt="{{ equipment.libEquipment }}">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title fs-3">{{ equipment.libEquipment }}</h5>
+                            <p class="card-text fs-6">{{ equipment.description }}</p>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <a href="{% url 'equipmentdashboard_edit' equipment.pk %}" class="btn btn-warning button-style"
+                               data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               data-bs-custom-class="edit-tooltip"
+                               data-bs-title="Modification de l'équipement">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a href="{% url 'equipmentdashboard_delete' equipment.pk %}" class="btn btn-danger button-style button-red ml-2"
+                               data-bs-toggle="tooltip"
+                               data-bs-placement="top"
+                               data-bs-custom-class="delete-tooltip"
+                               data-bs-title="Suppression de l'équipement">
+                                <i class="bi bi-trash3"></i>
+                            </a>
+                            <div class="flex-grow-1"></div>
+                            <a href="{% url 'equipmentdashboard_detail' equipment.pk %}" class="btn btn-danger button-style">
+                                Détails de l'équipement
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {% else %}
-            {% comment %}Not Last</p>{% endcomment %}
-            </div>
-        {% endif %}
-    {% endfor %}
+            {% endfor %}
+            {% if object_list|length|divisibleby:2 %}
+                <div class="col-sm-12">
+                    <div class="card shadow-sm text-bg-dark empty-card mb-5">
+                        <div class="empty-card-space"></div>
+                        <div class="card-img-overlay empty-card-text">
+                            <h5 class="card-title fs-4">Aucun autre équipement créé</h5>
+                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Ajouter un nouvel équipement&raquo; afin de créer un équipement réservable.</p>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div class="empty-card-button"></div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-sm-12 col-md-6">
+                    <div class="card shadow-sm text-bg-dark empty-card">
+                        <div class="empty-card-space"></div>
+                        <div class="card-img-overlay empty-card-text">
+                            <h5 class="card-title fs-4">Aucun autre équipement créé</h5>
+                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Ajouter un nouvel équipement&raquo; afin de créer un équipement réservable.</p>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div class="empty-card-button"></div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock content %}
