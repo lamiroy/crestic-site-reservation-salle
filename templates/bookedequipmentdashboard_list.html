@@ -5,11 +5,10 @@
     <table class="striped">
         <thead>
             <tr>
-                <th>Nom de la salle</th>
+                <th>Nom de l'équipement</th>
                 <th>Prénom</th>
                 <th>Nom</th>
                 <th>Motif</th>
-                <th>Nombre de personnes</th>
                 <th>Date de début</th>
                 <th>Date de fin</th>
             </tr>
@@ -17,13 +16,12 @@
         <tbody>
         {% for bookedroom in object_list %}
             <tr>
-                <td>{{ bookedroom.room_category.libRoom }}</td>
-                <td>{{ bookedroom.user.first_name }}</td>
-                <td>{{ bookedroom.user.last_name }}</td>
-                <td>{{ bookedroom.peopleAmount }}</td>
-                <td>{{ bookedroom.date }}</td>
-                <td>{{ bookedroom.startTime }}</td>
-                <td>{{ bookedroom.endTime }}</td>
+                <td>{{ bookedequipment.room_category.libRoom }}</td>
+                <td>{{ bookedequipment.user.first_name }}</td>
+                <td>{{ bookedequipment.user.last_name }}</td>
+                <td>{{ bookedequipment.date }}</td>
+                <td>{{ bookedequipment.startTime }}</td>
+                <td>{{ bookedequipment.endTime }}</td>
             </tr>
 
         {% if forloop.last %}
