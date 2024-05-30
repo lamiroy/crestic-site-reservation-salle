@@ -27,6 +27,8 @@ from rooms.views import add_to_ics  # Import de la vue add_to_ics pour ajouter d
 from .models import BookedRoom  # Import du modèle BookedRoom pour les réservations de salles
 from django.core.exceptions import PermissionDenied  # Import de l'exception pour gérer les permissions refusées
 from django.db import transaction  # Import du module transaction pour gérer les transactions de la base de données
+from datetime import datetime, date, time
+from django.core.exceptions import ValidationError
 
 
 class BookedRoomsListView(LoginRequiredMixin, ListView):
@@ -48,64 +50,194 @@ class BookedRoomsDetailView(LoginRequiredMixin, DetailView):
 
 class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
     model = BookedRoom
-    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups',
-              'motif')  # Champs modifiables dans le formulaire
-    template_name = 'bookedroom_edit.html'  # Utilisation du template 'bookedroom_edit.html'
-    success_url = reverse_lazy('home')  # URL à laquelle rediriger après la modification
-    login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
+    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
+    template_name = 'bookedroom_edit.html'
+    success_url = reverse_lazy('home')
+    login_url = 'login'
 
     def get_form(self):
-        # Personnalisation du formulaire
-        form = super(BookedRoomsUpdateView, self).get_form()
-        form.fields['room_category'].label = 'Nom de la salle'  # Changement de l'étiquette du champ room_category
-
-        form.fields['peopleAmount'].label = 'Nombre de personne'  # Changement de l'étiquette du champ peopleAmount
-        form.fields['peopleAmount'].widget.attrs['min'] = 1  # Définition de la valeur minimale autorisée
-        form.fields['peopleAmount'].widget.attrs['max'] = 30  # Définition de la valeur maximale autorisée
-
-        form.fields['date'].label = 'Jour de la réservation'  # Changement de l'étiquette du champ date
+        form = super().get_form()
+        form.fields['room_category'].label = 'Nom de la salle'
+        form.fields['peopleAmount'].label = 'Nombre de personne'
+        form.fields['peopleAmount'].widget.attrs['min'] = 1
+        form.fields['peopleAmount'].widget.attrs['max'] = 30
+        form.fields['date'].label = 'Jour de la réservation'
         form.fields['date'].widget = DatePickerInput(
             options={
                 "locale": "fr",
                 "format": "DD/MM/YYYY",
             }
         )
-
-        form.fields['startTime'].label = 'Début de la réservation'  # Changement de l'étiquette du champ startTime
-        form.fields['startTime'].widget = TimePickerInput().start_of(
-            'duration')  # Utilisation du widget TimePickerInput pour le champ startTime
-
-        form.fields['endTime'].label = 'Fin de la réservation'  # Changement de l'étiquette du champ endTime
-        form.fields['endTime'].widget = TimePickerInput().end_of(
-            'duration')  # Utilisation du widget TimePickerInput pour le champ endTime
-
-        form.fields['groups'].label = 'Laboratoire'  # Changement de l'étiquette du champ groups
-
-        form.fields['motif'].label = 'Motif'  # Changement de l'étiquette du champ motif
-
+        form.fields['startTime'].label = 'Début de la réservation'
+        form.fields['startTime'].widget = TimePickerInput().start_of('duration')
+        form.fields['endTime'].label = 'Fin de la réservation'
+        form.fields['endTime'].widget = TimePickerInput().end_of('duration')
+        form.fields['groups'].label = 'Laboratoire'
+        form.fields['motif'].label = 'Motif'
         return form
 
     def form_valid(self, form):
-        # Validation du formulaire
-        user = self.request.user
-        
-        form.instance.user = user
-        form.instance.status = BookedRoom.STATUS_CHOICES[0][0]
-        
-        try:
-            data = super().form_valid(form)
-        except ValidationError as e:
-            # Convertir l'erreur de validation en chaîne de caractères
-            error_message = ', '.join(e.messages)
-            # Ajouter l'erreur de validation au formulaire
-            form.add_error(None, error_message)
-            
+        form.instance.last_person_modified = self.request.user
+        form.instance.last_date_modified = datetime.now()
+        current_user = self.request.user
+
+        # Vérifier si l'utilisateur est un secrétaire ou un administrateur
+        if not current_user.is_superuser and not current_user.isSecretary:
+
+            if current_user != form.instance.user:
+                form.add_error(None, 'Cette réservation ne vous appartient pas. Veuillez revenir à la page d\'accueil')
+            # Validation personnalisée
+            selected_date = form.cleaned_data['date']
+            start_time = form.cleaned_data['startTime']
+            end_time = form.cleaned_data['endTime']
+
+            if selected_date < date.today():
+                form.add_error('date', 'Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
+
+            if start_time < time(8, 0) or start_time > time(18, 0):
+                form.add_error('startTime', 'L\'heure de début doit être entre 8h00 et 18h00.')
+
+            if selected_date == date.today():
+                current_time = datetime.now().time()
+                new_hour = current_time.hour + 1
+                new_minute = current_time.minute + 30
+                if new_minute >= 60:
+                    new_hour += 1
+                    new_minute -= 60
+                min_start_time = time(new_hour, new_minute)
+                if start_time <= min_start_time:
+                    form.add_error('startTime',
+                                   'L\'heure de début doit être supérieure à 1h30 de l\'heure actuelle.')
+
+            if end_time < time(8, 0) or end_time > time(18, 0):
+                form.add_error('endTime', 'L\'heure de fin doit être entre 8h00 et 18h00.')
+            if end_time <= start_time:
+                form.add_error('endTime', 'L\'heure de fin doit être supérieure à l\'heure de début.')
+
+            if selected_date.weekday() == 5 and start_time >= time(12, 30):
+                form.add_error('startTime', 'Aucune réservation possible le samedi après 12h30.')
+            elif selected_date.weekday() == 6:
+                form.add_error('date', 'Aucune réservation possible le dimanche.')
+
+            if form.instance.peopleAmount > form.instance.room_category.maxCapacity:
+                form.add_error('peopleAmount', 'Le nombre de personnes dépasse la capacité maximale de la salle.')
+
+            existing_bookings = BookedRoom.objects.filter(
+                room_category=form.instance.room_category,
+                date=selected_date,
+                startTime__lt=end_time,
+                endTime__gt=start_time,
+            ).exclude(status='pending')
+
+            if existing_bookings.exists():
+                form.add_error(None,
+                               'Une réservation existante avec un statut autre que "pending" occupe déjà cette salle pendant cette période.')
+
+        if form.errors:
             return self.form_invalid(form)
 
-        # send_reservation_confirmation_email_admin(form.instance)
+        form.instance.save()
         add_to_ics()
+        return super().form_valid(form)
 
-        return data
+
+class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
+    model = BookedRoom
+    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
+    template_name = 'bookedroom_add.html'
+    success_url = reverse_lazy('home')
+    login_url = 'login'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.room_category = get_object_or_404(RoomCategory, pk=kwargs['room_pk'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['room_category'] = self.room_category
+        return initial
+
+    def get_form(self):
+        form = super().get_form()
+        form.fields['room_category'].label = 'Nom de la salle'
+        form.fields['peopleAmount'].label = 'Nombre de pers. au max.'
+        form.fields['peopleAmount'].widget.attrs['min'] = 1
+        form.fields['peopleAmount'].widget.attrs['max'] = 30
+        form.fields['date'].label = 'Date de la réservation'
+        form.fields['date'].widget = DatePickerInput(
+            options={
+                "locale": "fr",
+                "format": "DD/MM/YYYY",
+            }
+        )
+        form.fields['startTime'].label = 'Heure de début'
+        form.fields['startTime'].widget = TimePickerInput().start_of('duration')
+        form.fields['endTime'].label = 'Heure de fin'
+        form.fields['endTime'].widget = TimePickerInput().end_of('duration')
+        form.fields['groups'].label = 'Laboratoire'
+        form.fields['motif'].label = 'Motif'
+        return form
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.room_category = self.room_category
+        current_user = self.request.user
+
+        # Vérifier si l'utilisateur est un secrétaire ou un administrateur
+        if not current_user.is_superuser and not current_user.isSecretary:
+
+            # Validation personnalisée
+            selected_date = form.cleaned_data['date']
+            start_time = form.cleaned_data['startTime']
+            end_time = form.cleaned_data['endTime']
+
+            if selected_date < date.today():
+                form.add_error('date', 'Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
+
+            if start_time < time(8, 0) or start_time > time(18, 0):
+                form.add_error('startTime', 'L\'heure de début doit être entre 8h00 et 18h00.')
+
+            if selected_date == date.today():
+                current_time = datetime.now().time()
+                new_hour = current_time.hour + 1
+                new_minute = current_time.minute + 30
+                if new_minute >= 60:
+                    new_hour += 1
+                    new_minute -= 60
+                min_start_time = time(new_hour, new_minute)
+                if start_time <= min_start_time:
+                    form.add_error('startTime', 'L\'heure de début doit être supérieure à 1h30 de l\'heure actuelle.')
+
+            if end_time < time(8, 0) or end_time > time(18, 0):
+                form.add_error('endTime', 'L\'heure de fin doit être entre 8h00 et 18h00.')
+            if end_time <= start_time:
+                form.add_error('endTime', 'L\'heure de fin doit être supérieure à l\'heure de début.')
+
+            if selected_date.weekday() == 5 and start_time >= time(12, 30):
+                form.add_error('startTime', 'Aucune réservation possible le samedi après 12h30.')
+            elif selected_date.weekday() == 6:
+                form.add_error('date', 'Aucune réservation possible le dimanche.')
+
+            if form.instance.peopleAmount > form.instance.room_category.maxCapacity:
+                form.add_error('peopleAmount', 'Le nombre de personnes dépasse la capacité maximale de la salle.')
+
+            existing_bookings = BookedRoom.objects.filter(
+                room_category=form.instance.room_category,
+                date=selected_date,
+                startTime__lt=end_time,
+                endTime__gt=start_time,
+            ).exclude(status='pending')
+
+            if existing_bookings.exists():
+                form.add_error(None,
+                               'Une réservation existante avec un statut autre que "pending" occupe déjà cette salle pendant cette période.')
+
+        if form.errors:
+            return self.form_invalid(form)
+
+        form.instance.save()
+        add_to_ics()
+        return super().form_valid(form)
 
 
 class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
@@ -116,6 +248,7 @@ class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
+
         # send_reservation_confirmation_email_admin(self.object)
         response = super().delete(request, *args, **kwargs)
 
@@ -123,90 +256,6 @@ class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
         add_to_ics()
 
         return response
-
-
-class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
-    model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
-    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status',
-              'motif')  # Champs modifiables dans le formulaire
-    template_name = 'bookedroom_add.html'  # Utilisation du template 'bookedroom_add.html'
-    success_url = reverse_lazy('home')  # URL à laquelle rediriger après la création
-    login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
-
-    def dispatch(self, request, *args, **kwargs):
-        """
-        Remplacement pour s'assurer que la clé primaire passée
-        existe
-        """
-        self.room_category = get_object_or_404(RoomCategory, pk=kwargs['room_pk'])
-
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_initial(self):
-        """
-        Retourne les données initiales à utiliser pour les formulaires sur cette vue.
-        """
-        initial = super(BookedRoomsCreateView, self).get_initial()
-        initial['room_category'] = self.room_category
-
-        return initial
-
-    def get_form(self):
-        """
-        Remplacement pour changer les champs DateFields des boîtes de texte en
-        widgets DatePicker
-        """
-        form = super(BookedRoomsCreateView, self).get_form()
-        form.fields['room_category'].label = 'Nom de la salle'  # Changement de l'étiquette du champ room_category
-
-        form.fields['peopleAmount'].label = 'Nombre de pers. au max.'  # Changement de l'étiquette du champ peopleAmount
-        form.fields['peopleAmount'].widget.attrs['min'] = 1  # Définition de la valeur minimale autorisée
-        form.fields['peopleAmount'].widget.attrs['max'] = 30  # Définition de la valeur maximale autorisée
-
-        form.fields['date'].label = 'Date de la réservation'  # Changement de l'étiquette du champ date
-        form.fields['date'].widget = DatePickerInput(
-            options={
-                "locale": "fr",
-                "format": "DD/MM/YYYY",
-            }
-        )
-
-        form.fields['startTime'].label = 'Heure de début'  # Changement de l'étiquette du champ startTime
-        form.fields['startTime'].widget = TimePickerInput().start_of(
-            'duration')  # Utilisation du widget TimePickerInput pour le champ startTime
-
-        form.fields['endTime'].label = 'Heure de fin'  # Changement de l'étiquette du champ endTime
-        form.fields['endTime'].widget = TimePickerInput().end_of(
-            'duration')  # Utilisation du widget TimePickerInput pour le champ endTime
-
-        form.fields['groups'].label = 'Laboratoire'  # Changement de l'étiquette du champ groups
-
-        form.fields['motif'].label = 'Motif'  # Changement de l'étiquette du champ motif
-
-        del form.fields['status']  # Suppression du champ status du formulaire
-
-        return form
-
-    def form_valid(self, form):
-        user = self.request.user
-        
-        form.instance.user = user
-        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
-        
-        try:
-            data = super().form_valid(form)
-        except ValidationError as e:
-            # Convertir l'erreur de validation en chaîne de caractères
-            error_message = ', '.join(e.messages)
-            # Ajouter l'erreur de validation au formulaire
-            form.add_error(None, error_message)
-            
-            return self.form_invalid(form)
-        
-        # send_reservation_confirmation_email_admin(form.instance)
-        add_to_ics()
-        
-        return data
 
 
 class BookedRoomsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):
