@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Liste des équipements réservés</h1>
+    <h1>Liste des salles réservées</h1>
     {% for bookedroom in object_list %}
         {% if forloop.counter|divisibleby:2 %}
             <div class="col s6">
@@ -13,25 +13,23 @@
                 <div class="card sticky-action">
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">
-                            {{ bookedroom.room_category.libRoom }}<i class="material-icons right">more_vert</i>
+                            {{ bookedequipment.equipment_category.libEquipment }}<i class="material-icons right">more_vert</i>
                         </span>
                     </div>
                     <div class="card-action">
-                        <a class="waves-effect waves-light btn-small blue-grey darken-4" href="{% url 'bookedrooms_edit' bookedroom.pk %}">Update Booking</a>
-                        <a class="waves-effect waves-light btn-small blue-grey darken-4" href="{% url 'bookedrooms_delete' bookedroom.pk %}">Cancel Booking</a>
+                        <a class="waves-effect waves-light btn-small blue-grey darken-4" href="{% url 'bookedequipment_edit' bookedroom.pk %}">Update Booking</a>
+                        <a class="waves-effect waves-light btn-small blue-grey darken-4" href="{% url 'bookedequipment_delete' bookedroom.pk %}">Cancel Booking</a>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">
-                        {{ bookedroom.room_category.libRoom }}
+                        {{ bookedequipment.equipment_category.libEquipment }}
                         <i class="material-icons right">close</i></span>
                         <p>
-                            <small>Number of Rooms: <b>{{ object.peopleAmount }}</b></small>
+                            <small>le jour: <b>{{ bookedequipment.date }}</b></small>
                             <br>
-                            <small>le jours: <b>{{ object.date }}</b></small>
+                            <small>début: <b>{{ bookedequipment.startTime }}</b></small>
                             <br>
-                            <small>début: <b>{{ object.startTime }}</b></small>
-                            <br>
-                            <small>fin: <b>{{ object.endTime }}</b></small>
+                            <small>fin: <b>{{ bookedequipment.endTime }}</b></small>
                         </p>
                     </div>
                 </div>
