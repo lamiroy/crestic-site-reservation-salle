@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% get_media_prefix as MEDIA_PREFIX %}
+    <div class="container">
+        <div class="col-sm-12">
+            <h2 class="container-title">Réservations en attente</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row content roomdashboard">
+            {% for bookedequipment in object_list %}
+                {% if bookedequipment.status == 'pending' %}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card shadow-sm">
+                            <img src="{{ MEDIA_PREFIX }}{{ bookedequipment.room_category.image }}" class="card-img-top object-fit-none" alt="{{ equipment.equipment_category.libEquipment }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ bookedequipment.room_category.libRoom }}</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{ bookedequipment.user.last_name }} {{ bookedequipment.user.first_name }}</li>
+                                <li class="list-group-item">Motif : {{ bookedroom.motif }}</li>
+                                <li class="list-group-item">Nombre de pers. max. : {{ bookedequipment.peopleAmount }}</li>
+                                <li class="list-group-item">Jour de réservation : {{ bookedequipment.date }}</li>
+                                <li class="list-group-item">Heure de début : {{ bookedequipment.startTime }}</li>
+                                <li class="list-group-item">Heure de fin : {{ bookedequipment.endTime }}</li>
+                            </ul>
+                            <div class="card-body">
+                                <div class="btn-group card-link" role="group" aria-label="Boutons">
+                                    <a href="{% url 'bookedequipment_validation_validated' bookedequipment.pk %}" class="btn btn-primary button-style" >Valider</a>
+                                    <a href="{% url 'bookedequipment_validation_refused' bookedequipment.pk %}" class="btn btn-danger card-link button-style button-red">Refuser</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
