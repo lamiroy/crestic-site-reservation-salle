@@ -41,76 +41,19 @@ class BookedRoom(models.Model):
         RoomCategory,  # Utilisation du modèle RoomCategory pour les catégories de salles
         on_delete=models.CASCADE,  # Suppression en cascade de la catégorie de salle si celle-ci est supprimée
     )
-
-    def perform_validations(self):
-        # Vérifiez que l'utilisateur existe avant de vérifier is_superuser
-        if self.user and (self.user.is_superuser or self.user.isSecretary):
-            return  # Ignorer toutes les validations si l'utilisateur est un superutilisateur
-
-        # Vérification de la validité de la date et de l'heure de début
-        selected_date = self.date
-        if selected_date < date.today():  # Si la date est antérieure à aujourd'hui
-            raise ValidationError('Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
-
-        start_time = self.startTime
-        if start_time:
-            # Vérification de l'heure de début dans les plages horaires autorisées
-            if start_time < time(8, 0) or start_time > time(18, 0):
-                raise ValidationError('L\'heure de début doit être entre 8h00 et 18h00.')
-
-            # Vérification de l'heure de début pour la même journée
-            if selected_date == date.today():
-                current_time = datetime.now().time()
-                new_hour = current_time.hour + 1
-                new_minute = current_time.minute + 30
-                if new_minute >= 60:
-                    new_hour += 1
-                    new_minute -= 60
-                min_start_time = time(new_hour, new_minute)
-                if start_time <= min_start_time:
-                    raise ValidationError('L\'heure de début doit être supérieure à 1h30 de l\'heure actuelle.')
-
-        end_time = self.endTime
-        if end_time:
-            # Vérification de l'heure de fin dans les plages horaires autorisées
-            if end_time < time(8, 0) or end_time > time(18, 0):
-                raise ValidationError('L\'heure de fin doit être entre 8h00 et 18h00.')
-            if end_time <= start_time:
-                raise ValidationError('L\'heure de fin doit être supérieure à l\'heure de début.')
-
-        # Ajout de la condition pour le samedi après 12h30 et le dimanche
-        if selected_date.weekday() == 5:  # Samedi (0 = lundi, 6 = dimanche)
-            if start_time >= time(12, 30):
-                raise ValidationError('Aucune réservation possible le samedi après 12h30.')
-        elif selected_date.weekday() == 6:  # Dimanche
-            raise ValidationError('Aucune réservation possible le dimanche.')
-
-        # Vérifier que le nombre de personnes dans la réservation est supérieur au nombre de personnes au maximum
-        # dans la salle
-        if self.peopleAmount > self.room_category.maxCapacity:
-            raise ValidationError('Le nombre de personnes dépasse la capacité maximale de la salle.')
-
-        # Vérification qu'aucune réservation n'occupe la même salle pendant la même période
-        existing_bookings = BookedRoom.objects.filter(
-            room_category=self.room_category,
-            date=self.date,
-            startTime__lt=self.endTime,
-            endTime__gt=self.startTime,
-        ).exclude(pk=self.pk)
-
-        # Filtrer les réservations existantes avec un statut autre que "pending"
-        existing_non_pending_bookings = existing_bookings.exclude(status='pending')
-
-        # Vérifier que les réservations existantes avec un statut autre que "pending" ne chevauchent pas la
-        # réservation actuelle
-        if existing_non_pending_bookings.exists():
-            raise ValidationError(
-                'Une réservation existante avec un statut autre que "pending" occupe déjà cette salle pendant cette '
-                'période.')
+    last_person_modified = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='modifications',
+        verbose_name='Dernière personne ayant modifié'
+    )
+    last_date_modified = models.DateTimeField(
+        auto_now=True,
+        verbose_name='Dernière date de modification'
+    )
 
     def save(self, *args, **kwargs):
-        # Effectuer les validations avant d'enregistrer l'objet
-        self.perform_validations()
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
