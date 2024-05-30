@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="container">
-        <div class="card text-center roomdashboard_delete">
+        <div class="card text-center roomdashboard_validation_refused">
             <div class="card-header">
                 Confirmation d'annulation
             </div>
@@ -12,7 +12,7 @@
                 <form method="post">
                     {% csrf_token %}
                     <button class="btn btn-success button-style" type="submit">Valider</button>
-                    <a class="btn btn-danger button-style button-red" type="button" href="{% url 'home' %}">Annuler</a>
+                    <a class="btn btn-danger button-style button-red" type="button" href="{% url 'bookedequipment_validation' %}">Annuler</a>
                 </form>
             </div>
             <div class="card-footer text-body-secondary">
