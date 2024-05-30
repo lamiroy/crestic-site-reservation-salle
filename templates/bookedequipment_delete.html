@@ -1,33 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Annuler la réservation</h1>
-    <div class="row">
-        <div class="col s6 m6">
-            <div class="card">
+    <div class="container">
+        <div class="card text-center roomdashboard_delete">
+            <div class="card-header">
+                Confirmation d'annulation
             </div>
-        </div>
-        <div class="col s6 m6">
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">{{ object.room_category.libRoom }}</span>
-                    <p>
-                        <small>Number of Rooms: <b>{{ object.peopleAmount }}</b></small>
-                        <br>
-                        <small>le jours: <b>{{ object.date }}</b></small>
-                        <br>
-                        <small>début: <b>{{ object.startTime }}</b></small>
-                        <br>
-                        <small>fin: <b>{{ object.endTime }}</b></small>
-                    </p>
-                </div>
-                <div class="card-action">
-                    <form method="post">
-                        {% csrf_token %}
-                        <button class="waves-effect waves-light btn-small red darken-4" type="submit">Annuler la réservation</button>
-                        <a class="waves-effect waves-light btn-small green darken-4" href="{% url 'bookedrooms_list' %}">Retour</a>
-                    </form>
-                </div>
+            <div class="card-body">
+                <h5 class="card-title">Êtes-vous sûr de vouloir annuler cette réservation ?</h5>
+                <p class="card-text">Cette action est irréversible. Toutes les données associées à cette réservation seront définitivement effacées.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-success button-style" type="submit">Valider</button>
+                    <a class="btn btn-danger button-style button-red" type="button" href="{% url 'home' %}">Annuler</a>
+                </form>
+            </div>
+            <div class="card-footer text-body-secondary">
+                {{ bookedequipment.equipment_category.libEquipment }}
             </div>
         </div>
     </div>
