@@ -5,14 +5,9 @@
 {% block content %}
     {% get_media_prefix as MEDIA_PREFIX %}
 
-    <div class="container mb-2">
-        <div class="col-sm-12 d-flex">
-            <h2 class="container-title">Gestion des équipements</h2>
-            <div class="flex-grow-1"></div>
-            <a class="btn btn-primary button-style container-button" type="button" href="{% url 'equipmentdashboard_new' %}">
-                <i class="bi bi-plus-lg"></i>
-                Ajouter un nouvel équipement
-            </a>
+    <div class="container">
+        <div class="col-sm-12">
+            <h2 class="container-title">Equipements disponibles</h2>
         </div>
     </div>
 
@@ -23,8 +18,8 @@
                     <div class="card shadow-sm text-bg-dark empty-card mb-5">
                         <div class="empty-card-space"></div>
                         <div class="card-img-overlay empty-card-text">
-                            <h5 class="card-title fs-4">Aucun équipement créé</h5>
-                            <p class="card-text fs-6">Aucun équipement n'a encore été créé. Utilisez le bouton ci-dessus pour ajouter un nouvel équipement.</p>
+                            <h5 class="card-title fs-4">Aucun équipement disponible</h5>
+                            <p class="card-text fs-6">Il n'y a actuellement aucun équipement disponible. Veuillez vérifier à nouveau plus tard.</p>
                         </div>
                         <div class="card-body d-flex justify-content-center align-items-center">
                             <div class="empty-card-button"></div>
@@ -41,24 +36,7 @@
                             <p class="card-text fs-6">{{ equipment.description }}</p>
                         </div>
                         <div class="card-body d-flex justify-content-center align-items-center">
-                            <a href="{% url 'equipmentdashboard_edit' equipment.pk %}" class="btn btn-warning button-style"
-                               data-bs-toggle="tooltip"
-                               data-bs-placement="top"
-                               data-bs-custom-class="edit-tooltip"
-                               data-bs-title="Modification de l'équipement">
-                                <i class="bi bi-pencil"></i>
-                            </a>
-                            <a href="{% url 'equipmentdashboard_delete' equipment.pk %}" class="btn btn-danger button-style button-red ml-2"
-                               data-bs-toggle="tooltip"
-                               data-bs-placement="top"
-                               data-bs-custom-class="delete-tooltip"
-                               data-bs-title="Suppression de l'équipement">
-                                <i class="bi bi-trash3"></i>
-                            </a>
-                            <div class="flex-grow-1"></div>
-                            <a href="{% url 'equipmentdashboard_detail' equipment.pk %}" class="btn btn-danger button-style">
-                                Détails de l'équipement
-                            </a>
+                            <a href="{% url 'bookedequipment_new' equipment.pk %}" class="btn btn-success card-link button-style w-75">Réserver</a>
                         </div>
                     </div>
                 </div>
@@ -68,8 +46,8 @@
                     <div class="card shadow-sm text-bg-dark empty-card mb-5">
                         <div class="empty-card-space"></div>
                         <div class="card-img-overlay empty-card-text">
-                            <h5 class="card-title fs-4">Aucun autre équipement créé</h5>
-                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Ajouter un nouvel équipement&raquo; afin de créer un équipement réservable.</p>
+                            <h5 class="card-title fs-4">Aucun autre équipement disponible</h5>
+                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Réserver&raquo; pour emprunter un équipement.</p>
                         </div>
                         <div class="card-body d-flex justify-content-center align-items-center">
                             <div class="empty-card-button"></div>
@@ -81,8 +59,8 @@
                     <div class="card shadow-sm text-bg-dark empty-card">
                         <div class="empty-card-space"></div>
                         <div class="card-img-overlay empty-card-text">
-                            <h5 class="card-title fs-4">Aucun autre équipement créé</h5>
-                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Ajouter un nouvel équipement&raquo; afin de créer un équipement réservable.</p>
+                            <h5 class="card-title fs-4">Aucune autre équipement disponible</h5>
+                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Réserver&raquo; pour emprunter un équipement.</p>
                         </div>
                         <div class="card-body d-flex justify-content-center align-items-center">
                             <div class="empty-card-button"></div>
