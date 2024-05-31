@@ -14,7 +14,7 @@ from .models import EquipmentCategory
 def add_to_ics():
     return None
 
-class EquipmentListView(ListView):
+class EquipmentListView(LoginRequiredMixin, ListView):
     """
     Affiche une liste des catégories de chambres disponibles.
     """
