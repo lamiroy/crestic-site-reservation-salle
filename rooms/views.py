@@ -15,7 +15,7 @@ from icalendar import (
     Calendar,  # Import du module Calendar de la bibliothèque iCalendar
     Event,  # Import du module Event de la bibliothèque iCalendar
 )
-from datetime import datetime  # Import de la classe datetime pour manipuler les dates et heures
+from datetime import datetime, date, time  # Import de la classe datetime pour manipuler les dates et heures
 import os  # Importe le module os pour les opérations sur le système d'exploitation
 import json  # Import du module json pour la manipulation de données JSON
 from django.core.exceptions import ValidationError  # Import de la classe d'erreur ValidationError
@@ -145,26 +145,64 @@ class HomePageView(LoginRequiredMixin, CreateView):
         return form
 
     def form_valid(self, form):
-        """
-        Surcharge pour toujours définir l'utilisateur sur l'utilisateur actuellement connecté.
-        """
-        user = self.request.user
+        form.instance.user = self.request.user
+        current_user = self.request.user
 
-        form.instance.user = user
-        try:
-            data = super().form_valid(form)
-        except ValidationError as e:
-            # Convertir l'erreur de validation en chaîne de caractères
-            error_message = ', '.join(e.messages)
-            # Ajouter l'erreur de validation au formulaire
-            form.add_error(None, error_message)
+        # Vérifier si l'utilisateur est un secrétaire ou un administrateur
+        if not current_user.is_superuser and not current_user.isSecretary:
 
+            # Validation personnalisée
+            selected_date = form.cleaned_data['date']
+            start_time = form.cleaned_data['startTime']
+            end_time = form.cleaned_data['endTime']
+
+            if selected_date < date.today():
+                form.add_error('date', 'Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
+
+            if start_time < time(8, 0) or start_time > time(18, 0):
+                form.add_error('startTime', 'L\'heure de début doit être entre 8h00 et 18h00.')
+
+            if selected_date == date.today():
+                current_time = datetime.now().time()
+                new_hour = current_time.hour + 1
+                new_minute = current_time.minute + 30
+                if new_minute >= 60:
+                    new_hour += 1
+                    new_minute -= 60
+                min_start_time = time(new_hour, new_minute)
+                if start_time <= min_start_time:
+                    form.add_error('startTime', 'L\'heure de début doit être supérieure à 1h30 de l\'heure actuelle.')
+
+            if end_time < time(8, 0) or end_time > time(18, 0):
+                form.add_error('endTime', 'L\'heure de fin doit être entre 8h00 et 18h00.')
+            if end_time <= start_time:
+                form.add_error('endTime', 'L\'heure de fin doit être supérieure à l\'heure de début.')
+
+            if selected_date.weekday() == 5 and start_time >= time(12, 30):
+                form.add_error('startTime', 'Aucune réservation possible le samedi après 12h30.')
+            elif selected_date.weekday() == 6:
+                form.add_error('date', 'Aucune réservation possible le dimanche.')
+
+            if form.instance.peopleAmount > form.instance.room_category.maxCapacity:
+                form.add_error('peopleAmount', 'Le nombre de personnes dépasse la capacité maximale de la salle.')
+
+            existing_bookings = BookedRoom.objects.filter(
+                room_category=form.instance.room_category,
+                date=selected_date,
+                startTime__lt=end_time,
+                endTime__gt=start_time,
+            ).exclude(status='pending')
+
+            if existing_bookings.exists():
+                form.add_error(None,
+                               'Une réservation existante avec un statut autre que "pending" occupe déjà cette salle pendant cette période.')
+
+        if form.errors:
             return self.form_invalid(form)
 
-        # send_reservation_confirmation_email_admin(form.instance)
+        form.instance.save()
         add_to_ics()
-
-        return data
+        return super().form_valid(form)
 
 
 def default_room_image(request):
