@@ -14,7 +14,7 @@
         <div class="row content roomdashboard">
             <h3>Vos réservations :</h3>
             {% for bookedroom in object_list %}
-                {% if bookedroom.user == user %}
+                {% if bookedroom.user == user and bookedroom.status != "canceled" %}
                     <div class="col-sm-12 col-md-6">
                         <div class="card shadow-sm">
                             <img src="{{ MEDIA_PREFIX }}{{ bookedroom.room_category.image }}" class="card-img-top" alt="{{ room.room_category.libRoom }}">
