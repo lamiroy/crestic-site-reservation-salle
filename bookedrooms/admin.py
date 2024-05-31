@@ -6,7 +6,7 @@ class BookRoomsAdmin(admin.ModelAdmin):
     model = BookedRoom  # Spécification du modèle associé à cette classe d'administration
     # Définition des champs à afficher dans la liste des réservations de salle
     list_display = ['id', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif',
-                    'user', 'room_category', 'peopleAmount']
+                    'user', 'room_category', 'peopleAmount', 'last_person_modified', 'last_date_modified']
 
 
 # Enregistrement du modèle BookedRoom avec sa classe d'administration
