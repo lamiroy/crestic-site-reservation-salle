@@ -5,7 +5,10 @@ from .views import (
     RoomDashboardDetailView,  # Vue pour afficher les détails d'une salle
     RoomDashboardDeleteView,  # Vue pour supprimer une salle
     RoomDashboardCreateView,  # Vue pour créer une nouvelle salle
-    BookedRoomDashboardListView,  # Vue pour afficher la liste des réservations de salles
+    BookedRoomDashboardListView, EquipmentDashboardUpdateView,
+    EquipmentDashboardDetailView, EquipmentDashboardDeleteView,
+    EquipmentDashboardCreateView, EquipmentDashboardListView,
+    BookedEquipmentDashboardListView,  # Vue pour afficher la liste des réservations de salles
 )
 
 urlpatterns = [
@@ -27,4 +30,22 @@ urlpatterns = [
     # URL pour afficher la liste des réservations de salles
     path('bookedrooms/',
          BookedRoomDashboardListView.as_view(), name='bookedroomdashboard_list'),
+    # URL pour mettre à jour les détails d'une salle avec l'identifiant pk
+    path('equipments/<int:pk>/edit/',
+         EquipmentDashboardUpdateView.as_view(), name='equipmentdashboard_edit'),
+    # URL pour afficher les détails d'une salle avec l'identifiant pk
+    path('equipments/<int:pk>/',
+         EquipmentDashboardDetailView.as_view(), name='equipmentdashboard_detail'),
+    # URL pour supprimer une salle avec l'identifiant pk
+    path('equipments/<int:pk>/delete/',
+         EquipmentDashboardDeleteView.as_view(), name='equipmentdashboard_delete'),
+    # URL pour créer une nouvelle salle
+    path('equipments/new/',
+         EquipmentDashboardCreateView.as_view(), name='equipmentdashboard_new'),
+    # URL pour afficher la liste des salles
+    path('equipments/',
+         EquipmentDashboardListView.as_view(), name='equipmentdashboard_list'),
+    # URL pour afficher la liste des réservations de salles
+    path('bookedequipments/',
+         BookedEquipmentDashboardListView.as_view(), name='bookedequipmentdashboard_list'),
 ]
