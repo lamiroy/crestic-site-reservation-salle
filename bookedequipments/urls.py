@@ -5,23 +5,35 @@ from .views import (
     BookedEquipmentsDetailView,
     BookedEquipmentsUpdateView,
     BookedEquipmentsDeleteView,
-    BookedEquipmentsCreateView,
+    BookedEquipmentsCreateView, BookedEquipmentsValidationView, BookedEquipmentsValidationRefusedView,
+    BookedEquipmentsValidationValidatedView,
 )
 
 urlpatterns = [
-    path('<int:pk>/edit/',
+    path('<int:pk>/edit_equipment/',
          BookedEquipmentsListView.as_view(),
          name='bookedequipments_edit'),
-    path('<int:pk>/',
+    path('<int:pk>/equipment_details',
          BookedEquipmentsDetailView.as_view(),
          name='bookedequipments_detail'),
-    path('<int:pk>/delete/',
+    path('<int:pk>/delete_equipment/',
          BookedEquipmentsUpdateView.as_view(),
          name='bookedequipments_delete'),
     path('new/<int:equimpent_pk>/',
          BookedEquipmentsDeleteView.as_view(),
          name='bookedequipments_new'),
-    path('',
+    path('bookedequipment_list/',
          BookedEquipmentsCreateView.as_view(),
          name='bookedequipments_list'),
+    path('bookedequipment_validation/',  # URL pour afficher la page de validation d'une réservation
+         BookedEquipmentsValidationView.as_view(),  # Utilisation de la vue BookedRoomsValidationView pour cette URL
+         name='bookedequipments_validation'),  # Nom de l'URL pour référence dans le code Django
+
+    path('<int:pk>/delete_request_equipment/',  # URL pour supprimer une réservation de salle avec un identifiant spécifique
+         BookedEquipmentsValidationRefusedView,  # Utilisation de la vue BookedRoomsDeleteView pour cette URL
+         name='bookedequipments_validation_refused'),  # Nom de l'URL pour référence dans le code Django
+
+    path('<int:pk>/validate_request_equipment/',  # URL pour supprimer une réservation de salle avec un identifiant spécifique
+         BookedEquipmentsValidationValidatedView,  # Utilisation de la vue BookedRoomsDeleteView pour cette URL
+         name='bookedequipments_validation_validated'),
 ]

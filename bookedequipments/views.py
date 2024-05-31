@@ -1,5 +1,7 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
+from django.db import transaction
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
@@ -7,8 +9,8 @@ from django.urls import reverse_lazy
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 from datetime import date, datetime, time
 
-import bookedrooms.models
-from rooms.models import RoomCategory
+from equipments.models import EquipmentCategory
+from equipments.views import add_to_ics
 from .models import BookedEquipment
 
 
@@ -25,49 +27,54 @@ class BookedEquipmentsListView(LoginRequiredMixin, ListView):
 
 class BookedEquipmentsDetailView(LoginRequiredMixin, DetailView):
     model = BookedEquipment
-    template_name = 'bookedroom_detail.html'
+    template_name = 'bookedequipment_detail.html'
     login_url = 'login'
 
 
 class BookedEquipmentsUpdateView(LoginRequiredMixin, UpdateView):
     model = BookedEquipment
-    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
-    template_name = 'bookedroom_edit.html'
+    fields = ('equipment_category', 'date', 'startTime', 'endTime', 'groups', 'motif')
+    template_name = 'bookedequipment_edit.html'
+    success_url = reverse_lazy('home')
     login_url = 'login'
 
     def get_form(self):
         form = super(BookedEquipmentsUpdateView, self).get_form()
-        form.fields['room_category'].label = 'nom de la salle'
-        form.fields['peopleAmount'].label = 'nombre de personnes'
-        form.fields['date'].label = 'jour de la réservation'
-        form.fields['startTime'].label = 'début de la réservation'
-        form.fields['endTime'].label = 'fin de la réservation'
-        form.fields['groups'].label = 'laboratoire'
-        form.fields['motif'].label = 'motif'
-        form.fields['date'].widget = DatePickerInput()
+        form.fields['equipment_category'].label = 'Nom de l''équipement'
+        form.fields['date'].label = 'Jour de la réservation'
+        form.fields['date'].widget = DatePickerInput(
+            options={
+                "locale": "fr",
+                "format": "DD/MM/YYYY",
+            }
+        )
+        form.fields['startTime'].label = 'Début de la réservation'
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
+        form.fields['endTime'].label = 'Fin de la réservation'
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
+        form.fields['groups'].label = 'Laboratoire'
+        form.fields['motif'].label = 'Motif'
         return form
 
     def form_valid(self, form):
         user = self.request.user
         form.instance.user = user
-        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
+        form.instance.status = BookedEquipment.STATUS_CHOICES[0][0]
         return super(BookedEquipmentsUpdateView, self).form_valid(form)
 
 
 class BookedEquipmentsDeleteView(LoginRequiredMixin, DeleteView):
     model = BookedEquipment
-    template_name = 'bookedroom_delete.html'
-    success_url = reverse_lazy('bookedrooms_list')
+    template_name = 'bookedequipment_delete.html'
+    success_url = reverse_lazy('bookedequipment_list')
     login_url = 'login'
 
 
 class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
     model = BookedEquipment
-    fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'status', 'motif')
-    template_name = 'bookedroom_add.html'
-    success_url = reverse_lazy('bookedrooms_list')
+    fields = ('equipment_category', 'date', 'startTime', 'endTime', 'groups', 'motif')
+    template_name = 'bookedequipment_add.html'
+    success_url = reverse_lazy('bookedequipment_list')
     login_url = 'login'
 
     def dispatch(self, request, *args, **kwargs):
@@ -75,7 +82,7 @@ class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
         Overridden to ensure that the primary key passed
         does exist
         """
-        self.room_category = get_object_or_404(RoomCategory, pk=kwargs['room_pk'])
+        self.equipment_category = get_object_or_404(EquipmentCategory, pk=kwargs['equipment_pk'])
         return super().dispatch(request, *args, **kwargs)
 
     def get_initial(self):
@@ -83,7 +90,7 @@ class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
         Returns the initial data to use for forms on this view.
         """
         initial = super(BookedEquipmentsCreateView, self).get_initial()
-        initial['room_category'] = self.room_category
+        initial['equipment_category'] = self.equipment_category
         return initial
 
     def get_form(self):
@@ -92,8 +99,7 @@ class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
         DatePicker widgets
         """
         form = super(BookedEquipmentsCreateView, self).get_form()
-        form.fields['room_category'].label = 'nom de la salle'
-        form.fields['peopleAmount'].label = 'nombre de personnes'
+        form.fields['equipment_category'].label = 'nom de la equipment'
         form.fields['date'].label = 'jour de la réservation'
         form.fields['startTime'].label = 'début de la réservation'
         form.fields['endTime'].label = 'fin de la réservation'
@@ -111,8 +117,67 @@ class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
         """
         user = self.request.user
         form.instance.user = user
-        form.instance.status = bookedrooms.models.BookedRoom.STATUS_CHOICES[0][0]
+        form.instance.status = BookedEquipment.STATUS_CHOICES[0][0]
 
         print("Form data:", form.cleaned_data)
         print("Form errors:", form.errors)
         return super(BookedEquipmentsCreateView, self).form_valid(form)
+
+class BookedEquipmentsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = BookedEquipment  # Utilisation du modèle BookedRoom pour cette vue
+    template_name = 'bookedequipment_validation.html'
+    success_url = reverse_lazy('bookedequipment_validation')
+    login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
+
+    def test_func(self):
+        """
+        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
+        """
+        return self.request.user.isSecretary or self.request.user.is_superuser
+
+def BookedEquipmentsValidationRefusedView(request, pk):
+    # Vérifie si l'utilisateur est authentifié et s'il a les droits nécessaires (secrétaire ou superutilisateur)
+    if not request.user.is_authenticated or (not request.user.isSecretary and not request.user.is_superuser):
+        raise PermissionDenied
+
+    # Récupère la réservation d'équipement avec l'identifiant donné ou lève une erreur 404 si non trouvée
+    reservation = get_object_or_404(BookedEquipment, id=pk)
+    if request.method == 'POST':
+        reservation.status = 'canceled'  # Met à jour le statut de la réservation à 'annulée'
+        reservation.save()  # Sauvegarde les modifications dans la base de données
+
+        add_to_ics()  # Ajoute la réservation au calendrier ICS
+
+        return redirect('bookedequipment_validation')  # redirigez vers une page de succès ou de confirmation
+
+    return render(request, 'bookedequipment_validation_refused.html', {'reservation': reservation})
+
+def BookedEquipmentsValidationValidatedView(request, pk):
+    # Vérifie si l'utilisateur est authentifié et s'il a les droits nécessaires (secrétaire ou superutilisateur)
+    if not request.user.is_authenticated or (not request.user.isSecretary and not request.user.is_superuser):
+        raise PermissionDenied
+
+    # Récupère la réservation de salle avec l'identifiant donné ou lève une erreur 404 si non trouvée
+    reservation = get_object_or_404(BookedEquipment, id=pk)
+    if request.method == 'POST':
+        reservation.status = 'validated'  # Met à jour le statut de la réservation à 'validée'
+        reservation.save()  # Sauvegarde les modifications dans la base de données
+
+        # Recherche des réservations en attente qui occupent la même salle
+        pending_bookings_to_delete = BookedEquipment.objects.filter(
+            equipment_category=reservation.equipment_category,
+            date=reservation.date,
+            startTime__lt=reservation.endTime,
+            endTime__gt=reservation.startTime,
+            status='pending'
+        )
+
+        # Suppression des réservations en attente trouvées
+        with transaction.atomic():
+            pending_bookings_to_delete.delete()
+
+        add_to_ics()  # Ajoute la réservation validée au calendrier ICS
+
+        return redirect('bookedequipment_validation')  # redirigez vers une page de succès ou de confirmation
+
+    return render(request, 'bookedequipment_validation_validated.html', {'reservation': reservation})
