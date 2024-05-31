@@ -31,6 +31,14 @@ from datetime import datetime, date, time
 from django.core.exceptions import ValidationError
 
 
+class UserIsOwnerOrAdminMixin:
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if not (request.user == obj.user or request.user.is_superuser or request.user.isSecretary):
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
+
+
 class BookedRoomsListView(LoginRequiredMixin, ListView):
     model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
     template_name = 'bookedroom_list.html'  # Utilisation du template 'bookedroom_list.html'
@@ -48,7 +56,7 @@ class BookedRoomsDetailView(LoginRequiredMixin, DetailView):
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
 
-class BookedRoomsUpdateView(LoginRequiredMixin, UpdateView):
+class BookedRoomsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateView):
     model = BookedRoom
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
     template_name = 'bookedroom_edit.html'
@@ -240,7 +248,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
+class BookedRoomsDeleteView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, DeleteView):
     model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
     template_name = 'bookedroom_delete.html'  # Utilisation du template 'bookedroom_delete.html'
     success_url = reverse_lazy('home')  # URL à laquelle rediriger après la suppression
@@ -249,13 +257,14 @@ class BookedRoomsDeleteView(LoginRequiredMixin, DeleteView):
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
 
-        # send_reservation_confirmation_email_admin(self.object)
-        response = super().delete(request, *args, **kwargs)
+        # Change le statut à 'canceled' au lieu de supprimer l'objet
+        self.object.status = 'canceled'
+        self.object.save()
 
-        # Appel de la fonction add_to_ics pour ajouter l'événement à l'ICS
+        # Appel de la fonction add_to_ics pour mettre à jour l'événement dans l'ICS
         add_to_ics()
 
-        return response
+        return redirect(self.success_url)
 
 
 class BookedRoomsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):
