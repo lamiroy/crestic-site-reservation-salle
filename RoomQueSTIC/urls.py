@@ -26,11 +26,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # URL pour accéder à l'interface d'administration
     path('users/', include('users.urls')),  # URL pour les fonctionnalités liées aux utilisateurs
     path('users/', include('django.contrib.auth.urls')),  # URL pour les fonctionnalités d'authentification des users
-    path('dashboard/', include('dashboard.urls')),  # URL pour le tableau de bord
+    path('dashboard/', include('dashboard.urls')),# URL pour le tableau de bord
     path('roombooking/', include('bookedrooms.urls')),  # URL pour la réservation de salles
     path('equipmentbooking/', include('bookedequipments.urls')),  # URL pour la réservation d'équipements
     path('calendar/', include('fullcalendar.urls')),  # URL pour le calendrier
-    path('', include('rooms.urls'))  # URL pour les fonctionnalités liées aux salles
+    path('', include('rooms.urls')),  # URL pour les fonctionnalités liées aux salles
+    path('equipments/', include('equipments.urls'))
 ]
 
 if settings.DEBUG:  # Vérifie si le mode DEBUG est activé dans les paramètres de configuration

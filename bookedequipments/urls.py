@@ -11,19 +11,19 @@ from .views import (
 
 urlpatterns = [
     path('<int:pk>/edit_equipment/',
-         BookedEquipmentsListView.as_view(),
-         name='bookedequipments_edit'),
+         BookedEquipmentsUpdateView.as_view(),
+         name='bookedequipment_edit'),
     path('<int:pk>/equipment_details',
          BookedEquipmentsDetailView.as_view(),
          name='bookedequipments_detail'),
     path('<int:pk>/delete_equipment/',
-         BookedEquipmentsUpdateView.as_view(),
-         name='bookedequipments_delete'),
-    path('new/<int:equimpent_pk>/',
          BookedEquipmentsDeleteView.as_view(),
+         name='bookedequipment_delete'),
+    path('new/<int:equipment_pk>/',
+         BookedEquipmentsCreateView.as_view(),
          name='bookedequipments_new'),
     path('bookedequipment_list/',
-         BookedEquipmentsCreateView.as_view(),
+         BookedEquipmentsListView.as_view(),
          name='bookedequipments_list'),
     path('bookedequipment_validation/',  # URL pour afficher la page de validation d'une réservation
          BookedEquipmentsValidationView.as_view(),  # Utilisation de la vue BookedRoomsValidationView pour cette URL

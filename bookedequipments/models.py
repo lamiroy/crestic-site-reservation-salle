@@ -8,6 +8,7 @@ from equipments.models import EquipmentCategory
 
 class BookedEquipment(models.Model):
     STATUS_CHOICES = [
+        ('pending', 'en attente'),
         ('loaned', 'prêté'),
         ('canceled', 'annulé'),
         ('back', 'rendu'),
