@@ -64,32 +64,34 @@
                     </div>
                 </div>
             {% endfor %}
-            {% if object_list|length|divisibleby:2 %}
-                <div class="col-sm-12">
-                    <div class="card shadow-sm text-bg-dark empty-card mb-5">
-                        <div class="empty-card-space"></div>
-                        <div class="card-img-overlay empty-card-text">
-                            <h5 class="card-title fs-4">Aucune autre salle créée</h5>
-                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Ajouter une nouvelle salle&raquo; afin de créer une salle réservable.</p>
-                        </div>
-                        <div class="card-body d-flex justify-content-center align-items-center">
-                            <div class="empty-card-button"></div>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="col-sm-12 col-md-6">
-                    <div class="card shadow-sm text-bg-dark empty-card">
-                        <div class="empty-card-space"></div>
-                        <div class="card-img-overlay empty-card-text">
-                            <h5 class="card-title fs-4">Aucune autre salle créée</h5>
-                            <p class="card-text fs-6">Cliquez sur le bouton &laquo;Ajouter une nouvelle salle&raquo; afin de créer une salle réservable.</p>
-                        </div>
-                        <div class="card-body d-flex justify-content-center align-items-center">
-                            <div class="empty-card-button"></div>
+            {% if object_list|length > 0 %}
+                {% if object_list|length|divisibleby:2 %}
+                    <div class="col-sm-12">
+                        <div class="card shadow-sm text-bg-dark empty-card mb-5">
+                            <div class="empty-card-space"></div>
+                            <div class="card-img-overlay empty-card-text">
+                                <h5 class="card-title fs-4">Aucune autre salle créée</h5>
+                                <p class="card-text fs-6">Cliquez sur le bouton &laquo;Ajouter une nouvelle salle&raquo; afin de créer une salle réservable.</p>
+                            </div>
+                            <div class="card-body d-flex justify-content-center align-items-center">
+                                <div class="empty-card-button"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card shadow-sm text-bg-dark empty-card">
+                            <div class="empty-card-space"></div>
+                            <div class="card-img-overlay empty-card-text">
+                                <h5 class="card-title fs-4">Aucune autre salle créée</h5>
+                                <p class="card-text fs-6">Cliquez sur le bouton &laquo;Ajouter une nouvelle salle&raquo; afin de créer une salle réservable.</p>
+                            </div>
+                            <div class="card-body d-flex justify-content-center align-items-center">
+                                <div class="empty-card-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
             {% endif %}
         </div>
     </div>
