@@ -40,4 +40,33 @@
             {% endfor %}
         </div>
     </div>
+     <div class="container">
+        <div class="row content roomdashboard">
+            <h3>Vos réservations :</h3>
+            {% for bookedequipment in object_list %}
+                {% if bookedequipment.user == user and bookedequipment.status != "canceled" %}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card shadow-sm">
+                            <img src="{{ MEDIA_PREFIX }}{{ bookedequipment.equipment_category.image }}" class="card-img-top" alt="{{ room.equipment_category.libEquipment }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ bookedequipment.room_category.libEquipment }}</h5>
+                                <p class="card-text">{{ bookedequipment.motif }}</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Jour de réservation : {{ bookedequipment.date }}</li>
+                                <li class="list-group-item">Heure de début : {{ bookedequipment.startTime }}</li>
+                                <li class="list-group-item">Heure de fin : {{ bookedequipment.endTime }}</li>
+                            </ul>
+                            <div class="card-body">
+                                <div class="btn-group card-link" role="group" aria-label="Boutons">
+                                    <a href="{% url 'bookedequipment_edit' bookedequipment.pk %}" class="btn btn-primary button-style" >Modifier</a>
+                                    <a href="{% url 'bookedequipment_delete' bookedequipment.pk %}" class="btn btn-danger card-link button-style button-red">Annuler</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock content %}

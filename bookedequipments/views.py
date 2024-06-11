@@ -105,7 +105,12 @@ class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
         form.fields['endTime'].label = 'Fin de la réservation'
         form.fields['groups'].label = 'Laboratoire'
         form.fields['motif'].label = 'Motif'
-        form.fields['date'].widget = DatePickerInput()
+        form.fields['date'].widget = DatePickerInput(
+            options={
+                "locale": "fr",
+                "format": "DD/MM/YYYY",
+            }
+        )
         form.fields['startTime'].widget = TimePickerInput().start_of('duration')
         form.fields['endTime'].widget = TimePickerInput().end_of('duration')
         return form
