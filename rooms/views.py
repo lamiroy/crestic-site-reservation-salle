@@ -148,6 +148,8 @@ class HomePageView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         current_user = self.request.user
 
+        if current_user.is_superuser or current_user.isSecretary:
+            form.instance.status = 'validated'
         # Vérifier si l'utilisateur est un secrétaire ou un administrateur
         if not current_user.is_superuser and not current_user.isSecretary:
 
