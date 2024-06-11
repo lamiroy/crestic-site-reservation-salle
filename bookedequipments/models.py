@@ -15,10 +15,18 @@ class BookedEquipment(models.Model):
         ('late', 'en retard')
     ]
 
+    LABORATORY_CHOICES = [  # Choix pour les groupes de laboratoire
+        (None, 'Sélectionnez un laboratoire'),
+        ('CReSTIC', 'CReSTIC'),
+        ('Lab-i*', 'Lab-i*'),
+        ('LICIIS', 'LICIIS'),
+        ('Autre', "Autre"),
+    ]
+
     date = models.DateField()
     startTime = models.TimeField()
     endTime = models.TimeField()
-    groups = models.CharField(max_length=100)
+    groups = models.CharField(max_length=100, choices=LABORATORY_CHOICES)
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default=STATUS_CHOICES[0][0])
     motif = models.CharField(max_length=100)
     user = models.ForeignKey(

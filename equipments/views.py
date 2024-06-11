@@ -45,7 +45,7 @@ class HomePageViewEquipment(LoginRequiredMixin, CreateView):
     model = BookedEquipment  # Spécifie le modèle utilisé pour la création d'objets dans la vue
     template_name = 'home_equipment.html'  # Spécifie le modèle de template utilisé pour rendre la vue
     fields = ('equipment_category', 'date', 'startTime', 'endTime', 'groups', 'motif')
-    success_url = reverse_lazy('home')  # Spécifie l'URL de redirection après une soumission réussie du formulaire
+    success_url = reverse_lazy('home_equipment')  # Spécifie l'URL de redirection après une soumission réussie du formulaire
     login_url = 'login'  # Spécifie l'URL de connexion pour les utilisateurs non authentifiés
 
     def get_form(self):
@@ -53,7 +53,7 @@ class HomePageViewEquipment(LoginRequiredMixin, CreateView):
         Surcharge pour changer les DateFields en widgets DatePicker.
         """
         form = super(HomePageViewEquipment, self).get_form()
-        form.fields['equipment_category'].label = 'Nom de l''équipment'  # Changement de l'étiquette du champ room_category
+        form.fields['equipment_category'].label = 'Nom de l\'équipment'  # Changement de l'étiquette du champ room_category
 
         form.fields['date'].label = 'Jour de la réservation'  # Changement de l'étiquette du champ date
         form.fields['date'].widget = DatePickerInput(
@@ -74,8 +74,6 @@ class HomePageViewEquipment(LoginRequiredMixin, CreateView):
         form.fields['groups'].label = 'Laboratoire'  # Changement de l'étiquette du champ groups
 
         form.fields['motif'].label = 'Motif'  # Changement de l'étiquette du champ motif
-
-        del form.fields['status']  # Suppression du champ status du formulaire
 
         return form
 
