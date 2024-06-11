@@ -191,6 +191,10 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
         form.instance.room_category = self.room_category
         current_user = self.request.user
 
+        # Définir le statut en fonction du type d'utilisateur
+        if current_user.is_superuser or current_user.isSecretary:
+            form.instance.status = 'validated'
+
         # Vérifier si l'utilisateur est un secrétaire ou un administrateur
         if not current_user.is_superuser and not current_user.isSecretary:
 
