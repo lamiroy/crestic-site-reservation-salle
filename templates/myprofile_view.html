@@ -6,38 +6,89 @@
     {% get_media_prefix as MEDIA_PREFIX %}
     <div class="container">
         <div class="col-sm-12">
-            <h2 class="container-title">Bienvenue <span class="profiletitle">{{ user.last_name }} {{ user.first_name }}</span></h2>
+            <h2 class="container-title">Bienvenue <span class="profiletitle">{{ user.first_name }}</span></h2>
         </div>
     </div>
 
     <div class="container">
         <div class="row content roomdashboard">
-            <h3>Vos réservations :</h3>
+            <h3 class="mb-4">Vos réservations de salle(s) :</h3>
+            {% if object_list|length == 0 %}
+                <div class="col-sm-12">
+                    <div class="card shadow-sm text-bg-dark empty-card mb-5">
+                        <div class="empty-card-space"></div>
+                        <div class="card-img-overlay empty-card-text">
+                            <h5 class="card-title fs-4">Aucune réservation</h5>
+                            <p class="card-text fs-6">Aucune salle n'a été réservé.</p>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div class="empty-card-button"></div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             {% for bookedroom in object_list %}
                 {% if bookedroom.user == user and bookedroom.status != "canceled" %}
                     <div class="col-sm-12 col-md-6">
-                        <div class="card shadow-sm">
-                            <img src="{{ MEDIA_PREFIX }}{{ bookedroom.room_category.image }}" class="card-img-top" alt="{{ room.room_category.libRoom }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ bookedroom.room_category.libRoom }}</h5>
-                                <p class="card-text">{{ bookedroom.motif }}</p>
+                        <div class="card shadow-sm text-bg-dark position-relative card-available-rooms">
+                            <img src="{{ MEDIA_PREFIX }}{{ bookedroom.room_category.image }}" class="object-fit-none" alt="{{ bookedroom.room_category.libRoom }}">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title fs-3">{{ bookedroom.room_category.libRoom }}</h5>
+                                <p class="card-text fs-6">{{ bookedroom.motif }}</p>
+                                <p class="card-text fs-6">{{ bookedroom.date }}</p>
+                                <p class="card-text fs-6">{{ bookedroom.startTime }} -> {{ bookedroom.endTime }}</p>
+                                <span class="badge text-bg-secondary fs-7">{{ bookedroom.peopleAmount }} / {{ bookedroom.room_category.maxCapacity }} personne(s)</span>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Nombre de pers. max. : {{ bookedroom.peopleAmount }}</li>
-                                <li class="list-group-item">Jour de réservation : {{ bookedroom.date }}</li>
-                                <li class="list-group-item">Heure de début : {{ bookedroom.startTime }}</li>
-                                <li class="list-group-item">Heure de fin : {{ bookedroom.endTime }}</li>
-                            </ul>
-                            <div class="card-body">
-                                <div class="btn-group card-link" role="group" aria-label="Boutons">
-                                    <a href="{% url 'bookedrooms_edit' bookedroom.pk %}" class="btn btn-primary button-style" >Modifier</a>
-                                    <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger card-link button-style button-red">Annuler</a>
-                                </div>
+                            <div class="card-body d-flex justify-content-center align-items-center">
+                                <a href="{% url 'bookedrooms_edit' bookedroom.pk %}" class="btn btn-warning button-style"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   data-bs-custom-class="edit-tooltip"
+                                   data-bs-title="Modification de la réservation">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="{% url 'bookedrooms_delete' bookedroom.pk %}" class="btn btn-danger button-style button-red ml-2"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   data-bs-custom-class="delete-tooltip"
+                                   data-bs-title="Annulation de la réservation">
+                                    <i class="bi bi-calendar-x"></i>
+                                </a>
+                                <div class="flex-grow-1"></div>
                             </div>
                         </div>
                     </div>
                 {% endif %}
             {% endfor %}
+            {% if object_list|length > 0 %}
+                {% if object_list|length|divisibleby:2 %}
+                    <div class="col-sm-12">
+                        <div class="card shadow-sm text-bg-dark empty-card mb-5">
+                            <div class="empty-card-space"></div>
+                            <div class="card-img-overlay empty-card-text">
+                                <h5 class="card-title fs-4">Aucune autre salle réservée</h5>
+                                <p class="card-text fs-6">Vous pouvez modifier votre réservation avec le bouton contenant une icône de crayon et annuler votre réservation avec le bouton contenant une icône de calendrier.</p>
+                            </div>
+                            <div class="card-body d-flex justify-content-center align-items-center">
+                                <div class="empty-card-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card shadow-sm text-bg-dark empty-card">
+                            <div class="empty-card-space"></div>
+                            <div class="card-img-overlay empty-card-text">
+                                <h5 class="card-title fs-4">Aucune autre salle réservée</h5>
+                                <p class="card-text fs-6">Vous pouvez modifier votre réservation avec le bouton contenant une icône de crayon et annuler votre réservation avec le bouton contenant une icône de calendrier.</p>
+                            </div>
+                            <div class="card-body d-flex justify-content-center align-items-center">
+                                <div class="empty-card-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 {% endblock content %}
