@@ -7,7 +7,7 @@
 
     <div class="container">
         <div class="col-sm-12">
-            <h2 class="container-title">Equipements disponibles</h2>
+            <h2 class="container-title">Équipement(s) disponible(s)</h2>
         </div>
     </div>
 
@@ -34,6 +34,7 @@
                         <div class="card-img-overlay">
                             <h5 class="card-title fs-3">{{ equipment.libEquipment }}</h5>
                             <p class="card-text fs-6">{{ equipment.description }}</p>
+                            <span class="badge text-bg-secondary fs-7">{{ equipment.nbrEquipments }} disponible(s) au total</span>
                         </div>
                         <div class="card-body d-flex justify-content-center align-items-center">
                             <a href="{% url 'bookedequipments_new' equipment.pk %}" class="btn btn-success card-link button-style w-75">Réserver</a>
