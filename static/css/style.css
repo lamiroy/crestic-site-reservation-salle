@@ -327,6 +327,11 @@ form.roomreservation > button {
     margin-top: 5px;
 }
 
+/* Bloc de suppression, de validation et d'annulation */
+div.dashboard-style {
+    margin: 30px 0;
+}
+
 /*---------------- Page d'accueil ----------------*/
 /* Calendrier */
 div#calendar {
@@ -703,11 +708,6 @@ div.delete-tooltip.bs-tooltip-start .tooltip-arrow::before {
 
 div.delete-tooltip.bs-tooltip-end .tooltip-arrow::before {
     border-right-color: var(--color-light-red);
-}
-
-/*------- Page de suppression d'une salle -------*/
-div.roomdashboard_delete {
-    margin: 30px 0;
 }
 
 /*---------------- Page de profil ----------------*/
