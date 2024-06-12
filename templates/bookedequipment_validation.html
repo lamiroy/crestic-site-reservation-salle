@@ -1,41 +1,93 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
     {% get_media_prefix as MEDIA_PREFIX %}
     <div class="container">
         <div class="col-sm-12">
-            <h2 class="container-title">Réservations en attente</h2>
+            <h2 class="container-title">Réservations d'équipement(s) en attente</h2>
         </div>
     </div>
 
     <div class="container">
         <div class="row content roomdashboard">
+            {% if object_list|length == 0 %}
+                <div class="col-sm-12">
+                    <div class="card shadow-sm text-bg-dark empty-card mb-5">
+                        <div class="empty-card-space"></div>
+                        <div class="card-img-overlay empty-card-text">
+                            <h5 class="card-title fs-4">Aucune réservation en attente</h5>
+                            <p class="card-text fs-6">Aucune réservation d'équipement est en attente de confirmation.</p>
+                        </div>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div class="empty-card-button"></div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
             {% for bookedequipment in object_list %}
                 {% if bookedequipment.status == 'pending' %}
                     <div class="col-sm-12 col-md-6">
-                        <div class="card shadow-sm">
-                            <img src="{{ MEDIA_PREFIX }}{{ bookedequipment.equipment_category.image }}" class="card-img-top object-fit-none" alt="{{ equipment.equipment_category.libEquipment }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ bookedequipment.equipment_category.libEquipment }}</h5>
+                        <div class="card shadow-sm text-bg-dark position-relative card-available-rooms">
+                            <img src="{{ MEDIA_PREFIX }}{{ bookedequipment.equipment_category.image }}" class="object-fit-none" alt="{{ bookedequipment.equipment_category.libEquipment }}">
+                            <div class="card-img-overlay">
+                                <h5 class="card-title fs-3">{{ bookedequipment.equipment_category.libEquipment }}</h5>
+                                <p class="card-text fs-6">{{ bookedequipment.motif }}</p>
+                                <p class="card-text fs-6">{{ bookedequipment.date }}</p>
+                                <p class="card-text fs-6">{{ bookedequipment.startTime }} -> {{ bookedequipment.endTime }}</p>
+                                <span class="badge text-bg-secondary fs-7">{{ bookedequipment.equipment_category.nbrEquipments }} disponible(s) au total</span>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">{{ bookedequipment.user.last_name }} {{ bookedequipment.user.first_name }}</li>
-                                <li class="list-group-item">Motif : {{ bookedequipment.motif }}</li>
-                                <li class="list-group-item">Jour de réservation : {{ bookedequipment.date }}</li>
-                                <li class="list-group-item">Heure de début : {{ bookedequipment.startTime }}</li>
-                                <li class="list-group-item">Heure de fin : {{ bookedequipment.endTime }}</li>
-                            </ul>
-                            <div class="card-body">
-                                <div class="btn-group card-link" role="group" aria-label="Boutons">
-                                    <a href="{% url 'bookedequipments_validation_validated' bookedequipment.pk %}" class="btn btn-primary button-style" >Valider</a>
-                                    <a href="{% url 'bookedequipments_validation_refused' bookedequipment.pk %}" class="btn btn-danger card-link button-style button-red">Refuser</a>
-                                </div>
+                            <div class="card-body d-flex justify-content-center align-items-center">
+                                <a href="{% url 'bookedequipments_validation_validated' bookedequipment.pk %}" class="btn btn-warning button-style"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   data-bs-custom-class="edit-tooltip"
+                                   data-bs-title="Accepter la réservation">
+                                    <i class="bi bi-calendar-check"></i>
+                                </a>
+                                <a href="{% url 'bookedequipments_validation_refused' bookedequipment.pk %}" class="btn btn-danger button-style button-red ml-2"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-placement="top"
+                                   data-bs-custom-class="delete-tooltip"
+                                   data-bs-title="Refuser la réservation">
+                                    <i class="bi bi-calendar-x"></i>
+                                </a>
+                                <div class="flex-grow-1"></div>
                             </div>
                         </div>
                     </div>
                 {% endif %}
             {% endfor %}
+            {% if object_list|length > 0 %}
+                {% if object_list|length|divisibleby:2 %}
+                    <div class="col-sm-12">
+                        <div class="card shadow-sm text-bg-dark empty-card mb-5">
+                            <div class="empty-card-space"></div>
+                            <div class="card-img-overlay empty-card-text">
+                                <h5 class="card-title fs-4">Aucune autre réservation est en attente</h5>
+                                <p class="card-text fs-6">Vous pouvez valider la réservation avec le bouton contenant une icône de calendrier avec une coche et refuser la réservation avec le bouton contenant une icône de calendrier avec une croix.</p>
+                            </div>
+                            <div class="card-body d-flex justify-content-center align-items-center">
+                                <div class="empty-card-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-sm-12 col-md-6">
+                        <div class="card shadow-sm text-bg-dark empty-card">
+                            <div class="empty-card-space"></div>
+                            <div class="card-img-overlay empty-card-text">
+                                <h5 class="card-title fs-4">Aucune autre réservation est en attente</h5>
+                                <p class="card-text fs-6">Vous pouvez valider la réservation avec le bouton contenant une icône de calendrier avec une coche et refuser la réservation avec le bouton contenant une icône de calendrier avec une croix.</p>
+                            </div>
+                            <div class="card-body d-flex justify-content-center align-items-center">
+                                <div class="empty-card-button"></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 {% endblock content %}
