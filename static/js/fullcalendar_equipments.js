@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Obtention de l'élément HTML représentant le calendrier
-    let calendarEquip = document.getElementById('calendarEquipment');
+    let calendarEquip = document.getElementById('calendar');
 
     // Création d'une instance du calendrier FullCalendar
     let calendarEquipment = new FullCalendar.Calendar(calendarEquip, {
@@ -98,9 +98,17 @@ document.addEventListener('DOMContentLoaded', function() {
             timeGridDay: 'Jour'
         },
         headerToolbar: {
-            left: 'prev today', // Boutons de navigation à gauche
+            left: 'prev today myCustomButton', // Boutons de navigation à gauche
             center: 'title', // Titre du calendrier au centre
             right: 'timeGridWeek,timeGridDay next' // Boutons de navigation à droite
+        },
+        customButtons: {
+            myCustomButton: {
+                text: 'Salles',
+                click: function() {
+                    window.location.href = '/';
+                }
+            }
         },
         views: {
             timeGridWeek: {
@@ -119,28 +127,28 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
         // Sources des événements pour le calendrier
-        // eventSources: [
-        //     {
-        //         url: 'calendar/holiday.ics', // URL du fichier iCalendar pour les jours fériés
-        //         format: 'ics', // Format du fichier iCalendar
-        //         success: function() {
-        //             console.log('ICS holiday loaded!'); // Message de réussite du chargement des jours fériés
-        //         },
-        //         failure: function() {
-        //             console.error('Failed to load ICS holiday.'); // Message d'erreur en cas d'échec du chargement des jours fériés
-        //         }
-        //     },
-        //     {
-        //         url: 'calendar/bookedrooms.ics', // URL du fichier iCalendar pour les réservations
-        //         format: 'ics', // Format du fichier iCalendar
-        //         success: function() {
-        //             console.log('ICS booked loaded!'); // Message de réussite du chargement des réservations
-        //         },
-        //         failure: function() {
-        //             console.error('Failed to load ICS booked.'); // Message d'erreur en cas d'échec du chargement des réservations
-        //         }
-        //     }
-        // ],
+        eventSources: [
+            {
+                url: '/calendar/holiday.ics', // URL du fichier iCalendar pour les jours fériés
+                format: 'ics', // Format du fichier iCalendar
+                success: function() {
+                    console.log('ICS holiday loaded!'); // Message de réussite du chargement des jours fériés
+                },
+                failure: function() {
+                    console.error('Failed to load ICS holiday.'); // Message d'erreur en cas d'échec du chargement des jours fériés
+                }
+            },
+            {
+                url: '/calendar/bookedequipments.ics', // URL du fichier iCalendar pour les réservations
+                format: 'ics', // Format du fichier iCalendar
+                success: function() {
+                    console.log('ICS booked loaded!'); // Message de réussite du chargement des réservations
+                },
+                failure: function() {
+                    console.error('Failed to load ICS booked.'); // Message d'erreur en cas d'échec du chargement des réservations
+                }
+            }
+        ],
         // Fonction exécutée lors de la sélection d'un créneau horaire
         select: function(info) {
             const addButton = document.querySelector('button.d-none.modalAdd');
