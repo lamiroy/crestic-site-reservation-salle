@@ -20,7 +20,7 @@
     --color-light-white: #ffffff; /* Couleur 7  : Blanc clair */
     --color-white: #ececec;       /* Couleur 8  : Blanc       */
     --color-dark-white: #dddddd;  /* Couleur 9  : Blanc foncé */
-    --color-light-red: #ff4141;   /* Couleur 10  : Rouge clair */
+    --color-light-red: #ff4141;   /* Couleur 10 : Rouge clair */
     --color-red: #ff1616;         /* Couleur 11 : Rouge       */
     --color-dark-red: #bf1a1a;    /* Couleur 12 : Rouge foncé */
 
@@ -439,10 +439,15 @@ a.event-validated-autre {
 
 /* Autre event */
 a.event-holiday {
-    border: 1px solid var(--color-light-blue) !important;
-    background-color: var(--color-light-blue) !important;
-    position: absolute !important;
-    z-index: -999;
+    border: 1px solid rgba(2, 117, 216, 0.3) !important;
+    background-color: rgba(2, 117, 216, 0.3) !important;
+    pointer-events: none;
+}
+
+a.event-holiday p {
+    font-size: 15px;
+    color: var(--color-light-white) !important;
+    text-shadow: 0 0 3px var(--color-grey);
 }
 
 /* Modal de réservation et détails */
