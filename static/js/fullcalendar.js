@@ -93,10 +93,18 @@ document.addEventListener('DOMContentLoaded', function() {
             timeGridDay: 'Jour'
         },
         headerToolbar: {
-            left: 'prev today', // Boutons de navigation à gauche
+            left: 'prev today myCustomButton', // Boutons de navigation à gauche
             center: 'title', // Titre du calendrier au centre
             right: 'timeGridWeek,timeGridDay next' // Boutons de navigation à droite
         },
+        customButtons: {
+                    myCustomButton: {
+                        text: 'Équipement',
+                        click: function() {
+                            window.location.href = '/equipments/calendar';
+                        }
+                    }
+                },
         views: {
             timeGridWeek: {
                 buttonText: 'Semaine',

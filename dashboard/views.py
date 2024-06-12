@@ -229,6 +229,7 @@ class EquipmentDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, Deta
 
         return context
 
+
 class EquipmentDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     Vue pour mettre à jour les détails d'une salle dans le tableau de bord.
@@ -272,6 +273,7 @@ class EquipmentDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, Upda
         """
         return self.request.user.is_superuser
 
+
 class EquipmentDashboardDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     Vue pour supprimer une salle dans le tableau de bord.
@@ -287,6 +289,7 @@ class EquipmentDashboardDeleteView(LoginRequiredMixin, UserPassesTestMixin, Dele
         Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
         """
         return self.request.user.is_superuser
+
 
 class EquipmentDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     """
@@ -312,7 +315,6 @@ class EquipmentDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, Crea
 
         form.fields['nbrEquipments'].label = 'Nombre d''équipement'  # Personnalise l'étiquette du champ 'maxCapacity'
 
-
         return form
 
     def form_valid(self, form):
@@ -332,6 +334,7 @@ class EquipmentDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, Crea
         Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
         """
         return self.request.user.is_superuser
+
 
 class BookedEquipmentDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     """

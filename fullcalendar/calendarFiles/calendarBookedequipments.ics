@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+BEGIN:VEVENT
+SUMMARY:{"id": "7"\, "labo": "CReSTIC"\, "nom": "vid\\u00e9o projecteur"\,
+  "status": "pending"\, "motif": "R\\u00e9serv\\u00e9"\, "user": "sauv0037"
+ \, "holiday": "false"}
+DTSTART:20240615T080000
+DTEND:20240615T100000
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:{"id": "8"\, "labo": "Lab-i*"\, "nom": "Crayon"\, "status": "pendi
+ ng"\, "motif": "R\\u00e9union"\, "user": "nino"\, "holiday": "false"}
+DTSTART:20240614T100000
+DTEND:20240614T123000
+END:VEVENT
+END:VCALENDAR

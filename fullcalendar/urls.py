@@ -8,6 +8,8 @@ urlpatterns = [
     # URL pour exporter les réservations de salles au format iCalendar
     path('bookedrooms.ics',
          export_bookedrooms_ics, name='bookedrooms.ics'),
+    path('bookedequipments.ics',
+         export_bookedequipments_ics, name='bookedequipments.ics'),
     # URL pour exporter les données vers Excel
     path('excel',
          export_to_excel, name='excel'),
