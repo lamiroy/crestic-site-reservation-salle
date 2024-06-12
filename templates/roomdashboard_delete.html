@@ -2,17 +2,20 @@
 
 {% block content %}
     <div class="container">
-        <div class="card text-center roomdashboard_delete">
+        <div class="card text-center dashboard-style">
             <div class="card-header">
-                Confirmation de suppression
+                Confirmer la suppression
             </div>
             <div class="card-body">
                 <h5 class="card-title">Êtes-vous sûr de vouloir supprimer cette salle ?</h5>
-                <p class="card-text">Cette action est irréversible. Toutes les données associées à cette salle seront définitivement effacées.</p>
+                <p class="card-text mb-3">Cette action est irréversible. Toutes les données associées à cette salle seront définitivement effacées.</p>
                 <form method="post">
                     {% csrf_token %}
-                    <button class="btn btn-success button-style" type="submit">Valider</button>
-                    <a class="btn btn-danger button-style button-red" type="button" href="{% url 'roomdashboard_list' %}">Annuler</a>
+                    <button class="btn btn-success button-style d-inline-flex" type="submit">
+                        <i class="bi bi-exclamation-triangle mr-2"></i>
+                        Confirmer
+                    </button>
+                    <a class="btn btn-danger button-style button-red" type="button" href="{% url 'roomdashboard_list' %}">Retour</a>
                 </form>
             </div>
             <div class="card-footer text-body-secondary">
