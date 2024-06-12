@@ -20,7 +20,7 @@
     --color-light-white: #ffffff; /* Couleur 7  : Blanc clair */
     --color-white: #ececec;       /* Couleur 8  : Blanc       */
     --color-dark-white: #dddddd;  /* Couleur 9  : Blanc foncé */
-    --color-light-red: #ff4141;   /* Couleur 10  : Rouge clair */
+    --color-light-red: #ff4141;   /* Couleur 10 : Rouge clair */
     --color-red: #ff1616;         /* Couleur 11 : Rouge       */
     --color-dark-red: #bf1a1a;    /* Couleur 12 : Rouge foncé */
 
@@ -246,7 +246,7 @@ h2.container-title.other {
 }
 
 h2.container-title > span {
-    color: var(--color-light-blue);
+    color: var(--color-dark-grey);
 }
 
 /* Bloc qui contient les salles */
@@ -325,6 +325,11 @@ label.asterisk-def {
 form.roomreservation > button {
     width: 100%;
     margin-top: 5px;
+}
+
+/* Bloc de suppression, de validation et d'annulation */
+div.dashboard-style {
+    margin: 30px 0;
 }
 
 /*---------------- Page d'accueil ----------------*/
@@ -434,8 +439,15 @@ a.event-validated-autre {
 
 /* Autre event */
 a.event-holiday {
-    border: 1px solid var(--color-light-blue) !important;
-    background-color: var(--color-light-blue) !important;
+    border: 1px solid rgba(2, 117, 216, 0.3) !important;
+    background-color: rgba(2, 117, 216, 0.3) !important;
+    pointer-events: none;
+}
+
+a.event-holiday p {
+    font-size: 15px;
+    color: var(--color-light-white) !important;
+    text-shadow: 0 0 3px var(--color-grey);
 }
 
 /* Modal de réservation et détails */
@@ -565,8 +577,8 @@ div.card.card-available-rooms {
 }
 
 div.card.card-available-rooms > img {
-    min-height: 275px;
-    max-height: 275px;
+    min-height: 271px;
+    max-height: 271px;
     border-radius: 15px 15px 0 0;
     filter: brightness(0.65);
 }
@@ -701,11 +713,6 @@ div.delete-tooltip.bs-tooltip-start .tooltip-arrow::before {
 
 div.delete-tooltip.bs-tooltip-end .tooltip-arrow::before {
     border-right-color: var(--color-light-red);
-}
-
-/*------- Page de suppression d'une salle -------*/
-div.roomdashboard_delete {
-    margin: 30px 0;
 }
 
 /*---------------- Page de profil ----------------*/

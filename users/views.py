@@ -3,9 +3,9 @@ from django.views.generic import (
     CreateView,  # Importe la vue générique CreateView
     ListView,  # Importe la vue générique ListView
 )
+from bookedequipments.models import BookedEquipment
 from bookedrooms.models import BookedRoom  # Importe le modèle BookedRoom du package bookedrooms
 from .forms import CustomUserCreationForm  # Importe le formulaire CustomUserCreationForm du package actuel
-
 
 
 class SignUpView(CreateView):
@@ -27,3 +27,12 @@ class MyProfileView(ListView):
     """
     template_name = 'myprofile_view.html'  # Template utilisé pour afficher le profil
     model = BookedRoom  # Modèle utilisé pour récupérer les réservations
+
+    def get_context_data(self, **kwargs):
+        """
+        Ajoute des données supplémentaires au contexte de la vue.
+        """
+        context = super().get_context_data(**kwargs)
+        context['BookedEquipment'] = BookedEquipment.objects.all()  # Ajouter les objets d'un autre modèle
+
+        return context

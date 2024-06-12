@@ -71,13 +71,19 @@
                                 <a class="dropdown-item" href="/admin">Administration</a>
                             </li>
                             <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
                                 <a class="dropdown-item" href="{% url 'roomdashboard_list' %}">Gestion des salles</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{% url 'equipmentdashboard_list' %}">Gestion des équipements</a>
+                                <a class="dropdown-item" href="{% url 'bookedrooms_validation' %}">Gestion des réservations de salles</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{% url 'bookedrooms_validation' %}">Gestion des réservations de salles</a>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'equipmentdashboard_list' %}">Gestion des équipements</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{% url 'bookedequipments_validation' %}">Gestion des réservations d'équipements</a>
@@ -97,10 +103,16 @@
                                 <a class="dropdown-item" href="{% url 'roomdashboard_list' %}">Gestion des salles</a>
                             </li>
                             <li>
+                                <a class="dropdown-item" href="{% url 'bookedrooms_validation' %}">Gestion des réservations de salles</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
                                 <a class="dropdown-item" href="{% url 'equipmentdashboard_list' %}">Gestion des équipements</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="{% url 'bookedrooms_validation' %}">Gestion des réservations</a>
+                                <a class="dropdown-item" href="{% url 'bookedequipments_validation' %}">Gestion des réservations d'équipements</a>
                             </li>
                         </ul>
                     </li>
