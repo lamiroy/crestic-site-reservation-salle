@@ -246,7 +246,7 @@ h2.container-title.other {
 }
 
 h2.container-title > span {
-    color: var(--color-light-blue);
+    color: var(--color-dark-grey);
 }
 
 /* Bloc qui contient les salles */
@@ -436,6 +436,8 @@ a.event-validated-autre {
 a.event-holiday {
     border: 1px solid var(--color-light-blue) !important;
     background-color: var(--color-light-blue) !important;
+    position: absolute !important;
+    z-index: -999;
 }
 
 /* Modal de réservation et détails */
@@ -565,8 +567,8 @@ div.card.card-available-rooms {
 }
 
 div.card.card-available-rooms > img {
-    min-height: 275px;
-    max-height: 275px;
+    min-height: 271px;
+    max-height: 271px;
     border-radius: 15px 15px 0 0;
     filter: brightness(0.65);
 }
