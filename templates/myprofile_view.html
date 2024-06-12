@@ -62,7 +62,7 @@
             {% endfor %}
             {% if object_list|length > 0 %}
                 {% if object_list|length|divisibleby:2 %}
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12">
                         <div class="card shadow-sm text-bg-dark empty-card mb-5">
                             <div class="empty-card-space"></div>
                             <div class="card-img-overlay empty-card-text">
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                 {% else %}
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 col-md-6">
                         <div class="card shadow-sm text-bg-dark empty-card">
                             <div class="empty-card-space"></div>
                             <div class="card-img-overlay empty-card-text">
