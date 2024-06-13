@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cas_ng',
     'fullcalendar',
 
     # 3rd Party
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_cas_ng.middleware.CASMiddleware',
 ]
 
 ROOT_URLCONF = 'RoomQueSTIC.urls'
@@ -95,6 +97,11 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',  # pour conserver l'authentification par défaut
+    'django_cas_ng.backends.CASBackend',  # pour ajouter l'authentification CAS
+)
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -109,6 +116,14 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CAS_SERVER_URL = 'https://cas.univ-reims.fr/cas/'  # URL de votre serveur CAS
+CAS_VERSION = '3'  # version du protocole CAS, par exemple '3' pour CAS v3.0
+LOGIN_URL = 'django_cas_ng.views.login'
+LOGOUT_URL = 'django_cas_ng.views.logout'
+CAS_REDIRECT_URL = '/'  # URL de redirection après une connexion réussie
+CAS_LOGOUT_COMPLETELY = True  # déconnexion complète sur CAS logout
+CAS_IGNORE_REFERER = True  # ignorer le referer pour éviter les boucles de redirection
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

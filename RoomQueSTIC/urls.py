@@ -21,6 +21,7 @@ from django.urls import (
     include  # Fonction pour inclure d'autres fichiers d'URL
 )
 from django.conf.urls.static import static  # Import de la fonction static pour servir les fichiers statiques
+import django_cas_ng.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # URL pour accéder à l'interface d'administration
@@ -31,7 +32,9 @@ urlpatterns = [
     path('equipmentbooking/', include('bookedequipments.urls')),  # URL pour la réservation d'équipements
     path('calendar/', include('fullcalendar.urls')),  # URL pour le calendrier
     path('', include('rooms.urls')),  # URL pour les fonctionnalités liées aux salles
-    path('equipments/', include('equipments.urls'))
+    path('equipments/', include('equipments.urls')),
+    path('accounts/login/', django_cas_ng.views.LoginView.as_view(), name='cas_ng_login'),
+    path('accounts/logout/', django_cas_ng.views.LogoutView.as_view(), name='cas_ng_logout'),
 ]
 
 if settings.DEBUG:  # Vérifie si le mode DEBUG est activé dans les paramètres de configuration
