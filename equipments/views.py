@@ -1,12 +1,8 @@
-import os
-
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView
-
 from RoomQueSTIC import settings
 from bookedequipments.models import BookedEquipment
 from .models import EquipmentCategory
@@ -14,7 +10,7 @@ from icalendar import (
     Calendar,  # Import du module Calendar de la bibliothèque iCalendar
     Event,  # Import du module Event de la bibliothèque iCalendar
 )
-from datetime import datetime, date, time  # Import de la classe datetime pour manipuler les dates et heures
+from datetime import datetime  # Import de la classe datetime pour manipuler les dates et heures
 import os  # Importe le module os pour les opérations sur le système d'exploitation
 import json  # Import du module json pour la manipulation de données JSON
 from django.core.exceptions import ValidationError  # Import de la classe d'erreur ValidationError
