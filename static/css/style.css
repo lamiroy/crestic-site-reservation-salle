@@ -318,6 +318,17 @@ div#div_id_maxCapacity {
     margin-bottom: 0;
 }
 
+div#div_id_password2 {
+    margin-bottom: 0;
+}
+
+small#hint_id_username,
+    small#hint_id_password1,
+    small#hint_id_password2 {
+    font-family: "Outfit", sans-serif;
+    font-weight: 300;
+}
+
 label.asterisk-def {
     font-size: 14px !important;
 }
