@@ -516,43 +516,47 @@ div.modal-window p.error-text {
 }
 
 /* Boutons du menu */
-div.fc-toolbar-chunk > button.fc-today-button.fc-button.fc-button-primary,
+button.fc-today-button,
     button.fc-timeGridWeek-button,
     button.fc-timeGridDay-button,
     button.fc-rooms-button,
-    button.fc-equipments-button {
+    button.fc-equipments-button,
+    button.fc-excel-button {
     font-family: "Outfit", sans-serif !important;
     font-weight: 400 !important;
 }
 
-div.fc-toolbar-chunk > button.fc-today-button.fc-button.fc-button-primary,
+button.fc-today-button,
     button.fc-prev-button.fc-button.fc-button-primary,
     button.fc-next-button.fc-button.fc-button-primary,
     button.fc-timeGridWeek-button,
     button.fc-timeGridDay-button,
     button.fc-rooms-button,
-    button.fc-equipments-button {
+    button.fc-equipments-button,
+    button.fc-excel-button {
     border-color: var(--color-blue) !important;
     background-color: var(--color-light-blue) !important;
 }
 
-div.fc-toolbar-chunk > button.fc-today-button.fc-button.fc-button-primary:hover,
+button.fc-today-button:hover,
     button.fc-prev-button.fc-button.fc-button-primary:hover,
     button.fc-next-button.fc-button.fc-button-primary:hover,
     button.fc-timeGridWeek-button:hover,
     button.fc-timeGridDay-button:hover,
     button.fc-rooms-button:hover,
-    button.fc-equipments-button:hover {
+    button.fc-equipments-button:hover,
+    button.fc-excel-button:hover {
     background-color: var(--color-blue) !important;
 }
 
-div.fc-toolbar-chunk > button.fc-today-button.fc-button.fc-button-primary:active,
+button.fc-today-button:active,
     button.fc-prev-button.fc-button.fc-button-primary:active,
     button.fc-next-button.fc-button.fc-button-primary:active,
     button.fc-timeGridWeek-button:active,
     button.fc-timeGridDay-button:active,
     button.fc-rooms-button:active,
-    button.fc-equipments-button:active {
+    button.fc-equipments-button:active,
+    button.fc-excel-button:active {
     background-color: var(--color-dark-blue) !important;
 }
 

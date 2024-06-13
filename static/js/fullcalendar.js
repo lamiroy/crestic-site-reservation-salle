@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         headerToolbar: {
             left: 'prev today rooms,equipments', // Boutons de navigation à gauche
             center: 'title', // Titre du calendrier au centre
-            right: 'timeGridWeek,timeGridDay next' // Boutons de navigation à droite
+            right: 'excel timeGridWeek,timeGridDay next' // Boutons de navigation à droite
         },
         customButtons: {
             rooms: {
@@ -105,6 +105,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 text: 'Équipements',
                 click: function() {
                     window.location.href = '/equipments/calendar';
+                }
+            },
+            excel: {
+                text: 'Exporter',
+                click: function() {
+                    window.location.href = '/calendar/excel';
                 }
             }
         },
