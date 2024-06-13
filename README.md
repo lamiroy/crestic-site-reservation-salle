@@ -9,7 +9,7 @@
 # 📗 Sommaire
 - [📝 Description](#description)
 - [👥 Auteur(s)](#auteur)
-- [🛠️ Langages](#langages)
+- [🛠️ Versions](#versions)
 - [🧰️ Installation](#installation)
 - [📧 Configuration du service de mail](#configmail)
 - [🔧️ Lancement du projet](#launchproject)
@@ -18,7 +18,8 @@
 
 ## 📝 Description <a name="description"></a>
 <div style="text-align: justify;">
-[À FAIRE]
+Ce site web a été réalisé, pour le CReSTIC (un laboratoire de recherche) dans le cadre d'un stage de 2ème année de BUT Informatique de l'Université de Reims Champagne Ardenne.
+Il permet de réserver des salles et équipements, mais aussi de les gérer, c'est-à-dire, en créer, en modifier et en supprimer. 
 </div>
 
 ## 👥 Auteur(s) <a name="auteur"></a>
@@ -26,15 +27,21 @@
 - 👤 Léo BERNARD - [bern0181](https://github.com/bern0181)
 - 👤 Tom SIKORA - [tom512000](https://github.com/tom512000)
 
-## 🛠️ Langages <a name="langages"></a>
+## 🛠️ Versions <a name="versions"></a>
 - Python 3.9.x
-- [À FAIRE]
+- Django 3.2.12
+- FullCalendar 5.5.1
+- icalendar 5.0.12
 
 ## 🧰️ Installation <a name="installation"></a>
 1. **Dans la racine du projet, créez un environnement virtuel :**
     ```shell
     $ python -m venv venv
     ```
+2. **Pour gérer le JavaScript, installez npm :**
+   ````shell
+   npm install
+   ````
 2. **Activez cet environnement :**
     - Si vous êtes sur Linux :
         ```shell
