@@ -6,10 +6,13 @@ from .views import (
 )
 
 urlpatterns = [
+    # URL pour afficher le calendrier des salles
     path('',
-         HomePageView.as_view(), name='home'),  # Définit l'URL pour la page d'accueil avec la vue HomePageView
+         HomePageView.as_view(), name='home'),
+    # URL pour afficher la liste des salles
     path('rooms/list/',
-         RoomListView.as_view(), name='roomreservation_list'),  # Définit l'URL pour les salles avec la vue RoomListView
+         RoomListView.as_view(), name='roomreservation_list'),
+    # URL pour récupérer l'image par défaut des salles
     path('default_room_image',
-         default_room_image, name='default_room_image')  # Définit l'URL pour l'image par défaut avec la vue default_image
+         default_room_image, name='default_room_image')
 ]
