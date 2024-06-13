@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Création d'une instance du calendrier FullCalendar
     let calendarEquipment = new FullCalendar.Calendar(calendarEquip, {
         // Configuration initiale de la vue du calendrier
-        initialView: 'timeGridWeek', // Vue initiale: grille horaire pour une semaine
+        initialView: 'timeGridWeek', // Vue initiale : grille horaire pour une semaine
         nowIndicator: true, // Affichage d'un indicateur pour l'heure actuelle
         locale: 'fr', // Langue locale du calendrier
         hiddenDays: [0], // Masquer les dimanches
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 daysOfWeek: [6], // Samedi
                 startTime: '08:00', // Heure d'ouverture (08:00)
-                endTime: '12:30', // Heure de fermeture (12:30)
+                endTime: '12:30' // Heure de fermeture (12:30)
             }
         ],
         slotMinTime: "08:00:00", // Heure de début minimum pour les créneaux horaires
@@ -98,17 +98,24 @@ document.addEventListener('DOMContentLoaded', function() {
             timeGridDay: 'Jour'
         },
         headerToolbar: {
-            left: 'prev today myCustomButton', // Boutons de navigation à gauche
+            left: 'prev today rooms,equipments', // Boutons de navigation à gauche
             center: 'title', // Titre du calendrier au centre
             right: 'timeGridWeek,timeGridDay next' // Boutons de navigation à droite
         },
         customButtons: {
-            myCustomButton: {
+            rooms: {
                 text: 'Salles',
                 click: function() {
                     window.location.href = '/';
                 }
+            },
+            equipments: {
+                text: 'Équipements'
             }
+        },
+        viewDidMount: function() {
+            // Désactiver le bouton "Salles"
+            document.querySelector('.fc-equipments-button').setAttribute('disabled', 'true');
         },
         views: {
             timeGridWeek: {
@@ -161,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Fonction de validation pour permettre la sélection de créneaux horaires spécifiques
         selectAllow: function(selectInfo) {
             if (selectInfo.start.getDay() === 6) { // Si le jour sélectionné est un samedi
-                // Définir les heures d'ouverture et de fermeture pour le samedi
+                // Défini les heures d'ouverture et de fermeture pour le samedi
                 let startTime = new Date(selectInfo.start.getFullYear(), selectInfo.start.getMonth(), selectInfo.start.getDate(), 8, 0);
                 let endTime = new Date(selectInfo.start.getFullYear(), selectInfo.start.getMonth(), selectInfo.start.getDate(), 12, 30);
                 // Vérifier si la sélection est comprise entre les heures d'ouverture et de fermeture

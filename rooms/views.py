@@ -6,19 +6,18 @@ from .models import RoomCategory  # Importe le modèle RoomCategory
 from bookedrooms.models import BookedRoom  # Importe le modèle BookedRoom
 from bootstrap_datepicker_plus import (
     DatePickerInput,  # Import du widget DatePickerInput de Bootstrap
-    TimePickerInput,  # Import du widget TimePickerInput de Bootstrap
+    TimePickerInput  # Import du widget TimePickerInput de Bootstrap
 )
 from django.contrib.auth.mixins import \
     LoginRequiredMixin  # Importe le mixin LoginRequiredMixin pour les vues basées sur les classes
 from django.views.generic.edit import CreateView  # Import de la classe CreateView pour créer des objets dans une vue
 from icalendar import (
     Calendar,  # Import du module Calendar de la bibliothèque iCalendar
-    Event,  # Import du module Event de la bibliothèque iCalendar
+    Event  # Import du module Event de la bibliothèque iCalendar
 )
 from datetime import datetime, date, time  # Import de la classe datetime pour manipuler les dates et heures
 import os  # Importe le module os pour les opérations sur le système d'exploitation
 import json  # Import du module json pour la manipulation de données JSON
-from django.core.exceptions import ValidationError  # Import de la classe d'erreur ValidationError
 
 
 def add_to_ics():
@@ -196,8 +195,8 @@ class HomePageView(LoginRequiredMixin, CreateView):
             ).exclude(status='pending')
 
             if existing_bookings.exists():
-                form.add_error(None,
-                               'Une réservation existante avec un statut autre que "pending" occupe déjà cette salle pendant cette période.')
+                form.add_error(None, 'Une réservation existante avec un statut autre que "pending" occupe déjà cette '
+                                     'salle pendant cette période.')
 
         if form.errors:
             return self.form_invalid(form)
