@@ -28,7 +28,6 @@ from .models import BookedRoom  # Import du modèle BookedRoom pour les réserva
 from django.core.exceptions import PermissionDenied  # Import de l'exception pour gérer les permissions refusées
 from django.db import transaction  # Import du module transaction pour gérer les transactions de la base de données
 from datetime import datetime, date, time
-from django.core.exceptions import ValidationError
 
 
 class UserIsOwnerOrAdminMixin:
@@ -37,23 +36,6 @@ class UserIsOwnerOrAdminMixin:
         if not (request.user == obj.user or request.user.is_superuser or request.user.isSecretary):
             raise PermissionDenied
         return super().dispatch(request, *args, **kwargs)
-
-
-class BookedRoomsListView(LoginRequiredMixin, ListView):
-    model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
-    template_name = 'bookedroom_list.html'  # Utilisation du template 'bookedroom_list.html'
-    login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
-
-    # Retourne uniquement les données de l'utilisateur actuellement connecté
-    def get_queryset(self):
-        return BookedRoom.objects.filter(
-            user=self.request.user).order_by('date')
-
-
-class BookedRoomsDetailView(LoginRequiredMixin, DetailView):
-    model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
-    template_name = 'bookedroom_detail.html'  # Utilisation du template 'bookedroom_detail.html'
-    login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
 
 class BookedRoomsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateView):
@@ -138,8 +120,8 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateV
             ).exclude(status='pending')
 
             if existing_bookings.exists():
-                form.add_error(None,
-                               'Une réservation existante avec un statut autre que "pending" occupe déjà cette salle pendant cette période.')
+                form.add_error(None, 'Une réservation existante avec un statut autre que "pending" occupe déjà cette '
+                                     'salle pendant cette période.')
 
         if form.errors:
             return self.form_invalid(form)
@@ -241,8 +223,8 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
             ).exclude(status='pending')
 
             if existing_bookings.exists():
-                form.add_error(None,
-                               'Une réservation existante avec un statut autre que "pending" occupe déjà cette salle pendant cette période.')
+                form.add_error(None, 'Une réservation existante avec un statut autre que "pending" occupe déjà cette '
+                                     'salle pendant cette période.')
 
         if form.errors:
             return self.form_invalid(form)
