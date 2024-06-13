@@ -14,7 +14,7 @@ from .models import BookedEquipment
 class BookedEquipmentsUpdateView(LoginRequiredMixin, UpdateView):
     model = BookedEquipment
     fields = ('equipment_category', 'date', 'startTime', 'endTime', 'groups', 'motif')
-    template_name = 'bookedequipment_edit.html'
+    template_name = 'bookedequipment/bookedequipment_edit.html'
     success_url = reverse_lazy('home')
     login_url = 'login'
 
@@ -45,7 +45,7 @@ class BookedEquipmentsUpdateView(LoginRequiredMixin, UpdateView):
 
 class BookedEquipmentsDeleteView(LoginRequiredMixin, DeleteView):
     model = BookedEquipment
-    template_name = 'bookedequipment_delete.html'
+    template_name = 'bookedequipment/bookedequipment_delete.html'
     success_url = reverse_lazy('home')
     login_url = 'login'
 
@@ -53,7 +53,7 @@ class BookedEquipmentsDeleteView(LoginRequiredMixin, DeleteView):
 class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
     model = BookedEquipment
     fields = ('equipment_category', 'date', 'startTime', 'endTime', 'groups', 'motif')
-    template_name = 'bookedequipment_add.html'
+    template_name = 'bookedequipment/bookedequipment_add.html'
     success_url = reverse_lazy('home')
     login_url = 'login'
 
@@ -111,7 +111,7 @@ class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
 
 class BookedEquipmentsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = BookedEquipment  # Utilisation du modèle BookedRoom pour cette vue
-    template_name = 'bookedequipment_validation.html'
+    template_name = 'bookedequipment/bookedequipment_validation.html'
     success_url = reverse_lazy('bookedequipments_validation')
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
@@ -137,7 +137,7 @@ def BookedEquipmentsValidationRefusedView(request, pk):
 
         return redirect('bookedequipments_validation')  # redirigez vers une page de succès ou de confirmation
 
-    return render(request, 'bookedequipment_validation_refused.html', {'reservation': reservation})
+    return render(request, 'bookedequipment/bookedequipment_validation_refused.html', {'reservation': reservation})
 
 
 def BookedEquipmentsValidationValidatedView(request, pk):
@@ -168,4 +168,4 @@ def BookedEquipmentsValidationValidatedView(request, pk):
 
         return redirect('bookedequipments_validation')  # redirigez vers une page de succès ou de confirmation
 
-    return render(request, 'bookedequipment_validation_validated.html', {'reservation': reservation})
+    return render(request, 'bookedequipment/bookedequipment_validation_validated.html', {'reservation': reservation})
