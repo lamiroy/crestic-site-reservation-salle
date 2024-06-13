@@ -24,7 +24,7 @@ class RoomDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     Seuls les superutilisateurs peuvent accéder à cette vue.
     """
     model = RoomCategory  # Modèle utilisé pour cette vue
-    template_name = 'roomdashboard_list.html'  # Nom du modèle de template utilisé
+    template_name = 'roomdashbord/roomdashboard_list.html'  # Nom du modèle de template utilisé
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def test_func(self):
@@ -40,7 +40,7 @@ class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
     Seuls les superutilisateurs peuvent accéder à cette vue.
     """
     model = RoomCategory  # Modèle utilisé pour cette vue
-    template_name = 'roomdashboard_detail.html'  # Nom du modèle de template utilisé
+    template_name = 'roomdashbord/roomdashboard_detail.html'  # Nom du modèle de template utilisé
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def test_func(self):
@@ -66,7 +66,7 @@ class RoomDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateVie
     """
     model = RoomCategory  # Modèle utilisé pour cette vue
     fields = ('libRoom', 'description', 'image', 'maxCapacity')  # Champs à afficher dans le formulaire
-    template_name = 'roomdashboard_edit.html'  # Nom du modèle de template utilisé
+    template_name = 'roomdashbord/roomdashboard_edit.html'  # Nom du modèle de template utilisé
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def get_form(self):
@@ -111,7 +111,7 @@ class RoomDashboardDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteVie
     Seuls les superutilisateurs peuvent accéder à cette vue.
     """
     model = RoomCategory  # Modèle utilisé pour cette vue
-    template_name = 'roomdashboard_delete.html'  # Nom du modèle de template utilisé
+    template_name = 'roomdashbord/roomdashboard_delete.html'  # Nom du modèle de template utilisé
     success_url = reverse_lazy('roomdashboard_list')  # URL de redirection après la suppression
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
@@ -129,7 +129,7 @@ class RoomDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateVie
     """
     model = RoomCategory  # Modèle utilisé pour cette vue
     fields = ('libRoom', 'description', 'image', 'maxCapacity')  # Champs à afficher dans le formulaire
-    template_name = 'roomdashboard_new.html'  # Nom du modèle de template utilisé
+    template_name = 'roomdashbord/roomdashboard_new.html'  # Nom du modèle de template utilisé
     success_url = reverse_lazy('roomdashboard_list')  # URL de redirection après la création
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
@@ -177,7 +177,7 @@ class EquipmentDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListVi
     Seuls les superutilisateurs peuvent accéder à cette vue.
     """
     model = EquipmentCategory  # Modèle utilisé pour cette vue
-    template_name = 'equipmentdashboard_list.html'  # Nom du modèle de template utilisé
+    template_name = 'equipmentdashbord/equipmentdashboard_list.html'  # Nom du modèle de template utilisé
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def test_func(self):
@@ -193,7 +193,7 @@ class EquipmentDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, Deta
     Seuls les superutilisateurs peuvent accéder à cette vue.
     """
     model = EquipmentCategory  # Modèle utilisé pour cette vue
-    template_name = 'equipmentdashboard_detail.html'  # Nom du modèle de template utilisé
+    template_name = 'equipmentdashbord/equipmentdashboard_detail.html'  # Nom du modèle de template utilisé
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def test_func(self):
@@ -219,7 +219,7 @@ class EquipmentDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, Upda
     """
     model = EquipmentCategory  # Modèle utilisé pour cette vue
     fields = ('libEquipment', 'description', 'image', 'nbrEquipments')  # Champs à afficher dans le formulaire
-    template_name = 'equipmentdashboard_edit.html'  # Nom du modèle de template utilisé
+    template_name = 'equipmentdashbord/equipmentdashboard_edit.html'  # Nom du modèle de template utilisé
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def get_form(self):
@@ -262,7 +262,7 @@ class EquipmentDashboardDeleteView(LoginRequiredMixin, UserPassesTestMixin, Dele
     Seuls les superutilisateurs peuvent accéder à cette vue.
     """
     model = EquipmentCategory  # Modèle utilisé pour cette vue
-    template_name = 'equipmentdashboard_delete.html'  # Nom du modèle de template utilisé
+    template_name = 'equipmentdashbord/equipmentdashboard_delete.html'  # Nom du modèle de template utilisé
     success_url = reverse_lazy('equipmentdashboard_list')  # URL de redirection après la suppression
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
@@ -280,7 +280,7 @@ class EquipmentDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, Crea
     """
     model = EquipmentCategory  # Modèle utilisé pour cette vue
     fields = ('libEquipment', 'description', 'image', 'nbrEquipments')  # Champs à afficher dans le formulaire
-    template_name = 'equipmentdashboard_new.html'  # Nom du modèle de template utilisé
+    template_name = 'equipmentdashbord/equipmentdashboard_new.html'  # Nom du modèle de template utilisé
     success_url = reverse_lazy('equipmentdashboard_list')  # URL de redirection après la création
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 

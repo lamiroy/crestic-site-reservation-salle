@@ -16,7 +16,7 @@ class SignUpView(CreateView):
     """
     form_class = CustomUserCreationForm  # Utilise CustomUserCreationForm pour le formulaire d'inscription
     success_url = reverse_lazy('login')  # Redirection vers la page de connexion
-    template_name = 'signup.html'  # Template utilisé pour l'inscription
+    template_name = 'registration/signup.html'  # Template utilisé pour l'inscription
 
 
 class MyProfileView(ListView):
@@ -25,7 +25,7 @@ class MyProfileView(ListView):
     Affiche les réservations faites par l'utilisateur.
     Utilise le modèle BookedRoom pour récupérer les réservations.
     """
-    template_name = 'myprofile_view.html'  # Template utilisé pour afficher le profil
+    template_name = 'registration/myprofile_view.html'  # Template utilisé pour afficher le profil
     model = BookedRoom  # Modèle utilisé pour récupérer les réservations
 
     def get_context_data(self, **kwargs):

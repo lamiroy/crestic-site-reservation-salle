@@ -41,7 +41,7 @@ class UserIsOwnerOrAdminMixin:
 class BookedRoomsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateView):
     model = BookedRoom
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
-    template_name = 'bookedroom_edit.html'
+    template_name = 'bookedroom/bookedroom_edit.html'
     success_url = reverse_lazy('home')
     login_url = 'login'
 
@@ -134,7 +134,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateV
 class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     model = BookedRoom
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
-    template_name = 'bookedroom_add.html'
+    template_name = 'bookedroom/bookedroom_add.html'
     success_url = reverse_lazy('home')
     login_url = 'login'
 
@@ -236,7 +236,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
 
 class BookedRoomsDeleteView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, DeleteView):
     model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
-    template_name = 'bookedroom_delete.html'  # Utilisation du template 'bookedroom_delete.html'
+    template_name = 'bookedroom/bookedroom_delete.html'  # Utilisation du template 'bookedroom_delete.html'
     success_url = reverse_lazy('home')  # URL à laquelle rediriger après la suppression
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
@@ -255,7 +255,7 @@ class BookedRoomsDeleteView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, DeleteV
 
 class BookedRoomsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = BookedRoom  # Utilisation du modèle BookedRoom pour cette vue
-    template_name = 'bookedroom_validation.html'  # Utilisation du template 'bookedroom_validation.html'
+    template_name = 'bookedroom/bookedroom_validation.html'  # Utilisation du template 'bookedroom_validation.html'
     success_url = reverse_lazy('bookedrooms_validation')
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
@@ -281,7 +281,7 @@ def BookedRoomsValidationRefusedView(request, pk):
 
         return redirect('bookedrooms_validation')  # redirigez vers une page de succès ou de confirmation
 
-    return render(request, 'bookedroom_validation_refused.html', {'reservation': reservation})
+    return render(request, 'bookedroom/bookedroom_validation_refused.html', {'reservation': reservation})
 
 
 def BookedRoomsValidationValidatedView(request, pk):
@@ -312,4 +312,4 @@ def BookedRoomsValidationValidatedView(request, pk):
 
         return redirect('bookedrooms_validation')  # redirigez vers une page de succès ou de confirmation
 
-    return render(request, 'bookedroom_validation_validated.html', {'reservation': reservation})
+    return render(request, 'bookedroom/bookedroom_validation_validated.html', {'reservation': reservation})

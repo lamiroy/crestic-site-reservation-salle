@@ -96,7 +96,7 @@ class EquipmentListView(LoginRequiredMixin, ListView):
     Affiche une liste des catégories de chambres disponibles.
     """
     model = EquipmentCategory
-    template_name = 'equipmentreservation_list.html'
+    template_name = 'applicationlists/equipmentreservation_list.html'
     login_url = 'login'
 
 

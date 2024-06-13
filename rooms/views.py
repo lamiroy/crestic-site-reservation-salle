@@ -226,5 +226,5 @@ class RoomListView(ListView):
     Affiche une liste des catégories de chambres disponibles.
     """
     model = RoomCategory
-    template_name = 'roomreservation_list.html'
+    template_name = 'applicationlists/roomreservation_list.html'
     login_url = 'login'
