@@ -117,7 +117,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateV
                 date=selected_date,
                 startTime__lt=end_time,
                 endTime__gt=start_time,
-            ).exclude(status='pending')
+            ).exclude(status='pending').exclude(id=form.instance.id)
 
             if existing_bookings.exists():
                 form.add_error(None, 'Une réservation existante avec un statut autre que "pending" occupe déjà cette '
