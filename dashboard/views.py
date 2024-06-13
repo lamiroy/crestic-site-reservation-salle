@@ -12,7 +12,6 @@ from django.views.generic.edit import (
     CreateView  # Vue générique pour créer un nouvel objet
 )
 from django.urls import reverse_lazy  # Import de la fonction reverse_lazy pour obtenir les URL inversées
-
 from bookedequipments.models import BookedEquipment
 from equipments.models import EquipmentCategory
 from rooms.models import RoomCategory  # Import du modèle RoomCategory pour les catégories de salles
@@ -169,23 +168,6 @@ class RoomDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateVie
         """
         return self.request.user.is_superuser
 
-
-class BookedRoomDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    """
-    Vue pour afficher la liste des réservations de salles dans le tableau de bord.
-    Seuls les superutilisateurs peuvent accéder à cette vue.
-    """
-    model = BookedRoom  # Modèle utilisé pour cette vue
-    template_name = 'bookedroomdashboard_list.html'  # Nom du modèle de template utilisé
-    login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
-
-    def test_func(self):
-        """
-        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
-        """
-        return self.request.user.is_superuser
-
-
 # ------------------------------------------------------------------------------------------------ #
 
 
@@ -328,22 +310,6 @@ class EquipmentDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, Crea
         print("Form errors:", form.errors)  # Affiche les erreurs du formulaire dans la console
 
         return super(EquipmentDashboardCreateView, self).form_valid(form)
-
-    def test_func(self):
-        """
-        Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
-        """
-        return self.request.user.is_superuser
-
-
-class BookedEquipmentDashboardListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
-    """
-    Vue pour afficher la liste des réservations de salles dans le tableau de bord.
-    Seuls les superutilisateurs peuvent accéder à cette vue.
-    """
-    model = BookedEquipment  # Modèle utilisé pour cette vue
-    template_name = 'bookedequipmentdashboard_list.html'  # Nom du modèle de template utilisé
-    login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
     def test_func(self):
         """
