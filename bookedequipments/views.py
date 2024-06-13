@@ -5,30 +5,10 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
-
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
-from datetime import date, datetime, time
-
 from equipments.models import EquipmentCategory
 from equipments.views import add_to_ics
 from .models import BookedEquipment
-
-
-class BookedEquipmentsListView(LoginRequiredMixin, ListView):
-    model = BookedEquipment
-    template_name = 'bookedequipment_list.html'
-    login_url = 'login'
-
-    # Return only the data for the currently logged-in user
-    def get_queryset(self):
-        return BookedEquipment.objects.filter(
-            user=self.request.user).order_by('date')
-
-
-class BookedEquipmentsDetailView(LoginRequiredMixin, DetailView):
-    model = BookedEquipment
-    template_name = 'bookedequipment_detail.html'
-    login_url = 'login'
 
 
 class BookedEquipmentsUpdateView(LoginRequiredMixin, UpdateView):
@@ -128,6 +108,7 @@ class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
         print("Form errors:", form.errors)
         return super(BookedEquipmentsCreateView, self).form_valid(form)
 
+
 class BookedEquipmentsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = BookedEquipment  # Utilisation du modèle BookedRoom pour cette vue
     template_name = 'bookedequipment_validation.html'
@@ -139,6 +120,7 @@ class BookedEquipmentsValidationView(LoginRequiredMixin, UserPassesTestMixin, Li
         Fonction de test pour vérifier si l'utilisateur est un superutilisateur.
         """
         return self.request.user.isSecretary or self.request.user.is_superuser
+
 
 def BookedEquipmentsValidationRefusedView(request, pk):
     # Vérifie si l'utilisateur est authentifié et s'il a les droits nécessaires (secrétaire ou superutilisateur)
@@ -156,6 +138,7 @@ def BookedEquipmentsValidationRefusedView(request, pk):
         return redirect('bookedequipments_validation')  # redirigez vers une page de succès ou de confirmation
 
     return render(request, 'bookedequipment_validation_refused.html', {'reservation': reservation})
+
 
 def BookedEquipmentsValidationValidatedView(request, pk):
     # Vérifie si l'utilisateur est authentifié et s'il a les droits nécessaires (secrétaire ou superutilisateur)
