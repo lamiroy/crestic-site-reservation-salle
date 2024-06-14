@@ -11,6 +11,8 @@ urlpatterns = [
     path('bookedequipments.ics',
          export_bookedequipments_ics, name='bookedequipments.ics'),
     # URL pour exporter les données vers Excel
-    path('excel',
-         export_to_excel, name='excel'),
+    path('excelRoom',
+         export_to_excel_room, name='excelRoom'),
+    path('excelEquipment',
+         export_to_excel_equipment, name='excelEquipment')
 ]

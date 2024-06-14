@@ -4,7 +4,7 @@ from .models import EquipmentCategory
 
 class EquipmentCategoryAdmin(admin.ModelAdmin):
     model = EquipmentCategory
-    list_display = ['libEquipment', 'description', 'nbrEquipments']
+    list_display = ['libEquipment', 'description']
 
 
 admin.site.register(EquipmentCategory, EquipmentCategoryAdmin)
