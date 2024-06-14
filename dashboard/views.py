@@ -207,7 +207,10 @@ class EquipmentDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, Deta
         Ajoute des données supplémentaires au contexte de la vue.
         """
         context = super().get_context_data(**kwargs)
-        context['BookedEquipment'] = BookedEquipment.objects.all()  # Ajouter les objets d'un autre modèle
+        equipment = self.object
+        booked_equipments = BookedEquipment.objects.filter(equipment_category=equipment).exclude(status="canceled")
+        context['BookedEquipment'] = booked_equipments  # Ajouter les objets d'un autre modèle
+        context['has_reservations'] = booked_equipments.exists()
 
         return context
 

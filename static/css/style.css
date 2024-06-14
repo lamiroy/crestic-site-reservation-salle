@@ -866,17 +866,19 @@ form.roomreservation > div#div_id_image > div {
 }
 
 /*--------- Page des détails d'une salle ---------*/
-div.detail-card {
-    padding: 0;
-    margin: 15px 0 0 15px;
+div.details-card img {
+    height: 100%;
 }
 
-div.detail-card img {
-    margin: 0;
+div.details-card h5 {
+    margin-bottom: 5px !important;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
 }
 
-@media screen and (min-width: 768px) {
-    div.detail-card {
-        margin-left: 15px;
-    }
+div.details-card p {
+    margin-bottom: 5px !important;
+    text-align: justify;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
 }
