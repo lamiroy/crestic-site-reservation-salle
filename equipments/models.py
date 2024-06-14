@@ -13,8 +13,6 @@ class EquipmentCategory(models.Model):
     image = models.ImageField(upload_to='default-equipment_image',
                               default=MEDIA_EQUIPMENT_IMAGE)  # Champ pour télécharger une image de l'équipement
 
-    nbrEquipments = models.IntegerField(default='1')  # Champ pour spécifier le nombre d'équipements
-
     def __str__(self):
         return self.libEquipment
 

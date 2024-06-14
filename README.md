@@ -13,7 +13,7 @@
 - [🧰️ Installation](#installation)
 - [📧 Configuration du service de mail](#configmail)
 - [🔧️ Lancement du projet](#launchproject)
-- [📂 Structure du projet](#arborescence)
+- [🧾 Licence](#licence)
 - [🔍 Projet original](#origproject)
 
 ## 📝 Description <a name="description"></a>
@@ -104,11 +104,7 @@ Accéder maintenant au projet à l'adresse http://localhost:8000.
    ```
 5. **Dans un fichier nommé _utils.py_ à la racine du projet, ajoutez les emails des destinataires et des expéditeurs.**
 
-## 📂 Structure du projet <a name="arborescence"></a>
-[À FAIRE]
-
-## Licence
-
+## 🧾 Licence <a name="licence"></a>
 Ce projet est licencié sous la Licence Publique Générale Limitée GNU (LGPL) version 3 ou ultérieure. Voir le fichier [LICENSE](./LICENSE.txt) pour plus de détails.
 
 ---

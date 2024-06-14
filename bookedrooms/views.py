@@ -69,6 +69,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateV
     def form_valid(self, form):
         form.instance.last_person_modified = self.request.user
         form.instance.last_date_modified = datetime.now()
+        form.instance.status = 'pending'
         current_user = self.request.user
 
         # Vérifier si l'utilisateur est un secrétaire ou un administrateur
@@ -117,7 +118,7 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateV
                 date=selected_date,
                 startTime__lt=end_time,
                 endTime__gt=start_time,
-            ).exclude(status='pending')
+            ).exclude(status='pending').exclude(id=form.instance.id)
 
             if existing_bookings.exists():
                 form.add_error(None, 'Une réservation existante avec un statut autre que "pending" occupe déjà cette '
@@ -171,6 +172,7 @@ class BookedRoomsCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.room_category = self.room_category
+        form.instance.status = 'pending'
         current_user = self.request.user
 
         # Définir le statut en fonction du type d'utilisateur
