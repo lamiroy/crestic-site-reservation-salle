@@ -224,7 +224,7 @@ class EquipmentDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, Upda
     Seuls les superutilisateurs peuvent accéder à cette vue.
     """
     model = EquipmentCategory  # Modèle utilisé pour cette vue
-    fields = ('libEquipment', 'description', 'image', 'nbrEquipments')  # Champs à afficher dans le formulaire
+    fields = ('libEquipment', 'description', 'image')  # Champs à afficher dans le formulaire
     template_name = 'equipmentdashbord/equipmentdashboard_edit.html'  # Nom du modèle de template utilisé
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
 
@@ -238,8 +238,6 @@ class EquipmentDashboardUpdateView(LoginRequiredMixin, UserPassesTestMixin, Upda
         form.fields['description'].label = 'Description'  # Personnalise l'étiquette du champ 'description'
 
         form.fields['image'].label = 'Image'  # Personnalise l'étiquette du champ 'image'
-
-        form.fields['nbrEquipments'].label = 'Nombre d''équipments'  # Personnalise l'étiquette du champ 'maxCapacity'
 
         return form
 
@@ -285,7 +283,7 @@ class EquipmentDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, Crea
     Seuls les superutilisateurs peuvent accéder à cette vue.
     """
     model = EquipmentCategory  # Modèle utilisé pour cette vue
-    fields = ('libEquipment', 'description', 'image', 'nbrEquipments')  # Champs à afficher dans le formulaire
+    fields = ('libEquipment', 'description', 'image')  # Champs à afficher dans le formulaire
     template_name = 'equipmentdashbord/equipmentdashboard_new.html'  # Nom du modèle de template utilisé
     success_url = reverse_lazy('equipmentdashboard_list')  # URL de redirection après la création
     login_url = 'login'  # URL de connexion pour les utilisateurs non connectés
@@ -300,8 +298,6 @@ class EquipmentDashboardCreateView(LoginRequiredMixin, UserPassesTestMixin, Crea
         form.fields['description'].label = 'Description'  # Personnalise l'étiquette du champ 'description'
 
         form.fields['image'].label = 'Image'  # Personnalise l'étiquette du champ 'image'
-
-        form.fields['nbrEquipments'].label = 'Nombre d''équipement'  # Personnalise l'étiquette du champ 'maxCapacity'
 
         return form
 
