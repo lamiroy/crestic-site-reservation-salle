@@ -4,10 +4,24 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h2>Sign Up</h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button class="btn btn-success" type="submit">S'inscrire</button>
-    </form>
+    <div class="container mt-5">
+        <div class="col-sm-12 d-flex justify-content-center">
+            <h2 class="container-title reservationpage">Inscription</h2>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row content col-sm-12 d-flex justify-content-center">
+            <form class="roomreservation reservationpage" action="" method="post">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <label class="asterisk-def">
+                    <span class="asteriskField">*</span>
+                    signifie que ce champ est obligatoire.
+                </label>
+
+                <button class="btn btn-primary button-style" type="submit">S'inscrire</button>
+            </form>
+        </div>
+    </div>
 {% endblock content %}
