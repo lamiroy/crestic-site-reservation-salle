@@ -358,7 +358,7 @@ div#calendar > div:last-child {
 div.fc-toolbar-chunk > h2.fc-toolbar-title {
     font-family: "Lexend", sans-serif;
     font-weight: bold;
-    color: var(--color-dark-grey);
+    color: var(--color-light-blue);
 }
 
 /* Event */
