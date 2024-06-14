@@ -13,7 +13,6 @@
 - [🧰️ Installation](#installation)
 - [📧 Configuration du service de mail](#configmail)
 - [🔧️ Lancement du projet](#launchproject)
-- [📂 Structure du projet](#arborescence)
 - [🔍 Projet original](#origproject)
 
 ## 📝 Description <a name="description"></a>
@@ -103,9 +102,6 @@ Accéder maintenant au projet à l'adresse http://localhost:8000.
    DEFAULT_FROM_EMAIL = 'à compléter par votre adresse mail'
    ```
 5. **Dans un fichier nommé _utils.py_ à la racine du projet, ajoutez les emails des destinataires et des expéditeurs.**
-
-## 📂 Structure du projet <a name="arborescence"></a>
-[À FAIRE]
 
 ---
 ## 🔍 Projet original <a name="origproject"></a>

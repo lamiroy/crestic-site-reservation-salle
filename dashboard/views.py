@@ -54,7 +54,10 @@ class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
         Ajoute des données supplémentaires au contexte de la vue.
         """
         context = super().get_context_data(**kwargs)
-        context['BookedRoom'] = BookedRoom.objects.all()  # Ajouter les objets d'un autre modèle
+        room = self.object
+        booked_rooms = BookedRoom.objects.filter(room_category=room).exclude(status="canceled")
+        context['BookedRoom'] = booked_rooms  # Ajouter les objets d'un autre modèle
+        context['has_reservations'] = booked_rooms.exists()
 
         return context
 
@@ -207,7 +210,10 @@ class EquipmentDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, Deta
         Ajoute des données supplémentaires au contexte de la vue.
         """
         context = super().get_context_data(**kwargs)
-        context['BookedEquipment'] = BookedEquipment.objects.all()  # Ajouter les objets d'un autre modèle
+        equipment = self.object
+        booked_equipments = BookedEquipment.objects.filter(equipment_category=equipment).exclude(status="canceled")
+        context['BookedEquipment'] = booked_equipments  # Ajouter les objets d'un autre modèle
+        context['has_reservations'] = booked_equipments.exists()
 
         return context
 
