@@ -107,6 +107,10 @@ Accéder maintenant au projet à l'adresse http://localhost:8000.
 ## 📂 Structure du projet <a name="arborescence"></a>
 [À FAIRE]
 
+## Licence
+
+Ce projet est licencié sous la Licence Publique Générale Limitée GNU (LGPL) version 3 ou ultérieure. Voir le fichier [LICENSE](./LICENSE.txt) pour plus de détails.
+
 ---
 ## 🔍 Projet original <a name="origproject"></a>
 Le projet a été initialement créé à partir de https://github.com/c3n7/hotel-reservation.
