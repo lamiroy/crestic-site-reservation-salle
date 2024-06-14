@@ -241,7 +241,7 @@ class BookedEquipmentsCreateView(LoginRequiredMixin, CreateView):
 class BookedEquipmentsValidationView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = BookedEquipment  # Utilisation du modèle BookedRoom pour cette vue
     template_name = 'bookedequipment/bookedequipment_validation.html'
-    success_url = reverse_lazy('bookedequipments_validation')
+    success_url = reverse_lazy('home_equipment')
     login_url = 'login'  # URL vers laquelle rediriger les utilisateurs non authentifiés
 
     def test_func(self):
