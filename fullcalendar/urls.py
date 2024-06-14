@@ -14,5 +14,9 @@ urlpatterns = [
     path('excelRoom',
          export_to_excel_room, name='excelRoom'),
     path('excelEquipment',
-         export_to_excel_equipment, name='excelEquipment')
+         export_to_excel_equipment, name='excelEquipment'),
+    path('reservationSalles.ics',
+         export_bookedroomsNOJSON_ics, name='reservation salles'),
+    path('reservationEquipements.ics',
+         export_bookedequipmentsNOJSON_ics, name='reservation equipements')
 ]

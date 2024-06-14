@@ -7,6 +7,7 @@ from bookedequipments.models import BookedEquipment
 from django.utils.timezone import is_aware, make_naive
 import datetime
 
+
 def admin_required(user):
     # Vérifie si l'utilisateur est un administrateur
     return user.is_superuser or user.isSecretary
@@ -54,6 +55,27 @@ def export_bookedrooms_ics(request):
         return HttpResponse('Fichier .ics non trouvé', status=404)
 
 
+def export_bookedroomsNOJSON_ics(request):
+    # Chemin absolu vers le fichier .ics existant
+    current_directory = os.path.dirname(__file__)
+    ics_file_path = os.path.join(current_directory, 'calendarFiles/calendrier_reservation.ics')
+
+    # Vérifie si le fichier existe
+    if os.path.exists(ics_file_path):
+        # Lit le contenu du fichier .ics
+        with open(ics_file_path, 'rb') as f:
+            ics_content = f.read()
+
+        # Renvoie le contenu .ics en réponse à la requête
+        response = HttpResponse(ics_content, content_type='text/calendar')
+        response['Content-Disposition'] = 'attachment; filename="calendrier_reservation.ics"'
+
+        return response
+    else:
+        # Génère une réponse 404 si le fichier n'existe pas
+        return HttpResponse('Fichier .ics non trouvé', status=404)
+
+
 def export_bookedequipments_ics(request):
     # Chemin absolu vers le fichier .ics existant
     current_directory = os.path.dirname(__file__)
@@ -68,6 +90,26 @@ def export_bookedequipments_ics(request):
         # Renvoie le contenu .ics en réponse à la requête
         response = HttpResponse(ics_content, content_type='text/calendar')
         response['Content-Disposition'] = 'attachment; filename="calendarBookedequipments.ics"'
+
+        return response
+    else:
+        # Génère une réponse 404 si le fichier n'existe pas
+        return HttpResponse('Fichier .ics non trouvé', status=404)
+
+def export_bookedequipmentsNOJSON_ics(request):
+    # Chemin absolu vers le fichier .ics existant
+    current_directory = os.path.dirname(__file__)
+    ics_file_path = os.path.join(current_directory, 'calendarFiles/calendrier_reservation_equipement.ics')
+
+    # Vérifie si le fichier existe
+    if os.path.exists(ics_file_path):
+        # Lit le contenu du fichier .ics
+        with open(ics_file_path, 'rb') as f:
+            ics_content = f.read()
+
+        # Renvoie le contenu .ics en réponse à la requête
+        response = HttpResponse(ics_content, content_type='text/calendar')
+        response['Content-Disposition'] = 'attachment; filename="calendrier_reservation_equipement.ics"'
 
         return response
     else:
@@ -127,7 +169,8 @@ def export_to_excel_room(request):
             excel_content = f.read()
 
         # Renvoie le contenu Excel en réponse à la requête
-        response = HttpResponse(excel_content, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response = HttpResponse(excel_content,
+                                content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
         response['Content-Disposition'] = 'attachment; filename="reservations_salles.xlsx"'
 
         return response
@@ -187,7 +230,8 @@ def export_to_excel_equipment(request):
             excel_content = f.read()
 
         # Renvoie le contenu Excel en réponse à la requête
-        response = HttpResponse(excel_content, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response = HttpResponse(excel_content,
+                                content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
         response['Content-Disposition'] = 'attachment; filename="reservations_equipements.xlsx"'
 
         return response
