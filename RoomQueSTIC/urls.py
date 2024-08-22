@@ -18,24 +18,29 @@ from django.contrib import admin  # Import du module admin de Django pour l'inte
 from django.conf import settings  # Import des paramètres de configuration de Django
 from django.urls import (
     path,  # Fonction pour définir des chemins d'URL
-    include  # Fonction pour inclure d'autres fichiers d'URL
+    include,  # Fonction pour inclure d'autres fichiers d'URL
+    re_path as url,  # Fonction pour inclure d'autres fichiers d'URL
 )
 from django.conf.urls.static import static  # Import de la fonction static pour servir les fichiers statiques
 import django_cas_ng.views
 
+from .settings import production_prefix
+
 urlpatterns = [
-    path('admin/', admin.site.urls),  # URL pour accéder à l'interface d'administration
-    path('users/', include('users.urls')),  # URL pour les fonctionnalités liées aux utilisateurs
-    path('users/', include('django.contrib.auth.urls')),  # URL pour les fonctionnalités d'authentification des users
-    path('dashboard/', include('dashboard.urls')),# URL pour le tableau de bord
-    path('roombooking/', include('bookedrooms.urls')),  # URL pour la réservation de salles
-    path('equipmentbooking/', include('bookedequipments.urls')),  # URL pour la réservation d'équipements
-    path('calendar/', include('fullcalendar.urls')),  # URL pour le calendrier
-    path('', include('rooms.urls')),  # URL pour les fonctionnalités liées aux salles
-    path('equipments/', include('equipments.urls')),
-    path('accounts/login/', django_cas_ng.views.LoginView.as_view(), name='cas_ng_login'),
-    path('accounts/logout/', django_cas_ng.views.LogoutView.as_view(), name='cas_ng_logout'),
-]
+    url(rf'^{production_prefix}', include(
+        [ path('admin/', admin.site.urls),  # URL pour accéder à l'interface d'administration
+          path('users/', include('users.urls')),  # URL pour les fonctionnalités liées aux utilisateurs
+          path('users/', include('django.contrib.auth.urls')),  # URL pour les fonctionnalités d'authentification des users
+          path('dashboard/', include('dashboard.urls')),# URL pour le tableau de bord
+          path('roombooking/', include('bookedrooms.urls')),  # URL pour la réservation de salles
+          path('equipmentbooking/', include('bookedequipments.urls')),  # URL pour la réservation d'équipements
+          path('calendar/', include('fullcalendar.urls')),  # URL pour le calendrier
+          path('', include('rooms.urls')),  # URL pour les fonctionnalités liées aux salles
+          path('equipments/', include('equipments.urls')),
+          path('accounts/login/', django_cas_ng.views.LoginView.as_view(), name='cas_ng_login'),
+          path('accounts/logout/', django_cas_ng.views.LogoutView.as_view(), name='cas_ng_logout'),
+        ]
+    ))]
 
 if settings.DEBUG:  # Vérifie si le mode DEBUG est activé dans les paramètres de configuration
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

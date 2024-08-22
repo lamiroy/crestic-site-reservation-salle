@@ -6,7 +6,6 @@ __pycache__/
 
 *.env
 *.sqlite3
-/.idea
 /node_modules
 fullcalendar/calendarFiles/
 fullcalendar/excel/
