@@ -35,6 +35,13 @@ from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Charger les variables d'environnement à partir du fichier .env
+env_path = Path(BASE_DIR) / '.env'
+load_dotenv(dotenv_path=env_path)
+
+production_prefix=os.getenv('PRODUCTION_PREFIX')
+if production_prefix is None:
+    production_prefix=''
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -160,7 +167,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = f'/{production_prefix}static/'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -171,14 +178,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-MEDIA_URL = '/media/'
+MEDIA_URL = f'/{production_prefix}media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOM_IMAGE = '/default_room_image/default.jpg'
 MEDIA_EQUIPMENT_IMAGE = '/default_equipment_image/default.jpg'
 
-# Charger les variables d'environnement à partir du fichier .env
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path=env_path)
 # Configuration de l'envoi d'email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
@@ -197,3 +201,23 @@ def get_email_recipients():
 
 # Charger les destinataires des emails
 EMAIL_RECIPIENTS = get_email_recipients()
+
+# Content Security Policy
+
+CSP_SCRIPT_SRC = [
+    "'self'",
+    "'unsafe-inline'",
+]
+
+CSP_STYLE_SRC = [
+    "'self'",
+    "'unsafe-inline'",
+]
+
+CSP_IMG_SRC = [
+    "'self'",
+]
+
+CSP_FONT_SRC = [
+    "'self'",
+]
