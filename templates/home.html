@@ -2,6 +2,7 @@
 
 {% load crispy_forms_filters %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block link %}
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css" rel="stylesheet" />
@@ -94,5 +95,5 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/icalendar@5.5.1/main.global.min.js"></script>
-    <script src="/static/js/fullcalendar.js"></script>
+    <script src="{% static "js/fullcalendar.js" %}"></script>
 {% endblock script %}
