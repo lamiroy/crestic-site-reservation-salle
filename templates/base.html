@@ -39,7 +39,7 @@
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid navbar-container">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="{% url 'home' %}">
                     <img src="{{ MEDIA_PREFIX }}img/roomquestic.png" alt="Room Questic">
                 </a>
                 <div class="navbar-text" id="navbarText">
@@ -69,7 +69,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="{% url '' %}">Administration</a>
+                                        <a class="dropdown-item" href="{% url 'admin:index' %}">Administration</a>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
