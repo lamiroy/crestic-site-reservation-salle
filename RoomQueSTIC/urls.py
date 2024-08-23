@@ -16,6 +16,8 @@ Including another URLconf
 
 from django.contrib import admin  # Import du module admin de Django pour l'interface d'administration
 from django.conf import settings  # Import des paramètres de configuration de Django
+from .settings import production_prefix
+
 from django.urls import (
     path,  # Fonction pour définir des chemins d'URL
     include,  # Fonction pour inclure d'autres fichiers d'URL
@@ -23,8 +25,6 @@ from django.urls import (
 )
 from django.conf.urls.static import static  # Import de la fonction static pour servir les fichiers statiques
 import django_cas_ng.views
-
-from .settings import production_prefix
 
 urlpatterns = [
     url(rf'^{production_prefix}', include(
