@@ -147,6 +147,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CAS_SERVER_URL = os.getenv('CAS_HOST')  # URL de votre serveur CAS
 CAS_PORT = os.getenv('CAS_PORT')
+CAS_HOST_PROXIED_AS = os.getenv('CAS_PROXY')
 CAS_VERSION = '3'  # version du protocole CAS, par exemple '3' pour CAS v3.0
 LOGIN_URL = 'django_cas_ng.views.login'
 LOGOUT_URL = 'django_cas_ng.views.logout'
