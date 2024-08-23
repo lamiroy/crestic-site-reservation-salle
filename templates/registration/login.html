@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
     <div class="container d-flex justify-content-center align-items-center">
         <div class="card text-center mt-5 mb-5 login-card" style="width: 30rem;">
             <div class="card-body">
@@ -26,7 +27,7 @@
                             <p>Identifiants de l'URCA :</p>
                         </div>
                         <a class="btn btn-success button-style mt-4 mb-4" href="/accounts/login/">
-                            <img src="/static/img/logo-urca-bleu.png" alt="Logo de l'URCA">
+                            <img src="{{ MEDIA_PREFIX }}img/logo-urca-bleu.png" alt="Logo de l'URCA">
                         </a>
                     </div>
                 </form>

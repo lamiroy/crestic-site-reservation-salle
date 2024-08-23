@@ -1,4 +1,5 @@
 {% load static %}
+{% get_media_prefix as MEDIA_PREFIX %}
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -39,7 +40,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid navbar-container">
                 <a class="navbar-brand" href="/">
-                    <img src="/static/img/roomquestic.png" alt="Room Questic">
+                    <img src="{{ MEDIA_PREFIX }}img/roomquestic.png" alt="Room Questic">
                 </a>
                 <div class="navbar-text" id="navbarText">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -158,7 +159,7 @@
         <footer>
             <div class="container text-center d-flex flex-column align-items-center">
                 <a class="img-link" href="https://www.univ-reims.fr/" target="_blank">
-                    <img src="/static/img/logo-urca-blanc.png" alt="Logo URCA">
+                    <img src="{{ MEDIA_PREFIX }}img/logo-urca-blanc.png" alt="Logo de l'URCA">
                 </a>
                 <p class="text-md">
                     <a class="crestic-link" href="https://crestic.univ-reims.fr/fr/accueil" target="_blank">
