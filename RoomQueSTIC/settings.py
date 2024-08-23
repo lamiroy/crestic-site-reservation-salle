@@ -56,6 +56,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -130,6 +131,7 @@ AUTHENTICATION_BACKENDS = (
     'django_cas_ng.backends.CASBackend',  # pour ajouter l'authentification CAS
 )
 
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -145,18 +147,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CAS_SERVER_URL = os.getenv('CAS_HOST')  # URL de votre serveur CAS
+CAS_SERVER_URL = f"https://{os.getenv('CAS_HOST')}{os.getenv('CAS_CONTEXT')}/"  # URL du serveur CAS
 CAS_PORT = os.getenv('CAS_PORT')
 CAS_ROOT_PROXIED_AS = os.getenv('CAS_PROXY')
-CAS_VERSION = '3'  # version du protocole CAS, par exemple '3' pour CAS v3.0
+CAS_VERSION = '2'  # version du protocole CAS, par exemple '3' pour CAS v3.0
+LOGIN_URL = f"{os.getenv('CAS_CLIENT_SERVICE_NAME')}/{production_prefix}accounts/login"
+CAS_EXTRA_LOGIN_PARAMS = { 'service' : LOGIN_URL }
+
 # LOGIN_URL = 'django_cas_ng.views.login'
 # LOGOUT_URL = 'django_cas_ng.views.logout'
-LOGIN_URL = f'{production_prefix}/users/login'
-CAS_REDIRECT_URL = f'{production_prefix}/'  # URL de redirection après une connexion réussie
+CAS_LOGIN_NEXT_PAGE = f'/{production_prefix}'  # URL de redirection après une connexion réussie
+# CAS_REDIRECT_URL = f'{production_prefix}'  # URL de redirection après une connexion réussie
+
 CAS_LOGOUT_COMPLETELY = True  # déconnexion complète sur CAS logout
-CAS_IGNORE_REFERER = True  # ignorer le referer pour éviter les boucles de redirection
+CAS_IGNORE_REFERER = True # ignorer le referer pour éviter les boucles de redirection
+
+CAS_STORE_NEXT = True
 
 LOGIN_REQUIRED_IGNORE_VIEW_NAMES = ['cas_ng_login']
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
