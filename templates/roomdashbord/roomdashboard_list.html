@@ -9,7 +9,7 @@
         <div class="col-sm-12 d-flex">
             <h2 class="container-title">Gestion des salles</h2>
             <div class="flex-grow-1"></div>
-            <a href="/calendar/excelRoom" class="btn btn-primary button-style container-button mr-3">Export Excel</a>
+            <a href="{% url 'excelRoom' %}" class="btn btn-primary button-style container-button mr-3">Export Excel</a>
             <a class="btn btn-primary button-style container-button" type="button" href="{% url 'roomdashboard_new' %}">
                 <i class="bi bi-plus-lg"></i>
                 Ajouter une nouvelle salle

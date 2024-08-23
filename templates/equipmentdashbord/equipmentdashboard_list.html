@@ -9,7 +9,7 @@
         <div class="col-sm-12 d-flex">
             <h2 class="container-title">Gestion des équipements</h2>
             <div class="flex-grow-1"></div>
-            <a href="/calendar/excelEquipment" class="btn btn-primary button-style container-button mr-3">Export Excel</a>
+            <a href="{% url 'excelEquipment' %}" class="btn btn-primary button-style container-button mr-3">Export Excel</a>
             <a class="btn btn-primary button-style container-button" type="button" href="{% url 'equipmentdashboard_new' %}">
                 <i class="bi bi-plus-lg"></i>
                 Ajouter un nouvel équipement
