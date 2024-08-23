@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
             rooms: {
                 text: 'Salles',
                 click: function() {
-                    window.location.href = '/';
+                    window.location.href = '../../';
                 }
             },
             equipments: {
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Sources des événements pour le calendrier
         eventSources: [
             {
-                url: 'calendar/holiday.ics', // URL du fichier iCalendar pour les jours fériés
+                url: '../../calendar/holiday.ics', // URL du fichier iCalendar pour les jours fériés
                 format: 'ics', // Format du fichier iCalendar
                 success: function() {
                     console.log('ICS holiday loaded!'); // Message de réussite du chargement des jours fériés
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             },
             {
-                url: 'calendar/bookedequipments.ics', // URL du fichier iCalendar pour les réservations
+                url: '../../calendar/bookedequipments.ics', // URL du fichier iCalendar pour les réservations
                 format: 'ics', // Format du fichier iCalendar
                 success: function() {
                     console.log('ICS booked loaded!'); // Message de réussite du chargement des réservations
