@@ -104,7 +104,8 @@ document.addEventListener('DOMContentLoaded', function() {
             equipments: {
                 text: 'Équipements',
                 click: function() {
-                    window.location.href = '/equipments/calendar';
+                    window.location.href = 'equipments/calendar';
+		    // window.location.href = "{% url 'home_equipment' %}";
                 }
             }
         },
