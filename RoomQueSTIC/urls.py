@@ -39,7 +39,7 @@ urlpatterns = [
           path('equipments/', include('equipments.urls')),
           path('accounts/login/', django_cas_ng.views.LoginView.as_view(), name='cas_ng_login'),
           path('accounts/logout/', django_cas_ng.views.LogoutView.as_view(), name='cas_ng_logout'),
-        ]
+        ],
     ))]
 
 if settings.DEBUG:  # Vérifie si le mode DEBUG est activé dans les paramètres de configuration

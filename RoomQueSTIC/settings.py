@@ -36,8 +36,10 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Charger les variables d'environnement à partir du fichier .env
-env_path = Path(BASE_DIR) / '.env'
-load_dotenv(dotenv_path=env_path)
+env_path_django = Path(BASE_DIR) / '.env'
+env_path_crestic = Path(BASE_DIR) / '.env.crestic'
+load_dotenv(dotenv_path=env_path_crestic)
+load_dotenv(dotenv_path=env_path_django)
 
 production_prefix=os.getenv('PRODUCTION_PREFIX')
 if production_prefix is None:
@@ -143,7 +145,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CAS_SERVER_URL = 'https://cas.univ-reims.fr/cas/'  # URL de votre serveur CAS
+CAS_SERVER_URL = os.getenv('CAS_HOST')  # URL de votre serveur CAS
+CAS_PORT = os.getenv('CAS_PORT')
 CAS_VERSION = '3'  # version du protocole CAS, par exemple '3' pour CAS v3.0
 LOGIN_URL = 'django_cas_ng.views.login'
 LOGOUT_URL = 'django_cas_ng.views.logout'
