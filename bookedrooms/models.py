@@ -55,16 +55,16 @@ class BookedRoom(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        if self.id:
-            print(f'updating object {self.id}')
+        if not self.pk:
+            print(f'creating object {self.pk}')
         else:
-            print(f'inserting object {self.id}')
+            print(f'updating object {self.pk}')
 
     def delete(self, *args, **kwargs):
-        if self.id:
-            print(f'deleting object {self.id}')
+        if not self.pk:
+            print(f'deleting unknown object {self.pk}')
         else:
-            print(f'deleting unknown object {self.id}')
+            print(f'deleting object {self.pk}')
         super().delete(*args, **kwargs)
 
     def get_absolute_url(self):
