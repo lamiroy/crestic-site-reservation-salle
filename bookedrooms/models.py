@@ -55,6 +55,17 @@ class BookedRoom(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+        if self.id:
+            print(f'updating object {self.id}')
+        else:
+            print(f'inserting object {self.id}')
+
+    def delete(self, *args, **kwargs):
+        if self.id:
+            print(f'deleting object {self.id}')
+        else:
+            print(f'deleting unknown object {self.id}')
+        super().delete(*args, **kwargs)
 
     def get_absolute_url(self):
         # Renvoie l'URL absolue de l'objet BookedRoom, utilisée pour les redirections après une création ou une
