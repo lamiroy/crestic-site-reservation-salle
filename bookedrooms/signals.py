@@ -13,8 +13,8 @@ def send_email(sender, instance, created=False, **kwargs):
 
     print(instance.status)
     print(instance.user)
-    user = CustomUser.objects.get(pk=instance.user)
-    print(user.email)
+    print(type(instance.user))
+    print(instance.user.email)
 
 
 @receiver(pre_delete, sender=BookedRoom)
