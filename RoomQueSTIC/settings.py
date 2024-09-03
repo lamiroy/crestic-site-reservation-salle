@@ -164,6 +164,7 @@ CAS_IGNORE_REFERER = True # ignorer le referer pour éviter les boucles de redir
 
 CAS_STORE_NEXT = True
 CAS_APPLY_ATTRIBUTES_TO_USER = True
+CAS_RENAME_ATTRIBUTES = {'mail':'email'}
 
 LOGIN_REQUIRED_IGNORE_VIEW_NAMES = ['cas_ng_login']
 
