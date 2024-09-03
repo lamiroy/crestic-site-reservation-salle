@@ -15,7 +15,7 @@ def send_email(sender, instance, created=False, **kwargs):
     print(instance.user)
     print(type(instance.user))
     print(instance.user.email)
-
+    print(vars(instance.user))
 
 @receiver(pre_delete, sender=BookedRoom)
 def send_email(sender, instance, **kwargs):
