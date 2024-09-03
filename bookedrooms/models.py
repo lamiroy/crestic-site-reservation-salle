@@ -56,22 +56,9 @@ class BookedRoom(models.Model):
     def save(self, *args, **kwargs):
         if not self.pk:
             print(f'creating object {self.pk}')
-            for att in dir(self) :
-                if not att.startswith('__'):
-                    print(f'{att}: {getattr(self, att)}')
         else:
             print(f'updating object {self.pk}')
-            for att in dir(self) :
-                if not att.startswith('__'):
-                    print(f'{att}: {getattr(self, att)}')
         super().save(*args, **kwargs)
-
-    def delete(self, *args, **kwargs):
-        if not self.pk:
-            print(f'deleting unknown object {self.pk}')
-        else:
-            print(f'deleting object {self.pk}')
-        super().delete(*args, **kwargs)
 
     def get_absolute_url(self):
         # Renvoie l'URL absolue de l'objet BookedRoom, utilisée pour les redirections après une création ou une
@@ -82,3 +69,6 @@ class BookedRoom(models.Model):
         # Renvoie une représentation en chaîne de caractères de l'objet BookedRoom, utilisée notamment dans
         # l'interface d'administration Django
         return self.room_category.libRoom + " |  " + self.user.username
+
+
+
