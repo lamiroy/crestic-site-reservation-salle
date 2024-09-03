@@ -163,6 +163,7 @@ CAS_LOGOUT_COMPLETELY = True  # déconnexion complète sur CAS logout
 CAS_IGNORE_REFERER = True # ignorer le referer pour éviter les boucles de redirection
 
 CAS_STORE_NEXT = True
+CAS_APPLY_ATTRIBUTES_TO_USER = True
 
 LOGIN_REQUIRED_IGNORE_VIEW_NAMES = ['cas_ng_login']
 
