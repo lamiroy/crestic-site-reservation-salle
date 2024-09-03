@@ -3,11 +3,11 @@ from RoomQueSTIC import settings  # Importe les paramètres de configuration de 
 
 
 # CREATION DE RESERVATION
-def send_reservation_validated_email_admin(booked_room):
+def send_reservation_confirmation_email_admin(booked_room):
     """
     Envoie un mail qui confirme directement la réservation faite par l'admin
     """
-    subject = 'Votre réservation a bien été ajoutée'
+    subject = 'Votre réservation a bien été validée'
     message = f'Salle: {booked_room.room_category}\n' \
               f'Nombre de personnes: {booked_room.peopleAmount}\n' \
               f'Date: {booked_room.date}\n' \
@@ -15,8 +15,8 @@ def send_reservation_validated_email_admin(booked_room):
               f'Heure de fin: {booked_room.endTime}\n' \
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
-    recipient_list = settings.EMAIL_RECIPIENTS
+    sender = settings.DEFAULT_FROM_EMAIL
+    recipient_list = settings.EMAIL_RECIPIENTS.append(booked_room.user.email)
     send_mail(subject, message, sender, recipient_list)
 
 
@@ -30,7 +30,7 @@ def send_reservation_confirmation_email_admin(booked_room):
               f'Salle: {booked_room.room_category}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'Veuillez valider ou refuser cette demande de réservation.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
 
@@ -48,8 +48,8 @@ def send_reservation_confirmation_email_user(booked_room):
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'Veuillez patienter pendant qu''une secrétaire valide ou refuse cette demande de réservation.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
-    recipient_list = settings.EMAIL_RECIPIENTS
+    sender = settings.DEFAULT_FROM_EMAIL
+    recipient_list = settings.EMAIL_RECIPIENTS.append(booked_room.user.email)
     send_mail(subject, message, sender, recipient_list)
 
 
@@ -68,7 +68,7 @@ def send_reservation_update_email_admin(booked_room):
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'La réservation a été modifiée avec succès.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
 
@@ -87,7 +87,7 @@ def send_reservation_update_email_user_by_admin(booked_room):
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'Veuillez patienter pendant qu''une secrétaire valide ou refuse cette modification.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
 
@@ -106,7 +106,7 @@ def send_reservation_update_email_user(booked_room):
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'Veuillez patienter pendant qu''une secrétaire valide ou refuse cette modification.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
 
@@ -126,7 +126,7 @@ def send_reservation_update_email_admin_alert(booked_room):
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'Veuillez valider ou refuser cette modification.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
 
@@ -146,7 +146,7 @@ def send_reservation_cancellation_email_user_alert_validated_pending_reservation
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'La réservation a été annulée.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
 
@@ -165,7 +165,7 @@ def send_reservation_cancellation_email_admin_alert_validated_pending_reservatio
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'La réservation a été annulée.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
 
@@ -184,7 +184,7 @@ def send_reservation_cancellation_email_user(booked_room):
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'La réservation a été annulée.\n'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
 
@@ -204,7 +204,7 @@ def send_reservation_cancellation_email_admin_alert_validated_reservation(booked
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'La réservation a été annulée.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
 
@@ -223,6 +223,6 @@ def send_reservation_cancellation_email_user_alert_validated_reservation(booked_
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n' \
               f'La réservation a été annulée.'
-    sender = 'à compléter avec l''adresse de l''expéditeur'
+    sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
     send_mail(subject, message, sender, recipient_list)
