@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from django.core.signals import post_save
+from django.db.models.signals import post_save, pre_delete
 
 from RoomQueSTIC import utils
 
