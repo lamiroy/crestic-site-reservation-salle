@@ -1,8 +1,8 @@
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save, pre_delete, post_delete
 from django.dispatch import receiver
 
 from bookedrooms.models import BookedRoom
+from users.models import CustomUser
 
 
 @receiver(post_save, sender=BookedRoom)
@@ -13,7 +13,7 @@ def send_email(sender, instance, created=False, **kwargs):
 
     print(instance.status)
     print(instance.user)
-    user = User.objects.get(pk=instance.user)
+    user = CustomUser.objects.get(pk=instance.user)
     print(user.email)
 
 
