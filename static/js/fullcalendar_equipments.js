@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Obtention de l'élément HTML représentant le calendrier
     let calendarEquip = document.getElementById('calendar');
+    let sitePrefix = '/reservations'
 
     // Création d'une instance du calendrier FullCalendar
     let calendarEquipment = new FullCalendar.Calendar(calendarEquip, {
@@ -64,8 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Ajout du contenu des ancres
                 if (eventData.holiday === "false") {
                     eventDetailsButtons.innerHTML = `
-                        <a id="ancreEdit" class="btn btn-primary button-style" href="../../equipmentbooking/${eventData.id}/edit_equipment/">Modifier</a>
-                        <a id="ancreDelete" class="btn btn-danger card-link button-style button-red" href="../../equipmentbooking/${eventData.id}/delete_equipment/">Annuler</a>
+                        <a id="ancreEdit" class="btn btn-primary button-style" href="${sitePrefix}/equipmentbooking/${eventData.id}/edit_equipment/">Modifier</a>
+                        <a id="ancreDelete" class="btn btn-danger card-link button-style button-red" href="${sitePrefix}/equipmentbooking/${eventData.id}/delete_equipment/">Annuler</a>
                     `;
                 }
             } else {
@@ -106,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             rooms: {
                 text: 'Salles',
                 click: function() {
-                    window.location.href = '../../';
+                    window.location.href = '${sitePrefix}/';
                 }
             },
             equipments: {
