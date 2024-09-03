@@ -54,11 +54,17 @@ class BookedRoom(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
         if not self.pk:
             print(f'creating object {self.pk}')
+            for att in dir(self) :
+                if not att.startswith('__'):
+                    print(f'{att}: {getattr(self, att)}')
         else:
             print(f'updating object {self.pk}')
+            for att in dir(self) :
+                if not att.startswith('__'):
+                    print(f'{att}: {getattr(self, att)}')
+        super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         if not self.pk:
