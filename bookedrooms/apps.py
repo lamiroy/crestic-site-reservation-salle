@@ -1,8 +1,4 @@
 from django.apps import AppConfig
-from django.db.models.signals import post_save, pre_delete
-
-from RoomQueSTIC import utils
-
 
 # Classe de configuration pour l'application Bookedrooms
 class BookedroomsConfig(AppConfig):
@@ -10,6 +6,6 @@ class BookedroomsConfig(AppConfig):
     name = 'bookedrooms'
 
     def ready(self):
-
+        from . import signals
         # Explicitly connect a signal handler.
-        post_save.connect(utils.send_email)
+        # post_save.connect(utils.send_email)
