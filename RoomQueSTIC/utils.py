@@ -16,26 +16,27 @@ def send_reservation_confirmation_email_admin(booked_room):
               f'Groupe/Laboratoire: {booked_room.groups}\n' \
               f'Motif: {booked_room.motif}\n'
     sender = settings.DEFAULT_FROM_EMAIL
-    recipient_list = settings.EMAIL_RECIPIENTS.append(booked_room.user.email)
-    send_mail(subject, message, sender, recipient_list)
+    recipient_list = [booked_room.user.email] + settings.EMAIL_RECIPIENTS
+    code = send_mail(subject, message, sender, recipient_list, fail_silently=False)
+    print(f'email return code = {code}')
 
 
-def send_reservation_confirmation_email_admin(booked_room):
+def send_request_validation_email_admin(booked_room):
     """
     Envoie un mail qui demande la confirmation de la réservation d'un utilisateur
     """
     subject = 'Nouvelle réservation en attente de validation'
     message = f'Une nouvelle réservation a été faite par {booked_room.user.first_name}' \
-              f' {booked_room.user.last_name}.\n' \
+              f' {booked_room.user.last_name} ({booked_room.user.email}).\n' \
               f'Salle: {booked_room.room_category}\n' \
               f'Motif: {booked_room.motif}\n' \
-              f'Veuillez valider ou refuser cette demande de réservation.'
+              f'Veuillez valider ou refuser cette demande de réservation sur https://crestic.univ-reims.fr/reservations.'
     sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.EMAIL_RECIPIENTS
-    send_mail(subject, message, sender, recipient_list)
+    code = send_mail(subject, message, sender, recipient_list)
+    print(f'email return code = {code}')
 
-
-def send_reservation_confirmation_email_user(booked_room):
+def send_reservation_acknowledgement_email_user(booked_room):
     """
     Envoie un mail qui atteste de la demande réservation d'un utilisateur
     """
@@ -49,9 +50,9 @@ def send_reservation_confirmation_email_user(booked_room):
               f'Motif: {booked_room.motif}\n' \
               f'Veuillez patienter pendant qu''une secrétaire valide ou refuse cette demande de réservation.'
     sender = settings.DEFAULT_FROM_EMAIL
-    recipient_list = settings.EMAIL_RECIPIENTS.append(booked_room.user.email)
-    send_mail(subject, message, sender, recipient_list)
-
+    recipient_list = [booked_room.user.email]
+    code = send_mail(subject, message, sender, recipient_list)
+    print(f'email return code = {code}')
 
 # MODIFICATION DE RESERVATION
 def send_reservation_update_email_admin(booked_room):
@@ -185,7 +186,7 @@ def send_reservation_cancellation_email_user(booked_room):
               f'Motif: {booked_room.motif}\n' \
               f'La réservation a été annulée.\n'
     sender = settings.DEFAULT_FROM_EMAIL
-    recipient_list = settings.EMAIL_RECIPIENTS
+    recipient_list = [booked_room.user.email]
     send_mail(subject, message, sender, recipient_list)
 
 
