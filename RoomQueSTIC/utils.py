@@ -8,8 +8,8 @@ from bookedrooms.models import BookedRoom
 
 
 @receiver(post_save, sender=BookedRoom)
-def send_email(sender, instance, **kwargs):
-    print(f'post_save trigger for {instance.pk}')
+def send_email(sender, **kwargs):
+    print(f'post_save trigger for {sender.pk}')
 
 @receiver(pre_delete, sender=BookedRoom)
 def send_email(sender, instance, **kwargs):
