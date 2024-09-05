@@ -30,7 +30,7 @@
                 {% if bookedroom.status == 'pending' %}
                     <div class="col-sm-12 col-md-6">
                         <div class="card shadow-sm text-bg-dark position-relative card-available-rooms">
-                            <img src="{{ MEDIA_PREFIX }}{{ bookedroom.room_category.image }}" class="object-fit-none" alt="{{ bookedroom.room_category.libRoom }}">
+                            <img src="{{ MEDIA_PREFIX }}{{ bookedroom.room_category.image }}" class="object-fit-cover" alt="{{ bookedroom.room_category.libRoom }}">
                             <div class="card-img-overlay">
                                 <h5 class="card-title fs-3">{{ bookedroom.room_category.libRoom }}</h5>
                                 <p class="card-text fs-6">{{ bookedroom.motif }}</p>

@@ -30,7 +30,7 @@
             {% for room in object_list %}
                 <div class="col-sm-12 col-md-6">
                     <div class="card shadow-sm text-bg-dark position-relative card-available-rooms">
-                        <img src="{{ MEDIA_PREFIX }}{{ room.image }}" class="object-fit-none" alt="{{ room.libRoom }}">
+                        <img src="{{ MEDIA_PREFIX }}{{ room.image }}" class="object-fit-cover" alt="{{ room.libRoom }}">
                         <div class="card-img-overlay">
                             <h5 class="card-title fs-3">{{ room.libRoom }}</h5>
                             <p class="card-text fs-6">{{ room.description }}</p>
