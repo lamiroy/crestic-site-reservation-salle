@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             equipments: {
                 text: 'Équipements',
                 click: function() {
-                    window.location.href = `${sitePrefix}/equipments/calendar;
+                    window.location.href = `${sitePrefix}/equipments/calendar`;
 		    // window.location.href = "{% url 'home_equipment' %}";
                 }
             }
