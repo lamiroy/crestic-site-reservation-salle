@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (eventData.holiday === "false") {
                     eventDetailsButtons.innerHTML = `
                         <a id="ancreEdit" class="btn btn-primary button-style" href="``${sitePrefix}/equipmentbooking/${eventData.id}/edit_equipment/">Modifier</a>
-                        <a id="ancreDelete" class="btn btn-danger card-link button-style button-red" href="`${sitePrefix}/equipmentbooking/${eventData.id}/delete_equipment/">Annuler</a>
+                        <a id="ancreDelete" class="btn btn-danger card-link button-style button-red" href="``${sitePrefix}/equipmentbooking/${eventData.id}/delete_equipment/">Annuler</a>
                     `;
                 }
             } else {
