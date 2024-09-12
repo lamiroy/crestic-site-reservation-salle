@@ -3,10 +3,10 @@ from django.dispatch import receiver
 
 from RoomQueSTIC import utils
 from RoomQueSTIC.utils import RoomReservationTemplate
-from bookedrooms.models import BookedRoom
+from bookedequipments.models import BookedEquipment
 
 
-@receiver(post_save, sender=BookedRoom)
+@receiver(post_save, sender=BookedEquipment)
 def send_email(sender, instance, created=False, **kwargs):
     print(f'post_save trigger for {instance.pk}')
     message_template = RoomReservationTemplate(instance)
@@ -21,10 +21,10 @@ def send_email(sender, instance, created=False, **kwargs):
             utils.send_reservation_confirmation_email_admin(message_template)
             pass
 
-@receiver(pre_delete, sender=BookedRoom)
+@receiver(pre_delete, sender=BookedEquipment)
 def send_email(sender, instance, **kwargs):
     print(f'pre_delete trigger for {instance.pk}')
 
-@receiver(post_delete, sender=BookedRoom)
+@receiver(post_delete, sender=BookedEquipment)
 def send_email(sender, instance, **kwargs):
     print(f'post_delete trigger for {instance.pk}')

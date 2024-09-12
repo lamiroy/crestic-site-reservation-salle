@@ -1,14 +1,7 @@
-from django.core.exceptions import ValidationError  # Import de l'exception pour gérer les erreurs de validation
 from django.contrib.auth import get_user_model  # Import de la fonction pour obtenir le modèle utilisateur personnalisé
 from rooms.models import RoomCategory  # Import du modèle RoomCategory pour les catégories de salles
 from django.db import models  # Import du module models pour définir les modèles de la base de données
 from django.urls import reverse  # Import de la fonction reverse pour obtenir les URL inversées
-from datetime import (
-    date,  # Import de la classe date pour manipuler les dates
-    datetime,  # Import de la classe datetime pour manipuler les dates et heures
-    time  # Import de la classe time pour manipuler les heures
-)
-
 
 class BookedRoom(models.Model):
     STATUS_CHOICES = [  # Choix pour le statut de la réservation
