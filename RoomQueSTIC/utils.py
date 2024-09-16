@@ -35,7 +35,8 @@ class MessageTemplate:
               f'Heure de fin: {self._booking.endTime}\n' \
               f'Groupe/Laboratoire: {self._booking.groups}\n' \
               f'Motif: {self._booking.motif}\n' \
-              f'\n\nhttps://crestic.univ-reims.fr/reservations'    \
+              f'\n\nhttps://crestic.univ-reims.fr/reservations'
+        return text
 
     @property
     def confirmation_text(self) -> str:
@@ -70,7 +71,8 @@ class MessageTemplate:
 
     @property
     def cancellation_text(self) -> str:
-            return f'La réservation suivante a été annulée :\n{self.default_text}'
+        return f'La réservation suivante a été annulée :\n{self.default_text}'
+
     @property
     def cancellation_subject(self) -> str:
         return 'Annulation de votre réservation'
