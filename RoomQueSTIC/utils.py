@@ -4,9 +4,6 @@ from RoomQueSTIC import settings  # Importe les paramètres de configuration de 
 def reservation_url(booked_room) -> str:
     return f'https://crestic.univ-reims.fr/reservations/roombooking/{booked_room.id}/edit/'
 
-def greeting_template(booked_room) -> str:
-    return f'Bonjour {booked_room.user.first_name},'
-
 def booked_room_text_template(booked_room) -> str:
     text = f'Salle: {booked_room.room_category}\n' \
               f'Nombre de personnes: {booked_room.peopleAmount}\n' \
@@ -134,7 +131,7 @@ def send_reservation_acknowledgement_email_user(bookingTemplate):
     Envoie un mail qui atteste de la demande réservation d'un utilisateur
     """
     subject = bookingTemplate.acknowledgement_subject
-    message = f'{bookingTemplate.greeting_template}\n\n{bookingTemplate.acknowledgement_text}'
+    message = f'{bookingTemplate.greeting}\n\n{bookingTemplate.acknowledgement_text}'
     sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = [bookingTemplate.recipient]
     send_mail(subject, message, sender, recipient_list)
