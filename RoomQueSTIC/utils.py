@@ -119,7 +119,7 @@ def send_request_validation_email_admin(bookingTemplate):
     """
     Envoie un mail qui demande la confirmation de la réservation d'un utilisateur
     """
-    subject = bookingTemplate.notificaiton_subject
+    subject = bookingTemplate.notification_subject
     message = bookingTemplate.notification_text
 
     sender = settings.DEFAULT_FROM_EMAIL
