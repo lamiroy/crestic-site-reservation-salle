@@ -20,8 +20,9 @@ def booked_room_text_template(booked_room) -> str:
 class MessageTemplate:
 
     def __init__(self, booking):
-        _booking = booking
-        _booking_type_name = 'Salle/Équipement'
+        self._booking = booking
+        self._booking_type_name = 'Salle/Équipement'
+
     @property
     def greeting(self) -> str:
         return f'Bonjour {self._booking.user.first_name},'
@@ -38,7 +39,7 @@ class MessageTemplate:
 
     @property
     def confirmation_text(self) -> str:
-        text = f'{self.default_text}\n\nhttps://crestic.univ-reims.fr/reservations'
+        return f'{self.default_text}\n\nhttps://crestic.univ-reims.fr/reservations'
 
     @property
     def confirmation_subject(self) -> str:
@@ -90,7 +91,7 @@ class RoomReservationTemplate(MessageTemplate):
         return self._booking.room_category
     @property
     def default_text(self) -> str:
-        return f'Nombre de personnes: {self._booking.peopleAmount}\n{self.default_text}'
+        return f'Nombre de personnes: {self._booking.peopleAmount}\n{super().default_text}'
 
 class EquipmentReservationTemplate(MessageTemplate):
 

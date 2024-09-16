@@ -2,14 +2,14 @@ from django.db.models.signals import post_save, pre_delete, post_delete
 from django.dispatch import receiver
 
 from RoomQueSTIC import utils
-from RoomQueSTIC.utils import RoomReservationTemplate
+from RoomQueSTIC.utils import EquipmentReservationTemplate
 from bookedequipments.models import BookedEquipment
 
 
 @receiver(post_save, sender=BookedEquipment)
 def send_email(sender, instance, created=False, **kwargs):
     print(f'post_save trigger for {instance.pk}')
-    message_template = RoomReservationTemplate(instance)
+    message_template = EquipmentReservationTemplate(instance)
     if created:
         if instance.status == 'pending':
             utils.send_reservation_acknowledgement_email_user(message_template)
