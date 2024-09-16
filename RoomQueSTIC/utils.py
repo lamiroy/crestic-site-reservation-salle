@@ -82,7 +82,7 @@ class MessageTemplate:
 class RoomReservationTemplate(MessageTemplate):
 
     def __init__(self, booking):
-        self.super.__init__(booking)
+        self.super().__init__(booking)
         self._booking_type_name = 'Salle'
 
     @property
@@ -95,7 +95,7 @@ class RoomReservationTemplate(MessageTemplate):
 class EquipmentReservationTemplate(MessageTemplate):
 
     def __init__(self, booking):
-        self.super.__init__(booking)
+        self.super().__init__(booking)
         self._booking_type_name = 'Équipement'
 
     @property
