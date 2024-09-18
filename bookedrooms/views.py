@@ -124,6 +124,24 @@ class BookedRoomsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateV
                 form.add_error(None, 'Une réservation existante avec un statut autre que "pending" occupe déjà cette '
                                      'salle pendant cette période.')
 
+        else: # l'utilisateur actuel a le rôle de secrétaire ou est administrateu
+
+            selected_date = form.cleaned_data['date']
+            start_time = form.cleaned_data['startTime']
+            end_time = form.cleaned_data['endTime']
+
+            existing_bookings = BookedRoom.objects.filter(
+                room_category=form.instance.room_category,
+                date=selected_date,
+                startTime__lt=end_time,
+                endTime__gt=start_time,
+                stati='booked'
+            )
+
+            if existing_bookings.exists():
+                form.add_error(None, 'Une réservation validée existe déjà pour cette '
+                                     'salle pendant cette période.')
+
         if form.errors:
             return self.form_invalid(form)
 

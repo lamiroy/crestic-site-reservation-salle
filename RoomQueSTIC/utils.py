@@ -37,7 +37,7 @@ class MessageTemplate:
 
     @property
     def confirmation_text(self) -> str:
-        return f'{self.default_text}\n\nhttps://crestic.univ-reims.fr/reservations'
+        return f'{self.default_text}'
 
     @property
     def confirmation_subject(self) -> str:
