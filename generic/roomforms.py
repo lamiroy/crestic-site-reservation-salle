@@ -3,6 +3,11 @@ from bootstrap_datepicker_plus import (
     TimePickerInput  # Import du widget TimePickerInput pour la sélection d'heures dans les formulaires
 )
 
+from datetime import datetime, date, time
+
+from bookedrooms.models import BookedRoom  # Importe le modèle BookedRoom
+
+
 class BookedRoomsGenericView:
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')
 
@@ -29,12 +34,24 @@ class BookedRoomsGenericView:
     def form_validation(self, form, user):
         form.instance.status = 'pending'
 
-        form.add_error(None,'Test Bart')
-        return form
-
         selected_date = form.cleaned_data['date']
         if selected_date < date.today():
             form.add_error('date', 'Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
+
+        start_time = form.cleaned_data['startTime']
+        end_time = form.cleaned_data['endTime']
+
+        existing_bookings = BookedRoom.objects.filter(
+            room_category=form.instance.room_category,
+            date=selected_date,
+            startTime__lt=end_time,
+            endTime__gt=start_time,
+            status='validated'
+        )
+
+        if existing_bookings.exists():
+            form.add_error(None, 'Une réservation validée existe déjà pour cette '
+                                 'salle pendant cette période.')
 
         # Vérifier si l'utilisateur est un secrétaire ou un administrateur
         if not user.is_superuser and not user.isSecretary:
@@ -73,35 +90,7 @@ class BookedRoomsGenericView:
             if form.instance.peopleAmount > form.instance.room_category.maxCapacity:
                 form.add_error('peopleAmount', 'Le nombre de personnes dépasse la capacité maximale de la salle.')
 
-            existing_bookings = BookedRoom.objects.filter(
-                room_category=form.instance.room_category,
-                date=selected_date,
-                startTime__lt=end_time,
-                endTime__gt=start_time,
-            ).exclude(status='pending').exclude(id=form.instance.id)
-
-            if existing_bookings.exists():
-                form.add_error(None, 'Une réservation existante occupe déjà cette '
-                                     'salle pendant cette période.')
-
-        else: # l'utilisateur actuel a le rôle de secrétaire ou est administrateu
-
-            start_time = form.cleaned_data['startTime']
-            end_time = form.cleaned_data['endTime']
-
-            existing_bookings = BookedRoom.objects.filter(
-                room_category=form.instance.room_category,
-                date=selected_date,
-                startTime__lt=end_time,
-                endTime__gt=start_time,
-                status='validated'
-            )
-
-            if existing_bookings.exists():
-                form.add_error(None, 'Une réservation validée existe déjà pour cette '
-                                     'salle pendant cette période.')
-            else:
-                form.instance.status = 'validated'
+        elif not existing_bookings.exists():  # l'utilisateur actuel a le rôle de secrétaire ou est administrateur
+            form.instance.status = 'validated'
 
         return form
-
