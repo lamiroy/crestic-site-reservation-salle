@@ -19,6 +19,7 @@ from datetime import datetime, date, time  # Import de la classe datetime pour m
 import os  # Importe le module os pour les opérations sur le système d'exploitation
 import json  # Import du module json pour la manipulation de données JSON
 
+from bookedrooms.views import BookedRoomsGenericView
 
 def add_to_ics():
     """
@@ -97,7 +98,7 @@ def add_to_ics():
         f.write(ical_data)
 
 
-class HomePageView(LoginRequiredMixin, CreateView):
+class HomePageView(BookedRoomsGenericView, LoginRequiredMixin, CreateView):
     """
     Affiche la page d'accueil et gère la création de réservations de chambres.
     """
@@ -147,6 +148,9 @@ class HomePageView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         current_user = self.request.user
 
+        self.form_validation(form, self.request.user)
+
+        '''
         if current_user.is_superuser or current_user.isSecretary:
             form.instance.status = 'validated'
         # Vérifier si l'utilisateur est un secrétaire ou un administrateur
@@ -197,6 +201,8 @@ class HomePageView(LoginRequiredMixin, CreateView):
             if existing_bookings.exists():
                 form.add_error(None, 'Une réservation existante avec un statut autre que "pending" occupe déjà cette '
                                      'salle pendant cette période.')
+        '''
+
 
         if form.errors:
             return self.form_invalid(form)
