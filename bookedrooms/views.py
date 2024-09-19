@@ -115,7 +115,7 @@ class BookedRoomsGenericView:
             ).exclude(status='pending').exclude(id=form.instance.id)
 
             if existing_bookings.exists():
-                form.add_error(None, 'Une réservation existante avec un statut autre que "pending" occupe déjà cette '
+                form.add_error(None, 'Une réservation existante occupe déjà cette '
                                      'salle pendant cette période.')
 
         else: # l'utilisateur actuel a le rôle de secrétaire ou est administrateu
