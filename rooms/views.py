@@ -19,7 +19,7 @@ from datetime import datetime, date, time  # Import de la classe datetime pour m
 import os  # Importe le module os pour les opérations sur le système d'exploitation
 import json  # Import du module json pour la manipulation de données JSON
 
-from bookedrooms.views import BookedRoomsGenericView
+from generic.roomforms import BookedRoomsGenericView
 
 def add_to_ics():
     """
