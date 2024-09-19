@@ -3,7 +3,7 @@ from RoomQueSTIC import settings  # Importe les paramètres de configuration de 
 
 
 def equipment_reservation_url(booking) -> str:
-    return f'https://crestic.univ-reims.fr/reservations/roombooking/{booking.id}/edit/'
+    return f'https://crestic.univ-reims.fr/reservations/equipmentbooking/{booking.id}/edit/'
 
 
 def room_reservation_url(booking) -> str:

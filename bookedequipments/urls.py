@@ -10,16 +10,16 @@ from .views import (
 )
 
 urlpatterns = [
-    path('<int:pk>/edit_equipment/',
+    path('<int:pk>/edit/',
          BookedEquipmentsUpdateView.as_view(), name='bookedequipment_edit'),
-    path('<int:pk>/delete_equipment/',
+    path('<int:pk>/delete/',
          BookedEquipmentsDeleteView.as_view(), name='bookedequipment_delete'),
     path('new/<int:equipment_pk>/',
          BookedEquipmentsCreateView.as_view(), name='bookedequipments_new'),
     path('bookedequipment_validation/',
          BookedEquipmentsValidationView.as_view(), name='bookedequipments_validation'),
-    path('<int:pk>/delete_request_equipment/',
+    path('<int:pk>/delete_request/',
          BookedEquipmentsValidationRefusedView, name='bookedequipments_validation_refused'),
-    path('<int:pk>/validate_request_equipment/',
+    path('<int:pk>/validate_request/',
          BookedEquipmentsValidationValidatedView, name='bookedequipments_validation_validated'),
 ]
