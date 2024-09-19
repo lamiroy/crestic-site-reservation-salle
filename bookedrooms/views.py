@@ -63,18 +63,18 @@ class BookedRoomsGenericView:
     def form_validation(self, form, user):
         form.instance.status = 'pending'
 
+        selected_date = form.cleaned_data['date']
+        if selected_date < date.today():
+            form.add_error('date', 'Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
+
         # Vérifier si l'utilisateur est un secrétaire ou un administrateur
         if not user.is_superuser and not user.isSecretary:
 
             if user != form.instance.user:
                 form.add_error(None, 'Cette réservation ne vous appartient pas. Veuillez revenir à la page d\'accueil')
             # Validation personnalisée
-            selected_date = form.cleaned_data['date']
             start_time = form.cleaned_data['startTime']
             end_time = form.cleaned_data['endTime']
-
-            if selected_date < date.today():
-                form.add_error('date', 'Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
 
             if start_time < time(7, 0) or start_time > time(20, 0):
                 form.add_error('startTime', 'L\'heure de début doit être entre 7h00 et 20h00.')
@@ -126,7 +126,7 @@ class BookedRoomsGenericView:
                 date=selected_date,
                 startTime__lt=end_time,
                 endTime__gt=start_time,
-                status='booked'
+                status='validated'
             )
 
             if existing_bookings.exists():
@@ -188,6 +188,7 @@ class BookedRoomsCreateView(BookedRoomsGenericView, LoginRequiredMixin, CreateVi
         form.instance.room_category = self.room_category
         form.instance.status = 'pending'
 
+        print('form validation')
         form = self.form_validation(form, current_user)
 
         if form.errors:

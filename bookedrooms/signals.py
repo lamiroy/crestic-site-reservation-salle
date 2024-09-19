@@ -8,7 +8,7 @@ from bookedrooms.models import BookedRoom
 
 @receiver(post_save, sender=BookedRoom)
 def send_email(sender, instance, created=False, **kwargs):
-    print(f'post_save trigger for {instance.pk}')
+    # print(f'post_save trigger for {instance.pk}')
     message_template = RoomReservationTemplate(instance)
     if created:
         if instance.status == 'pending':
@@ -23,8 +23,10 @@ def send_email(sender, instance, created=False, **kwargs):
 
 @receiver(pre_delete, sender=BookedRoom)
 def send_email(sender, instance, **kwargs):
-    print(f'pre_delete trigger for {instance.pk}')
+    # print(f'pre_delete trigger for {instance.pk}')
+    pass
 
 @receiver(post_delete, sender=BookedRoom)
 def send_email(sender, instance, **kwargs):
-    print(f'post_delete trigger for {instance.pk}')
+    # print(f'post_delete trigger for {instance.pk}')
+    pass
