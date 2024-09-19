@@ -63,6 +63,9 @@ class BookedRoomsGenericView:
     def form_validation(self, form, user):
         form.instance.status = 'pending'
 
+        form.add_error(None,'Test Bart')
+        return form
+
         selected_date = form.cleaned_data['date']
         if selected_date < date.today():
             form.add_error('date', 'Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
@@ -117,7 +120,6 @@ class BookedRoomsGenericView:
 
         else: # l'utilisateur actuel a le rôle de secrétaire ou est administrateu
 
-            selected_date = form.cleaned_data['date']
             start_time = form.cleaned_data['startTime']
             end_time = form.cleaned_data['endTime']
 
