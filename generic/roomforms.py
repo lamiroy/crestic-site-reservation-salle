@@ -17,7 +17,7 @@ class BookedEquipmentGenericView:
         Overridden to change the DateFields from text boxes to
         DatePicker widgets
         """
-        form.fields['equipment_category'].label = 'Nom de l\'équipment'
+        form.fields['equipment_category'].label = "Nom de l'équipment"
         form.fields['date'].label = 'Jour de la réservation'
         form.fields['startTime'].label = 'Début de la réservation'
         form.fields['endTime'].label = 'Fin de la réservation'
@@ -89,6 +89,7 @@ class BookedEquipmentGenericView:
             form.instance.status = 'loaned'
 
         return form
+
 
 class BookedRoomsGenericView:
     fields = ('room_category', 'peopleAmount', 'date', 'startTime', 'endTime', 'groups', 'motif')

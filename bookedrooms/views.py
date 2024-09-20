@@ -1,7 +1,3 @@
-from bootstrap_datepicker_plus import (
-    DatePickerInput,  # Import du widget DatePickerInput pour la sélection de dates dans les formulaires
-    TimePickerInput  # Import du widget TimePickerInput pour la sélection d'heures dans les formulaires
-)
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,  # Import du mixin LoginRequiredMixin pour obliger l'authentification de l'utilisateur
     UserPassesTestMixin  # Import du mixin UserPassesTestMixin pour vérifier des conditions sur l'utilisateur
@@ -15,28 +11,22 @@ from django.urls import \
     reverse_lazy  # Import de la fonction reverse_lazy pour obtenir les URL inversées de manière retardée
 from django.views.generic import (
     ListView,  # Import de la vue générique ListView pour afficher une liste d'objets
-    DetailView  # Import de la vue générique DetailView pour afficher les détails d'un objet
 )
 from django.views.generic.edit import (
     UpdateView,  # Import de la vue générique UpdateView pour mettre à jour un objet existant
     DeleteView,  # Import de la vue générique DeleteView pour supprimer un objet existant
     CreateView  # Import de la vue générique CreateView pour créer un nouvel objet
 )
+
+from generic.mixins import UserIsOwnerOrAdminMixin
 from rooms.models import RoomCategory  # Import du modèle RoomCategory pour les catégories de salles
 from rooms.views import add_to_ics  # Import de la vue add_to_ics pour ajouter des événements aux calendriers ICS
 from .models import BookedRoom  # Import du modèle BookedRoom pour les réservations de salles
 from django.core.exceptions import PermissionDenied  # Import de l'exception pour gérer les permissions refusées
 from django.db import transaction  # Import du module transaction pour gérer les transactions de la base de données
-from datetime import datetime, date, time
+from datetime import datetime
 
 from generic.roomforms import BookedRoomsGenericView
-
-class UserIsOwnerOrAdminMixin:
-    def dispatch(self, request, *args, **kwargs):
-        obj = self.get_object()
-        if not (request.user == obj.user or request.user.is_superuser or request.user.isSecretary):
-            raise PermissionDenied
-        return super().dispatch(request, *args, **kwargs)
 
 
 class BookedRoomsUpdateView(BookedRoomsGenericView, LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateView):
@@ -45,7 +35,7 @@ class BookedRoomsUpdateView(BookedRoomsGenericView, LoginRequiredMixin, UserIsOw
     success_url = reverse_lazy('home')
     login_url = 'login'
 
-    def get_form(self):
+    def get_form(self, form_class=None):
         form = super().get_form()
         return self.form_template(form)
 
@@ -79,7 +69,7 @@ class BookedRoomsCreateView(BookedRoomsGenericView, LoginRequiredMixin, CreateVi
         initial['room_category'] = self.room_category
         return initial
 
-    def get_form(self):
+    def get_form(self, form_class=None):
         form = super().get_form()
         return self.form_template(form)
 

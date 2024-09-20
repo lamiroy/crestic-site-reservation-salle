@@ -2,103 +2,39 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, TemplateView
+from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
-from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 from equipments.models import EquipmentCategory
 from equipments.views import add_to_ics
+from generic.mixins import UserIsOwnerOrAdminMixin
 from generic.roomforms import BookedEquipmentGenericView
 from .models import BookedEquipment
-from datetime import datetime, date, time
+from datetime import datetime
 
 
-class UserIsOwnerOrAdminMixin:
-    def dispatch(self, request, *args, **kwargs):
-        obj = self.get_object()
-        if not (request.user == obj.user or request.user.is_superuser or request.user.isSecretary):
-            raise PermissionDenied
-        return super().dispatch(request, *args, **kwargs)
-
-
-class BookedEquipmentsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateView):
+class BookedEquipmentsUpdateView(LoginRequiredMixin, UserIsOwnerOrAdminMixin, UpdateView, BookedEquipmentGenericView):
     model = BookedEquipment
     fields = ('equipment_category', 'date', 'startTime', 'endTime', 'groups', 'motif')
     template_name = 'bookedequipment/bookedequipment_edit.html'
     success_url = reverse_lazy('home_equipment')
     login_url = 'login'
 
-    def get_form(self):
-        form = super(BookedEquipmentsUpdateView, self).get_form()
-        form.fields['equipment_category'].label = 'Nom de l''équipement'
-        form.fields['date'].label = 'Jour de la réservation'
-        form.fields['date'].widget = DatePickerInput(
-            options={
-                "locale": "fr",
-                "format": "DD/MM/YYYY",
-            }
-        )
-        form.fields['startTime'].label = 'Début de la réservation'
-        form.fields['startTime'].widget = TimePickerInput().start_of('duration')
-        form.fields['endTime'].label = 'Fin de la réservation'
-        form.fields['endTime'].widget = TimePickerInput().end_of('duration')
-        form.fields['groups'].label = 'Laboratoire'
-        form.fields['motif'].label = 'Motif'
+    def get_form(self, form_class=None):
+        form = super().get_form()
+        form = self.form_template(form)
         return form
 
     def form_valid(self, form):
         form.instance.last_person_modified = self.request.user
         form.instance.last_date_modified = datetime.now()
-        form.instance.status = 'pending'
-        current_user = self.request.user
+        """
+        Surcharge pour toujours définir l'utilisateur sur l'utilisateur actuellement connecté.
+        """
+        form.instance.user = self.request.user
 
-        # Vérifier si l'utilisateur est un secrétaire ou un administrateur
-        if not current_user.is_superuser and not current_user.isSecretary:
-            if current_user != form.instance.user:
-                form.add_error(None, 'Cette réservation ne vous appartient pas. Veuillez revenir à la page d\'accueil')
-            # Validation personnalisée
-            selected_date = form.cleaned_data['date']
-            start_time = form.cleaned_data['startTime']
-            end_time = form.cleaned_data['endTime']
-
-            if selected_date < date.today():
-                form.add_error('date', 'Vous ne pouvez pas choisir une date antérieure à aujourd\'hui.')
-
-            if start_time < time(8, 0) or start_time > time(18, 0):
-                form.add_error('startTime', 'L\'heure de début doit être entre 8h00 et 18h00.')
-
-            if selected_date == date.today():
-                current_time = datetime.now().time()
-                new_hour = current_time.hour + 1
-                new_minute = current_time.minute + 30
-                if new_minute >= 60:
-                    new_hour += 1
-                    new_minute -= 60
-                min_start_time = time(new_hour, new_minute)
-                if start_time <= min_start_time:
-                    form.add_error('startTime',
-                                   'L\'heure de début doit être supérieure à 1h30 de l\'heure actuelle.')
-
-            if end_time < time(8, 0) or end_time > time(18, 0):
-                form.add_error('endTime', 'L\'heure de fin doit être entre 8h00 et 18h00.')
-            if end_time <= start_time:
-                form.add_error('endTime', 'L\'heure de fin doit être supérieure à l\'heure de début.')
-
-            if selected_date.weekday() == 5 and start_time >= time(12, 30):
-                form.add_error('startTime', 'Aucune réservation possible le samedi après 12h30.')
-            elif selected_date.weekday() == 6:
-                form.add_error('date', 'Aucune réservation possible le dimanche.')
-
-            existing_bookings = BookedEquipment.objects.filter(
-                equipment_category=form.instance.equipment_category,
-                date=selected_date,
-                startTime__lt=end_time,
-                endTime__gt=start_time,
-            ).exclude(status='pending').exclude(id=form.instance.id)
-
-            if existing_bookings.exists():
-                form.add_error(None, 'Une réservation existante avec un statut autre que "pending" occupe déjà cette '
-                                     'salle pendant cette période.')
+        form = self.form_validation(form, self.request.user)
 
         if form.errors:
             return self.form_invalid(form)
@@ -149,7 +85,7 @@ class BookedEquipmentsCreateView(BookedEquipmentGenericView, LoginRequiredMixin,
         initial['equipment_category'] = self.equipment_category
         return initial
 
-    def get_form(self):
+    def get_form(self, form_class=None):
         """
         Overridden to change the DateFields from text boxes to
         DatePicker widgets

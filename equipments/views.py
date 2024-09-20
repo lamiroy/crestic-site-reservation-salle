@@ -1,4 +1,3 @@
-from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.urls import reverse_lazy
@@ -11,10 +10,9 @@ from icalendar import (
     Calendar,  # Import du module Calendar de la bibliothèque iCalendar
     Event,  # Import du module Event de la bibliothèque iCalendar
 )
-from datetime import datetime, date, time  # Import de la classe datetime pour manipuler les dates et heures
+from datetime import datetime  # Import de la classe datetime pour manipuler les dates et heures
 import os  # Importe le module os pour les opérations sur le système d'exploitation
 import json  # Import du module json pour la manipulation de données JSON
-from django.core.exceptions import ValidationError  # Import de la classe d'erreur ValidationError
 
 
 def add_to_ics():
@@ -126,11 +124,11 @@ class HomePageViewEquipment(BookedEquipmentGenericView, LoginRequiredMixin, Crea
         'home_equipment')  # Spécifie l'URL de redirection après une soumission réussie du formulaire
     login_url = 'login'  # Spécifie l'URL de connexion pour les utilisateurs non authentifiés
 
-    def get_form(self):
+    def get_form(self, form_class=None):
         """
         Surcharge pour changer les DateFields en widgets DatePicker.
         """
-        form = super(HomePageViewEquipment, self).get_form()
+        form = super().get_form()
         return self.form_template(form)
 
     def form_valid(self, form):
@@ -138,7 +136,6 @@ class HomePageViewEquipment(BookedEquipmentGenericView, LoginRequiredMixin, Crea
         Surcharge pour toujours définir l'utilisateur sur l'utilisateur actuellement connecté.
         """
         form.instance.user = self.request.user
-        current_user = self.request.user
 
         form = self.form_validation(form, self.request.user)
 
