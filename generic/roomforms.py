@@ -52,7 +52,7 @@ class BookedEquipmentGenericView:
             startTime__lt=end_time,
             endTime__gt=start_time,
             status='loaned'
-        )
+        ).exclude(pk=form.instance.pk)
 
         if existing_bookings.exists():
             form.add_error(None, 'Une réservation existante existe pendant cette période.')
@@ -130,7 +130,7 @@ class BookedRoomsGenericView:
             startTime__lt=end_time,
             endTime__gt=start_time,
             status='validated'
-        )
+        ).exclude(pk=form.instance.pk)
 
         if existing_bookings.exists():
             form.add_error(None, 'Une réservation validée existe déjà pour cette '
