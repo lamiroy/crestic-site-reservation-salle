@@ -55,7 +55,7 @@ class RoomDashboardDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailVie
         """
         context = super().get_context_data(**kwargs)
         room = self.object
-        booked_rooms = BookedRoom.objects.filter(room_category=room).exclude(status="canceled")
+        booked_rooms = BookedRoom.objects.filter(room_category=room).exclude(status="canceled").order_by('-date', 'startTime')
         context['BookedRoom'] = booked_rooms  # Ajouter les objets d'un autre modèle
         context['has_reservations'] = booked_rooms.exists()
 
